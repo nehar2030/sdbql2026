@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="ICAIS 2026 - International Conference on Artificial Intelligence and Society">
+    <title>ICAIS 2026 - Conférence Internationale</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;900&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <span class="logo-year">2026</span>
+                <span class="logo-text">ICAIS</span>
+            </div>
+            <div class="nav-menu" id="navMenu">
+                <a href="#home" class="nav-link">Accueil</a>
+                <a href="#about" class="nav-link">À propos</a>
+                <a href="#speakers" class="nav-link">Conférenciers</a>
+                <a href="#schedule" class="nav-link">Programme</a>
+                <a href="#registration" class="nav-link">Inscription</a>
+                <a href="#venue" class="nav-link">Lieu</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <button class="nav-toggle" id="navToggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-bg"></div>
+        <div class="container hero-content">
+            <div class="hero-badge">Conférence Internationale</div>
+            <h1 class="hero-title">
+                <span class="title-line">Intelligence</span>
+                <span class="title-line">Artificielle &</span>
+                <span class="title-line">Société</span>
+            </h1>
+            <div class="hero-info">
+                <div class="info-item">
+                    <span class="info-label">Date</span>
+                    <span class="info-value">15-17 Septembre 2026</span>
+                </div>
+                <div class="info-divider"></div>
+                <div class="info-item">
+                    <span class="info-label">Lieu</span>
+                    <span class="info-value">Paris, France</span>
+                </div>
+                <div class="info-divider"></div>
+                <div class="info-item">
+                    <span class="info-label">Format</span>
+                    <span class="info-value">Hybride</span>
+                </div>
+            </div>
+            <div class="hero-actions">
+                <a href="#registration" class="btn btn-primary">S'inscrire maintenant</a>
+                <a href="#about" class="btn btn-secondary">En savoir plus</a>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <span>Défiler</span>
+            <div class="scroll-line"></div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">01</span>
+                <h2 class="section-title">À propos de la conférence</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-main">
+                    <p class="lead-text">
+                        L'ICAIS 2026 réunit chercheurs, universitaires et professionnels du monde entier 
+                        pour explorer l'intersection entre l'intelligence artificielle et les enjeux sociétaux.
+                    </p>
+                    <p>
+                        Cette conférence internationale offre une plateforme unique pour discuter des dernières 
+                        avancées en IA, leurs implications éthiques, et leur impact sur la société. Nous 
+                        encourageons les soumissions originales abordant les défis techniques, sociaux et 
+                        philosophiques de l'IA contemporaine.
+                    </p>
+                    <div class="about-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">500+</span>
+                            <span class="stat-label">Participants</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">50+</span>
+                            <span class="stat-label">Présentations</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">30+</span>
+                            <span class="stat-label">Pays</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">15+</span>
+                            <span class="stat-label">Ateliers</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="about-themes">
+                    <h3>Thèmes principaux</h3>
+                    <ul class="themes-list">
+                        <li>
+                            <span class="theme-icon">◆</span>
+                            <span>Éthique et gouvernance de l'IA</span>
+                        </li>
+                        <li>
+                            <span class="theme-icon">◆</span>
+                            <span>IA et transformation sociale</span>
+                        </li>
+                        <li>
+                            <span class="theme-icon">◆</span>
+                            <span>Apprentissage automatique et société</span>
+                        </li>
+                        <li>
+                            <span class="theme-icon">◆</span>
+                            <span>IA responsable et équitable</span>
+                        </li>
+                        <li>
+                            <span class="theme-icon">◆</span>
+                            <span>Impact de l'IA sur l'emploi</span>
+                        </li>
+                        <li>
+                            <span class="theme-icon">◆</span>
+                            <span>IA et développement durable</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Important Dates -->
+    <section class="dates">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">02</span>
+                <h2 class="section-title">Dates importantes</h2>
+            </div>
+            <div class="dates-grid">
+                <div class="date-card">
+                    <span class="date-day">15</span>
+                    <span class="date-month">Mars</span>
+                    <span class="date-year">2026</span>
+                    <p class="date-desc">Soumission des résumés</p>
+                </div>
+                <div class="date-card">
+                    <span class="date-day">30</span>
+                    <span class="date-month">Avril</span>
+                    <span class="date-year">2026</span>
+                    <p class="date-desc">Notification d'acceptation</p>
+                </div>
+                <div class="date-card">
+                    <span class="date-day">30</span>
+                    <span class="date-month">Mai</span>
+                    <span class="date-year">2026</span>
+                    <p class="date-desc">Soumission finale</p>
+                </div>
+                <div class="date-card highlighted">
+                    <span class="date-day">15</span>
+                    <span class="date-month">Sept</span>
+                    <span class="date-year">2026</span>
+                    <p class="date-desc">Début de la conférence</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Speakers Section -->
+    <section id="speakers" class="speakers">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">03</span>
+                <h2 class="section-title">Conférenciers invités</h2>
+            </div>
+            <div class="speakers-grid">
+                <div class="speaker-card">
+                    <div class="speaker-image">
+                        <div class="speaker-placeholder">Dr</div>
+                    </div>
+                    <h3 class="speaker-name">Dr. Sarah Chen</h3>
+                    <p class="speaker-title">Professeure, MIT</p>
+                    <p class="speaker-topic">IA Éthique et Gouvernance</p>
+                </div>
+                <div class="speaker-card">
+                    <div class="speaker-image">
+                        <div class="speaker-placeholder">Pr</div>
+                    </div>
+                    <h3 class="speaker-name">Prof. Ahmed Mansouri</h3>
+                    <p class="speaker-title">Directeur de recherche, Sorbonne</p>
+                    <p class="speaker-topic">IA et Société</p>
+                </div>
+                <div class="speaker-card">
+                    <div class="speaker-image">
+                        <div class="speaker-placeholder">Dr</div>
+                    </div>
+                    <h3 class="speaker-name">Dr. Maria Rodriguez</h3>
+                    <p class="speaker-title">Chef scientifique, AI Institute</p>
+                    <p class="speaker-topic">Apprentissage Profond</p>
+                </div>
+                <div class="speaker-card">
+                    <div class="speaker-image">
+                        <div class="speaker-placeholder">Pr</div>
+                    </div>
+                    <h3 class="speaker-name">Prof. James O'Brien</h3>
+                    <p class="speaker-title">Université d'Oxford</p>
+                    <p class="speaker-topic">IA Responsable</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Schedule Section -->
+    <section id="schedule" class="schedule">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">04</span>
+                <h2 class="section-title">Programme</h2>
+            </div>
+            <div class="schedule-tabs">
+                <button class="tab-btn active" data-day="day1">Jour 1</button>
+                <button class="tab-btn" data-day="day2">Jour 2</button>
+                <button class="tab-btn" data-day="day3">Jour 3</button>
+            </div>
+            <div class="schedule-content">
+                <div class="schedule-day active" id="day1">
+                    <div class="schedule-item">
+                        <span class="time">09:00 - 10:00</span>
+                        <div class="schedule-details">
+                            <h4>Cérémonie d'ouverture</h4>
+                            <p>Discours de bienvenue et keynote d'ouverture</p>
+                            <span class="location">Amphithéâtre principal</span>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="time">10:00 - 11:30</span>
+                        <div class="schedule-details">
+                            <h4>Session 1: Fondamentaux de l'IA</h4>
+                            <p>Présentations techniques et débats</p>
+                            <span class="location">Salle A</span>
+                        </div>
+                    </div>
+                    <div class="schedule-item break">
+                        <span class="time">11:30 - 12:00</span>
+                        <div class="schedule-details">
+                            <h4>Pause café & Networking</h4>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="time">12:00 - 13:30</span>
+                        <div class="schedule-details">
+                            <h4>Session 2: IA et Éthique</h4>
+                            <p>Enjeux éthiques de l'intelligence artificielle</p>
+                            <span class="location">Salle B</span>
+                        </div>
+                    </div>
+                    <div class="schedule-item break">
+                        <span class="time">13:30 - 15:00</span>
+                        <div class="schedule-details">
+                            <h4>Déjeuner</h4>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="time">15:00 - 17:00</span>
+                        <div class="schedule-details">
+                            <h4>Ateliers parallèles</h4>
+                            <p>5 ateliers thématiques au choix</p>
+                            <span class="location">Salles C, D, E, F, G</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="schedule-day" id="day2">
+                    <div class="schedule-item">
+                        <span class="time">09:00 - 10:30</span>
+                        <div class="schedule-details">
+                            <h4>Keynote: IA et Société</h4>
+                            <p>Conférence principale par Prof. Ahmed Mansouri</p>
+                            <span class="location">Amphithéâtre principal</span>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="time">10:30 - 12:00</span>
+                        <div class="schedule-details">
+                            <h4>Session 3: Applications de l'IA</h4>
+                            <p>Cas d'usage et retours d'expérience</p>
+                            <span class="location">Salle A</span>
+                        </div>
+                    </div>
+                    <div class="schedule-item break">
+                        <span class="time">12:00 - 13:30</span>
+                        <div class="schedule-details">
+                            <h4>Déjeuner & Posters</h4>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="time">13:30 - 15:30</span>
+                        <div class="schedule-details">
+                            <h4>Panel de discussion</h4>
+                            <p>L'avenir de l'IA: opportunités et défis</p>
+                            <span class="location">Amphithéâtre principal</span>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="time">19:00 - 22:00</span>
+                        <div class="schedule-details">
+                            <h4>Dîner de gala</h4>
+                            <p>Événement de networking</p>
+                            <span class="location">Hôtel Marriott</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="schedule-day" id="day3">
+                    <div class="schedule-item">
+                        <span class="time">09:00 - 11:00</span>
+                        <div class="schedule-details">
+                            <h4>Session 4: IA Responsable</h4>
+                            <p>Développement durable et impact social</p>
+                            <span class="location">Salle A</span>
+                        </div>
+                    </div>
+                    <div class="schedule-item">
+                        <span class="time">11:00 - 12:30</span>
+                        <div class="schedule-details">
+                            <h4>Présentations finales</h4>
+                            <p>Meilleurs papiers sélectionnés</p>
+                            <span class="location">Amphithéâtre principal</span>
+                        </div>
+                    </div>
+                    <div class="schedule-item break">
+                        <span class="time">12:30 - 13:00</span>
+                        <div class="schedule-details">
+                            <h4>Cérémonie de clôture</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Registration Section -->
+    <section id="registration" class="registration">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">05</span>
+                <h2 class="section-title">Inscription</h2>
+            </div>
+            <div class="registration-grid">
+                <div class="pricing-card">
+                    <h3 class="pricing-title">Étudiant</h3>
+                    <div class="pricing-amount">
+                        <span class="currency">€</span>
+                        <span class="price">150</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>Accès à toutes les sessions</li>
+                        <li>Matériel de conférence</li>
+                        <li>Pauses café incluses</li>
+                        <li>Certificat de participation</li>
+                    </ul>
+                    <button class="btn btn-outline">S'inscrire</button>
+                </div>
+                <div class="pricing-card featured">
+                    <div class="featured-badge">Populaire</div>
+                    <h3 class="pricing-title">Académique</h3>
+                    <div class="pricing-amount">
+                        <span class="currency">€</span>
+                        <span class="price">350</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>Tout du plan Étudiant</li>
+                        <li>Déjeuners inclus</li>
+                        <li>Accès au dîner de gala</li>
+                        <li>Actes de conférence</li>
+                        <li>Networking VIP</li>
+                    </ul>
+                    <button class="btn btn-primary">S'inscrire</button>
+                </div>
+                <div class="pricing-card">
+                    <h3 class="pricing-title">Professionnel</h3>
+                    <div class="pricing-amount">
+                        <span class="currency">€</span>
+                        <span class="price">550</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>Tout du plan Académique</li>
+                        <li>Atelier premium</li>
+                        <li>Espace sponsor</li>
+                        <li>Contacts réseau étendu</li>
+                        <li>Support prioritaire</li>
+                    </ul>
+                    <button class="btn btn-outline">S'inscrire</button>
+                </div>
+            </div>
+            <p class="registration-note">* Réductions disponibles pour les groupes de 5+ personnes</p>
+        </div>
+    </section>
+
+    <!-- Venue Section -->
+    <section id="venue" class="venue">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">06</span>
+                <h2 class="section-title">Lieu et hébergement</h2>
+            </div>
+            <div class="venue-content">
+                <div class="venue-info">
+                    <h3>Centre de Conférences Paris</h3>
+                    <p class="venue-address">
+                        123 Avenue des Champs-Élysées<br>
+                        75008 Paris, France
+                    </p>
+                    <p>
+                        Situé au cœur de Paris, notre centre de conférences offre des installations 
+                        ultramodernes avec une capacité de 500 personnes. Accessible facilement par 
+                        les transports en commun et à proximité des principaux hôtels.
+                    </p>
+                    <div class="venue-features">
+                        <div class="feature-item">
+                            <span class="feature-icon">📍</span>
+                            <span>Centre ville</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">🚇</span>
+                            <span>Métro: Ligne 1, 9</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">🏨</span>
+                            <span>Hôtels à proximité</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">🌐</span>
+                            <span>WiFi haute vitesse</span>
+                        </div>
+                    </div>
+                    <h4>Hôtels partenaires</h4>
+                    <ul class="hotels-list">
+                        <li>
+                            <strong>Hôtel Marriott Paris</strong>
+                            <span>€180/nuit - Code: ICAIS2026</span>
+                        </li>
+                        <li>
+                            <strong>Hôtel Mercure Opéra</strong>
+                            <span>€140/nuit - Code: ICAIS2026</span>
+                        </li>
+                        <li>
+                            <strong>Ibis Styles Paris</strong>
+                            <span>€90/nuit - Code: ICAIS2026</span>
+                        </li>
+                    </ul>
+                </div>
+                <div class="venue-map">
+                    <div class="map-placeholder">
+                        <p>📍 Carte</p>
+                        <p>Paris, France</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="contact">
+        <div class="container">
+            <div class="section-header">
+                <span class="section-number">07</span>
+                <h2 class="section-title">Contact</h2>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h3>Informations générales</h3>
+                    <div class="contact-item">
+                        <span class="contact-label">Email:</span>
+                        <a href="mailto:info@icais2026.org">info@icais2026.org</a>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-label">Téléphone:</span>
+                        <a href="tel:+33123456789">+33 1 23 45 67 89</a>
+                    </div>
+                    <div class="contact-item">
+                        <span class="contact-label">Soumissions:</span>
+                        <a href="mailto:submissions@icais2026.org">submissions@icais2026.org</a>
+                    </div>
+                    
+                    <h3 style="margin-top: 2rem;">Comité organisateur</h3>
+                    <div class="organizers">
+                        <p><strong>Président:</strong> Prof. Jean Dupont</p>
+                        <p><strong>Co-présidente:</strong> Dr. Marie Laurent</p>
+                        <p><strong>Secrétaire:</strong> Dr. Pierre Martin</p>
+                    </div>
+                </div>
+                <div class="contact-form-container">
+                    <h3>Envoyez-nous un message</h3>
+                    <form class="contact-form" id="contactForm">
+                        <input type="text" placeholder="Nom complet" required>
+                        <input type="email" placeholder="Email" required>
+                        <input type="text" placeholder="Sujet" required>
+                        <textarea placeholder="Message" rows="5" required></textarea>
+                        <button type="submit" class="btn btn-primary">Envoyer</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-col">
+                    <h4>ICAIS 2026</h4>
+                    <p>International Conference on Artificial Intelligence and Society</p>
+                    <div class="social-links">
+                        <a href="#" aria-label="Twitter">𝕏</a>
+                        <a href="#" aria-label="LinkedIn">in</a>
+                        <a href="#" aria-label="Facebook">f</a>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Liens rapides</h4>
+                    <ul>
+                        <li><a href="#about">À propos</a></li>
+                        <li><a href="#speakers">Conférenciers</a></li>
+                        <li><a href="#schedule">Programme</a></li>
+                        <li><a href="#registration">Inscription</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Ressources</h4>
+                    <ul>
+                        <li><a href="#">Appel à communications</a></li>
+                        <li><a href="#">Directives de soumission</a></li>
+                        <li><a href="#">FAQ</a></li>
+                        <li><a href="#">Politique de confidentialité</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Newsletter</h4>
+                    <p>Restez informé des actualités</p>
+                    <form class="newsletter-form">
+                        <input type="email" placeholder="Votre email" required>
+                        <button type="submit">→</button>
+                    </form>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 ICAIS. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
