@@ -1,214 +1,108 @@
 # SDBQL 2026 - Site Web Moderne
 
-Site web professionnel inspiré du template Educative pour le 2ème Congrès International sur le Développement Durable pour une Meilleure Qualité de Vie.
+Site web professionnel pour le 2ème Congrès International sur le Développement Durable pour une Meilleure Qualité de Vie.
 
-## 🎨 Nouveau Design
+## 📁 Structure du Projet
 
-Le site a été entièrement repensé avec un design moderne et académique inspiré par le template Educative :
-
-### Caractéristiques principales
-
-- **Design académique professionnel** - Épuré, moderne et élégant
-- **Palette de couleurs raffinée** - Bleu-vert académique (#004d40, #009688)
-- **Typographie claire** - Raleway pour les titres, Open Sans pour le texte
-- **Mise en page structurée** - Grille moderne avec espacement généreux
-- **Animations fluides** - Transitions douces et professionnelles
-- **Entièrement responsive** - Parfait sur mobile, tablette et desktop
-
-## 🆕 Nouvelles Sections
-
-### 1. Top Bar
-- Barre supérieure avec informations de contact
-- Liens rapides vers réseaux sociaux
-- Design sobre et professionnel
-
-### 2. Navigation Moderne
-- Menu horizontal épuré
-- Logo avec icône et texte
-- Bouton "S'inscrire" en call-to-action
-- Menu hamburger responsive sur mobile
-
-### 3. Hero Slider
-- Grande image de fond avec overlay
-- Titre impactant et professionnel
-- Méta-informations (date, lieu, format)
-- Deux boutons d'action clairs
-
-### 4. Section Welcome
-- Grille 2 colonnes (contenu + image)
-- Statistiques avec compteurs animés
-- Badge flottant sur l'image
-- Design équilibré et aéré
-
-### 5. Comité d'Organisation
-- Deux boîtes côte à côte (Honneur + Direction)
-- Design carte avec ombre subtile
-- Hiérarchie visuelle claire
-
-### 6. Axes Thématiques
-- Grille 3 colonnes
-- Numérotation en grand en arrière-plan
-- Icônes centrées
-- Effet hover élégant
-
-### 7. Historique SDBQL 2024
-- Fond dégradé avec overlay
-- Grille de statistiques avec icônes circulaires
-- Points forts en grille
-- Design immersif
-
-### 8. Timeline des Dates
-- Timeline verticale centrale
-- Marqueurs circulaires
-- Alternance gauche/droite
-- Date principale mise en valeur
-
-### 9. Sponsoring
-- 3 niveaux de pricing en grille
-- Plan recommandé mis en avant
-- Liste de fonctionnalités claire
-- Section partenaires confirmés
-
-### 10. Lieu du Congrès
-- Grille 2 colonnes (info + images)
-- Image principale + 2 petites images
-- Caractéristiques en grille
-- Adresse mise en évidence
-
-### 11. Contact
-- Grille 2 colonnes (info + formulaire)
-- Liste d'informations avec icônes
-- Formulaire moderne et épuré
-- Direction du congrès incluse
-
-### 12. Footer
-- Grille 4 colonnes
-- Logo et description
-- Liens rapides
-- Newsletter
-- Réseaux sociaux
-
-## 🎨 Palette de Couleurs
-
-```css
---color-primary: #004d40        /* Vert foncé académique */
---color-primary-dark: #00251a   /* Vert très foncé */
---color-primary-light: #39796b  /* Vert clair */
---color-secondary: #009688      /* Turquoise */
---color-accent: #00bfa5         /* Accent turquoise clair */
---color-dark: #263238           /* Gris foncé texte */
---color-text: #455a64           /* Gris moyen texte */
---color-light: #eceff1          /* Gris très clair fond */
---color-white: #ffffff          /* Blanc */
+```
+sdbql2026/
+├── index.html          # Page principale
+├── styles.css          # Feuille de styles
+├── script.js           # Scripts JavaScript
+├── README.md           # Ce fichier
+└── images/             # Dossier des images
+    ├── 1.jpg          # Amphithéâtre (galerie lieu - droite)
+    ├── 2.jpg          # Hall universitaire (galerie lieu - gauche)
+    ├── 3.png          # Université de Tlemcen (lieu - principale)
+    ├── 4.jpg          # Photo de groupe (section bienvenue)
+    ├── 5.jpg          # SDGs (bannière hero)
+    └── 6.jpg          # Nature vs industrie (fond historique)
 ```
 
-## 📝 Typographie
+## 🎨 Correspondance des Images
 
-- **Titres** : Raleway (700, 800)
-- **Corps** : Open Sans (300, 400, 600, 700)
-- **Hiérarchie claire** avec tailles de police cohérentes
+### Image 1 (1.jpg) - Amphithéâtre
+- **Emplacement**: Section Lieu > Galerie droite
+- **Description**: Amphithéâtre avec lustre décoratif
 
-## ✨ Fonctionnalités JavaScript
+### Image 2 (2.jpg) - Hall Universitaire
+- **Emplacement**: Section Lieu > Galerie gauche
+- **Description**: Hall avec colonnes décoratives
 
-### Navigation
-- Menu mobile avec animation hamburger
-- Lien actif au scroll
-- Fermeture automatique du menu mobile
+### Image 3 (3.png) - Université de Tlemcen
+- **Emplacement**: Section Lieu > Image principale
+- **Description**: Entrée de l'Université avec logo
 
-### Animations
-- Intersection Observer pour animations au scroll
-- Compteurs animés pour les statistiques
-- Effet parallaxe sur le hero
-- Timeline animée avec délais progressifs
+### Image 4 (4.jpg) - Photo de Groupe
+- **Emplacement**: Section Bienvenue (À propos)
+- **Description**: Photo de groupe du congrès
 
-### Interactions
-- Hover effects sur cartes et boutons
-- Formulaires avec validation
-- Newsletter avec confirmation
-- Bouton scroll-to-top
+### Image 5 (5.jpg) - SDGs
+- **Emplacement**: Bannière Hero (section d'accueil)
+- **Description**: Illustration des Objectifs de Développement Durable
 
-### Performance
-- Lazy loading des images
-- Debounce sur resize
-- RequestAnimationFrame pour animations
+### Image 6 (6.jpg) - Nature vs Industrie
+- **Emplacement**: Section Historique SDBQL 2024 (fond)
+- **Description**: Contraste nature/développement
 
-## 📱 Responsive Design
+## 🚀 Installation
 
-### Desktop (>1024px)
-- Grilles complètes
-- Toutes les colonnes visibles
-- Navigation horizontale
+1. **Téléchargez le dossier complet** `sdbql2026/`
+2. **Assurez-vous que tous les fichiers sont présents** :
+   - index.html
+   - styles.css
+   - script.js
+   - images/ (avec toutes les 6 images)
 
-### Tablet (768px - 1024px)
-- Grilles adaptées (2 colonnes généralement)
-- Navigation conservée
-- Images redimensionnées
+## 💻 Utilisation
 
-### Mobile (<768px)
-- Une seule colonne
-- Menu hamburger
-- Timeline simplifiée
-- Cartes empilées
-
-## 🚀 Déploiement
-
-### Option 1 : Netlify (Recommandé)
+### Option 1 : Ouvrir localement
 ```bash
-1. Créez un compte sur netlify.com
-2. Déposez le dossier complet
-3. Configuration automatique
-4. Site en ligne instantanément
+# Ouvrez simplement index.html dans votre navigateur
+double-clic sur index.html
 ```
 
-### Option 2 : GitHub Pages
+### Option 2 : Serveur local (recommandé)
 ```bash
-1. Créez un repository GitHub
-2. Uploadez les fichiers
-3. Activez Pages dans Settings
-4. Site accessible via github.io
+# Avec Python 3
+python -m http.server 8000
+
+# Avec PHP
+php -S localhost:8000
+
+# Avec Node.js (npx)
+npx http-server
 ```
 
-### Option 3 : Hébergement classique
+Puis ouvrez : `http://localhost:8000`
+
+## 🌐 Déploiement
+
+### Netlify (Recommandé)
+1. Allez sur [netlify.com](https://www.netlify.com)
+2. Glissez-déposez le dossier `sdbql2026/`
+3. Votre site est en ligne !
+
+### GitHub Pages
 ```bash
-1. Téléchargez via FTP
-2. Placez dans public_html ou www
-3. Accédez via votre domaine
+git init
+git add .
+git commit -m "Initial commit"
+git branch -M main
+git remote add origin <votre-repo>
+git push -u origin main
 ```
+Puis activez Pages dans Settings > Pages
 
-## 📁 Structure des Fichiers
+### Hébergement classique (FTP)
+1. Connectez-vous à votre hébergeur via FTP
+2. Uploadez tous les fichiers dans `public_html/` ou `www/`
+3. Conservez la structure des dossiers
 
-```
-sdbql2026-modern/
-├── index.html          # Page principale avec nouveau design
-├── styles.css          # Styles modernes académiques
-├── script.js           # JavaScript interactif amélioré
-└── README.md           # Cette documentation
-```
-
-## 🎯 Optimisations
-
-### Performance
-- CSS vanilla sans frameworks lourds
-- JavaScript natif moderne
-- Images optimisées (via Unsplash)
-- Animations GPU-accelerated
-
-### SEO
-- Structure HTML5 sémantique
-- Meta descriptions
-- Balises appropriées
-- URLs propres
-
-### Accessibilité
-- Navigation au clavier
-- Contrastes WCAG respectés
-- Labels sur formulaires
-- ARIA où nécessaire
-
-## 🔧 Personnalisation
+## ⚙️ Personnalisation
 
 ### Modifier les couleurs
-Éditez les variables CSS dans `styles.css` (lignes 7-17) :
+Éditez `styles.css` lignes 7-17 :
 ```css
 :root {
     --color-primary: #004d40;
@@ -217,119 +111,62 @@ sdbql2026-modern/
 }
 ```
 
-### Ajouter des images
-1. Remplacez les URLs Unsplash par vos images locales
-2. Créez un dossier `/images`
-3. Optimisez les images (JPG/PNG, max 200KB)
-4. Mettez à jour les chemins dans `index.html`
-
 ### Modifier le contenu
-Tout le contenu est dans `index.html`, organisé en sections claires :
-- Chaque section a un `id` pour navigation
-- Classes CSS descriptives
-- Commentaires pour repérage facile
+Éditez `index.html` :
+- Dates : ligne 71
+- Lieu : ligne 75
+- Textes : sections identifiées par id
 
-## 🆚 Différences avec l'Ancien Design
+### Remplacer des images
+1. Placez votre nouvelle image dans `images/`
+2. Modifiez le chemin dans `index.html`
+3. Gardez les noms cohérents (ou mettez à jour tous les liens)
 
-| Aspect | Ancien | Nouveau |
-|--------|--------|---------|
-| Style | Nature/Organique | Académique/Professionnel |
-| Couleurs | Verts nature | Bleu-vert académique |
-| Typographie | Montserrat/Lora | Raleway/Open Sans |
-| Layout | Fluide | Grille structurée |
-| Espacement | Variable | Généreux et cohérent |
-| Animations | Nombreuses | Subtiles et élégantes |
-| Hero | Organique flottant | Slider professionnel |
-| Navigation | Colorée | Sobre et épurée |
+## 📱 Responsive
 
-## 📊 Statistiques du Site
+Le site est entièrement responsive :
+- **Desktop** : >1024px
+- **Tablet** : 768px - 1024px
+- **Mobile** : <768px
 
-- **Sections** : 12 sections principales
-- **Composants** : 30+ composants réutilisables
-- **Animations** : 15+ animations différentes
-- **Responsive breakpoints** : 3 (1024px, 768px, 480px)
-- **Pages** : 1 (Single Page Application)
-- **Poids total** : ~50KB (HTML+CSS+JS, non compressé)
+## ✨ Fonctionnalités
 
-## 🔗 Liens Utiles
+- ✅ Navigation responsive avec menu hamburger
+- ✅ Animations au scroll
+- ✅ Compteurs animés
+- ✅ Formulaires de contact
+- ✅ Newsletter
+- ✅ Timeline des dates
+- ✅ Section sponsoring
+- ✅ Galerie d'images
 
-- **Email** : benameurnehar@gmail.com
-- **Téléphone** : +213 43 21 73 86
-- **SDBQL 2024** : https://sdbql2024tlemcen.wixsite.com/main
-- **Facebook** : https://www.facebook.com/profile.php?id=61555922292059
-
-## 🌟 Points Forts du Design
-
-1. **Professionnalisme** - Design académique reconnu internationalement
-2. **Clarté** - Information hiérarchisée et accessible
-3. **Modernité** - Tendances web design 2026
-4. **Élégance** - Animations et transitions fluides
-5. **Efficacité** - Navigation intuitive et rapide
-6. **Crédibilité** - Présentation professionnelle du congrès
-
-## 🛠️ Technologies Utilisées
+## 🛠️ Technologies
 
 - HTML5 sémantique
-- CSS3 moderne (Grid, Flexbox, Variables)
+- CSS3 (Grid, Flexbox, Variables)
 - JavaScript ES6+ vanilla
 - Google Fonts (Raleway, Open Sans)
-- Intersection Observer API
-- RequestAnimationFrame
-- CSS Animations & Transitions
 
-## 📱 Compatibilité Navigateurs
+## 📞 Contact
 
-- ✅ Chrome 90+
-- ✅ Firefox 88+
-- ✅ Safari 14+
-- ✅ Edge 90+
-- ✅ Opera 76+
-- ✅ Mobile iOS 14+
-- ✅ Mobile Android 11+
-
-## 🎓 Crédits
-
-**Design inspiré par** : Template Educative (w3layouts)  
-**Développé pour** : SDBQL 2026 - Université Abou Bekr Belkaid Tlemcen  
-**Organisateurs** : Faculté SNV-STU & Faculté des Sciences Économiques  
-**Images** : Unsplash (à remplacer par vos propres images)
+**Organisateurs** : Université Abou Bekr Belkaid Tlemcen
+- Email : benameurnehar@gmail.com
+- Téléphone : +213 43 21 73 86
+- Adresse : BP 226 Tlemcen 13000, Algérie
 
 ## 📝 Notes Importantes
 
-1. **Images** : Remplacez les URLs Unsplash par vos images locales
-2. **Email** : Configurez un service d'envoi (Formspree, EmailJS)
-3. **Newsletter** : Intégrez un service (Mailchimp, SendGrid)
-4. **Analytics** : Ajoutez Google Analytics si nécessaire
-5. **SSL** : Utilisez HTTPS pour le déploiement
+- **Toutes les images sont locales** - Pas besoin de connexion internet
+- **Optimisez les images** si nécessaire (compression)
+- **Testez sur mobile** avant déploiement
+- **Configurez SSL/HTTPS** pour la production
 
-## 🔄 Mises à Jour Futures
+## 📄 Licence
 
-- [ ] Système de soumission d'articles
-- [ ] Espace participant avec login
-- [ ] Galerie photo SDBQL 2024
-- [ ] Programme détaillé du congrès
-- [ ] Live streaming intégré
-- [ ] Chat en temps réel
-- [ ] Version multilingue (FR/AR/EN)
-- [ ] Mode sombre
-
-## 💡 Conseils d'Utilisation
-
-1. **Testez sur mobile** - La majorité du trafic vient du mobile
-2. **Optimisez les images** - Utilisez des formats WebP si possible
-3. **Testez les formulaires** - Assurez-vous qu'ils fonctionnent
-4. **Vérifiez les liens** - Tous doivent être valides
-5. **Sauvegardez régulièrement** - Git ou autre système de version
-
-## 🆘 Support
-
-Pour toute question ou problème :
-1. Vérifiez la console navigateur (F12)
-2. Testez sur différents navigateurs
-3. Contactez : benameurnehar@gmail.com
+© 2026 SDBQL - Université de Tlemcen
 
 ---
 
-**Développé avec 💙 pour un congrès académique d'excellence**
+**Développé avec 💚 pour un congrès académique d'excellence**
 
 🌱 **SDBQL 2026** - Ressources Naturelles au Service des ODD
