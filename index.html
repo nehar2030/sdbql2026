@@ -8,154 +8,159 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&family=Lora:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <span class="logo-leaf">🌱</span>
-                <div class="logo-content">
-                    <span class="logo-text">SDBQL</span>
-                    <span class="logo-year">2026</span>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="container">
+            <div class="top-bar-content">
+                <div class="top-bar-left">
+                    <a href="tel:+213432173786"><i class="icon">📞</i> +213 43 21 73 86</a>
+                    <a href="mailto:benameurnehar@gmail.com"><i class="icon">✉</i> benameurnehar@gmail.com</a>
+                </div>
+                <div class="top-bar-right">
+                    <a href="https://www.facebook.com/profile.php?id=61555922292059" target="_blank">Facebook</a>
+                    <a href="https://sdbql2024tlemcen.wixsite.com/main" target="_blank">SDBQL 2024</a>
                 </div>
             </div>
-            <div class="nav-menu" id="navMenu">
-                <a href="#home" class="nav-link">Accueil</a>
-                <a href="#about" class="nav-link">À propos</a>
-                <a href="#themes" class="nav-link">Axes thématiques</a>
-                <a href="#history" class="nav-link">SDBQL 2024</a>
-                <a href="#dates" class="nav-link">Dates importantes</a>
-                <a href="#registration" class="nav-link">Inscription</a>
-                <a href="#venue" class="nav-link">Lieu</a>
-                <a href="#contact" class="nav-link">Contact</a>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar" id="navbar">
+        <div class="container">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <span class="logo-icon">🌱</span>
+                    <div class="logo-text">
+                        <span class="logo-title">SDBQL</span>
+                        <span class="logo-subtitle">2026</span>
+                    </div>
+                </div>
+                <div class="nav-menu" id="navMenu">
+                    <a href="#home" class="nav-link active">Accueil</a>
+                    <a href="#about" class="nav-link">À propos</a>
+                    <a href="#themes" class="nav-link">Axes thématiques</a>
+                    <a href="#history" class="nav-link">SDBQL 2024</a>
+                    <a href="#dates" class="nav-link">Dates</a>
+                    <a href="#venue" class="nav-link">Lieu</a>
+                    <a href="#contact" class="nav-link">Contact</a>
+                </div>
+                <a href="#registration" class="nav-btn">S'inscrire</a>
+                <button class="nav-toggle" id="navToggle">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
             </div>
-            <button class="nav-toggle" id="navToggle">
-                <span></span>
-                <span></span>
-                <span></span>
-            </button>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-        <div class="hero-bg">
-            <div class="hero-overlay"></div>
-            <div class="floating-element leaf-1">🍃</div>
-            <div class="floating-element leaf-2">🌿</div>
-            <div class="floating-element leaf-3">🌱</div>
-        </div>
-        <div class="container hero-content">
-            <div class="hero-badge">2ème Édition • Congrès International</div>
-            <h1 class="hero-title">
-                <span class="title-line">Développement Durable</span>
-                <span class="title-line">pour une Meilleure</span>
-                <span class="title-line accent-text">Qualité de Vie</span>
-            </h1>
-            <p class="hero-subtitle">Ressources Naturelles au Service des ODD</p>
-            <div class="hero-info">
-                <div class="info-item">
-                    <span class="info-icon">📅</span>
-                    <div>
-                        <span class="info-label">Date</span>
-                        <span class="info-value">30 Septembre 2026</span>
+    <!-- Hero Slider -->
+    <section id="home" class="hero-slider">
+        <div class="slide active" style="background: linear-gradient(135deg, rgba(0,77,64,0.9), rgba(0,150,136,0.8)), url('https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?w=1920') center/cover;">
+            <div class="container">
+                <div class="slide-content">
+                    <span class="slide-label">2ème Édition • Congrès International</span>
+                    <h1 class="slide-title">Développement Durable<br>pour une Meilleure Qualité de Vie</h1>
+                    <p class="slide-desc">Ressources Naturelles au Service des Objectifs de Développement Durable</p>
+                    <div class="slide-meta">
+                        <div class="meta-item">
+                            <i class="icon">📅</i>
+                            <span>30 Septembre 2026</span>
+                        </div>
+                        <div class="meta-item">
+                            <i class="icon">📍</i>
+                            <span>Université de Tlemcen, Algérie</span>
+                        </div>
                     </div>
-                </div>
-                <div class="info-divider"></div>
-                <div class="info-item">
-                    <span class="info-icon">📍</span>
-                    <div>
-                        <span class="info-label">Lieu</span>
-                        <span class="info-value">Université de Tlemcen, Algérie</span>
-                    </div>
-                </div>
-                <div class="info-divider"></div>
-                <div class="info-item">
-                    <span class="info-icon">🌐</span>
-                    <div>
-                        <span class="info-label">Format</span>
-                        <span class="info-value">Hybride</span>
+                    <div class="slide-buttons">
+                        <a href="#registration" class="btn btn-primary">S'inscrire maintenant</a>
+                        <a href="#about" class="btn btn-light">En savoir plus</a>
                     </div>
                 </div>
             </div>
-            <div class="hero-actions">
-                <a href="#registration" class="btn btn-primary">S'inscrire maintenant</a>
-                <a href="#about" class="btn btn-secondary">En savoir plus</a>
-            </div>
-        </div>
-        <div class="scroll-indicator">
-            <span>Défiler</span>
-            <div class="scroll-line"></div>
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="about">
+    <!-- Welcome Section -->
+    <section id="about" class="welcome-section">
         <div class="container">
-            <div class="section-header">
-                <span class="section-number">01</span>
-                <h2 class="section-title">À propos du congrès</h2>
-                <p class="section-subtitle">Un événement transdisciplinaire pour un avenir durable</p>
-            </div>
-            <div class="about-content">
-                <div class="about-main">
-                    <p class="lead-text">
-                        Le 2ème Congrès International sur le Développement Durable pour une Meilleure 
-                        Qualité de Vie réunira experts, chercheurs et acteurs du terrain pour partager 
-                        connaissances, expériences et solutions innovantes.
-                    </p>
-                    <p>
-                        Organisé par la Faculté des Sciences de la Nature et de la Vie et des Sciences 
-                        de la Terre et de l'Univers en collaboration avec la Faculté des Sciences 
-                        Économiques de l'Université Abou Bekr Belkaid à Tlemcen, cet événement 
-                        transdisciplinaire ouvre la voie à des chercheurs de tous horizons.
-                    </p>
-                    <p>
-                        L'objectif est de faciliter le partage des savoirs et promouvoir une 
-                        inter-connectivité entre université et secteur économique, ainsi qu'entre 
-                        différentes universités nationales et internationales.
-                    </p>
-                    <div class="about-stats">
-                        <div class="stat-item">
+            <div class="welcome-grid">
+                <div class="welcome-content">
+                    <span class="section-label">Bienvenue à SDBQL 2026</span>
+                    <h2 class="section-title">Un événement transdisciplinaire pour un avenir durable</h2>
+                    <p>Le 2ème Congrès International sur le Développement Durable pour une Meilleure Qualité de Vie réunira experts, chercheurs et acteurs du terrain pour partager connaissances, expériences et solutions innovantes.</p>
+                    <p>Organisé par la Faculté des Sciences de la Nature et de la Vie et des Sciences de la Terre et de l'Univers en collaboration avec la Faculté des Sciences Économiques de l'Université Abou Bekr Belkaid à Tlemcen.</p>
+                    <div class="welcome-stats">
+                        <div class="stat-box">
                             <span class="stat-number">300+</span>
                             <span class="stat-label">Participants attendus</span>
                         </div>
-                        <div class="stat-item">
+                        <div class="stat-box">
                             <span class="stat-number">6</span>
                             <span class="stat-label">Axes thématiques</span>
                         </div>
-                        <div class="stat-item">
+                        <div class="stat-box">
                             <span class="stat-number">20+</span>
                             <span class="stat-label">Pays représentés</span>
                         </div>
-                        <div class="stat-item">
-                            <span class="stat-number">17</span>
-                            <span class="stat-label">ODD concernés</span>
+                    </div>
+                    <a href="#themes" class="btn btn-outline">Découvrir les axes</a>
+                </div>
+                <div class="welcome-image">
+                    <div class="image-placeholder">
+                        <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800" alt="Congrès SDBQL">
+                    </div>
+                    <div class="image-badge">
+                        <span class="badge-icon">🌱</span>
+                        <div>
+                            <strong>Format Hybride</strong>
+                            <span>Présentiel & En ligne</span>
                         </div>
                     </div>
                 </div>
-                <div class="about-organizers">
+            </div>
+        </div>
+    </section>
+
+    <!-- Committee Section -->
+    <section class="committee-section">
+        <div class="container">
+            <div class="section-header-center">
+                <span class="section-label">Organisation</span>
+                <h2 class="section-title">Comité d'organisation</h2>
+            </div>
+            <div class="committee-grid">
+                <div class="committee-box honor">
                     <h3>Comité d'honneur</h3>
-                    <div class="organizer-list">
-                        <div class="organizer-item">
+                    <div class="member-list">
+                        <div class="member-item">
                             <strong>Prof. Mourad MEGHACHOU</strong>
                             <span>Recteur de l'Université de Tlemcen</span>
                         </div>
-                        <div class="organizer-item">
+                        <div class="member-item">
                             <strong>Prof. Nassima MOUKHTARI</strong>
                             <span>Doyenne de la Faculté SNV-STU</span>
                         </div>
-                        <div class="organizer-item">
+                        <div class="member-item">
                             <strong>Prof. Fethi BENLADGHEM</strong>
                             <span>Doyen de la Faculté des Sciences Économiques</span>
                         </div>
                     </div>
-                    <div class="organizer-contact">
-                        <h4>Direction du congrès</h4>
-                        <p><strong>Présidente du Congrès:</strong> Prof. Nassima Amal Soulimane</p>
-                        <p><strong>Coordinateur Général:</strong> Prof. Dr. Benameur NEHAR</p>
+                </div>
+                <div class="committee-box direction">
+                    <h3>Direction du congrès</h3>
+                    <div class="member-list">
+                        <div class="member-item featured">
+                            <strong>Prof. Nassima Amal Soulimane</strong>
+                            <span>Présidente du Congrès</span>
+                        </div>
+                        <div class="member-item featured">
+                            <strong>Prof. Dr. Benameur NEHAR</strong>
+                            <span>Coordinateur Général</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -163,185 +168,160 @@
     </section>
 
     <!-- Themes Section -->
-    <section id="themes" class="themes">
+    <section id="themes" class="themes-section">
         <div class="container">
-            <div class="section-header">
-                <span class="section-number">02</span>
+            <div class="section-header-center">
+                <span class="section-label">Axes du congrès</span>
                 <h2 class="section-title">Axes thématiques</h2>
-                <p class="section-subtitle">Six axes clés pour bâtir ensemble un avenir durable</p>
+                <p class="section-desc">Six axes clés pour bâtir ensemble un avenir durable</p>
             </div>
             <div class="themes-grid">
-                <div class="theme-card">
+                <div class="theme-box">
+                    <div class="theme-number">01</div>
                     <div class="theme-icon">🌾</div>
-                    <h3>Axe 1</h3>
-                    <h4>Agriculture Durable et Sécurité Alimentaire</h4>
-                    <p>Explorez les pratiques agricoles respectueuses de l'environnement et les stratégies pour garantir un accès équitable à une alimentation saine et durable.</p>
+                    <h3>Agriculture Durable et Sécurité Alimentaire</h3>
+                    <p>Pratiques agricoles respectueuses de l'environnement et stratégies pour garantir un accès équitable à une alimentation saine et durable.</p>
                 </div>
-                <div class="theme-card">
+                <div class="theme-box">
+                    <div class="theme-number">02</div>
                     <div class="theme-icon">⚡</div>
-                    <h3>Axe 2</h3>
-                    <h4>Bioénergie et Énergies Renouvelables</h4>
-                    <p>Découvrez les avancées dans les technologies de bioénergie et d'autres sources d'énergie renouvelable, essentielles pour réduire notre empreinte carbone.</p>
+                    <h3>Bioénergie et Énergies Renouvelables</h3>
+                    <p>Avancées dans les technologies de bioénergie et sources d'énergie renouvelable pour réduire notre empreinte carbone.</p>
                 </div>
-                <div class="theme-card">
+                <div class="theme-box">
+                    <div class="theme-number">03</div>
                     <div class="theme-icon">🦋</div>
-                    <h3>Axe 3</h3>
-                    <h4>Biodiversité, Gestion des Milieux Aquatiques et Terrestres</h4>
-                    <p>Discutez de l'importance de la biodiversité et des moyens de gérer efficacement nos écosystèmes pour préserver la planète.</p>
+                    <h3>Biodiversité et Gestion des Milieux</h3>
+                    <p>Importance de la biodiversité et moyens de gérer efficacement nos écosystèmes aquatiques et terrestres.</p>
                 </div>
-                <div class="theme-card">
+                <div class="theme-box">
+                    <div class="theme-number">04</div>
                     <div class="theme-icon">🌍</div>
-                    <h3>Axe 4</h3>
-                    <h4>Action pour le Climat et Changement Climatique</h4>
-                    <p>Participez à des ateliers et tables rondes sur les politiques et actions nécessaires pour atténuer les effets du changement climatique.</p>
+                    <h3>Action pour le Climat</h3>
+                    <p>Ateliers et tables rondes sur les politiques et actions pour atténuer les effets du changement climatique.</p>
                 </div>
-                <div class="theme-card">
+                <div class="theme-box">
+                    <div class="theme-number">05</div>
                     <div class="theme-icon">💚</div>
-                    <h3>Axe 5</h3>
-                    <h4>Santé et Bien-être</h4>
-                    <p>Examinez le lien entre environnement et santé, en mettant l'accent sur les approches holistiques pour promouvoir le bien-être.</p>
+                    <h3>Santé et Bien-être</h3>
+                    <p>Lien entre environnement et santé, approches holistiques pour promouvoir le bien-être de tous.</p>
                 </div>
-                <div class="theme-card">
+                <div class="theme-box">
+                    <div class="theme-number">06</div>
                     <div class="theme-icon">🤝</div>
-                    <h3>Axe 6</h3>
-                    <h4>Partenariats Socio-économiques</h4>
-                    <p>Encouragez les collaborations entre secteurs public et privé pour créer des synergies et initiatives durables.</p>
+                    <h3>Partenariats Socio-économiques</h3>
+                    <p>Collaborations entre secteurs public et privé pour créer des synergies et initiatives durables.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- History Section - SDBQL 2024 -->
-    <section id="history" class="history">
+    <!-- History Section -->
+    <section id="history" class="history-section">
         <div class="container">
-            <div class="section-header">
-                <span class="section-number">03</span>
+            <div class="section-header-center">
+                <span class="section-label">Édition précédente</span>
                 <h2 class="section-title">Le succès de SDBQL 2024</h2>
-                <p class="section-subtitle">Retour sur la première édition</p>
             </div>
             <div class="history-content">
-                <div class="history-intro">
-                    <p class="lead-text">
-                        La première édition du congrès SDBQL s'est tenue les 26-27 juin 2024 au Centre 
-                        d'Études Andalouses de Tlemcen, réunissant 169 participants de plus de 20 pays.
-                    </p>
-                </div>
-                <div class="history-stats">
-                    <div class="history-stat">
-                        <span class="stat-icon">👥</span>
-                        <div class="stat-content">
-                            <span class="stat-value">169</span>
-                            <span class="stat-label">Participants</span>
-                            <span class="stat-detail">146 nationaux • 23 internationaux</span>
-                        </div>
+                <p class="history-intro">La première édition du congrès SDBQL s'est tenue les 26-27 juin 2024 au Centre d'Études Andalouses de Tlemcen, réunissant 169 participants de plus de 20 pays.</p>
+                <div class="history-stats-grid">
+                    <div class="history-stat-box">
+                        <div class="stat-icon-circle">👥</div>
+                        <h3>169</h3>
+                        <p>Participants</p>
+                        <span class="stat-detail">146 nationaux • 23 internationaux</span>
                     </div>
-                    <div class="history-stat">
-                        <span class="stat-icon">🌐</span>
-                        <div class="stat-content">
-                            <span class="stat-value">20+</span>
-                            <span class="stat-label">Nationalités</span>
-                            <span class="stat-detail">USA, Espagne, Brésil, Pologne, Japon...</span>
-                        </div>
+                    <div class="history-stat-box">
+                        <div class="stat-icon-circle">🌐</div>
+                        <h3>20+</h3>
+                        <p>Nationalités</p>
+                        <span class="stat-detail">USA, Espagne, Brésil, Pologne...</span>
                     </div>
-                    <div class="history-stat">
-                        <span class="stat-icon">📝</span>
-                        <div class="stat-content">
-                            <span class="stat-value">455</span>
-                            <span class="stat-label">Communications reçues</span>
-                            <span class="stat-detail">169 présentations sélectionnées</span>
-                        </div>
+                    <div class="history-stat-box">
+                        <div class="stat-icon-circle">📝</div>
+                        <h3>455</h3>
+                        <p>Communications reçues</p>
+                        <span class="stat-detail">169 présentations sélectionnées</span>
                     </div>
-                    <div class="history-stat">
-                        <span class="stat-icon">🎯</span>
-                        <div class="stat-content">
-                            <span class="stat-value">7</span>
-                            <span class="stat-label">Symposiums</span>
-                            <span class="stat-detail">+ Atelier doctoral • Table ronde</span>
-                        </div>
+                    <div class="history-stat-box">
+                        <div class="stat-icon-circle">🎯</div>
+                        <h3>7</h3>
+                        <p>Symposiums</p>
+                        <span class="stat-detail">+ Atelier doctoral</span>
                     </div>
                 </div>
                 <div class="history-highlights">
-                    <h3>Points forts de l'édition 2024</h3>
-                    <div class="highlights-grid">
-                        <div class="highlight-item">
-                            <span class="highlight-icon">🎤</span>
-                            <h4>Conférenciers internationaux</h4>
-                            <p>Sessions plénières avec des experts de renommée mondiale</p>
-                        </div>
-                        <div class="highlight-item">
-                            <span class="highlight-icon">🔬</span>
-                            <h4>Atelier doctoral</h4>
-                            <p>24 posters présentés par des doctorants</p>
-                        </div>
-                        <div class="highlight-item">
-                            <span class="highlight-icon">🤝</span>
-                            <h4>Partenariats</h4>
-                            <p>MDI Business School, PAUWES, CNRPAH</p>
-                        </div>
-                        <div class="highlight-item">
-                            <span class="highlight-icon">🏛️</span>
-                            <h4>Visite culturelle</h4>
-                            <p>Citadelle d'El-Mechouar, Grottes de Beni Add</p>
-                        </div>
+                    <div class="highlight-box">
+                        <span class="highlight-icon">🎤</span>
+                        <h4>Conférenciers internationaux</h4>
+                        <p>Sessions plénières avec des experts de renommée mondiale</p>
                     </div>
-                </div>
-                <div class="history-testimonial">
-                    <blockquote>
-                        "Le congrès SDBQL'2024 a été une excellente manifestation et une expérience de 
-                        recherche précieuse pour tous les participants. Nous nous réjouissons de vous 
-                        retrouver lors de la prochaine édition."
-                    </blockquote>
-                    <cite>— Prof. Souhila GHOMARI, Présidente du Congrès SDBQL 2024</cite>
+                    <div class="highlight-box">
+                        <span class="highlight-icon">🔬</span>
+                        <h4>Atelier doctoral</h4>
+                        <p>24 posters présentés par des doctorants</p>
+                    </div>
+                    <div class="highlight-box">
+                        <span class="highlight-icon">🤝</span>
+                        <h4>Partenariats</h4>
+                        <p>MDI Business School, PAUWES, CNRPAH</p>
+                    </div>
+                    <div class="highlight-box">
+                        <span class="highlight-icon">🏛️</span>
+                        <h4>Visite culturelle</h4>
+                        <p>Citadelle d'El-Mechouar, Grottes de Beni Add</p>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Important Dates -->
-    <section id="dates" class="dates">
+    <!-- Dates Section -->
+    <section id="dates" class="dates-section">
         <div class="container">
-            <div class="section-header">
-                <span class="section-number">04</span>
+            <div class="section-header-center">
+                <span class="section-label">Calendrier</span>
                 <h2 class="section-title">Dates importantes</h2>
-                <p class="section-subtitle">Ne manquez aucune échéance</p>
+                <p class="section-desc">Ne manquez aucune échéance</p>
             </div>
-            <div class="dates-timeline">
-                <div class="date-card">
-                    <div class="date-marker"></div>
-                    <div class="date-content">
-                        <span class="date-month">Mars 2026</span>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Mars 2026</span>
                         <h4>Ouverture des soumissions</h4>
                         <p>Soumission des résumés et articles complets</p>
                     </div>
                 </div>
-                <div class="date-card">
-                    <div class="date-marker"></div>
-                    <div class="date-content">
-                        <span class="date-month">Juin 2026</span>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Juin 2026</span>
                         <h4>Date limite de soumission</h4>
                         <p>Dernier délai pour soumettre vos contributions</p>
                     </div>
                 </div>
-                <div class="date-card">
-                    <div class="date-marker"></div>
-                    <div class="date-content">
-                        <span class="date-month">Juillet 2026</span>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Juillet 2026</span>
                         <h4>Notification d'acceptation</h4>
                         <p>Les auteurs seront informés de l'acceptation</p>
                     </div>
                 </div>
-                <div class="date-card">
-                    <div class="date-marker"></div>
-                    <div class="date-content">
-                        <span class="date-month">Août 2026</span>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">Août 2026</span>
                         <h4>Inscription anticipée</h4>
                         <p>Tarifs réduits pour les inscriptions précoces</p>
                     </div>
                 </div>
-                <div class="date-card featured">
-                    <div class="date-marker"></div>
-                    <div class="date-content">
-                        <span class="date-month">30 Septembre 2026</span>
+                <div class="timeline-item featured">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">30 Septembre 2026</span>
                         <h4>Congrès SDBQL 2026</h4>
                         <p>Début de l'événement à Tlemcen</p>
                     </div>
@@ -351,81 +331,74 @@
     </section>
 
     <!-- Sponsoring Section -->
-    <section id="registration" class="sponsoring">
+    <section id="registration" class="sponsoring-section">
         <div class="container">
-            <div class="section-header">
-                <span class="section-number">05</span>
-                <h2 class="section-title">Sponsoring et Partenariat</h2>
-                <p class="section-subtitle">Devenez partenaire privilégié de SDBQL 2026</p>
+            <div class="section-header-center">
+                <span class="section-label">Partenariat</span>
+                <h2 class="section-title">Sponsoring et Inscription</h2>
+                <p class="section-desc">Devenez partenaire privilégié de SDBQL 2026</p>
             </div>
-            <div class="sponsoring-intro">
-                <p class="lead-text">
-                    Le congrès SDBQL 2026 vous offre la possibilité de participer au développement et à 
-                    la promotion de la recherche scientifique au niveau national et de développer une 
-                    image de promoteur de manifestations scientifiques.
-                </p>
-            </div>
-            <div class="pricing-grid">
-                <div class="pricing-card premium">
-                    <div class="pricing-badge">⭐ Recommandé</div>
-                    <h3 class="pricing-title">Sponsor Officiel</h3>
-                    <div class="pricing-amount">
-                        <span class="price">1 000 000</span>
-                        <span class="currency">DA</span>
+            <div class="pricing-boxes">
+                <div class="pricing-box featured">
+                    <div class="pricing-badge">Recommandé</div>
+                    <h3>Sponsor Officiel</h3>
+                    <div class="pricing-price">
+                        <span class="price-amount">1 000 000</span>
+                        <span class="price-currency">DA</span>
                     </div>
                     <ul class="pricing-features">
-                        <li>✓ Mention sur tous les supports de communication</li>
-                        <li>✓ Logo sur papier entête et invitations</li>
-                        <li>✓ Présence sur le site web du congrès</li>
-                        <li>✓ Stand de présentation des produits</li>
-                        <li>✓ Panneaux publicitaires dans les salles</li>
-                        <li>✓ Communication sur vos services et produits</li>
-                        <li>✓ Visibilité maximale pendant l'événement</li>
+                        <li>✓ Mention sur tous les supports</li>
+                        <li>✓ Logo sur papier entête</li>
+                        <li>✓ Présence sur le site web</li>
+                        <li>✓ Stand de présentation</li>
+                        <li>✓ Panneaux publicitaires</li>
+                        <li>✓ Communication sur services</li>
+                        <li>✓ Visibilité maximale</li>
                     </ul>
-                    <a href="#contact" class="btn btn-primary">Devenir sponsor officiel</a>
+                    <a href="#contact" class="btn btn-primary">Devenir sponsor</a>
                 </div>
-                <div class="pricing-card">
-                    <h3 class="pricing-title">Sponsor Senior</h3>
-                    <div class="pricing-amount">
-                        <span class="price">400 000</span>
-                        <span class="currency">DA</span>
-                    </div>
-                    <ul class="pricing-features">
-                        <li>✓ Mention sur le site web du congrès</li>
-                        <li>✓ Logo sur les affiches publicitaires</li>
-                        <li>✓ Présence dans la documentation</li>
-                        <li>✓ Panneaux publicitaires dans les salles</li>
-                        <li>✓ Communication sur vos services</li>
-                        <li>✓ Visibilité importante</li>
-                    </ul>
-                    <a href="#contact" class="btn btn-outline">Devenir sponsor senior</a>
-                </div>
-                <div class="pricing-card">
-                    <h3 class="pricing-title">Sponsor Junior</h3>
-                    <div class="pricing-amount">
-                        <span class="price">200 000</span>
-                        <span class="currency">DA</span>
+                <div class="pricing-box">
+                    <h3>Sponsor Senior</h3>
+                    <div class="pricing-price">
+                        <span class="price-amount">400 000</span>
+                        <span class="price-currency">DA</span>
                     </div>
                     <ul class="pricing-features">
                         <li>✓ Mention sur le site web</li>
-                        <li>✓ Logo sur les affiches</li>
-                        <li>✓ Présence dans la documentation</li>
-                        <li>✓ Communication sur vos initiatives durables</li>
-                        <li>✓ Visibilité lors de l'événement</li>
+                        <li>✓ Logo sur affiches</li>
+                        <li>✓ Présence documentation</li>
+                        <li>✓ Panneaux publicitaires</li>
+                        <li>✓ Communication services</li>
+                        <li>✓ Visibilité importante</li>
                     </ul>
-                    <a href="#contact" class="btn btn-outline">Devenir sponsor junior</a>
+                    <a href="#contact" class="btn btn-outline">Devenir sponsor</a>
+                </div>
+                <div class="pricing-box">
+                    <h3>Sponsor Junior</h3>
+                    <div class="pricing-price">
+                        <span class="price-amount">200 000</span>
+                        <span class="price-currency">DA</span>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>✓ Mention sur le site</li>
+                        <li>✓ Logo sur affiches</li>
+                        <li>✓ Présence documentation</li>
+                        <li>✓ Communication initiatives</li>
+                        <li>✓ Visibilité événement</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-outline">Devenir sponsor</a>
                 </div>
             </div>
-            <div class="partners-section">
+            <div class="partners-box">
                 <h3>Partenaires confirmés</h3>
-                <div class="partners-logos">
-                    <div class="partner-logo">
-                        <span class="partner-name">ONA</span>
-                        <span class="partner-desc">Office National de l'Assainissement</span>
+                <div class="partners-list">
+                    <div class="partner-item">
+                        <strong>ONA</strong>
+                        <span>Office National de l'Assainissement</span>
                     </div>
-                    <div class="partner-logo placeholder">
-                        <span class="partner-name">Votre entreprise</span>
-                        <span class="partner-desc">Rejoignez-nous</span>
+                    <div class="partner-item placeholder">
+                        <strong>Votre entreprise</strong>
+                        <span>Rejoignez-nous</span>
                     </div>
                 </div>
             </div>
@@ -433,25 +406,15 @@
     </section>
 
     <!-- Venue Section -->
-    <section id="venue" class="venue">
+    <section id="venue" class="venue-section">
         <div class="container">
-            <div class="section-header">
-                <span class="section-number">06</span>
-                <h2 class="section-title">Lieu du congrès</h2>
-                <p class="section-subtitle">Université Abou Bekr Belkaid, Tlemcen</p>
-            </div>
-            <div class="venue-content">
+            <div class="venue-grid">
                 <div class="venue-info">
+                    <span class="section-label">Lieu du congrès</span>
+                    <h2>Université Abou Bekr Belkaid<br>Tlemcen, Algérie</h2>
                     <h3>Faculté SNV-STU</h3>
-                    <p class="venue-address">
-                        <strong>Nouveau Pôle - Rocade II - Mansourah</strong><br>
-                        Tlemcen 13000, Algérie
-                    </p>
-                    <p>
-                        La Faculté des Sciences de la Nature et de la Vie et des Sciences de la Terre 
-                        et de l'Univers dispose d'installations modernes et d'amphithéâtres spacieux 
-                        pour accueillir ce grand événement scientifique.
-                    </p>
+                    <p class="venue-address"><strong>Nouveau Pôle - Rocade II - Mansourah</strong><br>Tlemcen 13000, Algérie</p>
+                    <p>La Faculté des Sciences de la Nature et de la Vie et des Sciences de la Terre et de l'Univers dispose d'installations modernes et d'amphithéâtres spacieux pour accueillir ce grand événement scientifique.</p>
                     <div class="venue-features">
                         <div class="feature-item">
                             <span class="feature-icon">🏛️</span>
@@ -463,44 +426,26 @@
                         </div>
                         <div class="feature-item">
                             <span class="feature-icon">📡</span>
-                            <span>Connexion internet haute vitesse</span>
+                            <span>Internet haute vitesse</span>
                         </div>
                         <div class="feature-item">
                             <span class="feature-icon">🍽️</span>
                             <span>Restauration sur place</span>
                         </div>
                     </div>
-                    <div class="venue-contact">
-                        <h4>Informations pratiques</h4>
-                        <p><strong>Téléphone:</strong> +213 43 21 73 86</p>
-                        <p><strong>Fax:</strong> +213 43 21 55 34</p>
-                        <p><strong>Email:</strong> benameurnehar@gmail.com</p>
-                    </div>
                     <h4>Découvrir Tlemcen</h4>
-                    <p>
-                        Surnommée la "Perle du Maghreb", Tlemcen est une ville riche d'histoire et de 
-                        culture. Les participants pourront découvrir son patrimoine exceptionnel, 
-                        notamment la Citadelle d'El-Mechouar, les Grottes de Beni Add et le plateau 
-                        de Lalla Setti offrant une vue panoramique sur la ville.
-                    </p>
+                    <p>Surnommée la "Perle du Maghreb", Tlemcen est une ville riche d'histoire et de culture. Les participants pourront découvrir son patrimoine exceptionnel.</p>
                 </div>
-                <div class="venue-gallery">
-                    <div class="gallery-item">
-                        <div class="gallery-placeholder">
-                            <span class="placeholder-icon">🏛️</span>
-                            <span>Université de Tlemcen</span>
-                        </div>
+                <div class="venue-images">
+                    <div class="venue-image-main">
+                        <img src="https://images.unsplash.com/photo-1562774053-701939374585?w=800" alt="Université de Tlemcen">
                     </div>
-                    <div class="gallery-item">
-                        <div class="gallery-placeholder">
-                            <span class="placeholder-icon">🕌</span>
-                            <span>Citadelle d'El-Mechouar</span>
+                    <div class="venue-images-small">
+                        <div class="venue-image-small">
+                            <img src="https://images.unsplash.com/photo-1541339907198-e08756dedf3f?w=400" alt="Campus">
                         </div>
-                    </div>
-                    <div class="gallery-item">
-                        <div class="gallery-placeholder">
-                            <span class="placeholder-icon">🏔️</span>
-                            <span>Plateau Lalla Setti</span>
+                        <div class="venue-image-small">
+                            <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=400" alt="Amphithéâtre">
                         </div>
                     </div>
                 </div>
@@ -509,70 +454,67 @@
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="contact">
+    <section id="contact" class="contact-section">
         <div class="container">
-            <div class="section-header">
-                <span class="section-number">07</span>
-                <h2 class="section-title">Contact</h2>
-                <p class="section-subtitle">Restons en contact</p>
+            <div class="section-header-center">
+                <span class="section-label">Contactez-nous</span>
+                <h2 class="section-title">Restons en contact</h2>
             </div>
             <div class="contact-grid">
-                <div class="contact-info">
+                <div class="contact-info-box">
                     <h3>Informations générales</h3>
-                    <div class="contact-item">
-                        <span class="contact-icon">📧</span>
-                        <div>
-                            <span class="contact-label">Email du coordinateur</span>
-                            <a href="mailto:benameurnehar@gmail.com">benameurnehar@gmail.com</a>
+                    <div class="contact-list">
+                        <div class="contact-item">
+                            <span class="contact-icon">📧</span>
+                            <div>
+                                <strong>Email</strong>
+                                <a href="mailto:benameurnehar@gmail.com">benameurnehar@gmail.com</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">📱</span>
+                            <div>
+                                <strong>Téléphone</strong>
+                                <a href="tel:+213432173786">+213 43 21 73 86</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">📠</span>
+                            <div>
+                                <strong>Fax</strong>
+                                <span>+213 43 21 55 34</span>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">📍</span>
+                            <div>
+                                <strong>Adresse</strong>
+                                <span>BP 226 Tlemcen 13000, Algérie</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="contact-item">
-                        <span class="contact-icon">📱</span>
-                        <div>
-                            <span class="contact-label">Téléphone</span>
-                            <a href="tel:+213432173786">+213 43 21 73 86</a>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <span class="contact-icon">📍</span>
-                        <div>
-                            <span class="contact-label">Adresse</span>
-                            <span>BP 226 Tlemcen 13000, Algérie</span>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <span class="contact-icon">🌐</span>
-                        <div>
-                            <span class="contact-label">Site SDBQL 2024</span>
-                            <a href="https://sdbql2024tlemcen.wixsite.com/main" target="_blank">
-                                sdbql2024tlemcen.wixsite.com/main
-                            </a>
-                        </div>
-                    </div>
-                    <div class="contact-item">
-                        <span class="contact-icon">📘</span>
-                        <div>
-                            <span class="contact-label">Facebook</span>
-                            <a href="https://www.facebook.com/profile.php?id=61555922292059" target="_blank">
-                                Page officielle du congrès
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <h3 style="margin-top: 2rem;">Direction du congrès</h3>
-                    <div class="organizers">
+                    <div class="direction-info">
+                        <h4>Direction du congrès</h4>
                         <p><strong>Présidente:</strong> Prof. Nassima Amal Soulimane</p>
                         <p><strong>Coordinateur Général:</strong> Prof. Dr. Benameur NEHAR</p>
                     </div>
                 </div>
-                <div class="contact-form-container">
+                <div class="contact-form-box">
                     <h3>Envoyez-nous un message</h3>
                     <form class="contact-form" id="contactForm">
-                        <input type="text" name="name" placeholder="Nom complet" required>
-                        <input type="email" name="email" placeholder="Email" required>
-                        <input type="text" name="subject" placeholder="Sujet" required>
-                        <textarea name="message" placeholder="Votre message" rows="5" required></textarea>
-                        <button type="submit" class="btn btn-primary">Envoyer le message</button>
+                        <div class="form-group">
+                            <input type="text" name="name" placeholder="Nom complet" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" name="email" placeholder="Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="subject" placeholder="Sujet" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea name="message" placeholder="Votre message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-block">Envoyer le message</button>
                     </form>
                 </div>
             </div>
@@ -582,19 +524,16 @@
     <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <div class="footer-content">
+            <div class="footer-grid">
                 <div class="footer-col">
                     <div class="footer-logo">
-                        <span class="logo-leaf">🌱</span>
+                        <span class="logo-icon">🌱</span>
                         <div>
                             <h4>SDBQL 2026</h4>
                             <p>Développement Durable pour une Meilleure Qualité de Vie</p>
                         </div>
                     </div>
-                    <p class="footer-desc">
-                        Un événement transdisciplinaire dédié aux Objectifs de Développement Durable 
-                        et à l'amélioration de la qualité de vie.
-                    </p>
+                    <p>Un événement transdisciplinaire dédié aux Objectifs de Développement Durable et à l'amélioration de la qualité de vie.</p>
                 </div>
                 <div class="footer-col">
                     <h4>Liens rapides</h4>
@@ -616,22 +555,19 @@
                 </div>
                 <div class="footer-col">
                     <h4>Newsletter</h4>
-                    <p>Restez informé des actualités du congrès</p>
+                    <p>Restez informé des actualités</p>
                     <form class="newsletter-form">
                         <input type="email" placeholder="Votre email" required>
                         <button type="submit">→</button>
                     </form>
                     <div class="social-links">
-                        <a href="https://www.facebook.com/profile.php?id=61555922292059" target="_blank" aria-label="Facebook">f</a>
-                        <a href="https://sdbql2024tlemcen.wixsite.com/main" target="_blank" aria-label="Site web">🌐</a>
+                        <a href="https://www.facebook.com/profile.php?id=61555922292059" target="_blank">Facebook</a>
+                        <a href="https://sdbql2024tlemcen.wixsite.com/main" target="_blank">Site 2024</a>
                     </div>
                 </div>
             </div>
             <div class="footer-bottom">
                 <p>&copy; 2026 SDBQL - Université Abou Bekr Belkaid Tlemcen. Tous droits réservés.</p>
-                <p class="footer-credits">
-                    Organisé par la Faculté SNV-STU en collaboration avec la Faculté des Sciences Économiques
-                </p>
             </div>
         </div>
     </footer>
