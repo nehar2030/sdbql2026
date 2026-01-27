@@ -593,7 +593,7 @@ a {
 /* History Section */
 .history-section {
     padding: 100px 0;
-    background: linear-gradient(135deg, #004d40 0%, #00796b 100%);
+    background: linear-gradient(135deg, rgba(0,77,64,0.9) 0%, rgba(0,121,107,0.9) 100%), url('https://drive.google.com/uc?export=view&id=1qrll2uXBMTWA2GubE4YlKRK2FXftYl9h') center/cover;
     color: var(--color-white);
 }
 
