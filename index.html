@@ -699,62 +699,149 @@
 
 
     
-    <!-- Hero Slider -->
-    <section id="home" class="hero-slider">
-        <div class="slide active" style="background: linear-gradient(135deg, rgba(0,77,64,0.5), rgba(0,150,136,0.45)), url('images/5.jpg') center/cover;">
-            <div class="container">
-                <div class="slide-content">
-                    <h1 class="slide-title-main">2ème Congrès International sur le Développement Durable pour une Meilleure Qualité de Vie</h1>
-                    <p class="slide-subtitle">Ressources Naturelles au Service des Objectifs de Développement Durable</p>
-                    <p class="slide-desc">2ème Édition • Congrès International</p>
-                    
-                    <!-- NOUVEAU : Compte à rebours -->
-                    <div class="countdown-container fade-in-up">
-                        <div class="countdown-label">
-                            <svg class="svg-icon-sm" style="width: 16px; height: 16px; display: inline-block; vertical-align: middle; margin-right: 5px;">
-                                <use xlink:href="#icon-calendar"></use>
-                            </svg>
-                            L'ÉVÉNEMENT COMMENCE DANS
-                        </div>
-                        <div class="countdown-timer">
-                            <div class="countdown-item">
-                                <span class="countdown-value" id="countdown-days">000</span>
-                                <span class="countdown-label-item">Jours</span>
-                            </div>
-                            <div class="countdown-item">
-                                <span class="countdown-value" id="countdown-hours">00</span>
-                                <span class="countdown-label-item">Heures</span>
-                            </div>
-                            <div class="countdown-item">
-                                <span class="countdown-value" id="countdown-minutes">00</span>
-                                <span class="countdown-label-item">Minutes</span>
-                            </div>
-                            <div class="countdown-item">
-                                <span class="countdown-value" id="countdown-seconds">00</span>
-                                <span class="countdown-label-item">Secondes</span>
-                            </div>
-                        </div>
+    <!-- Widget Countdown Flottant en Haut -->
+    <div class="countdown-widget-header">
+        <div class="countdown-widget-content">
+            <div class="countdown-widget-left">
+                <div class="countdown-widget-title">2ème Congrès International sur le Développement Durable<br>pour une Meilleure Qualité de Vie • SDBQL 26</div>
+                <div class="countdown-widget-info">
+                    <span>📅 30 Septembre 2026</span>
+                    <span>•</span>
+                    <span>📍 Tlemcen, Algérie</span>
+                </div>
+            </div>
+            
+            <div class="countdown-widget-divider"></div>
+            
+            <div class="countdown-widget-right">
+                <div class="countdown-widget-label">COMMENCE DANS</div>
+                <div class="countdown-widget-timer">
+                    <div class="countdown-widget-item">
+                        <span class="countdown-widget-value" id="countdown-days-header">000</span>
+                        <span class="countdown-widget-label-item">J</span>
                     </div>
-
-                    <div class="slide-meta">
-                        <div class="meta-item">
-                            <i class="icon">📅</i>
-                            <span>30 Septembre 2026</span>
-                        </div>
-                        <div class="meta-item">
-                            <i class="icon">📍</i>
-                            <span>Université de Tlemcen, Algérie</span>
-                        </div>
+                    <span class="countdown-widget-separator">:</span>
+                    <div class="countdown-widget-item">
+                        <span class="countdown-widget-value" id="countdown-hours-header">00</span>
+                        <span class="countdown-widget-label-item">H</span>
                     </div>
-                    <div class="slide-buttons">
-                        <a href="#registration" class="btn btn-primary">S'inscrire maintenant</a>
-                        <a href="#about" class="btn btn-light">En savoir plus</a>
+                    <span class="countdown-widget-separator">:</span>
+                    <div class="countdown-widget-item">
+                        <span class="countdown-widget-value" id="countdown-minutes-header">00</span>
+                        <span class="countdown-widget-label-item">M</span>
+                    </div>
+                    <span class="countdown-widget-separator">:</span>
+                    <div class="countdown-widget-item">
+                        <span class="countdown-widget-value" id="countdown-seconds-header">00</span>
+                        <span class="countdown-widget-label-item">S</span>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
+    </div>
 
+    <!-- Bande Filante des Partenaires - Repositionnée -->
+    <div class="partners-ticker-banner">
+        <div class="partners-ticker-label">PARTENAIRES & INSTITUTIONS</div>
+        <div class="partners-ticker-wrapper">
+            <div class="partners-ticker-content">
+                <!-- Premier jeu de logos -->
+                <div class="partner-ticker-item">
+                    <img src="images/7.png" alt="Partner Logo 1" class="partner-logo-image">
+                </div>
+                <div class="partner-ticker-item">
+                    <img src="images/8.jpg" alt="Partner Logo 2" class="partner-logo-image">
+                </div>
+                <div class="partner-ticker-item">
+                    <img src="images/9.jpg" alt="Partner Logo 3" class="partner-logo-image">
+                </div>
+                <div class="partner-ticker-item">
+                    <img src="images/10.png" alt="Partner Logo 4" class="partner-logo-image">
+                </div>
+                <div class="partner-ticker-item">
+                    <img src="images/11.jpg" alt="Partner Logo 5" class="partner-logo-image">
+                </div>
+                <div class="partner-ticker-item">
+                    <img src="images/12.jpg" alt="Partner Logo 6" class="partner-logo-image">
+                </div>
+                
+                <!-- Deuxième jeu (copie pour défilement continu) -->
+                <div class="partner-ticker-item">
+                    <img src="images/7.png" alt="Partner Logo 1" class="partner-logo-image">
+                </div>
+                <div class="partner-ticker-item">
+                    <img src="images/8.jpg" alt="Partner Logo 2" class="partner-logo-image">
+                </div>
+                <div class="partner-ticker-item">
+                    <img src="images/9.jpg" alt="Partner Logo 3" class="partner-logo-image">
+                </div>
+                <div class="partner-ticker-item">
+                    <img src="images/10.png" alt="Partner Logo 4" class="partner-logo-image">
+                </div>
+                <div class="partner-ticker-item">
+                    <img src="images/11.jpg" alt="Partner Logo 5" class="partner-logo-image">
+                </div>
+                <div class="partner-ticker-item">
+                    <img src="images/12.jpg" alt="Partner Logo 6" class="partner-logo-image">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Section Congress Info & Registration -->
+    <div class="congress-highlight-section">
+        <div class="congress-highlight-content">
+            <div class="congress-highlight-text">
+                <h3 class="congress-highlight-subtitle">Le plus grand rendez-vous du développement durable</h3>
+                <h2 class="congress-highlight-title">2ème Congrès International<br>sur le Développement Durable</h2>
+                <p class="congress-highlight-description">Pour une Meilleure Qualité de Vie - Réunissant chercheurs, experts et acteurs du terrain</p>
+                
+                <div class="congress-info-block">
+                    <div class="congress-info-item">
+                        <span class="congress-info-icon">📅</span>
+                        <div class="congress-info-text">
+                            <span class="congress-info-label">Date</span>
+                            <span class="congress-info-value">30 Septembre - 2 Octobre 2026</span>
+                        </div>
+                    </div>
+                    <div class="congress-info-item">
+                        <span class="congress-info-icon">📍</span>
+                        <div class="congress-info-text">
+                            <span class="congress-info-label">Lieu</span>
+                            <span class="congress-info-value">Université Abou Bekr Belkaid, Tlemcen</span>
+                        </div>
+                    </div>
+                </div>
+
+                <a href="#registration" class="congress-cta-button">
+                    <span class="button-text">Inscrivez-vous Maintenant</span>
+                    <span class="button-arrow">→</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Barre Sticky Header -->
+    <div class="sticky-header-bar" id="stickyHeader">
+        <div class="sticky-header-content">
+            <div class="sticky-title">
+                <h2>2ème Congrès International</h2>
+                <p>Développement Durable pour une Meilleure Qualité de Vie</p>
+            </div>
+            <div class="sticky-info">
+                <div class="sticky-info-item">
+                    <i>📅</i>
+                    <span>30 Septembre 2026</span>
+                </div>
+                <div class="sticky-info-item">
+                    <i>📍</i>
+                    <span>Université de Tlemcen, Algérie</span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Hero Slider -->
 
     <!-- Welcome Section -->
     <section id="about" class="welcome-section">

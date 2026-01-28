@@ -412,6 +412,70 @@ console.log('✅ Site web chargé avec succès !');
 console.log('🎨 Design: Modern Academic Template');
 console.log('📧 Contact: benameurnehar@gmail.com');
 
+// ===================================
+// COUNTDOWN TIMERS - Synchronisation
+// ===================================
+
+function updateCountdowns() {
+    // Date cible: 30 Septembre 2026
+    const eventDate = new Date('2026-09-30T00:00:00').getTime();
+    const now = new Date().getTime();
+    const distance = eventDate - now;
+
+    // Calcul des unités de temps
+    const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+    // Format avec zéros
+    const formatNumber = (n) => String(n).padStart(2, '0');
+    const formatDays = (n) => String(n).padStart(3, '0');
+
+    // Mise à jour Widget Header
+    const headerDays = document.getElementById('countdown-days-header');
+    const headerHours = document.getElementById('countdown-hours-header');
+    const headerMinutes = document.getElementById('countdown-minutes-header');
+    const headerSeconds = document.getElementById('countdown-seconds-header');
+
+    if (headerDays) headerDays.textContent = formatDays(days);
+    if (headerHours) headerHours.textContent = formatNumber(hours);
+    if (headerMinutes) headerMinutes.textContent = formatNumber(minutes);
+    if (headerSeconds) headerSeconds.textContent = formatNumber(seconds);
+
+    // Arrêt si la date est passée
+    if (distance < 0) {
+        if (headerDays) headerDays.textContent = '000';
+        if (headerHours) headerHours.textContent = '00';
+        if (headerMinutes) headerMinutes.textContent = '00';
+        if (headerSeconds) headerSeconds.textContent = '00';
+    }
+}
+
+// Lancer les countdowns
+updateCountdowns();
+setInterval(updateCountdowns, 1000);
+
+// ===================================
+// STICKY HEADER - Apparition/Disparition
+// ===================================
+
+const stickyHeader = document.getElementById('stickyHeader');
+const heroSlider = document.getElementById('home');
+
+if (stickyHeader && heroSlider) {
+    window.addEventListener('scroll', () => {
+        const heroBottom = heroSlider.offsetTop + heroSlider.offsetHeight;
+        const scrollY = window.pageYOffset;
+
+        if (scrollY > heroBottom - 100) {
+            stickyHeader.classList.add('active');
+        } else {
+            stickyHeader.classList.remove('active');
+        }
+    });
+}
+
 // Export for debugging (optional)
 window.SDBQL = {
     version: '2.0.0',
