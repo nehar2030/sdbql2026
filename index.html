@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="sdg-ticker-updated.css">
     <link rel="stylesheet" href="sdg-widget.css">
     <link rel="stylesheet" href="enhancements.css">
+    <link rel="stylesheet" href="finalization-status.css">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -149,6 +150,54 @@
             <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
         </symbol>
 
+        <!-- ICÔNE: Roue SDG (Objectifs de Développement Durable) -->
+        <symbol id="icon-sdg-wheel" viewBox="0 0 100 100">
+            <!-- Cercle extérieur -->
+            <circle cx="50" cy="50" r="48" fill="none" stroke="#00BFA5" stroke-width="2"/>
+            <!-- Segments colorés représentant les 17 ODD -->
+            <g transform="translate(50,50)">
+                <!-- Segment 1 - Rouge -->
+                <path d="M 0,-45 A 45,45 0 0,1 11.6,-43.5 L 0,0 Z" fill="#E5243B"/>
+                <!-- Segment 2 - Jaune/Orange -->
+                <path d="M 11.6,-43.5 A 45,45 0 0,1 22.5,-39.2 L 0,0 Z" fill="#DDA63A"/>
+                <!-- Segment 3 - Vert foncé -->
+                <path d="M 22.5,-39.2 A 45,45 0 0,1 31.8,-32.6 L 0,0 Z" fill="#4C9F38"/>
+                <!-- Segment 4 - Rouge foncé -->
+                <path d="M 31.8,-32.6 A 45,45 0 0,1 39.2,-24.1 L 0,0 Z" fill="#C5192D"/>
+                <!-- Segment 5 - Rouge vif -->
+                <path d="M 39.2,-24.1 A 45,45 0 0,1 44.1,-14.2 L 0,0 Z" fill="#FF3A21"/>
+                <!-- Segment 6 - Cyan -->
+                <path d="M 44.1,-14.2 A 45,45 0 0,1 45,0 L 0,0 Z" fill="#26BDE2"/>
+                <!-- Segment 7 - Jaune -->
+                <path d="M 45,0 A 45,45 0 0,1 44.1,14.2 L 0,0 Z" fill="#FCC30B"/>
+                <!-- Segment 8 - Marron -->
+                <path d="M 44.1,14.2 A 45,45 0 0,1 39.2,24.1 L 0,0 Z" fill="#A21942"/>
+                <!-- Segment 9 - Orange -->
+                <path d="M 39.2,24.1 A 45,45 0 0,1 31.8,32.6 L 0,0 Z" fill="#FD6925"/>
+                <!-- Segment 10 - Rose -->
+                <path d="M 31.8,32.6 A 45,45 0 0,1 22.5,39.2 L 0,0 Z" fill="#DD1367"/>
+                <!-- Segment 11 - Orange clair -->
+                <path d="M 22.5,39.2 A 45,45 0 0,1 11.6,43.5 L 0,0 Z" fill="#FD9D24"/>
+                <!-- Segment 12 - Jaune/Or -->
+                <path d="M 11.6,43.5 A 45,45 0 0,1 0,45 L 0,0 Z" fill="#BF8B2E"/>
+                <!-- Segment 13 - Vert -->
+                <path d="M 0,45 A 45,45 0 0,1 -11.6,43.5 L 0,0 Z" fill="#3F7E44"/>
+                <!-- Segment 14 - Bleu -->
+                <path d="M -11.6,43.5 A 45,45 0 0,1 -22.5,39.2 L 0,0 Z" fill="#0A97D9"/>
+                <!-- Segment 15 - Vert clair -->
+                <path d="M -22.5,39.2 A 45,45 0 0,1 -31.8,32.6 L 0,0 Z" fill="#56C02B"/>
+                <!-- Segment 16 - Bleu foncé -->
+                <path d="M -31.8,32.6 A 45,45 0 0,1 -39.2,24.1 L 0,0 Z" fill="#00689D"/>
+                <!-- Segment 17 - Bleu nuit -->
+                <path d="M -39.2,24.1 A 45,45 0 0,1 -44.1,14.2 L 0,0 Z" fill="#19486A"/>
+            </g>
+            <!-- Cercle central -->
+            <circle cx="50" cy="50" r="15" fill="#00BFA5"/>
+            <!-- Texte "SDG" au centre -->
+            <text x="50" y="55" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="white" text-anchor="middle">SDG</text>
+        </symbol>
+        </symbol>
+
         <!-- ICÔNE: Alerte/Avertissement -->
         <symbol id="icon-alert" viewBox="0 0 24 24">
             <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/>
@@ -198,7 +247,11 @@
         <div class="container">
             <div class="nav-container">
                 <div class="nav-logo">
-                    <span class="logo-icon">🌱</span>
+                    <span class="logo-icon">
+                        <svg class="svg-icon" style="width: 40px; height: 40px;">
+                            <use xlink:href="#icon-sdg-wheel"></use>
+                        </svg>
+                    </span>
                     <div class="logo-text">
                         <span class="logo-title">SDBQL</span>
                         <span class="logo-subtitle">2026</span>
@@ -873,7 +926,11 @@
                         <img src="images/4.jpg" alt="Congrès SDBQL">
                     </div>
                     <div class="image-badge">
-                        <span class="badge-icon">🌱</span>
+                        <span class="badge-icon">
+                            <svg class="svg-icon" style="width: 28px; height: 28px;">
+                                <use xlink:href="#icon-sdg-wheel"></use>
+                            </svg>
+                        </span>
                         <div>
                             <strong>Format Hybride</strong>
                             <span>Présentiel & En ligne</span>
@@ -889,7 +946,7 @@
         <div class="container">
             <div class="section-header-center">
                 <span class="section-label">Organisation</span>
-                <h2 class="section-title">Comité d'organisation</h2>
+                <h2 class="section-title">Comité d'organisation <span class="finalization-badge">en cours de finalisation</span></h2>
             </div>
             <div class="committee-grid">
                 <div class="committee-box honor">
@@ -1041,7 +1098,7 @@
         <div class="container">
             <div class="section-header-center">
                 <span class="section-label">Calendrier</span>
-                <h2 class="section-title">Dates importantes</h2>
+                <h2 class="section-title">Dates importantes <span class="finalization-badge">en cours de finalisation</span></h2>
                 <p class="section-desc">Ne manquez aucune échéance</p>
             </div>
             <div class="timeline">
@@ -1094,7 +1151,7 @@
         <div class="container">
             <div class="section-header-center">
                 <span class="section-label">Partenariat</span>
-                <h2 class="section-title">Sponsoring et Inscription</h2>
+                <h2 class="section-title">Sponsoring et Inscription <span class="finalization-badge">en cours de finalisation</span></h2>
                 <p class="section-desc">Devenez partenaire privilégié de SDBQL 2026</p>
             </div>
             <div class="pricing-boxes">
@@ -1149,7 +1206,7 @@
                 </div>
             </div>
             <div class="partners-box">
-                <h3>Partenaires confirmés</h3>
+                <h3>Partenaires confirmés <span class="finalization-badge">en cours de finalisation</span></h3>
                 <div class="partners-list">
                     <div class="partner-item">
                         <strong>ONA</strong>
@@ -1318,7 +1375,11 @@
             <div class="footer-grid">
                 <div class="footer-col">
                     <div class="footer-logo">
-                        <span class="logo-icon">🌱</span>
+                        <span class="logo-icon">
+                            <svg class="svg-icon" style="width: 45px; height: 45px;">
+                                <use xlink:href="#icon-sdg-wheel"></use>
+                            </svg>
+                        </span>
                         <div>
                             <h4>SDBQL 2026</h4>
                             <p>Développement Durable pour une Meilleure Qualité de Vie</p>

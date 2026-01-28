@@ -1,0 +1,125 @@
+/* ================================================
+   SDBQL 2026 - STYLE POUR "EN COURS DE FINALISATION"
+   Badge rouge pour les sections en construction
+   ================================================ */
+
+.finalization-badge {
+    display: inline-block;
+    background: #ff4444;
+    color: white;
+    padding: 4px 12px;
+    border-radius: 15px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-left: 10px;
+    animation: pulse-badge 2s ease-in-out infinite;
+    box-shadow: 0 2px 8px rgba(255, 68, 68, 0.3);
+}
+
+@keyframes pulse-badge {
+    0%, 100% {
+        transform: scale(1);
+        box-shadow: 0 2px 8px rgba(255, 68, 68, 0.3);
+    }
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 4px 12px rgba(255, 68, 68, 0.5);
+    }
+}
+
+/* Badge pour les titres de section */
+.section-title .finalization-badge {
+    font-size: 12px;
+    padding: 5px 14px;
+    vertical-align: middle;
+}
+
+/* Badge pour les sous-sections */
+h3 .finalization-badge,
+h4 .finalization-badge {
+    font-size: 10px;
+    padding: 3px 10px;
+    margin-left: 8px;
+}
+
+/* Version compacte pour mobile */
+@media (max-width: 768px) {
+    .finalization-badge {
+        font-size: 9px;
+        padding: 3px 8px;
+        margin-left: 6px;
+    }
+}
+
+/* Mode sombre */
+body.dark-mode .finalization-badge {
+    background: #ff5555;
+    box-shadow: 0 2px 8px rgba(255, 85, 85, 0.4);
+}
+
+/* Badge alternatif avec icône */
+.finalization-badge::before {
+    content: "⚠️ ";
+    margin-right: 4px;
+}
+
+/* Style pour le texte entre parenthèses (alternative) */
+.finalization-text {
+    color: #ff4444;
+    font-size: 0.85em;
+    font-weight: 600;
+    font-style: italic;
+    margin-left: 8px;
+}
+
+.finalization-text::before {
+    content: "(";
+}
+
+.finalization-text::after {
+    content: ")";
+}
+
+body.dark-mode .finalization-text {
+    color: #ff5555;
+}
+
+/* ================================================
+   STYLE POUR L'ICÔNE SVG (Logo SDG)
+   ================================================ */
+
+.logo-icon svg,
+.badge-icon svg {
+    display: block;
+}
+
+/* Animation légère de rotation pour l'icône SDG */
+.logo-icon svg {
+    animation: rotate-sdg 20s linear infinite;
+}
+
+@keyframes rotate-sdg {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Pause au survol */
+.logo-icon:hover svg {
+    animation-play-state: paused;
+}
+
+/* Badge icon plus petit sans animation */
+.badge-icon svg {
+    animation: none;
+}
+
+.footer-logo .logo-icon svg {
+    animation-duration: 30s; /* Plus lent dans le footer */
+}
+
