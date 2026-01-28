@@ -105,7 +105,7 @@
 }
 
 .widget-close {
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.12);
     border: none;
     color: white;
     width: 30px;
@@ -118,7 +118,7 @@
 }
 
 .widget-close:hover {
-    background: rgba(255, 255, 255, 0.3);
+    background: rgba(255, 255, 255, 0.2);
     transform: rotate(90deg);
 }
 

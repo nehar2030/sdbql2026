@@ -315,7 +315,7 @@ a {
 
 .slide-label {
     display: inline-block;
-    background: rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.05);
     color: var(--color-white);
     padding: 8px 20px;
     border-radius: 30px;
@@ -324,7 +324,24 @@ a {
     text-transform: uppercase;
     letter-spacing: 1px;
     margin-bottom: 25px;
-    backdrop-filter: blur(10px);
+    backdrop-filter: blur(3px);
+}
+
+.slide-title-main {
+    font-size: 4.5rem;
+    color: var(--color-white);
+    margin-bottom: 30px;
+    line-height: 1.1;
+    font-weight: 800;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.3);
+}
+
+.slide-subtitle {
+    font-size: 1.5rem;
+    color: var(--color-white);
+    margin-bottom: 20px;
+    opacity: 0.95;
+    font-weight: 600;
 }
 
 .slide-title {
@@ -336,10 +353,11 @@ a {
 }
 
 .slide-desc {
-    font-size: 1.25rem;
+    font-size: 1.1rem;
     color: var(--color-white);
     margin-bottom: 30px;
-    opacity: 0.95;
+    opacity: 0.9;
+    font-weight: 500;
 }
 
 .slide-meta {
@@ -593,7 +611,7 @@ a {
 /* History Section */
 .history-section {
     padding: 100px 0;
-    background: linear-gradient(135deg, rgba(0,77,64,0.9) 0%, rgba(0,121,107,0.9) 100%), url('../images/6.jpg') center/cover;
+    background: linear-gradient(135deg, rgba(0,77,64,0.5) 0%, rgba(0,121,107,0.5) 100%), url('../images/6.jpg') center/cover;
     color: var(--color-white);
 }
 
@@ -619,18 +637,18 @@ a {
 }
 
 .history-stat-box {
-    background: rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.06);
     padding: 35px 25px;
     border-radius: 5px;
     text-align: center;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.2);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255,255,255,0.12);
 }
 
 .stat-icon-circle {
     width: 70px;
     height: 70px;
-    background: rgba(255,255,255,0.2);
+    background: rgba(255,255,255,0.1);
     border-radius: 50%;
     display: flex;
     align-items: center;
@@ -666,12 +684,12 @@ a {
 }
 
 .highlight-box {
-    background: rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.06);
     padding: 30px 20px;
     border-radius: 5px;
     text-align: center;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255,255,255,0.2);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255,255,255,0.12);
 }
 
 .highlight-icon {
@@ -1309,6 +1327,14 @@ a {
         display: flex;
     }
     
+    .slide-title-main {
+        font-size: 3rem;
+    }
+
+    .slide-subtitle {
+        font-size: 1.1rem;
+    }
+
     .slide-title {
         font-size: 2.5rem;
     }
@@ -1379,6 +1405,14 @@ a {
         font-size: 13px;
     }
     
+    .slide-title-main {
+        font-size: 2rem;
+    }
+
+    .slide-subtitle {
+        font-size: 0.95rem;
+    }
+
     .slide-title {
         font-size: 2rem;
     }

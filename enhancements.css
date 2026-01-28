@@ -78,7 +78,7 @@ body.dark-mode .dark-mode-toggle .moon-icon {
 
 /* Ajustements spécifiques pour le mode sombre */
 body.dark-mode .navbar {
-    background: rgba(26, 26, 26, 0.95);
+    background: rgba(26, 26, 26, 0.85);
     border-bottom-color: #37474f;
 }
 
@@ -88,7 +88,7 @@ body.dark-mode .top-bar {
 }
 
 body.dark-mode .hero-slider .slide {
-    background: linear-gradient(135deg, rgba(0,191,165,0.7), rgba(38,166,154,0.6)), url('images/5.jpg') center/cover !important;
+    background: linear-gradient(135deg, rgba(0,191,165,0.5), rgba(38,166,154,0.45)), url('images/5.jpg') center/cover !important;
 }
 
 body.dark-mode .footer {
@@ -142,10 +142,10 @@ body.dark-mode .widget-panel-header {
 .countdown-container {
     margin: 30px 0 20px;
     padding: 25px;
-    background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.05);
     border-radius: 15px;
-    backdrop-filter: blur(10px);
-    border: 2px solid rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(5px);
+    border: 2px solid rgba(255, 255, 255, 0.12);
 }
 
 .countdown-label {
@@ -167,15 +167,15 @@ body.dark-mode .widget-panel-header {
 .countdown-item {
     text-align: center;
     padding: 15px 10px;
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.08);
     border-radius: 10px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.1);
     transition: all 0.3s ease;
 }
 
 .countdown-item:hover {
     transform: translateY(-3px);
-    background: rgba(255, 255, 255, 0.2);
+    background: rgba(255, 255, 255, 0.12);
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
 }
 
