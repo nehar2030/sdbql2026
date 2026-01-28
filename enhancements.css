@@ -236,6 +236,89 @@ body.dark-mode .venue-map {
     border-color: #37474f;
 }
 
+/* ========================================
+   TEXTE EN MODE SOMBRE - Assurer la visibilité
+   ======================================== */
+
+body.dark-mode h1,
+body.dark-mode h2,
+body.dark-mode h3,
+body.dark-mode h4,
+body.dark-mode h5,
+body.dark-mode h6,
+body.dark-mode p,
+body.dark-mode span,
+body.dark-mode a,
+body.dark-mode li,
+body.dark-mode td,
+body.dark-mode th {
+    color: #e0e0e0 !important;
+}
+
+body.dark-mode .section-title {
+    color: #ffffff !important;
+}
+
+body.dark-mode .section-label {
+    color: #4dd0e1 !important;
+}
+
+body.dark-mode .welcome-section {
+    background: #1a1a1a;
+    color: #e0e0e0;
+}
+
+body.dark-mode .committee-box h3,
+body.dark-mode .theme-box h3,
+body.dark-mode .pricing-box h3,
+body.dark-mode .highlight-box h4 {
+    color: #ffffff !important;
+}
+
+body.dark-mode .committee-box p,
+body.dark-mode .theme-box p,
+body.dark-mode .pricing-box p,
+body.dark-mode .highlight-box p {
+    color: #b0bec5 !important;
+}
+
+body.dark-mode .stat-number {
+    color: #4dd0e1 !important;
+}
+
+body.dark-mode .stat-label {
+    color: #b0bec5 !important;
+}
+
+body.dark-mode .contact-section {
+    background: #1a1a1a;
+}
+
+body.dark-mode .contact-info-box {
+    background: #263238;
+    color: #e0e0e0;
+}
+
+body.dark-mode .contact-info-box h3 {
+    color: #4dd0e1 !important;
+}
+
+body.dark-mode .contact-info-box p {
+    color: #b0bec5 !important;
+}
+
+body.dark-mode input,
+body.dark-mode textarea {
+    background: #263238 !important;
+    color: #e0e0e0 !important;
+    border-color: #37474f !important;
+}
+
+body.dark-mode input::placeholder,
+body.dark-mode textarea::placeholder {
+    color: #78909c !important;
+}
+
 /* Instructions de direction */
 .map-directions {
     margin-top: 20px;
