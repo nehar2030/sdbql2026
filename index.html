@@ -6,6 +6,7 @@
     <meta name="description" content="SDBQL 2026 - 2ème Congrès International sur le Développement Durable pour une Meilleure Qualité de Vie">
     <title>SDBQL 2026 - Développement Durable pour une Meilleure Qualité de Vie</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="sdg-widget.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
@@ -55,6 +56,239 @@
                 </button>
             </div>
         </div>
+
+    <!-- =============================================== -->
+    <!-- SDG WIDGET FLOTTANT - Données ODD 2025 -->
+    <!-- =============================================== -->
+    <div class="sdg-widget" id="sdgWidget">
+        <button class="sdg-widget-toggle" id="sdgToggle">
+            <span class="widget-icon">📊</span>
+            <span class="widget-text">Données ODD 2025</span>
+        </button>
+        
+        <div class="sdg-widget-panel" id="sdgPanel">
+            <div class="widget-panel-header">
+                <h3>🌍 Progrès des ODD 2025</h3>
+                <button class="widget-close" id="widgetClose">✕</button>
+            </div>
+            
+            <div class="widget-panel-content">
+                <div class="widget-tabs">
+                    <button class="widget-tab active" data-tab="global">État Global</button>
+                    <button class="widget-tab" data-tab="environment">Environnement</button>
+                    <button class="widget-tab" data-tab="climate">Climat</button>
+                    <button class="widget-tab" data-tab="bio">Biodiversité</button>
+                    <button class="widget-tab" data-tab="crisis">Crises</button>
+                </div>
+                
+                <!-- TAB 1: État Global -->
+                <div class="widget-tab-content active" id="tab-global">
+                    <h4>État d'Avancement des ODD</h4>
+                    <p class="widget-source">Source: Rapport ONU SDG 2025</p>
+                    
+                    <div class="widget-progress-item">
+                        <div class="widget-progress-label">
+                            <span>✅ En bonne voie</span>
+                            <span>18%</span>
+                        </div>
+                        <div class="widget-progress-bar">
+                            <div class="widget-progress-fill success" style="width: 18%;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="widget-progress-item">
+                        <div class="widget-progress-label">
+                            <span>📈 Progrès modéré</span>
+                            <span>17%</span>
+                        </div>
+                        <div class="widget-progress-bar">
+                            <div class="widget-progress-fill warning" style="width: 17%;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="widget-progress-item">
+                        <div class="widget-progress-label">
+                            <span>⚠️ Progrès marginal</span>
+                            <span>31%</span>
+                        </div>
+                        <div class="widget-progress-bar">
+                            <div class="widget-progress-fill warning" style="width: 31%;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="widget-progress-item">
+                        <div class="widget-progress-label">
+                            <span>⏸️ Stagnation</span>
+                            <span>17%</span>
+                        </div>
+                        <div class="widget-progress-bar">
+                            <div class="widget-progress-fill danger" style="width: 17%;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="widget-progress-item">
+                        <div class="widget-progress-label">
+                            <span>⬇️ Régression</span>
+                            <span>18%</span>
+                        </div>
+                        <div class="widget-progress-bar">
+                            <div class="widget-progress-fill danger" style="width: 18%;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="widget-cta">
+                        <a href="sdg-infographics-2025-corrected.html" target="_blank" class="widget-btn">
+                            Voir toutes les infographies →
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- TAB 2: Environnement -->
+                <div class="widget-tab-content" id="tab-environment">
+                    <h4>Indicateurs Environnementaux</h4>
+                    <p class="widget-source">Données 2023-2024</p>
+                    
+                    <div class="widget-stat-grid">
+                        <div class="widget-stat-box">
+                            <div class="widget-stat-icon">⚡</div>
+                            <div class="widget-stat-value">92%</div>
+                            <div class="widget-stat-label">Accès électricité</div>
+                        </div>
+                        <div class="widget-stat-box">
+                            <div class="widget-stat-icon">🔥</div>
+                            <div class="widget-stat-value">74%</div>
+                            <div class="widget-stat-label">Cuisson propre</div>
+                        </div>
+                        <div class="widget-stat-box">
+                            <div class="widget-stat-icon">💧</div>
+                            <div class="widget-stat-value">74%</div>
+                            <div class="widget-stat-label">Eau potable sûre</div>
+                        </div>
+                        <div class="widget-stat-box">
+                            <div class="widget-stat-icon">🚽</div>
+                            <div class="widget-stat-value">58%</div>
+                            <div class="widget-stat-label">Assainissement</div>
+                        </div>
+                    </div>
+                    
+                    <div class="widget-cta">
+                        <a href="sdg-infographics-2025-corrected.html" target="_blank" class="widget-btn">
+                            Voir les détails →
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- TAB 3: Climat -->
+                <div class="widget-tab-content" id="tab-climate">
+                    <h4>Urgence Climatique 2024</h4>
+                    <p class="widget-source">Année la plus chaude jamais enregistrée</p>
+                    
+                    <div class="widget-climate-alert">
+                        <div class="widget-alert-icon">🌡️</div>
+                        <div class="widget-alert-content">
+                            <div class="widget-alert-value">+1.55°C</div>
+                            <div class="widget-alert-label">Au-dessus des niveaux pré-industriels</div>
+                        </div>
+                    </div>
+                    
+                    <div class="widget-stat-list">
+                        <div class="widget-stat-item">
+                            <span class="widget-stat-icon-small">💨</span>
+                            <span class="widget-stat-text">Émissions CO₂: <strong>37.6 Gt</strong></span>
+                        </div>
+                        <div class="widget-stat-item">
+                            <span class="widget-stat-icon-small">🌊</span>
+                            <span class="widget-stat-text">Coraux blanchis: <strong>84%</strong></span>
+                        </div>
+                        <div class="widget-stat-item">
+                            <span class="widget-stat-icon-small">🔵</span>
+                            <span class="widget-stat-text">Aires marines protégées: <strong>8.4%</strong></span>
+                        </div>
+                    </div>
+                    
+                    <div class="widget-cta">
+                        <a href="sdg-infographics-2025-corrected.html" target="_blank" class="widget-btn">
+                            Voir l'infographie →
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- TAB 4: Biodiversité -->
+                <div class="widget-tab-content" id="tab-bio">
+                    <h4>État de la Biodiversité</h4>
+                    <p class="widget-source">Perte critique de biodiversité</p>
+                    
+                    <div class="widget-stat-list">
+                        <div class="widget-stat-item">
+                            <span class="widget-stat-icon-small">🌳</span>
+                            <span class="widget-stat-text">Couvert forestier: <strong>31%</strong></span>
+                        </div>
+                        <div class="widget-stat-item">
+                            <span class="widget-stat-icon-small">🦋</span>
+                            <span class="widget-stat-text">Espèces menacées: <strong>47,000+</strong></span>
+                        </div>
+                        <div class="widget-stat-item">
+                            <span class="widget-stat-icon-small">🌿</span>
+                            <span class="widget-stat-text">Zones protégées: <strong>17.6%</strong></span>
+                        </div>
+                        <div class="widget-stat-item">
+                            <span class="widget-stat-icon-small">🐟</span>
+                            <span class="widget-stat-text">Surpêche: <strong>35.5%</strong></span>
+                        </div>
+                        <div class="widget-stat-item">
+                            <span class="widget-stat-icon-small">🌾</span>
+                            <span class="widget-stat-text">Terres dégradées: <strong>15.5%</strong></span>
+                        </div>
+                    </div>
+                    
+                    <div class="widget-cta">
+                        <a href="sdg-infographics-2025-corrected.html" target="_blank" class="widget-btn">
+                            Voir les données →
+                        </a>
+                    </div>
+                </div>
+                
+                <!-- TAB 5: Crises -->
+                <div class="widget-tab-content" id="tab-crisis">
+                    <h4>Défis Humanitaires 2024-2025</h4>
+                    <p class="widget-source">Chiffres clés des crises mondiales</p>
+                    
+                    <div class="widget-stat-list">
+                        <div class="widget-stat-item alert">
+                            <span class="widget-stat-icon-small">😢</span>
+                            <span class="widget-stat-text">Extrême pauvreté: <strong>808M</strong></span>
+                        </div>
+                        <div class="widget-stat-item alert">
+                            <span class="widget-stat-icon-small">🍽️</span>
+                            <span class="widget-stat-text">Insécurité alimentaire: <strong>2.3B</strong></span>
+                        </div>
+                        <div class="widget-stat-item alert">
+                            <span class="widget-stat-icon-small">🏃</span>
+                            <span class="widget-stat-text">Déplacés forcés: <strong>123M</strong></span>
+                        </div>
+                        <div class="widget-stat-item alert">
+                            <span class="widget-stat-icon-small">💧</span>
+                            <span class="widget-stat-text">Sans eau potable: <strong>2.2B</strong></span>
+                        </div>
+                        <div class="widget-stat-item alert">
+                            <span class="widget-stat-icon-small">⚡</span>
+                            <span class="widget-stat-text">Sans électricité: <strong>666M</strong></span>
+                        </div>
+                    </div>
+                    
+                    <div class="widget-cta">
+                        <a href="sdg-infographics-2025-corrected.html" target="_blank" class="widget-btn">
+                            Voir toutes les données →
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- =============================================== -->
+    <!-- FIN SDG WIDGET -->
+    <!-- =============================================== -->
+
     </nav>
 
     <!-- Hero Slider -->
@@ -564,4 +798,5 @@
                         <a href="https://www.facebook.com/profile.php?id=61555922292059" target="_blank">Facebook</a>
                         <a href="https://sdbql2024tlemcen.wixsite.com/main" target="_blank">Site 2024</a>
                     </div>
+    <script src="sdg-widget.js"></script>
      
