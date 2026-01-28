@@ -12,7 +12,6 @@
     <link rel="stylesheet" href="sdg-widget.css">
     <link rel="stylesheet" href="enhancements.css">
     <link rel="stylesheet" href="finalization-status.css">
-    <link rel="stylesheet" href="topbar-enhancements.css">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -236,32 +235,6 @@
                     <a href="/cdn-cgi/l/email-protection#086a6d6669656d7d7a666d60697a486f65696164266b6765"><i class="icon">✉</i> <span class="__cf_email__" data-cfemail="2f4d4a414e424a5a5d414a474e5d6f48424e4643014c4042">[email&#160;protected]</span></a>
                 </div>
                 <div class="top-bar-right">
-                    <!-- Sélecteur de langue -->
-                    <div class="language-selector">
-                        <button id="langToggle" class="lang-button">
-                            <span class="lang-icon">🌐</span>
-                            <span class="lang-text">FR</span>
-                            <span class="lang-arrow">▼</span>
-                        </button>
-                        <div class="lang-dropdown" id="langDropdown">
-                            <a href="#" data-lang="fr" class="lang-option active">
-                                <span class="flag">🇫🇷</span> Français
-                            </a>
-                            <a href="#" data-lang="en" class="lang-option">
-                                <span class="flag">🇬🇧</span> English
-                            </a>
-                            <a href="#" data-lang="ar" class="lang-option">
-                                <span class="flag">🇩🇿</span> العربية
-                            </a>
-                        </div>
-                    </div>
-                    
-                    <!-- Compte à rebours compact -->
-                    <div class="countdown-compact">
-                        <span class="countdown-icon">⏱️</span>
-                        <span id="countdown-compact-display">000J 00:00:00</span>
-                    </div>
-                    
                     <a href="https://www.facebook.com/profile.php?id=61555922292059" target="_blank">Facebook</a>
                     <a href="https://sdbql2024tlemcen.wixsite.com/main" target="_blank">SDBQL 2024</a>
                 </div>
@@ -285,15 +258,15 @@
                     </div>
                 </div>
                 <div class="nav-menu" id="navMenu">
-                    <a href="#home" class="nav-link active" data-translate="nav-home">Accueil</a>
-                    <a href="#about" class="nav-link" data-translate="nav-about">À propos</a>
-                    <a href="#themes" class="nav-link" data-translate="nav-themes">Axes thématiques</a>
-                    <a href="#history" class="nav-link" data-translate="nav-history">SDBQL 2024</a>
-                    <a href="#dates" class="nav-link" data-translate="nav-dates">Dates</a>
-                    <a href="#venue" class="nav-link" data-translate="nav-venue">Lieu</a>
-                    <a href="#contact" class="nav-link" data-translate="nav-contact">Contact</a>
+                    <a href="#home" class="nav-link active">Accueil</a>
+                    <a href="#about" class="nav-link">À propos</a>
+                    <a href="#themes" class="nav-link">Axes thématiques</a>
+                    <a href="#history" class="nav-link">SDBQL 2024</a>
+                    <a href="#dates" class="nav-link">Dates</a>
+                    <a href="#venue" class="nav-link">Lieu</a>
+                    <a href="#contact" class="nav-link">Contact</a>
                 </div>
-                <a href="#registration" class="nav-btn" data-translate="nav-register">S'inscrire</a>
+                <a href="#registration" class="nav-btn">S'inscrire</a>
                 <button class="nav-toggle" id="navToggle">
                     <span></span>
                     <span></span>
@@ -779,7 +752,46 @@
 
 
     
-    <!-- Widget Countdown supprimé - maintenant dans la top-bar -->
+    <!-- Widget Countdown Flottant en Haut -->
+    <div class="countdown-widget-header">
+        <div class="countdown-widget-content">
+            <div class="countdown-widget-left">
+                <div class="countdown-widget-title">2ème Congrès International sur le Développement Durable<br>pour une Meilleure Qualité de Vie • SDBQL 26</div>
+                <div class="countdown-widget-info">
+                    <span>📅 30 Septembre 2026</span>
+                    <span>•</span>
+                    <span>📍 Tlemcen, Algérie</span>
+                </div>
+            </div>
+            
+            <div class="countdown-widget-divider"></div>
+            
+            <div class="countdown-widget-right">
+                <div class="countdown-widget-label">COMMENCE DANS</div>
+                <div class="countdown-widget-timer">
+                    <div class="countdown-widget-item">
+                        <span class="countdown-widget-value" id="countdown-days-header">000</span>
+                        <span class="countdown-widget-label-item">J</span>
+                    </div>
+                    <span class="countdown-widget-separator">:</span>
+                    <div class="countdown-widget-item">
+                        <span class="countdown-widget-value" id="countdown-hours-header">00</span>
+                        <span class="countdown-widget-label-item">H</span>
+                    </div>
+                    <span class="countdown-widget-separator">:</span>
+                    <div class="countdown-widget-item">
+                        <span class="countdown-widget-value" id="countdown-minutes-header">00</span>
+                        <span class="countdown-widget-label-item">M</span>
+                    </div>
+                    <span class="countdown-widget-separator">:</span>
+                    <div class="countdown-widget-item">
+                        <span class="countdown-widget-value" id="countdown-seconds-header">00</span>
+                        <span class="countdown-widget-label-item">S</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Bande Filante des Partenaires - Repositionnée -->
     <div class="partners-ticker-banner">
@@ -1259,11 +1271,11 @@
             <!-- NOUVEAU : Carte Interactive Google Maps -->
             <div class="venue-map">
                 <iframe 
-                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26253.726031651!2d-1.342804725!3d34.8812913!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd78c8ec536da0f1%3A0x4f7f6b8c8c8c8c8c!2sFacult%C3%A9%20SNV-STU%2C%20Universit%C3%A9%20de%20Tlemcen!5e0!3m2!1sfr!2sdz!4v1706458000000!5m2!1sfr!2sdz" 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3281.3895987654!2d-1.3171886!3d34.8938889!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd78c8405e4c9dc1%3A0x4f7f6b8c8c8c8c8c!2sUniversit%C3%A9%20Abou%20Bekr%20Belka%C3%AFd%20-%20Tlemcen!5e0!3m2!1sfr!2sdz!4v1234567890123!5m2!1sfr!2sdz" 
                     allowfullscreen="" 
                     loading="lazy" 
                     referrerpolicy="no-referrer-when-downgrade"
-                    title="Localisation Faculté SNV-STU Tlemcen">
+                    title="Localisation Université de Tlemcen">
                 </iframe>
             </div>
             
@@ -1277,8 +1289,8 @@
                 </h4>
                 <p><strong>En voiture :</strong> Prendre la Rocade II, sortie Mansourah</p>
                 <p><strong>En transport :</strong> Bus ligne 3 et 7, arrêt "Université SNV-STU"</p>
-                <p><strong>Coordonnées GPS :</strong> 34.8813° N, 1.3156° W</p>
-                <a href="https://maps.app.goo.gl/R4V7KSkY1Ah8ioUS9" target="_blank" class="btn btn-outline">
+                <p><strong>Coordonnées GPS :</strong> 34.8939° N, -1.3150° W</p>
+                <a href="#" id="getDirections" class="btn btn-outline">
                     <svg class="svg-icon-sm" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle; margin-right: 5px;">
                         <use xlink:href="#icon-map"></use>
                     </svg>
@@ -1410,6 +1422,5 @@
     <script src="script.js"></script>
     <script src="sdg-widget.js"></script>
     <script src="enhancements.js"></script>
-    <script src="topbar-enhancements.js"></script>
 </body>
 </html>
