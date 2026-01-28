@@ -5,14 +5,178 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="SDBQL 2026 - 2ème Congrès International sur le Développement Durable pour une Meilleure Qualité de Vie">
     <title>SDBQL 2026 - Développement Durable pour une Meilleure Qualité de Vie</title>
+    
+    <!-- Styles CSS -->
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="sdg-ticker.css">
+    <link rel="stylesheet" href="sdg-ticker-updated.css">
     <link rel="stylesheet" href="sdg-widget.css">
+    <link rel="stylesheet" href="enhancements.css">
+    
+    <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
+    
+    <!-- Bouton Mode Sombre -->
+    <button class="dark-mode-toggle" id="darkModeToggle" aria-label="Basculer le mode sombre">
+        <svg class="svg-icon sun-icon">
+            <use xlink:href="#icon-sun"></use>
+        </svg>
+        <svg class="svg-icon moon-icon">
+            <use xlink:href="#icon-moon"></use>
+        </svg>
+    </button>
+
+    <!-- Bibliothèque d'icônes SVG -->
+<!-- ================================================
+     SDBQL 2026 - BIBLIOTHÈQUE D'ICÔNES SVG MODERNES
+     Remplace les emojis par des icônes professionnelles
+     ================================================ -->
+
+<!-- À intégrer dans index.html juste après <body> -->
+
+<svg style="display: none;">
+    <defs>
+        <!-- ICÔNE: Globe Terre -->
+        <symbol id="icon-globe" viewBox="0 0 24 24">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+        </symbol>
+
+        <!-- ICÔNE: Plante/Croissance -->
+        <symbol id="icon-leaf" viewBox="0 0 24 24">
+            <path d="M17 8C8 10 5.9 16.17 3.82 21.34l1.89.66.95-2.3c.48.17.98.3 1.34.30C19 20 22 3 22 3c-1 2-8 2.25-13 3.25S2 11.5 2 13.5s1.75 3.75 1.75 3.75C7 8 17 8 17 8z"/>
+        </symbol>
+
+        <!-- ICÔNE: Électricité -->
+        <symbol id="icon-bolt" viewBox="0 0 24 24">
+            <path d="M11 21h-1l1-7H7.5c-.58 0-.57-.32-.38-.66.19-.34.05-.08.07-.12C8.48 10.94 10.42 7.54 13 3h1l-1 7h3.5c.49 0 .56.33.47.51l-.07.15C12.96 17.55 11 21 11 21z"/>
+        </symbol>
+
+        <!-- ICÔNE: Eau/Goutte -->
+        <symbol id="icon-water" viewBox="0 0 24 24">
+            <path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/>
+        </symbol>
+
+        <!-- ICÔNE: Feu/Flamme -->
+        <symbol id="icon-fire" viewBox="0 0 24 24">
+            <path d="M13.5.67s.74 2.65.74 4.8c0 2.06-1.35 3.73-3.41 3.73-2.07 0-3.63-1.67-3.63-3.73l.03-.36C5.21 7.51 4 10.62 4 14c0 4.42 3.58 8 8 8s8-3.58 8-8C20 8.61 17.41 3.8 13.5.67zM11.71 19c-1.78 0-3.22-1.4-3.22-3.14 0-1.62 1.05-2.76 2.81-3.12 1.77-.36 3.6-1.21 4.62-2.58.39 1.29.59 2.65.59 4.04 0 2.65-2.15 4.8-4.8 4.8z"/>
+        </symbol>
+
+        <!-- ICÔNE: Thermomètre/Température -->
+        <symbol id="icon-thermometer" viewBox="0 0 24 24">
+            <path d="M15 13V5c0-1.66-1.34-3-3-3S9 3.34 9 5v8c-1.21.91-2 2.37-2 4 0 2.76 2.24 5 5 5s5-2.24 5-5c0-1.63-.79-3.09-2-4zm-4-8c0-.55.45-1 1-1s1 .45 1 1h-1v1h1v2h-1v1h1v2h-2V5z"/>
+        </symbol>
+
+        <!-- ICÔNE: Vent/Air -->
+        <symbol id="icon-wind" viewBox="0 0 24 24">
+            <path d="M14.5 17c0 1.65-1.35 3-3 3s-3-1.35-3-3h2c0 .55.45 1 1 1s1-.45 1-1-.45-1-1-1H2v-2h9.5c1.65 0 3 1.35 3 3zM19 6.5C19 4.57 17.43 3 15.5 3S12 4.57 12 6.5h2c0-.83.67-1.5 1.5-1.5s1.5.67 1.5 1.5S16.33 8 15.5 8H2v2h13.5c1.93 0 3.5-1.57 3.5-3.5zm-.5 4.5H2v2h16.5c.83 0 1.5.67 1.5 1.5s-.67 1.5-1.5 1.5v2c1.93 0 3.5-1.57 3.5-3.5S20.43 11 18.5 11z"/>
+        </symbol>
+
+        <!-- ICÔNE: Vague/Océan -->
+        <symbol id="icon-wave" viewBox="0 0 24 24">
+            <path d="M17 16.99c-1.35 0-2.2.42-2.95.8-.65.33-1.18.6-2.05.6-.9 0-1.4-.25-2.05-.6-.75-.38-1.57-.8-2.95-.8s-2.2.42-2.95.8c-.65.33-1.17.6-2.05.6v1.95c1.35 0 2.2-.42 2.95-.8.65-.33 1.17-.6 2.05-.6s1.4.25 2.05.6c.75.38 1.57.8 2.95.8s2.2-.42 2.95-.8c.65-.33 1.18-.6 2.05-.6.9 0 1.4.25 2.05.6.75.38 1.58.8 2.95.8v-1.95c-.9 0-1.4-.25-2.05-.6-.75-.38-1.6-.8-2.95-.8zm0-4.45c-1.35 0-2.2.43-2.95.8-.65.32-1.18.6-2.05.6-.9 0-1.4-.25-2.05-.6-.75-.38-1.57-.8-2.95-.8s-2.2.43-2.95.8c-.65.32-1.17.6-2.05.6v1.95c1.35 0 2.2-.43 2.95-.8.65-.35 1.15-.6 2.05-.6s1.4.25 2.05.6c.75.38 1.57.8 2.95.8s2.2-.43 2.95-.8c.65-.35 1.15-.6 2.05-.6s1.4.25 2.05.6c.75.38 1.58.8 2.95.8v-1.95c-.9 0-1.4-.25-2.05-.6-.75-.38-1.6-.8-2.95-.8zm2.95-8.08c-.75-.38-1.58-.8-2.95-.8s-2.2.42-2.95.8c-.65.32-1.18.6-2.05.6-.9 0-1.4-.25-2.05-.6-.75-.37-1.57-.8-2.95-.8s-2.2.42-2.95.8c-.65.33-1.17.6-2.05.6v1.93c1.35 0 2.2-.43 2.95-.8.65-.33 1.17-.6 2.05-.6s1.4.25 2.05.6c.75.38 1.57.8 2.95.8s2.2-.43 2.95-.8c.65-.32 1.18-.6 2.05-.6.9 0 1.4.25 2.05.6.75.38 1.58.8 2.95.8V5.04c-.9 0-1.4-.25-2.05-.58zM17 8.09c-1.35 0-2.2.43-2.95.8-.65.35-1.15.6-2.05.6s-1.4-.25-2.05-.6c-.75-.38-1.57-.8-2.95-.8s-2.2.43-2.95.8c-.65.35-1.15.6-2.05.6v1.95c1.35 0 2.2-.43 2.95-.8.65-.32 1.18-.6 2.05-.6s1.4.25 2.05.6c.75.38 1.57.8 2.95.8s2.2-.43 2.95-.8c.65-.32 1.18-.6 2.05-.6.9 0 1.4.25 2.05.6.75.38 1.58.8 2.95.8V9.49c-.9 0-1.4-.25-2.05-.6-.75-.38-1.6-.8-2.95-.8z"/>
+        </symbol>
+
+        <!-- ICÔNE: Arbre/Forêt -->
+        <symbol id="icon-tree" viewBox="0 0 24 24">
+            <path d="m17 8-4.29-6.47a1 1 0 0 0-1.66 0L7 8 5 8a1 1 0 0 0-.77 1.64L7 14H5a1 1 0 0 0-.77 1.64L9 22h6l4.77-6.36A1 1 0 0 0 19 14h-2l2.77-4.36A1 1 0 0 0 19 8z"/>
+        </symbol>
+
+        <!-- ICÔNE: Poisson -->
+        <symbol id="icon-fish" viewBox="0 0 24 24">
+            <path d="M12 20c-3.31 0-6-2.69-6-6s2.69-6 6-6 6 2.69 6 6-2.69 6-6 6zm6-6c0-3.87-3.13-7-7-7-2.52 0-4.77 1.35-6 3.36-.29-.07-.58-.11-.89-.11-1.1 0-2.11.46-2.83 1.18L2 10.71l6 4.29L7 19H2l-.71.71A4.01 4.01 0 0 0 4 22c.32 0 .61-.05.89-.11C6.23 23.65 8.48 25 11 25c3.87 0 7-3.13 7-7 0-1.93-.79-3.67-2.06-4.93.06-.36.06-.71.06-1.07z"/>
+        </symbol>
+
+        <!-- ICÔNE: Papillon/Biodiversité -->
+        <symbol id="icon-butterfly" viewBox="0 0 24 24">
+            <path d="M12 3.5c-.31 0-.62.02-.93.05C9.42 1.5 7.28.5 5 .5c-.55 0-1 .45-1 1 0 .08.01.15.03.22C2.8 2.61 2 4.23 2 6c0 2.76 2.24 5 5 5 .28 0 .56-.02.83-.07.04.07.09.13.13.2C6.64 12.8 6 14.83 6 17c0 3.31 2.69 6 6 6s6-2.69 6-6c0-2.17-.64-4.2-1.96-5.87.04-.07.09-.13.13-.2.27.05.55.07.83.07 2.76 0 5-2.24 5-5 0-1.77-.8-3.39-2.03-4.28.02-.07.03-.14.03-.22 0-.55-.45-1-1-1-2.28 0-4.42 1-6.07 2.55-.31-.03-.62-.05-.93-.05zM7 9.5c-1.38 0-2.5-1.12-2.5-2.5S5.62 4.5 7 4.5 9.5 5.62 9.5 7 8.38 9.5 7 9.5zm10 0c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+        </symbol>
+
+        <!-- ICÔNE: Personne/Humain -->
+        <symbol id="icon-person" viewBox="0 0 24 24">
+            <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+        </symbol>
+
+        <!-- ICÔNE: Nourriture/Ustensiles -->
+        <symbol id="icon-restaurant" viewBox="0 0 24 24">
+            <path d="M11 9H9V2H7v7H5V2H3v7c0 2.12 1.66 3.84 3.75 3.97V22h2.5v-9.03C11.34 12.84 13 11.12 13 9V2h-2v7zm5-3v8h2.5v8H21V2c-2.76 0-5 2.24-5 4z"/>
+        </symbol>
+
+        <!-- ICÔNE: Maison/Bâtiment -->
+        <symbol id="icon-home" viewBox="0 0 24 24">
+            <path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/>
+        </symbol>
+
+        <!-- ICÔNE: Carte/Localisation -->
+        <symbol id="icon-location" viewBox="0 0 24 24">
+            <path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+        </symbol>
+
+        <!-- ICÔNE: Calendrier -->
+        <symbol id="icon-calendar" viewBox="0 0 24 24">
+            <path d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7z"/>
+        </symbol>
+
+        <!-- ICÔNE: Téléphone -->
+        <symbol id="icon-phone" viewBox="0 0 24 24">
+            <path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/>
+        </symbol>
+
+        <!-- ICÔNE: Email -->
+        <symbol id="icon-email" viewBox="0 0 24 24">
+            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+        </symbol>
+
+        <!-- ICÔNE: Soleil (mode clair) -->
+        <symbol id="icon-sun" viewBox="0 0 24 24">
+            <path d="M12 7c-2.76 0-5 2.24-5 5s2.24 5 5 5 5-2.24 5-5-2.24-5-5-5zM2 13h2c.55 0 1-.45 1-1s-.45-1-1-1H2c-.55 0-1 .45-1 1s.45 1 1 1zm18 0h2c.55 0 1-.45 1-1s-.45-1-1-1h-2c-.55 0-1 .45-1 1s.45 1 1 1zM11 2v2c0 .55.45 1 1 1s1-.45 1-1V2c0-.55-.45-1-1-1s-1 .45-1 1zm0 18v2c0 .55.45 1 1 1s1-.45 1-1v-2c0-.55-.45-1-1-1s-1 .45-1 1zM5.99 4.58c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0s.39-1.03 0-1.41L5.99 4.58zm12.37 12.37c-.39-.39-1.03-.39-1.41 0-.39.39-.39 1.03 0 1.41l1.06 1.06c.39.39 1.03.39 1.41 0 .39-.39.39-1.03 0-1.41l-1.06-1.06zm1.06-10.96c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06zM7.05 18.36c.39-.39.39-1.03 0-1.41-.39-.39-1.03-.39-1.41 0l-1.06 1.06c-.39.39-.39 1.03 0 1.41s1.03.39 1.41 0l1.06-1.06z"/>
+        </symbol>
+
+        <!-- ICÔNE: Lune (mode sombre) -->
+        <symbol id="icon-moon" viewBox="0 0 24 24">
+            <path d="M9 2c-1.05 0-2.05.16-3 .46 4.06 1.27 7 5.06 7 9.54 0 4.48-2.94 8.27-7 9.54.95.3 1.95.46 3 .46 5.52 0 10-4.48 10-10S14.52 2 9 2z"/>
+        </symbol>
+
+        <!-- ICÔNE: Graphique/Statistiques -->
+        <symbol id="icon-chart" viewBox="0 0 24 24">
+            <path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z"/>
+        </symbol>
+
+        <!-- ICÔNE: Checkmark/Validation -->
+        <symbol id="icon-check" viewBox="0 0 24 24">
+            <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
+        </symbol>
+
+        <!-- ICÔNE: Alerte/Avertissement -->
+        <symbol id="icon-alert" viewBox="0 0 24 24">
+            <path d="M1 21h22L12 2 1 21zm12-3h-2v-2h2v2zm0-4h-2v-4h2v4z"/>
+        </symbol>
+
+        <!-- ICÔNE: Tendance baisse -->
+        <symbol id="icon-trending-down" viewBox="0 0 24 24">
+            <path d="M16 18l2.29-2.29-4.88-4.88-4 4L2 7.41 3.41 6l6 6 4-4 6.3 6.29L22 12v6z"/>
+        </symbol>
+
+        <!-- ICÔNE: École/Éducation -->
+        <symbol id="icon-school" viewBox="0 0 24 24">
+            <path d="M5 13.18v4L12 21l7-3.82v-4L12 17l-7-3.82zM12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/>
+        </symbol>
+
+        <!-- ICÔNE: Carte -->
+        <symbol id="icon-map" viewBox="0 0 24 24">
+            <path d="M20.5 3l-.16.03L15 5.1 9 3 3.36 4.9c-.21.07-.36.25-.36.48V20.5c0 .28.22.5.5.5l.16-.03L9 18.9l6 2.1 5.64-1.9c.21-.07.36-.25.36-.48V3.5c0-.28-.22-.5-.5-.5zM15 19l-6-2.11V5l6 2.11V19z"/>
+        </symbol>
+
+        <!-- ICÔNE: Directions -->
+        <symbol id="icon-directions" viewBox="0 0 24 24">
+            <path d="M21.71 11.29l-9-9c-.39-.39-1.02-.39-1.41 0l-9 9c-.39.39-.39 1.02 0 1.41l9 9c.39.39 1.02.39 1.41 0l9-9c.39-.38.39-1.01 0-1.41zM14 14.5V12h-4v3H8v-4c0-.55.45-1 1-1h5V7.5l3.5 3.5-3.5 3.5z"/>
+        </symbol>
+    </defs>
+</svg>
+
+
     <!-- Top Bar -->
     <div class="top-bar">
         <div class="container">
@@ -534,6 +698,7 @@
     <!-- =============================================== -->
 
 
+    
     <!-- Hero Slider -->
     <section id="home" class="hero-slider">
         <div class="slide active" style="background: linear-gradient(135deg, rgba(0,77,64,0.9), rgba(0,150,136,0.8)), url('images/5.jpg') center/cover;">
@@ -542,6 +707,35 @@
                     <span class="slide-label">2ème Édition • Congrès International</span>
                     <h1 class="slide-title">Développement Durable<br>pour une Meilleure Qualité de Vie</h1>
                     <p class="slide-desc">Ressources Naturelles au Service des Objectifs de Développement Durable</p>
+                    
+                    <!-- NOUVEAU : Compte à rebours -->
+                    <div class="countdown-container fade-in-up">
+                        <div class="countdown-label">
+                            <svg class="svg-icon-sm" style="width: 16px; height: 16px; display: inline-block; vertical-align: middle; margin-right: 5px;">
+                                <use xlink:href="#icon-calendar"></use>
+                            </svg>
+                            L'ÉVÉNEMENT COMMENCE DANS
+                        </div>
+                        <div class="countdown-timer">
+                            <div class="countdown-item">
+                                <span class="countdown-value" id="countdown-days">000</span>
+                                <span class="countdown-label-item">Jours</span>
+                            </div>
+                            <div class="countdown-item">
+                                <span class="countdown-value" id="countdown-hours">00</span>
+                                <span class="countdown-label-item">Heures</span>
+                            </div>
+                            <div class="countdown-item">
+                                <span class="countdown-value" id="countdown-minutes">00</span>
+                                <span class="countdown-label-item">Minutes</span>
+                            </div>
+                            <div class="countdown-item">
+                                <span class="countdown-value" id="countdown-seconds">00</span>
+                                <span class="countdown-label-item">Secondes</span>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="slide-meta">
                         <div class="meta-item">
                             <i class="icon">📅</i>
@@ -560,6 +754,7 @@
             </div>
         </div>
     </section>
+
 
     <!-- Welcome Section -->
     <section id="about" class="welcome-section">
@@ -882,6 +1077,7 @@
         </div>
     </section>
 
+    
     <!-- Venue Section -->
     <section id="venue" class="venue-section">
         <div class="container">
@@ -927,8 +1123,39 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- NOUVEAU : Carte Interactive Google Maps -->
+            <div class="venue-map">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3281.3895987654!2d-1.3171886!3d34.8938889!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd78c8405e4c9dc1%3A0x4f7f6b8c8c8c8c8c!2sUniversit%C3%A9%20Abou%20Bekr%20Belka%C3%AFd%20-%20Tlemcen!5e0!3m2!1sfr!2sdz!4v1234567890123!5m2!1sfr!2sdz" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade"
+                    title="Localisation Université de Tlemcen">
+                </iframe>
+            </div>
+            
+            <!-- Instructions de direction -->
+            <div class="map-directions">
+                <h4>
+                    <svg class="svg-icon" style="width: 24px; height: 24px; display: inline-block; vertical-align: middle; margin-right: 8px;">
+                        <use xlink:href="#icon-directions"></use>
+                    </svg>
+                    Comment s'y rendre
+                </h4>
+                <p><strong>En voiture :</strong> Prendre la Rocade II, sortie Mansourah</p>
+                <p><strong>En transport :</strong> Bus ligne 3 et 7, arrêt "Université SNV-STU"</p>
+                <p><strong>Coordonnées GPS :</strong> 34.8939° N, -1.3150° W</p>
+                <a href="#" id="getDirections" class="btn btn-outline">
+                    <svg class="svg-icon-sm" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle; margin-right: 5px;">
+                        <use xlink:href="#icon-map"></use>
+                    </svg>
+                    Obtenir l'itinéraire
+                </a>
+            </div>
         </div>
     </section>
+
 
     <!-- Contact Section -->
     <section id="contact" class="contact-section">
@@ -1043,3 +1270,9 @@
                     </div>
     <script src="sdg-widget.js"></script>
      
+    <!-- Scripts JavaScript -->
+    <script src="script.js"></script>
+    <script src="sdg-widget.js"></script>
+    <script src="enhancements.js"></script>
+</body>
+</html>
