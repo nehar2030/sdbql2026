@@ -1,0 +1,335 @@
+/* ================================================
+   SDBQL 2026 - COMPTE À REBOURS COMPACT & TRADUCTION
+   Styles pour la top-bar améliorée
+   ================================================ */
+
+/* ========================================
+   1. COMPTE À REBOURS COMPACT
+   ======================================== */
+
+.countdown-compact {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: linear-gradient(135deg, #00bfa5, #00796b);
+    color: white;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 13px;
+    margin-right: 15px;
+    box-shadow: 0 2px 8px rgba(0, 191, 165, 0.3);
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.countdown-compact:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(0, 191, 165, 0.4);
+}
+
+.countdown-icon {
+    font-size: 16px;
+    animation: pulse-icon 2s ease-in-out infinite;
+}
+
+@keyframes pulse-icon {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+}
+
+#countdown-compact-display {
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.5px;
+    font-weight: 700;
+}
+
+/* ========================================
+   2. SÉLECTEUR DE LANGUE
+   ======================================== */
+
+.language-selector {
+    position: relative;
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.lang-button {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(255, 255, 255, 0.1);
+    color: white;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 6px 12px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.lang-button:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.3);
+}
+
+.lang-icon {
+    font-size: 16px;
+}
+
+.lang-text {
+    font-weight: 700;
+    letter-spacing: 0.5px;
+}
+
+.lang-arrow {
+    font-size: 10px;
+    transition: transform 0.3s ease;
+}
+
+.lang-button.active .lang-arrow {
+    transform: rotate(180deg);
+}
+
+/* Dropdown */
+.lang-dropdown {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    min-width: 150px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.lang-dropdown.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.lang-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    color: #333;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.lang-option:last-child {
+    border-bottom: none;
+}
+
+.lang-option:hover {
+    background: #f5f5f5;
+    color: #00796b;
+}
+
+.lang-option.active {
+    background: #e0f2f1;
+    color: #00796b;
+    font-weight: 600;
+}
+
+.lang-option .flag {
+    font-size: 20px;
+}
+
+/* ========================================
+   3. RESPONSIVE MOBILE
+   ======================================== */
+
+@media (max-width: 768px) {
+    .countdown-compact {
+        font-size: 11px;
+        padding: 5px 10px;
+        margin-right: 8px;
+    }
+    
+    .countdown-icon {
+        font-size: 14px;
+    }
+    
+    #countdown-compact-display {
+        font-size: 11px;
+    }
+    
+    .lang-button {
+        font-size: 12px;
+        padding: 5px 10px;
+        margin-right: 8px;
+    }
+    
+    .lang-icon {
+        font-size: 14px;
+    }
+    
+    .lang-text {
+        display: none; /* Masquer le texte "FR" sur mobile */
+    }
+    
+    .lang-dropdown {
+        right: -10px;
+        min-width: 140px;
+    }
+}
+
+@media (max-width: 480px) {
+    .countdown-compact {
+        font-size: 10px;
+        padding: 4px 8px;
+        margin-right: 5px;
+    }
+    
+    .countdown-icon {
+        font-size: 12px;
+    }
+    
+    /* Afficher seulement Jours:Heures sur très petit écran */
+    .countdown-compact-short {
+        display: inline;
+    }
+    
+    .countdown-compact-full {
+        display: none;
+    }
+}
+
+/* ========================================
+   4. MODE SOMBRE
+   ======================================== */
+
+body.dark-mode .countdown-compact {
+    background: linear-gradient(135deg, #00bfa5, #00796b);
+    box-shadow: 0 2px 8px rgba(0, 191, 165, 0.4);
+}
+
+body.dark-mode .lang-button {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+body.dark-mode .lang-button:hover {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+body.dark-mode .lang-dropdown {
+    background: #2a2a2a;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+}
+
+body.dark-mode .lang-option {
+    color: #e0e0e0;
+    border-bottom-color: #404040;
+}
+
+body.dark-mode .lang-option:hover {
+    background: #383838;
+    color: #00bfa5;
+}
+
+body.dark-mode .lang-option.active {
+    background: #1a3a35;
+    color: #00bfa5;
+}
+
+/* ========================================
+   5. ANIMATION D'ENTRÉE
+   ======================================== */
+
+@keyframes slideInFromRight {
+    from {
+        opacity: 0;
+        transform: translateX(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.countdown-compact {
+    animation: slideInFromRight 0.6s ease-out;
+}
+
+.language-selector {
+    animation: slideInFromRight 0.6s ease-out 0.1s both;
+}
+
+/* ========================================
+   6. AJUSTEMENT TOP-BAR
+   ======================================== */
+
+.top-bar-right {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Pour s'assurer que les éléments sont bien alignés */
+.top-bar-right > a {
+    white-space: nowrap;
+}
+
+/* ========================================
+   7. SUPPORT RTL (pour l'arabe)
+   ======================================== */
+
+html[lang="ar"] {
+    direction: rtl;
+}
+
+html[lang="ar"] .lang-dropdown {
+    right: auto;
+    left: 0;
+}
+
+html[lang="ar"] .countdown-compact {
+    flex-direction: row-reverse;
+}
+
+html[lang="ar"] .lang-button {
+    flex-direction: row-reverse;
+}
+
+/* ========================================
+   8. ACCESSIBILITÉ
+   ======================================== */
+
+.lang-button:focus {
+    outline: 2px solid #00bfa5;
+    outline-offset: 2px;
+}
+
+.lang-option:focus {
+    outline: 2px solid #00bfa5;
+    outline-offset: -2px;
+}
+
+/* ========================================
+   9. PRINT (masquer sur impression)
+   ======================================== */
+
+@media print {
+    .countdown-compact,
+    .language-selector {
+        display: none !important;
+    }
+}
