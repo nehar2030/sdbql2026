@@ -1,0 +1,287 @@
+/* ================================================
+   SDG TICKER BANNER - Bande défilante ODD
+   Affichage horizontal animé des données ODD 2025
+   ================================================ */
+
+.sdg-ticker-banner {
+    background: linear-gradient(135deg, #004d40 0%, #00796b 50%, #004d40 100%);
+    padding: 12px 0;
+    overflow: hidden;
+    position: relative;
+    border-bottom: 3px solid #00bfa5;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    z-index: 998;
+}
+
+/* Label de la bande */
+.sdg-ticker-label {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    padding: 0 25px;
+    display: flex;
+    align-items: center;
+    z-index: 2;
+    font-weight: 700;
+    color: white;
+    font-size: 14px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    backdrop-filter: blur(5px);
+    border-right: 2px solid #00bfa5;
+}
+
+.sdg-ticker-label .ticker-icon {
+    font-size: 20px;
+    margin-right: 8px;
+    animation: pulse-icon 2s ease-in-out infinite;
+}
+
+@keyframes pulse-icon {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.15);
+    }
+}
+
+/* Conteneur du défilement */
+.sdg-ticker-wrapper {
+    padding-left: 180px; /* Espace pour le label */
+    overflow: hidden;
+    position: relative;
+}
+
+.sdg-ticker-content {
+    display: flex;
+    align-items: center;
+    animation: ticker-scroll 120s linear infinite;
+    white-space: nowrap;
+}
+
+/* Animation de défilement */
+@keyframes ticker-scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+/* Pause au survol */
+.sdg-ticker-content:hover {
+    animation-play-state: paused;
+}
+
+/* Items individuels */
+.sdg-ticker-item {
+    display: inline-flex;
+    align-items: center;
+    padding: 0 30px;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    white-space: nowrap;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.sdg-ticker-item::after {
+    content: '•';
+    position: absolute;
+    right: 12px;
+    color: #00bfa5;
+    font-size: 18px;
+}
+
+.sdg-ticker-item:hover {
+    color: #00bfa5;
+    transform: scale(1.05);
+}
+
+/* Icônes des items */
+.ticker-item-icon {
+    font-size: 18px;
+    margin-right: 8px;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+/* Valeurs en surbrillance */
+.ticker-item-value {
+    color: #ffeb3b;
+    font-weight: 700;
+    margin: 0 4px;
+    text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+}
+
+/* État critique (rouge) */
+.sdg-ticker-item.critical .ticker-item-value {
+    color: #ff5252;
+    animation: blink-critical 2s ease-in-out infinite;
+}
+
+@keyframes blink-critical {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+/* État positif (vert clair) */
+.sdg-ticker-item.positive .ticker-item-value {
+    color: #69f0ae;
+}
+
+/* Badge "URGENT" */
+.ticker-urgent-badge {
+    background: #ff5252;
+    color: white;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 700;
+    margin-left: 6px;
+    text-transform: uppercase;
+    animation: pulse-urgent 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse-urgent {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(255, 82, 82, 0.7);
+    }
+    50% {
+        box-shadow: 0 0 0 6px rgba(255, 82, 82, 0);
+    }
+}
+
+/* Bouton "Voir plus" dans la bande */
+.sdg-ticker-more {
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(5px);
+    z-index: 2;
+}
+
+.sdg-ticker-more:hover {
+    background: rgba(255, 255, 255, 0.25);
+    border-color: #00bfa5;
+    color: #00bfa5;
+    transform: translateY(-50%) scale(1.05);
+}
+
+/* Responsive Mobile */
+@media (max-width: 768px) {
+    .sdg-ticker-label {
+        position: static;
+        padding: 8px 15px;
+        border-right: none;
+        border-bottom: 2px solid #00bfa5;
+        justify-content: center;
+    }
+    
+    .sdg-ticker-wrapper {
+        padding-left: 0;
+        padding-top: 8px;
+    }
+    
+    .sdg-ticker-item {
+        font-size: 13px;
+        padding: 0 20px;
+    }
+    
+    .sdg-ticker-more {
+        display: none;
+    }
+    
+    .sdg-ticker-content {
+        animation-duration: 90s; /* Plus rapide sur mobile */
+    }
+}
+
+@media (max-width: 480px) {
+    .sdg-ticker-banner {
+        padding: 10px 0;
+    }
+    
+    .sdg-ticker-item {
+        font-size: 12px;
+        padding: 0 15px;
+    }
+    
+    .ticker-item-icon {
+        font-size: 16px;
+        margin-right: 6px;
+    }
+    
+    .sdg-ticker-content {
+        animation-duration: 70s; /* Encore plus rapide sur petit mobile */
+    }
+}
+
+/* Animation de fondu d'entrée */
+.sdg-ticker-banner {
+    animation: ticker-fade-in 1s ease-out;
+}
+
+@keyframes ticker-fade-in {
+    from {
+        opacity: 0;
+        transform: translateY(-100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Gradient aux extrémités pour effet de fondu */
+.sdg-ticker-wrapper::before,
+.sdg-ticker-wrapper::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 60px;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.sdg-ticker-wrapper::before {
+    left: 180px;
+    background: linear-gradient(to right, rgba(0, 77, 64, 1), rgba(0, 77, 64, 0));
+}
+
+.sdg-ticker-wrapper::after {
+    right: 0;
+    background: linear-gradient(to left, rgba(0, 77, 64, 1), rgba(0, 77, 64, 0));
+}
+
+@media (max-width: 768px) {
+    .sdg-ticker-wrapper::before {
+        left: 0;
+    }
+}
+
+/* Mode impression : masquer la bande */
+@media print {
+    .sdg-ticker-banner {
+        display: none !important;
+    }
+}
