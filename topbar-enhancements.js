@@ -1,13 +1,13 @@
 // ================================================
-// SDBQL 2026 - COMPTE À REBOURS COMPACT & TRADUCTION
-// JavaScript pour la top-bar améliorée
+// SDBQL 2026 - COMPTE Ã€ REBOURS COMPACT & TRADUCTION
+// JavaScript pour la top-bar amÃ©liorÃ©e
 // ================================================
 
 (function() {
     'use strict';
     
     // ========================================
-    // 1. COMPTE À REBOURS COMPACT
+    // 1. COMPTE Ã€ REBOURS COMPACT
     // ========================================
     
     function updateCompactCountdown() {
@@ -28,14 +28,14 @@
                 `${String(days).padStart(3, '0')}J ${String(hours).padStart(2, '0')}:${String(minutes).padStart(2, '0')}:${String(seconds).padStart(2, '0')}`;
         }
         
-        // Si le compte à rebours est terminé
+        // Si le compte Ã  rebours est terminÃ©
         if (distance < 0 && compactDisplay) {
-            compactDisplay.textContent = "🎉 EN COURS !";
+            compactDisplay.textContent = "ðŸŽ‰ EN COURS !";
             clearInterval(compactCountdownInterval);
         }
     }
     
-    // Démarrer le compte à rebours
+    // DÃ©marrer le compte Ã  rebours
     let compactCountdownInterval;
     if (document.getElementById('countdown-compact-display')) {
         updateCompactCountdown();
@@ -43,7 +43,7 @@
     }
     
     // ========================================
-    // 2. SÉLECTEUR DE LANGUE
+    // 2. SÃ‰LECTEUR DE LANGUE
     // ========================================
     
     const langToggle = document.getElementById('langToggle');
@@ -74,11 +74,11 @@
             const selectedLang = this.getAttribute('data-lang');
             changeLanguage(selectedLang);
             
-            // Mettre à jour l'affichage
+            // Mettre Ã  jour l'affichage
             langOptions.forEach(opt => opt.classList.remove('active'));
             this.classList.add('active');
             
-            // Mettre à jour le bouton
+            // Mettre Ã  jour le bouton
             const langText = langToggle.querySelector('.lang-text');
             if (langText) {
                 langText.textContent = selectedLang.toUpperCase();
@@ -88,21 +88,21 @@
             langDropdown.classList.remove('active');
             langToggle.classList.remove('active');
             
-            // Sauvegarder la préférence
+            // Sauvegarder la prÃ©fÃ©rence
             localStorage.setItem('sdbql-language', selectedLang);
         });
     });
     
     // ========================================
-    // 3. SYSTÈME DE TRADUCTION
+    // 3. SYSTÃˆME DE TRADUCTION
     // ========================================
     
     const translations = {
         fr: {
             // Navigation
             'nav-home': 'Accueil',
-            'nav-about': 'À propos',
-            'nav-themes': 'Axes thématiques',
+            'nav-about': 'Ã€ propos',
+            'nav-themes': 'Axes thÃ©matiques',
             'nav-history': 'SDBQL 2024',
             'nav-dates': 'Dates',
             'nav-venue': 'Lieu',
@@ -110,41 +110,41 @@
             'nav-register': 'S\'inscrire',
             
             // Hero
-            'hero-title': '2ème Congrès International sur le Développement Durable pour une Meilleure Qualité de Vie',
+            'hero-title': '2Ã¨me CongrÃ¨s International sur le DÃ©veloppement Durable pour une Meilleure QualitÃ© de Vie',
             'hero-subtitle': 'Ressources Naturelles au Service des ODD',
             'hero-date': '30 Septembre 2026',
-            'hero-location': 'Tlemcen, Algérie',
-            'hero-cta1': 'Soumettre un résumé',
+            'hero-location': 'Tlemcen, AlgÃ©rie',
+            'hero-cta1': 'Soumettre un rÃ©sumÃ©',
             'hero-cta2': 'En savoir plus',
             
             // About
-            'about-label': 'À propos du congrès',
-            'about-title': 'Un événement international majeur',
-            'about-desc': 'Le SDBQL 2026 réunit chercheurs, décideurs et acteurs du développement durable',
+            'about-label': 'Ã€ propos du congrÃ¨s',
+            'about-title': 'Un Ã©vÃ©nement international majeur',
+            'about-desc': 'Le SDBQL 2026 rÃ©unit chercheurs, dÃ©cideurs et acteurs du dÃ©veloppement durable',
             
             // Committee
             'committee-label': 'Organisation',
-            'committee-title': 'Comité d\'organisation',
+            'committee-title': 'ComitÃ© d\'organisation',
             
             // Themes
-            'themes-label': 'Axes du congrès',
-            'themes-title': 'Axes thématiques',
-            'themes-desc': 'Six axes clés pour bâtir ensemble un avenir durable',
+            'themes-label': 'Axes du congrÃ¨s',
+            'themes-title': 'Axes thÃ©matiques',
+            'themes-desc': 'Six axes clÃ©s pour bÃ¢tir ensemble un avenir durable',
             
             // Dates
             'dates-label': 'Calendrier',
             'dates-title': 'Dates importantes',
-            'dates-desc': 'Ne manquez aucune échéance',
+            'dates-desc': 'Ne manquez aucune Ã©chÃ©ance',
             
             // Sponsoring
             'sponsor-label': 'Partenariat',
             'sponsor-title': 'Sponsoring et Inscription',
-            'sponsor-desc': 'Devenez partenaire privilégié de SDBQL 2026',
+            'sponsor-desc': 'Devenez partenaire privilÃ©giÃ© de SDBQL 2026',
             
             // Venue
-            'venue-label': 'Lieu du congrès',
-            'venue-title': 'Université Abou Bekr Belkaid',
-            'venue-subtitle': 'Tlemcen, Algérie',
+            'venue-label': 'Lieu du congrÃ¨s',
+            'venue-title': 'UniversitÃ© Abou Bekr Belkaid',
+            'venue-subtitle': 'Tlemcen, AlgÃ©rie',
             
             // Contact
             'contact-label': 'Contactez-nous',
@@ -154,7 +154,7 @@
             'footer-links': 'Liens rapides',
             'footer-participate': 'Participation',
             'footer-newsletter': 'Newsletter',
-            'footer-newsletter-desc': 'Restez informé des actualités'
+            'footer-newsletter-desc': 'Restez informÃ© des actualitÃ©s'
         },
         
         en: {
@@ -218,61 +218,61 @@
         
         ar: {
             // Navigation
-            'nav-home': 'الرئيسية',
-            'nav-about': 'حول',
-            'nav-themes': 'المحاور',
+            'nav-home': 'Ø§Ù„Ø±Ø¦ÙŠØ³ÙŠØ©',
+            'nav-about': 'Ø­ÙˆÙ„',
+            'nav-themes': 'Ø§Ù„Ù…Ø­Ø§ÙˆØ±',
             'nav-history': 'SDBQL 2024',
-            'nav-dates': 'التواريخ',
-            'nav-venue': 'المكان',
-            'nav-contact': 'اتصل',
-            'nav-register': 'التسجيل',
+            'nav-dates': 'Ø§Ù„ØªÙˆØ§Ø±ÙŠØ®',
+            'nav-venue': 'Ø§Ù„Ù…ÙƒØ§Ù†',
+            'nav-contact': 'Ø§ØªØµÙ„',
+            'nav-register': 'Ø§Ù„ØªØ³Ø¬ÙŠÙ„',
             
             // Hero
-            'hero-title': 'المؤتمر الدولي الثاني حول التنمية المستدامة من أجل نوعية حياة أفضل',
-            'hero-subtitle': 'الموارد الطبيعية في خدمة أهداف التنمية المستدامة',
-            'hero-date': '30 سبتمبر 2026',
-            'hero-location': 'تلمسان، الجزائر',
-            'hero-cta1': 'تقديم ملخص',
-            'hero-cta2': 'معرفة المزيد',
+            'hero-title': 'Ø§Ù„Ù…Ø¤ØªÙ…Ø± Ø§Ù„Ø¯ÙˆÙ„ÙŠ Ø§Ù„Ø«Ø§Ù†ÙŠ Ø­ÙˆÙ„ Ø§Ù„ØªÙ†Ù…ÙŠØ© Ø§Ù„Ù…Ø³ØªØ¯Ø§Ù…Ø© Ù…Ù† Ø£Ø¬Ù„ Ù†ÙˆØ¹ÙŠØ© Ø­ÙŠØ§Ø© Ø£ÙØ¶Ù„',
+            'hero-subtitle': 'Ø§Ù„Ù…ÙˆØ§Ø±Ø¯ Ø§Ù„Ø·Ø¨ÙŠØ¹ÙŠØ© ÙÙŠ Ø®Ø¯Ù…Ø© Ø£Ù‡Ø¯Ø§Ù Ø§Ù„ØªÙ†Ù…ÙŠØ© Ø§Ù„Ù…Ø³ØªØ¯Ø§Ù…Ø©',
+            'hero-date': '30 Ø³Ø¨ØªÙ…Ø¨Ø± 2026',
+            'hero-location': 'ØªÙ„Ù…Ø³Ø§Ù†ØŒ Ø§Ù„Ø¬Ø²Ø§Ø¦Ø±',
+            'hero-cta1': 'ØªÙ‚Ø¯ÙŠÙ… Ù…Ù„Ø®Øµ',
+            'hero-cta2': 'Ù…Ø¹Ø±ÙØ© Ø§Ù„Ù…Ø²ÙŠØ¯',
             
             // About
-            'about-label': 'حول المؤتمر',
-            'about-title': 'حدث دولي كبير',
-            'about-desc': 'يجمع SDBQL 2026 الباحثين وصانعي السياسات والفاعلين في التنمية المستدامة',
+            'about-label': 'Ø­ÙˆÙ„ Ø§Ù„Ù…Ø¤ØªÙ…Ø±',
+            'about-title': 'Ø­Ø¯Ø« Ø¯ÙˆÙ„ÙŠ ÙƒØ¨ÙŠØ±',
+            'about-desc': 'ÙŠØ¬Ù…Ø¹ SDBQL 2026 Ø§Ù„Ø¨Ø§Ø­Ø«ÙŠÙ† ÙˆØµØ§Ù†Ø¹ÙŠ Ø§Ù„Ø³ÙŠØ§Ø³Ø§Øª ÙˆØ§Ù„ÙØ§Ø¹Ù„ÙŠÙ† ÙÙŠ Ø§Ù„ØªÙ†Ù…ÙŠØ© Ø§Ù„Ù…Ø³ØªØ¯Ø§Ù…Ø©',
             
             // Committee
-            'committee-label': 'التنظيم',
-            'committee-title': 'اللجنة التنظيمية',
+            'committee-label': 'Ø§Ù„ØªÙ†Ø¸ÙŠÙ…',
+            'committee-title': 'Ø§Ù„Ù„Ø¬Ù†Ø© Ø§Ù„ØªÙ†Ø¸ÙŠÙ…ÙŠØ©',
             
             // Themes
-            'themes-label': 'محاور المؤتمر',
-            'themes-title': 'المحاور الموضوعية',
-            'themes-desc': 'ستة محاور رئيسية لبناء مستقبل مستدام معًا',
+            'themes-label': 'Ù…Ø­Ø§ÙˆØ± Ø§Ù„Ù…Ø¤ØªÙ…Ø±',
+            'themes-title': 'Ø§Ù„Ù…Ø­Ø§ÙˆØ± Ø§Ù„Ù…ÙˆØ¶ÙˆØ¹ÙŠØ©',
+            'themes-desc': 'Ø³ØªØ© Ù…Ø­Ø§ÙˆØ± Ø±Ø¦ÙŠØ³ÙŠØ© Ù„Ø¨Ù†Ø§Ø¡ Ù…Ø³ØªÙ‚Ø¨Ù„ Ù…Ø³ØªØ¯Ø§Ù… Ù…Ø¹Ù‹Ø§',
             
             // Dates
-            'dates-label': 'التقويم',
-            'dates-title': 'التواريخ المهمة',
-            'dates-desc': 'لا تفوت أي موعد نهائي',
+            'dates-label': 'Ø§Ù„ØªÙ‚ÙˆÙŠÙ…',
+            'dates-title': 'Ø§Ù„ØªÙˆØ§Ø±ÙŠØ® Ø§Ù„Ù…Ù‡Ù…Ø©',
+            'dates-desc': 'Ù„Ø§ ØªÙÙˆØª Ø£ÙŠ Ù…ÙˆØ¹Ø¯ Ù†Ù‡Ø§Ø¦ÙŠ',
             
             // Sponsoring
-            'sponsor-label': 'الشراكة',
-            'sponsor-title': 'الرعاية والتسجيل',
-            'sponsor-desc': 'كن شريكًا مميزًا لـ SDBQL 2026',
+            'sponsor-label': 'Ø§Ù„Ø´Ø±Ø§ÙƒØ©',
+            'sponsor-title': 'Ø§Ù„Ø±Ø¹Ø§ÙŠØ© ÙˆØ§Ù„ØªØ³Ø¬ÙŠÙ„',
+            'sponsor-desc': 'ÙƒÙ† Ø´Ø±ÙŠÙƒÙ‹Ø§ Ù…Ù…ÙŠØ²Ù‹Ø§ Ù„Ù€ SDBQL 2026',
             
             // Venue
-            'venue-label': 'مكان المؤتمر',
-            'venue-title': 'جامعة أبو بكر بلقايد',
-            'venue-subtitle': 'تلمسان، الجزائر',
+            'venue-label': 'Ù…ÙƒØ§Ù† Ø§Ù„Ù…Ø¤ØªÙ…Ø±',
+            'venue-title': 'Ø¬Ø§Ù…Ø¹Ø© Ø£Ø¨Ùˆ Ø¨ÙƒØ± Ø¨Ù„Ù‚Ø§ÙŠØ¯',
+            'venue-subtitle': 'ØªÙ„Ù…Ø³Ø§Ù†ØŒ Ø§Ù„Ø¬Ø²Ø§Ø¦Ø±',
             
             // Contact
-            'contact-label': 'اتصل بنا',
-            'contact-title': 'ابق على تواصل',
+            'contact-label': 'Ø§ØªØµÙ„ Ø¨Ù†Ø§',
+            'contact-title': 'Ø§Ø¨Ù‚ Ø¹Ù„Ù‰ ØªÙˆØ§ØµÙ„',
             
             // Footer
-            'footer-links': 'روابط سريعة',
-            'footer-participate': 'المشاركة',
-            'footer-newsletter': 'النشرة الإخبارية',
-            'footer-newsletter-desc': 'ابق على اطلاع بالأخبار'
+            'footer-links': 'Ø±ÙˆØ§Ø¨Ø· Ø³Ø±ÙŠØ¹Ø©',
+            'footer-participate': 'Ø§Ù„Ù…Ø´Ø§Ø±ÙƒØ©',
+            'footer-newsletter': 'Ø§Ù„Ù†Ø´Ø±Ø© Ø§Ù„Ø¥Ø®Ø¨Ø§Ø±ÙŠØ©',
+            'footer-newsletter-desc': 'Ø§Ø¨Ù‚ Ø¹Ù„Ù‰ Ø§Ø·Ù„Ø§Ø¹ Ø¨Ø§Ù„Ø£Ø®Ø¨Ø§Ø±'
         }
     };
     
@@ -287,7 +287,7 @@
         // Changer l'attribut lang du HTML
         document.documentElement.setAttribute('lang', lang);
         
-        // Traduire tous les éléments avec data-translate
+        // Traduire tous les Ã©lÃ©ments avec data-translate
         document.querySelectorAll('[data-translate]').forEach(element => {
             const key = element.getAttribute('data-translate');
             if (currentTranslations[key]) {
@@ -295,14 +295,14 @@
             }
         });
         
-        console.log(`🌐 Langue changée: ${lang.toUpperCase()}`);
+        console.log(`ðŸŒ Langue changÃ©e: ${lang.toUpperCase()}`);
     }
     
-    // Charger la langue sauvegardée au démarrage
+    // Charger la langue sauvegardÃ©e au dÃ©marrage
     function initializeLanguage() {
         const savedLang = localStorage.getItem('sdbql-language') || 'fr';
         
-        // Mettre à jour l'affichage du bouton
+        // Mettre Ã  jour l'affichage du bouton
         const langText = langToggle?.querySelector('.lang-text');
         if (langText) {
             langText.textContent = savedLang.toUpperCase();
@@ -317,7 +317,7 @@
             }
         });
         
-        // Appliquer la traduction si ce n'est pas le français
+        // Appliquer la traduction si ce n'est pas le franÃ§ais
         if (savedLang !== 'fr') {
             changeLanguage(savedLang);
         }
@@ -330,8 +330,8 @@
     // 4. CONSOLE MESSAGE
     // ========================================
     
-    console.log('%c🌐 Système de traduction activé!', 'color: #00bfa5; font-size: 14px; font-weight: bold;');
-    console.log('%c⏱️ Compte à rebours compact actif!', 'color: #2196f3; font-size: 14px; font-weight: bold;');
+    console.log('%cðŸŒ SystÃ¨me de traduction activÃ©!', 'color: #00bfa5; font-size: 14px; font-weight: bold;');
+    console.log('%câ±ï¸ Compte Ã  rebours compact actif!', 'color: #2196f3; font-size: 14px; font-weight: bold;');
     
     // ========================================
     // 5. EXPORT API

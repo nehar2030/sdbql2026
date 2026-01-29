@@ -1,10 +1,10 @@
 /* ================================================
-   SDBQL 2026 - COMPTE À REBOURS COMPACT & TRADUCTION
-   Styles pour la top-bar améliorée
+   SDBQL 2026 - COMPTE Ã€ REBOURS COMPACT & TRADUCTION
+   Styles pour la top-bar amÃ©liorÃ©e
    ================================================ */
 
 /* ========================================
-   1. COMPTE À REBOURS COMPACT
+   1. COMPTE Ã€ REBOURS COMPACT
    ======================================== */
 
 .countdown-compact {
@@ -49,7 +49,7 @@
 }
 
 /* ========================================
-   2. SÉLECTEUR DE LANGUE
+   2. SÃ‰LECTEUR DE LANGUE
    ======================================== */
 
 .language-selector {
@@ -202,7 +202,7 @@
         font-size: 12px;
     }
     
-    /* Afficher seulement Jours:Heures sur très petit écran */
+    /* Afficher seulement Jours:Heures sur trÃ¨s petit Ã©cran */
     .countdown-compact-short {
         display: inline;
     }
@@ -251,7 +251,7 @@ body.dark-mode .lang-option.active {
 }
 
 /* ========================================
-   5. ANIMATION D'ENTRÉE
+   5. ANIMATION D'ENTRÃ‰E
    ======================================== */
 
 @keyframes slideInFromRight {
@@ -283,7 +283,7 @@ body.dark-mode .lang-option.active {
     gap: 10px;
 }
 
-/* Pour s'assurer que les éléments sont bien alignés */
+/* Pour s'assurer que les Ã©lÃ©ments sont bien alignÃ©s */
 .top-bar-right > a {
     white-space: nowrap;
 }
@@ -310,7 +310,7 @@ html[lang="ar"] .lang-button {
 }
 
 /* ========================================
-   8. ACCESSIBILITÉ
+   8. ACCESSIBILITÃ‰
    ======================================== */
 
 .lang-button:focus {

@@ -1,0 +1,339 @@
+/* ================================================
+   GOOGLE TRANSLATE WIDGET - Styles personnalisés
+   Widget de traduction Google élégant et fonctionnel
+   ================================================ */
+
+/* Conteneur principal du bouton */
+.google-translate-container {
+    position: relative;
+    display: inline-block;
+    margin-right: 15px;
+}
+
+/* Bouton de traduction personnalisé */
+.google-translate-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: linear-gradient(135deg, #4285f4, #34a853);
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 13px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 8px rgba(66, 133, 244, 0.3);
+    white-space: nowrap;
+}
+
+.google-translate-btn:hover {
+    background: linear-gradient(135deg, #3367d6, #2d8f46);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(66, 133, 244, 0.4);
+}
+
+.google-translate-btn:active {
+    transform: translateY(0);
+}
+
+/* Icône du bouton */
+.translate-icon {
+    font-size: 18px;
+}
+
+/* Texte du bouton */
+.translate-text {
+    font-weight: 700;
+    letter-spacing: 0.3px;
+}
+
+/* Panel de sélection des langues */
+.translate-panel {
+    position: absolute;
+    top: calc(100% + 10px);
+    right: 0;
+    background: white;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    min-width: 300px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    z-index: 10000;
+}
+
+.translate-panel.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+/* En-tête du panel */
+.translate-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 2px solid #f0f0f0;
+}
+
+.translate-panel-title {
+    font-size: 16px;
+    font-weight: 700;
+    color: #333;
+    margin: 0;
+}
+
+.translate-close-btn {
+    background: rgba(0, 0, 0, 0.05);
+    border: none;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 18px;
+    color: #666;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.translate-close-btn:hover {
+    background: rgba(0, 0, 0, 0.1);
+    transform: rotate(90deg);
+}
+
+/* Liste des langues */
+.translate-languages {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    max-height: 300px;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+.translate-languages::-webkit-scrollbar {
+    width: 6px;
+}
+
+.translate-languages::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #4285f4, #34a853);
+    border-radius: 3px;
+}
+
+.translate-languages::-webkit-scrollbar-track {
+    background: #f0f0f0;
+    border-radius: 3px;
+}
+
+/* Bouton de langue */
+.translate-lang-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 12px;
+    background: #f8f9fa;
+    border: 2px solid transparent;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 13px;
+    font-weight: 600;
+    color: #333;
+    white-space: nowrap;
+}
+
+.translate-lang-btn:hover {
+    background: #e8f0fe;
+    border-color: #4285f4;
+    transform: translateX(3px);
+}
+
+.translate-lang-btn.active {
+    background: linear-gradient(135deg, #4285f4, #34a853);
+    color: white;
+    border-color: transparent;
+}
+
+.translate-lang-btn .flag-emoji {
+    font-size: 20px;
+}
+
+/* Masquer les éléments Google Translate natifs */
+.goog-te-banner-frame {
+    display: none !important;
+}
+
+body {
+    top: 0 !important;
+}
+
+.goog-logo-link {
+    display: none !important;
+}
+
+.goog-te-gadget {
+    color: transparent !important;
+}
+
+#google_translate_element {
+    display: none !important;
+}
+
+.skiptranslate iframe {
+    display: none !important;
+}
+
+/* Badge "Powered by Google" */
+.translate-powered {
+    text-align: center;
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #f0f0f0;
+    font-size: 11px;
+    color: #999;
+}
+
+/* Mode Sombre */
+body.dark-mode .google-translate-btn {
+    background: linear-gradient(135deg, #1a73e8, #1e8e3e);
+    box-shadow: 0 2px 8px rgba(26, 115, 232, 0.4);
+}
+
+body.dark-mode .google-translate-btn:hover {
+    background: linear-gradient(135deg, #1557b0, #188038);
+}
+
+body.dark-mode .translate-panel {
+    background: #2a2a2a;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+body.dark-mode .translate-panel-header {
+    border-bottom-color: #404040;
+}
+
+body.dark-mode .translate-panel-title {
+    color: #e0e0e0;
+}
+
+body.dark-mode .translate-close-btn {
+    background: rgba(255, 255, 255, 0.1);
+    color: #e0e0e0;
+}
+
+body.dark-mode .translate-close-btn:hover {
+    background: rgba(255, 255, 255, 0.2);
+}
+
+body.dark-mode .translate-lang-btn {
+    background: #383838;
+    color: #e0e0e0;
+    border-color: #404040;
+}
+
+body.dark-mode .translate-lang-btn:hover {
+    background: #1e3a5f;
+    border-color: #4285f4;
+}
+
+body.dark-mode .translate-lang-btn.active {
+    background: linear-gradient(135deg, #1a73e8, #1e8e3e);
+}
+
+body.dark-mode .translate-powered {
+    color: #888;
+    border-top-color: #404040;
+}
+
+body.dark-mode .translate-languages::-webkit-scrollbar-track {
+    background: #383838;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .google-translate-container {
+        margin-right: 10px;
+    }
+    
+    .google-translate-btn {
+        padding: 7px 14px;
+        font-size: 12px;
+    }
+    
+    .translate-text {
+        display: none;
+    }
+    
+    .translate-icon {
+        font-size: 20px;
+    }
+    
+    .translate-panel {
+        right: -10px;
+        min-width: 280px;
+        padding: 15px;
+    }
+    
+    .translate-languages {
+        grid-template-columns: 1fr;
+        max-height: 250px;
+    }
+}
+
+@media (max-width: 480px) {
+    .translate-panel {
+        position: fixed;
+        top: 50% !important;
+        left: 50%;
+        right: auto;
+        transform: translate(-50%, -50%) scale(0.95);
+        min-width: calc(100vw - 40px);
+        max-width: 320px;
+    }
+    
+    .translate-panel.active {
+        transform: translate(-50%, -50%) scale(1);
+    }
+}
+
+/* Badge de langue actuelle */
+.current-lang-badge {
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    background: #ea4335;
+    color: white;
+    font-size: 9px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 10px;
+    text-transform: uppercase;
+    box-shadow: 0 2px 4px rgba(234, 67, 53, 0.4);
+}
+
+/* Overlay pour fermer le panel */
+.translate-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 9999;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.translate-overlay.active {
+    display: block;
+    opacity: 1;
+}

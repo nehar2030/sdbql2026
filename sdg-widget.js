@@ -123,7 +123,7 @@
     
     // Initialize
     function init() {
-        console.log('📊 SDG Widget initialized');
+        console.log('ðŸ“Š SDG Widget initialized');
         autoShowWidget();
     }
     

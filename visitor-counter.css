@@ -1,0 +1,130 @@
+/* ================================================
+   VISITOR COUNTER - Flag Counter Styling
+   Styles pour le compteur de visiteurs
+   ================================================ */
+
+.visitor-counter-section {
+    margin: 50px 0 30px;
+    padding: 40px 30px;
+    background: linear-gradient(135deg, rgba(0,191,165,0.05) 0%, rgba(0,77,64,0.08) 100%);
+    border-radius: 15px;
+    text-align: center;
+    border: 2px solid rgba(0,191,165,0.2);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+}
+
+.visitor-counter-section:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0,191,165,0.15);
+    border-color: rgba(0,191,165,0.4);
+}
+
+.visitor-counter-section h4 {
+    color: var(--color-primary);
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-bottom: 25px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.flag-counter-wrapper {
+    display: inline-block;
+    padding: 20px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    margin-bottom: 20px;
+}
+
+.flag-counter-wrapper:hover {
+    transform: scale(1.02);
+    box-shadow: 0 6px 20px rgba(0,191,165,0.2);
+}
+
+.flag-counter-wrapper img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+.counter-description {
+    font-size: 14px;
+    color: var(--color-text);
+    font-style: italic;
+    margin: 0;
+    font-weight: 500;
+}
+
+/* Mode Sombre */
+body.dark-mode .visitor-counter-section {
+    background: linear-gradient(135deg, rgba(0,191,165,0.1) 0%, rgba(0,121,107,0.12) 100%);
+    border-color: rgba(0,191,165,0.3);
+}
+
+body.dark-mode .flag-counter-wrapper {
+    background: #263238;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+}
+
+body.dark-mode .flag-counter-wrapper:hover {
+    box-shadow: 0 6px 20px rgba(0,191,165,0.3);
+}
+
+body.dark-mode .counter-description {
+    color: #b0bec5;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .visitor-counter-section {
+        padding: 30px 20px;
+        margin: 30px 0 20px;
+    }
+    
+    .visitor-counter-section h4 {
+        font-size: 1.1rem;
+        margin-bottom: 20px;
+    }
+    
+    .flag-counter-wrapper {
+        padding: 15px;
+    }
+    
+    .counter-description {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 480px) {
+    .visitor-counter-section {
+        padding: 25px 15px;
+    }
+    
+    .visitor-counter-section h4 {
+        font-size: 1rem;
+    }
+    
+    .flag-counter-wrapper {
+        padding: 12px;
+    }
+}
+
+/* Animation d'entrée */
+@keyframes fadeInCounter {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.visitor-counter-section {
+    animation: fadeInCounter 0.6s ease-out;
+}
