@@ -59,13 +59,13 @@ body.dark-mode .finalization-badge {
     box-shadow: 0 2px 8px rgba(255, 85, 85, 0.4);
 }
 
-/* Badge alternatif avec icÃ´ne */
+/* Badge alternatif avec icône */
 .finalization-badge::before {
-    content: "âš ï¸ ";
+    content: "⚠️ ";
     margin-right: 4px;
 }
 
-/* Style pour le texte entre parenthÃ¨ses (alternative) */
+/* Style pour le texte entre parenthèses (alternative) */
 .finalization-text {
     color: #ff4444;
     font-size: 0.85em;
@@ -87,7 +87,7 @@ body.dark-mode .finalization-text {
 }
 
 /* ================================================
-   STYLE POUR L'ICÃ”NE SVG (Logo SDG)
+   STYLE POUR L'ICÔNE SVG (Logo SDG)
    ================================================ */
 
 .logo-icon svg,
@@ -95,7 +95,7 @@ body.dark-mode .finalization-text {
     display: block;
 }
 
-/* Animation lÃ©gÃ¨re de rotation pour l'icÃ´ne SDG */
+/* Animation légère de rotation pour l'icône SDG */
 .logo-icon svg {
     animation: rotate-sdg 20s linear infinite;
 }
