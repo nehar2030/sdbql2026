@@ -293,7 +293,7 @@
                     <a href="#venue" class="nav-link" data-translate="nav-venue">Lieu</a>
                     <a href="#contact" class="nav-link" data-translate="nav-contact">Contact</a>
                 </div>
-                <a href="#registration" class="nav-btn" data-translate="nav-register">S'inscrire</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLScnKBF7ApG3s6HqTpQArxrY5RMmayHWlM6b1AcbKfcsSAtQEA/viewform?usp=header" target="_blank" class="nav-btn" data-translate="nav-register">S'inscrire</a>
                 <button class="nav-toggle" id="navToggle">
                     <span></span>
                     <span></span>
@@ -854,7 +854,7 @@
                     </div>
                 </div>
 
-                <a href="#registration" class="congress-cta-button">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLScnKBF7ApG3s6HqTpQArxrY5RMmayHWlM6b1AcbKfcsSAtQEA/viewform?usp=header" target="_blank" class="congress-cta-button">
                     <span class="button-text">Inscrivez-vous Maintenant</span>
                     <span class="button-arrow">→</span>
                 </a>
@@ -967,6 +967,16 @@
                         </div>
                     </div>
                 </div>
+            </div>
+            
+            <!-- Bouton d'inscription au comité -->
+            <div style="text-align: center; margin-top: 40px;">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLSdkZsmZV4B7qkKiukErWhR2sYaqpgjvDrJLS63BuS2n4eS8LQ/viewform?usp=header" target="_blank" class="btn btn-primary" style="padding: 15px 40px; font-size: 16px; display: inline-flex; align-items: center; gap: 10px;">
+                    <svg class="svg-icon-sm" style="width: 20px; height: 20px; display: inline-block; fill: currentColor;">
+                        <use xlink:href="#icon-person"></use>
+                    </svg>
+                    Rejoindre le Comité d'Organisation et Scientifique
+                </a>
             </div>
         </div>
     </section>
@@ -1131,6 +1141,18 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- Bouton d'inscription participants -->
+            <div style="text-align: center; margin-top: 50px;">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLScnKBF7ApG3s6HqTpQArxrY5RMmayHWlM6b1AcbKfcsSAtQEA/viewform?usp=header" target="_blank" class="btn btn-primary" style="padding: 18px 50px; font-size: 18px; display: inline-flex; align-items: center; gap: 12px; box-shadow: 0 6px 20px rgba(0, 121, 107, 0.4);">
+                    <svg class="svg-icon-sm" style="width: 22px; height: 22px; display: inline-block; fill: currentColor;">
+                        <use xlink:href="#icon-calendar"></use>
+                    </svg>
+                    <span style="font-weight: 700;">Inscription Participants - SDBQL 2026</span>
+                    <span style="font-size: 24px;">→</span>
+                </a>
+                <p style="margin-top: 15px; color: #546e7a; font-size: 14px;">Places limitées - Inscrivez-vous dès maintenant !</p>
+            </div>
         </div>
     </section>
 
@@ -1159,7 +1181,7 @@
                         <li>✓ Communication sur services</li>
                         <li>✓ Visibilité maximale</li>
                     </ul>
-                    <a href="#contact" class="btn btn-primary">Devenir sponsor</a>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScODq7J2NlHnOzkSfDHUD6vNay6ZeTq_F4HbliaLun-lJpliw/viewform?usp=header" target="_blank" class="btn btn-primary">Devenir sponsor</a>
                 </div>
                 <div class="pricing-box">
                     <h3>Sponsor Senior</h3>
@@ -1175,7 +1197,7 @@
                         <li>✓ Communication services</li>
                         <li>✓ Visibilité importante</li>
                     </ul>
-                    <a href="#contact" class="btn btn-outline">Devenir sponsor</a>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScODq7J2NlHnOzkSfDHUD6vNay6ZeTq_F4HbliaLun-lJpliw/viewform?usp=header" target="_blank" class="btn btn-outline">Devenir sponsor</a>
                 </div>
                 <div class="pricing-box">
                     <h3>Sponsor Junior</h3>
@@ -1190,7 +1212,7 @@
                         <li>✓ Communication initiatives</li>
                         <li>✓ Visibilité événement</li>
                     </ul>
-                    <a href="#contact" class="btn btn-outline">Devenir sponsor</a>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScODq7J2NlHnOzkSfDHUD6vNay6ZeTq_F4HbliaLun-lJpliw/viewform?usp=header" target="_blank" class="btn btn-outline">Devenir sponsor</a>
                 </div>
             </div>
             <div class="partners-box">
@@ -1352,6 +1374,7 @@
                         </div>
                         <button type="submit" class="btn btn-primary btn-block">Envoyer le message</button>
                     </form>
+                    <div id="contactStatus" style="margin-top: 15px; padding: 10px; border-radius: 5px; font-size: 14px; display: none;"></div>
                 </div>
             </div>
         </div>
@@ -1396,20 +1419,42 @@
                 <div class="footer-col">
                     <h4>Newsletter</h4>
                     <p>Restez informé des actualités</p>
-                    <form class="newsletter-form">
-                        <input type="email" placeholder="Votre email" required>
+                    <form class="newsletter-form" id="newsletterForm">
+                        <input type="email" name="email" placeholder="Votre email" required>
                         <button type="submit">→</button>
                     </form>
+                    <div id="newsletterStatus" style="margin-top: 10px; font-size: 12px; display: none;"></div>
                     <div class="social-links">
                         <a href="https://www.facebook.com/profile.php?id=61555922292059" target="_blank">Facebook</a>
                         <a href="https://sdbql2024tlemcen.wixsite.com/main" target="_blank">Site 2024</a>
                     </div>
-    <script src="sdg-widget.js"></script>
-     
+                </div>
+            </div>
+            
+            <!-- Compteur de visiteurs -->
+            <div style="text-align: center; margin-top: 40px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1);">
+                <p style="color: rgba(255,255,255,0.7); margin-bottom: 15px; font-size: 14px;">Visiteurs du site</p>
+                <a href="https://info.flagcounter.com/vwhK"><img src="https://s01.flagcounter.com/count/vwhK/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_18/viewers_0/labels_0/pageviews_0/flags_0/percent_0/" alt="Flag Counter" border="0"></a>
+            </div>
+            
+            <!-- Copyright -->
+            <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1);">
+                <p style="color: rgba(255,255,255,0.6); font-size: 13px;">© 2026 SDBQL - Université Abou Bekr Belkaid, Tlemcen. Tous droits réservés.</p>
+                <p style="color: rgba(255,255,255,0.5); font-size: 12px; margin-top: 10px;">
+                    Site Web créé par 
+                    <a href="https://dz.linkedin.com/in/benameur-nehar-86459693" target="_blank" style="color: #00bfa5; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">
+                        Dr Nehar Benameur
+                    </a>
+                </p>
+            </div>
+        </div>
+    </footer>
+    
     <!-- Scripts JavaScript -->
     <script src="script.js"></script>
     <script src="sdg-widget.js"></script>
     <script src="enhancements.js"></script>
     <script src="topbar-enhancements.js"></script>
+    <script src="forms-handler.js"></script>
 </body>
 </html>

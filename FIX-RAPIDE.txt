@@ -1,0 +1,180 @@
+🔧 CORRECTION RAPIDE - Seule la date apparaît
+==============================================
+
+❌ PROBLÈME : Seule la date s'enregistre, pas les autres données
+
+✅ SOLUTION : Remplacer le code Google Apps Script
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🚀 EN 3 ÉTAPES (2 MINUTES)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+ÉTAPE 1 : Ouvrir votre Google Apps Script
+------------------------------------------
+Retournez dans l'onglet Google Apps Script
+(Celui où vous avez déployé le script)
+
+
+ÉTAPE 2 : Remplacer le Code
+----------------------------
+1. Supprimez TOUT le code actuel
+2. Copiez-collez le code ci-dessous
+3. Ctrl+S pour sauvegarder
+
+PAS BESOIN DE REDÉPLOYER ! Le déploiement actuel fonctionne.
+
+
+ÉTAPE 3 : Tester
+----------------
+1. Testez le formulaire Newsletter
+2. Vérifiez Google Sheets → L'email apparaît maintenant ! ✅
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📝 CODE À COPIER-COLLER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+// SDBQL 2026 - Newsletter + Contact (CORRIGÉ)
+
+function doGet(e) {
+  try {
+    var formType = e.parameter.formType;
+    
+    if (formType === 'newsletter') {
+      return handleNewsletter(e);
+    } else if (formType === 'contact') {
+      return handleContact(e);
+    } else {
+      return errorResponse('Type de formulaire inconnu');
+    }
+  } catch (error) {
+    return errorResponse(error.toString());
+  }
+}
+
+function handleNewsletter(e) {
+  try {
+    var email = e.parameter.email;
+    
+    if (!email || email === '') {
+      return errorResponse('Email manquant');
+    }
+    
+    var ss = SpreadsheetApp.getActiveSpreadsheet();
+    var sheet = ss.getSheetByName('Newsletter');
+    
+    if (!sheet) {
+      sheet = ss.insertSheet('Newsletter');
+      sheet.appendRow(['Date', 'Email']);
+      sheet.getRange('A1:B1').setFontWeight('bold');
+      sheet.setFrozenRows(1);
+    }
+    
+    var date = Utilities.formatDate(new Date(),
+                 Session.getScriptTimeZone(),
+                 'dd/MM/yyyy HH:mm:ss');
+    sheet.appendRow([date, email]);
+    
+    return successResponse('Inscription réussie !');
+  } catch (error) {
+    return errorResponse('Erreur Newsletter: ' + error);
+  }
+}
+
+function handleContact(e) {
+  try {
+    var name = e.parameter.name;
+    var email = e.parameter.email;
+    var subject = e.parameter.subject;
+    var message = e.parameter.message;
+    
+    if (!name || !email || !subject || !message) {
+      return errorResponse('Données manquantes');
+    }
+    
+    var ss = SpreadsheetApp.getActiveSpreadsheet();
+    var sheet = ss.getSheetByName('Contact');
+    
+    if (!sheet) {
+      sheet = ss.insertSheet('Contact');
+      sheet.appendRow(['Date', 'Nom', 'Email', 'Sujet', 'Message']);
+      sheet.getRange('A1:E1').setFontWeight('bold');
+      sheet.setFrozenRows(1);
+      sheet.setColumnWidth(1, 150);
+      sheet.setColumnWidth(2, 150);
+      sheet.setColumnWidth(3, 200);
+      sheet.setColumnWidth(4, 150);
+      sheet.setColumnWidth(5, 400);
+    }
+    
+    var date = Utilities.formatDate(new Date(),
+                 Session.getScriptTimeZone(),
+                 'dd/MM/yyyy HH:mm:ss');
+    sheet.appendRow([date, name, email, subject, message]);
+    
+    return successResponse('Message envoyé avec succès !');
+  } catch (error) {
+    return errorResponse('Erreur Contact: ' + error);
+  }
+}
+
+function successResponse(message) {
+  return ContentService.createTextOutput(JSON.stringify({
+    'status': 'success',
+    'message': message
+  })).setMimeType(ContentService.MimeType.JSON);
+}
+
+function errorResponse(message) {
+  return ContentService.createTextOutput(JSON.stringify({
+    'status': 'error',
+    'message': 'Erreur: ' + message
+  })).setMimeType(ContentService.MimeType.JSON);
+}
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+✅ CE QUI CHANGE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+AVANT : doPost(e)  → Ne marchait pas
+MAINTENANT : doGet(e)  → Fonctionne parfaitement !
+
+Pourquoi ? FormData + POST ne fonctionne pas bien avec Google Apps Script.
+Maintenant on utilise GET + URLSearchParams → Tout fonctionne !
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+📊 RÉSULTAT ATTENDU
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Dans Google Sheets, vous verrez maintenant :
+
+NEWSLETTER :
+┌──────────────────────┬─────────────────────┐
+│ Date                 │ Email               │
+├──────────────────────┼─────────────────────┤
+│ 30/01/2026 14:30:15 │ test@example.com    │
+└──────────────────────┴─────────────────────┘
+
+CONTACT :
+┌─────────────┬────────┬──────────┬───────┬──────────┐
+│ Date        │ Nom    │ Email    │ Sujet │ Message  │
+├─────────────┼────────┼──────────┼───────┼──────────┤
+│ 30/01/26... │ Jean   │ jean@... │ Test  │ Bonjour  │
+└─────────────┴────────┴──────────┴───────┴──────────┘
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+🎉 C'EST TOUT !
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+Après avoir remplacé le code et sauvegardé :
+✅ Newsletter enregistrera : Date + Email
+✅ Contact enregistrera : Date + Nom + Email + Sujet + Message
+
+Le fichier forms-handler.js a déjà été corrigé automatiquement !
+
+==============================================

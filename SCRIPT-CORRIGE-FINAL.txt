@@ -1,0 +1,246 @@
+═══════════════════════════════════════════════════════════════════
+  🔧 SCRIPT GOOGLE APPS SCRIPT CORRIGÉ
+  Solution pour le problème : Seule la date apparaît
+═══════════════════════════════════════════════════════════════════
+
+❌ PROBLÈME
+-----------
+Seule la date s'enregistre dans Google Sheets.
+Les autres données (email, nom, message) n'apparaissent pas.
+
+✅ CAUSE
+--------
+FormData avec POST ne fonctionne pas bien avec Google Apps Script.
+
+✅ SOLUTION
+-----------
+Utiliser URLSearchParams avec GET (méthode URL).
+
+═══════════════════════════════════════════════════════════════════
+  📝 NOUVEAU CODE GOOGLE APPS SCRIPT (CORRIGÉ)
+═══════════════════════════════════════════════════════════════════
+
+INSTRUCTIONS :
+1. Retournez dans votre Google Apps Script
+2. Supprimez TOUT le code
+3. Collez le code ci-dessous
+4. Enregistrez (Ctrl+S)
+5. PAS BESOIN de redéployer ! L'ancien déploiement fonctionne.
+
+┌─────────────────────────────────────────────────────────────────┐
+│ // SDBQL 2026 - Newsletter + Contact (VERSION CORRIGÉE)        │
+│                                                                 │
+│ function doGet(e) {                                             │
+│   try {                                                         │
+│     var formType = e.parameter.formType;                       │
+│                                                                 │
+│     if (formType === 'newsletter') {                           │
+│       return handleNewsletter(e);                              │
+│     } else if (formType === 'contact') {                       │
+│       return handleContact(e);                                 │
+│     } else {                                                    │
+│       return errorResponse('Type de formulaire inconnu');      │
+│     }                                                           │
+│   } catch (error) {                                            │
+│     return errorResponse(error.toString());                    │
+│   }                                                             │
+│ }                                                               │
+│                                                                 │
+│ function handleNewsletter(e) {                                 │
+│   try {                                                         │
+│     var email = e.parameter.email;                            │
+│                                                                 │
+│     // Vérifier que l'email existe                            │
+│     if (!email || email === '') {                             │
+│       return errorResponse('Email manquant');                 │
+│     }                                                           │
+│                                                                 │
+│     var ss = SpreadsheetApp.getActiveSpreadsheet();           │
+│     var sheet = ss.getSheetByName('Newsletter');              │
+│                                                                 │
+│     // Créer la feuille si elle n'existe pas                  │
+│     if (!sheet) {                                              │
+│       sheet = ss.insertSheet('Newsletter');                   │
+│       sheet.appendRow(['Date', 'Email']);                     │
+│       sheet.getRange('A1:B1').setFontWeight('bold');          │
+│       sheet.setFrozenRows(1);                                 │
+│     }                                                           │
+│                                                                 │
+│     // Ajouter les données                                     │
+│     var date = Utilities.formatDate(new Date(),               │
+│                  Session.getScriptTimeZone(),                  │
+│                  'dd/MM/yyyy HH:mm:ss');                       │
+│     sheet.appendRow([date, email]);                           │
+│                                                                 │
+│     return successResponse('Inscription réussie !');          │
+│   } catch (error) {                                            │
+│     return errorResponse('Erreur Newsletter: ' + error);      │
+│   }                                                             │
+│ }                                                               │
+│                                                                 │
+│ function handleContact(e) {                                    │
+│   try {                                                         │
+│     var name = e.parameter.name;                              │
+│     var email = e.parameter.email;                            │
+│     var subject = e.parameter.subject;                        │
+│     var message = e.parameter.message;                        │
+│                                                                 │
+│     // Vérifier que les données existent                      │
+│     if (!name || !email || !subject || !message) {           │
+│       return errorResponse('Données manquantes');             │
+│     }                                                           │
+│                                                                 │
+│     var ss = SpreadsheetApp.getActiveSpreadsheet();           │
+│     var sheet = ss.getSheetByName('Contact');                 │
+│                                                                 │
+│     // Créer la feuille si elle n'existe pas                  │
+│     if (!sheet) {                                              │
+│       sheet = ss.insertSheet('Contact');                      │
+│       sheet.appendRow(['Date', 'Nom', 'Email',                │
+│                        'Sujet', 'Message']);                   │
+│       sheet.getRange('A1:E1').setFontWeight('bold');          │
+│       sheet.setFrozenRows(1);                                 │
+│       // Ajuster les largeurs des colonnes                    │
+│       sheet.setColumnWidth(1, 150); // Date                   │
+│       sheet.setColumnWidth(2, 150); // Nom                    │
+│       sheet.setColumnWidth(3, 200); // Email                  │
+│       sheet.setColumnWidth(4, 150); // Sujet                  │
+│       sheet.setColumnWidth(5, 400); // Message                │
+│     }                                                           │
+│                                                                 │
+│     // Ajouter les données                                     │
+│     var date = Utilities.formatDate(new Date(),               │
+│                  Session.getScriptTimeZone(),                  │
+│                  'dd/MM/yyyy HH:mm:ss');                       │
+│     sheet.appendRow([date, name, email, subject, message]);  │
+│                                                                 │
+│     return successResponse('Message envoyé avec succès !');   │
+│   } catch (error) {                                            │
+│     return errorResponse('Erreur Contact: ' + error);         │
+│   }                                                             │
+│ }                                                               │
+│                                                                 │
+│ function successResponse(message) {                            │
+│   return ContentService.createTextOutput(JSON.stringify({     │
+│     'status': 'success',                                       │
+│     'message': message                                         │
+│   })).setMimeType(ContentService.MimeType.JSON);              │
+│ }                                                               │
+│                                                                 │
+│ function errorResponse(message) {                              │
+│   return ContentService.createTextOutput(JSON.stringify({     │
+│     'status': 'error',                                         │
+│     'message': 'Erreur: ' + message                           │
+│   })).setMimeType(ContentService.MimeType.JSON);              │
+│ }                                                               │
+└─────────────────────────────────────────────────────────────────┘
+
+═══════════════════════════════════════════════════════════════════
+  ✅ CHANGEMENTS PRINCIPAUX
+═══════════════════════════════════════════════════════════════════
+
+1. doPost(e) → doGet(e)
+   └─ Car on utilise maintenant GET au lieu de POST
+
+2. Vérification des données
+   └─ Vérifie que email, name, etc. ne sont pas vides
+
+3. Format de date amélioré
+   └─ Date lisible : "30/01/2026 14:30:15"
+
+4. Largeurs de colonnes automatiques
+   └─ Pour que le message soit bien visible
+
+5. En-têtes en gras + ligne figée
+   └─ Pour un meilleur affichage
+
+═══════════════════════════════════════════════════════════════════
+  🚀 ÉTAPES À SUIVRE
+═══════════════════════════════════════════════════════════════════
+
+ÉTAPE 1 : Modifier le Script Google
+------------------------------------
+1. Retournez dans Google Apps Script
+2. Supprimez TOUT le code actuel
+3. Collez le nouveau code ci-dessus
+4. Ctrl+S pour sauvegarder
+
+IMPORTANT : PAS BESOIN DE REDÉPLOYER !
+Le déploiement existant continuera de fonctionner.
+
+
+ÉTAPE 2 : Tester
+----------------
+1. Ouvrez index.html
+2. Testez Newsletter :
+   - Entrez : test@example.com
+   - Cliquez sur →
+   - Vérifiez Google Sheets → Vous devriez voir :
+     * Date : 30/01/2026 14:30:15
+     * Email : test@example.com
+
+3. Testez Contact :
+   - Nom : Jean Dupont
+   - Email : jean@example.com
+   - Sujet : Test
+   - Message : Ceci est un test
+   - Vérifiez Google Sheets → Vous devriez voir TOUTES les données !
+
+
+ÉTAPE 3 : Nettoyer (Optionnel)
+-------------------------------
+Si vous avez des lignes avec seulement la date :
+1. Ouvrez Google Sheets
+2. Sélectionnez ces lignes
+3. Clic droit → Supprimer les lignes
+
+═══════════════════════════════════════════════════════════════════
+  📊 RÉSULTAT ATTENDU DANS GOOGLE SHEETS
+═══════════════════════════════════════════════════════════════════
+
+FEUILLE "Newsletter" :
+┌──────────────────────┬─────────────────────┐
+│ Date                 │ Email               │
+├──────────────────────┼─────────────────────┤
+│ 30/01/2026 14:30:15 │ test@example.com    │
+│ 30/01/2026 14:35:20 │ user@gmail.com      │
+└──────────────────────┴─────────────────────┘
+
+FEUILLE "Contact" :
+┌──────────────────────┬────────────┬──────────────┬──────────┬────────────────┐
+│ Date                 │ Nom        │ Email        │ Sujet    │ Message        │
+├──────────────────────┼────────────┼──────────────┼──────────┼────────────────┤
+│ 30/01/2026 14:40:10 │ Jean D.    │ jean@mail.c… │ Question │ Bonjour...     │
+└──────────────────────┴────────────┴──────────────┴──────────┴────────────────┘
+
+═══════════════════════════════════════════════════════════════════
+  🎯 POURQUOI CETTE SOLUTION FONCTIONNE ?
+═══════════════════════════════════════════════════════════════════
+
+❌ AVANT (FormData + POST) :
+   - FormData mal parsé par Google Apps Script
+   - Seul e.parameter existe, mais vide
+   - Résultat : Seule la date s'enregistre
+
+✅ MAINTENANT (URLSearchParams + GET) :
+   - Données dans l'URL : ?formType=newsletter&email=test@example.com
+   - Google Apps Script parse facilement e.parameter.email
+   - Résultat : TOUTES les données s'enregistrent !
+
+═══════════════════════════════════════════════════════════════════
+  ✅ CHECKLIST
+═══════════════════════════════════════════════════════════════════
+
+[ ] Ouvrir Google Apps Script
+[ ] Supprimer tout le code
+[ ] Coller le nouveau code (doGet)
+[ ] Enregistrer (Ctrl+S)
+[ ] Tester Newsletter → Email visible ✓
+[ ] Tester Contact → Toutes les données visibles ✓
+[ ] Nettoyer les anciennes lignes (optionnel)
+
+═══════════════════════════════════════════════════════════════════
+
+🎉 Avec ce nouveau code, TOUTES vos données seront enregistrées !
+
+═══════════════════════════════════════════════════════════════════

@@ -1,0 +1,125 @@
+🚀 GUIDE RAPIDE D'INSTALLATION - SDBQL 2026
+============================================
+
+📦 CONTENU DU PACKAGE
+---------------------
+✅ Site web COMPLET avec formulaires et compteur intégrés
+✅ 3 boutons d'inscription vers Google Forms
+✅ Compteur de visiteurs Flag Counter
+✅ Toutes les fonctionnalités (mode sombre, countdown, carte, etc.)
+
+🎯 CE QUI A ÉTÉ AJOUTÉ
+-----------------------
+
+1. BOUTON "Rejoindre le Comité d'Organisation"
+   └─ Section: Comité d'organisation
+   └─ Formulaire: Comité d'organisation et scientifique
+
+2. BOUTON "Inscription Participants - SDBQL 2026"
+   └─ Section: Dates importantes
+   └─ Formulaire: Inscription participants
+
+3. 3 BOUTONS "Devenir sponsor" (modifiés)
+   └─ Section: Sponsoring
+   └─ Formulaire: Inscription sponsors
+   └─ Tous les 3 boutons (Officiel, Senior, Junior)
+
+4. COMPTEUR FLAG COUNTER
+   └─ Position: Footer (bas de page)
+   └─ Style: Centré avec titre "Visiteurs du site"
+
+⚡ INSTALLATION RAPIDE (3 ÉTAPES)
+---------------------------------
+
+ÉTAPE 1 : Ajouter vos images
+----------------------------
+→ Copiez vos 12 images dans le dossier "images/"
+→ Renommez-les : 1.jpg, 2.jpg, 3.png, 4.jpg, 5.jpg, 6.jpg, 7.png, 8.jpg, 9.jpg, 10.png, 11.jpg, 12.jpg
+→ (Vous pouvez sauter cette étape pour l'instant et ajouter les images plus tard)
+
+ÉTAPE 2 : Tester en local
+--------------------------
+→ Double-cliquez sur "index.html"
+→ Vérifiez que tout fonctionne :
+   ✓ Compte à rebours
+   ✓ Mode sombre
+   ✓ Les 3 boutons d'inscription
+   ✓ Le compteur Flag Counter
+   ✓ La carte Google Maps
+
+ÉTAPE 3 : Héberger en ligne
+----------------------------
+
+OPTION A - NETLIFY (RECOMMANDÉ, GRATUIT) :
+→ Allez sur https://netlify.com
+→ Glissez-déposez le dossier complet
+→ Votre site est EN LIGNE en 30 secondes ! 🎉
+
+OPTION B - GITHUB PAGES (GRATUIT) :
+→ Créez un repo GitHub
+→ Uploadez tous les fichiers
+→ Activez Pages dans Settings
+
+OPTION C - FTP TRADITIONNEL :
+→ Connectez-vous à votre hébergeur via FTP
+→ Uploadez tous les fichiers dans public_html/
+→ Votre site est en ligne !
+
+📋 FICHIERS INCLUS
+------------------
+index.html                  ← Fichier principal MODIFIÉ
+styles.css                  ← Styles principaux
+script.js                   ← Scripts principaux
+enhancements.css            ← Mode sombre + countdown
+enhancements.js             ← Logique mode sombre
+sdg-ticker-updated.css      ← Ticker rapide
+sdg-widget.css              ← Widget ODD
+sdg-widget.js               ← Script widget
+finalization-status.css     ← Badges "en finalisation"
+topbar-enhancements.css     ← Top-bar
+topbar-enhancements.js      ← Scripts top-bar
+images/                     ← Vos images ici (à ajouter)
+README.md                   ← Documentation complète
+
+✅ VÉRIFICATIONS AVANT HÉBERGEMENT
+----------------------------------
+[ ] Tous les fichiers sont présents
+[ ] Le dossier "images/" existe
+[ ] Vous avez testé en local
+[ ] Les 3 boutons d'inscription fonctionnent
+[ ] Le compteur Flag Counter s'affiche
+[ ] Le site est responsive (testez en redimensionnant)
+
+🎯 LIENS DES FORMULAIRES INTÉGRÉS
+---------------------------------
+
+1. Comité d'organisation et scientifique :
+   https://docs.google.com/forms/d/e/1FAIpQLSdkZsmZV4B7qkKiukErWhR2sYaqpgjvDrJLS63BuS2n4eS8LQ/viewform?usp=header
+
+2. Inscription Participants :
+   https://docs.google.com/forms/d/e/1FAIpQLScnKBF7ApG3s6HqTpQArxrY5RMmayHWlM6b1AcbKfcsSAtQEA/viewform?usp=header
+
+3. Inscription Sponsors :
+   https://docs.google.com/forms/d/e/1FAIpQLScODq7J2NlHnOzkSfDHUD6vNay6ZeTq_F4HbliaLun-lJpliw/viewform?usp=header
+
+🆘 BESOIN D'AIDE ?
+------------------
+→ Consultez README.md pour la documentation complète
+→ Consultez images/README.txt pour les instructions images
+→ Testez en local avant d'héberger
+→ Vérifiez la console du navigateur (F12) en cas d'erreur
+
+🎉 FÉLICITATIONS !
+------------------
+Votre site SDBQL 2026 est prêt à être hébergé !
+
+Prochaines étapes :
+1. Ajoutez vos images
+2. Hébergez le site
+3. Partagez le lien !
+
+---
+
+Développé avec 💚 pour SDBQL 2026
+Université Abou Bekr Belkaid - Tlemcen, Algérie
+30 Septembre - 2 Octobre 2026

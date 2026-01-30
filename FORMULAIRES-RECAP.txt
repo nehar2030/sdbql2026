@@ -1,0 +1,90 @@
+📧 FORMULAIRES GOOGLE APPS SCRIPT - RÉCAPITULATIF
+==================================================
+
+✅ CE QUI A ÉTÉ AJOUTÉ AU SITE
+-------------------------------
+
+1. NOUVEAU FICHIER : forms-handler.js
+   └─ Gère la soumission des formulaires vers Google Apps Script
+
+2. MODIFICATIONS dans index.html :
+   └─ Formulaire Newsletter (footer) : Ajout ID + statut
+   └─ Formulaire Contact : Ajout statut
+   └─ Script forms-handler.js chargé
+
+📋 LES 2 FORMULAIRES CONNECTÉS
+-------------------------------
+
+1. NEWSLETTER (Footer)
+   - Collecte : Email
+   - Enregistré dans : Google Sheet "Newsletter"
+
+2. CONTACT (Section Contact)
+   - Collecte : Nom, Email, Sujet, Message
+   - Enregistré dans : Google Sheet "Contact"
+
+🔧 CONFIGURATION NÉCESSAIRE
+----------------------------
+
+ÉTAPES RAPIDES :
+
+1. Créer un Google Sheet
+   └─ Copier l'ID du Sheet
+
+2. Créer 2 Google Apps Scripts :
+   └─ Script Newsletter (code fourni)
+   └─ Script Contact (code fourni)
+
+3. Déployer les 2 scripts
+   └─ Copier les 2 URLs de déploiement
+
+4. Modifier forms-handler.js
+   └─ Remplacer NEWSLETTER_SCRIPT_URL
+   └─ Remplacer CONTACT_SCRIPT_URL
+
+5. Tester et héberger !
+
+📖 DOCUMENTATION COMPLÈTE
+--------------------------
+
+Consultez : CONFIGURATION-FORMULAIRES.txt
+(Guide détaillé étape par étape avec captures)
+
+🚀 FICHIERS DU PACKAGE
+-----------------------
+
+NOUVEAUX :
+├── forms-handler.js ⭐ (Script de gestion)
+├── CONFIGURATION-FORMULAIRES.txt ⭐ (Guide détaillé)
+└── FORMULAIRES-RECAP.txt ⭐ (Ce fichier)
+
+MODIFIÉS :
+└── index.html (2 formulaires mis à jour)
+
+INCHANGÉS :
+└── Tous les autres fichiers CSS/JS
+
+💡 À RETENIR
+-------------
+
+• Les formulaires envoient maintenant vers Google Sheets
+• Pas de backend serveur nécessaire
+• Gratuit et illimité
+• Données stockées dans votre Google Drive
+• Configuration : 15 minutes
+
+⚠️ IMPORTANT
+------------
+
+Vous DEVEZ configurer Google Apps Script avant que les formulaires 
+fonctionnent. Sans cela, les formulaires afficheront une erreur.
+
+Suivez CONFIGURATION-FORMULAIRES.txt pour la configuration complète.
+
+🎯 RÉSULTAT FINAL
+-----------------
+
+✅ Formulaire Newsletter → Google Sheet automatiquement
+✅ Formulaire Contact → Google Sheet automatiquement
+✅ Messages de confirmation aux utilisateurs
+✅ Interface moderne avec statut en temps réel

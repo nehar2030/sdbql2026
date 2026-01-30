@@ -1,0 +1,313 @@
+═══════════════════════════════════════════════════════════════════
+  📧 GUIDE COMPLET - CONFIGURATION GOOGLE APPS SCRIPT
+  Formulaires Newsletter + Contact → Google Sheets
+═══════════════════════════════════════════════════════════════════
+
+🎯 OBJECTIF
+-----------
+Connecter les formulaires de votre site web à Google Sheets via Google Apps Script
+pour collecter automatiquement les inscriptions Newsletter et les messages Contact.
+
+═══════════════════════════════════════════════════════════════════
+  PARTIE 1 : CRÉER LE GOOGLE SHEET
+═══════════════════════════════════════════════════════════════════
+
+1. Allez sur https://sheets.google.com
+
+2. Créez un nouveau tableur :
+   - Cliquez sur "+" (Nouveau)
+   - Nommez-le : "SDBQL 2026 - Formulaires"
+
+3. Copiez l'ID du Sheet depuis l'URL :
+   URL : https://docs.google.com/spreadsheets/d/XXXXXXXXXXXXXXXXXXXXX/edit
+                                                 ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+                                                 C'EST VOTRE ID !
+
+4. GARDEZ cet ID - vous en aurez besoin !
+
+═══════════════════════════════════════════════════════════════════
+  PARTIE 2 : CRÉER LE SCRIPT NEWSLETTER
+═══════════════════════════════════════════════════════════════════
+
+ÉTAPE 1 : Créer le Script
+--------------------------
+1. Allez sur https://script.google.com
+2. Cliquez sur "Nouveau projet"
+3. Nommez le projet : "SDBQL Newsletter"
+
+ÉTAPE 2 : Coller le Code
+-------------------------
+Supprimez tout le code existant et collez ceci :
+
+┌─────────────────────────────────────────────────────────────────┐
+│ function doPost(e) {                                            │
+│   try {                                                         │
+│     // Récupérer l'email                                       │
+│     var email = e.parameter.email;                             │
+│                                                                 │
+│     // ID de votre Google Sheet                               │
+│     var sheetId = 'VOTRE_ID_GOOGLE_SHEET_ICI';                │
+│     var sheet = SpreadsheetApp.openById(sheetId)              │
+│                                .getSheetByName('Newsletter');  │
+│                                                                 │
+│     // Si la feuille n'existe pas, la créer                   │
+│     if (!sheet) {                                              │
+│       sheet = SpreadsheetApp.openById(sheetId)                │
+│                             .insertSheet('Newsletter');        │
+│       sheet.appendRow(['Date', 'Email']); // En-têtes         │
+│     }                                                           │
+│                                                                 │
+│     // Ajouter les données                                     │
+│     var date = new Date();                                     │
+│     sheet.appendRow([date, email]);                            │
+│                                                                 │
+│     // Retourner succès                                        │
+│     return ContentService.createTextOutput(JSON.stringify({   │
+│       'status': 'success',                                     │
+│       'message': 'Inscription réussie !'                       │
+│     })).setMimeType(ContentService.MimeType.JSON);            │
+│                                                                 │
+│   } catch (error) {                                            │
+│     return ContentService.createTextOutput(JSON.stringify({   │
+│       'status': 'error',                                       │
+│       'message': 'Erreur: ' + error.toString()                │
+│     })).setMimeType(ContentService.MimeType.JSON);            │
+│   }                                                             │
+│ }                                                               │
+└─────────────────────────────────────────────────────────────────┘
+
+ÉTAPE 3 : Remplacer l'ID du Sheet
+----------------------------------
+À la ligne :
+   var sheetId = 'VOTRE_ID_GOOGLE_SHEET_ICI';
+
+Remplacez 'VOTRE_ID_GOOGLE_SHEET_ICI' par l'ID que vous avez copié à la Partie 1.
+
+Exemple :
+   var sheetId = '1a2b3c4d5e6f7g8h9i0jklmnopqrstuvwxyz';
+
+ÉTAPE 4 : Déployer le Script
+-----------------------------
+1. Cliquez sur "Déployer" (en haut à droite) → "Nouveau déploiement"
+2. Cliquez sur l'icône ⚙️ (roue dentée) → Sélectionnez "Application Web"
+3. Configuration :
+   - Description : "SDBQL Newsletter API"
+   - Exécuter en tant que : "Moi"
+   - Qui a accès : "Tout le monde"
+4. Cliquez sur "Déployer"
+5. Autorisez l'accès (cliquez sur "Autoriser l'accès")
+6. Sélectionnez votre compte Google
+7. Cliquez sur "Avancé" puis "Accéder à SDBQL Newsletter (unsafe)"
+8. Cliquez sur "Autoriser"
+
+ÉTAPE 5 : Copier l'URL de Déploiement
+--------------------------------------
+Une URL apparaît :
+   https://script.google.com/macros/s/XXXXXXXXXXXXXXXXXXXXXXX/exec
+                                        ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+                                        COPIEZ CETTE URL COMPLÈTE !
+
+GARDEZ cette URL - vous en aurez besoin pour le site web !
+
+═══════════════════════════════════════════════════════════════════
+  PARTIE 3 : CRÉER LE SCRIPT CONTACT
+═══════════════════════════════════════════════════════════════════
+
+ÉTAPE 1 : Créer un Nouveau Script
+----------------------------------
+1. Retournez sur https://script.google.com
+2. Cliquez sur "Nouveau projet"
+3. Nommez le projet : "SDBQL Contact"
+
+ÉTAPE 2 : Coller le Code
+-------------------------
+Supprimez tout le code existant et collez ceci :
+
+┌─────────────────────────────────────────────────────────────────┐
+│ function doPost(e) {                                            │
+│   try {                                                         │
+│     // Récupérer les données                                   │
+│     var name = e.parameter.name;                               │
+│     var email = e.parameter.email;                             │
+│     var subject = e.parameter.subject;                         │
+│     var message = e.parameter.message;                         │
+│                                                                 │
+│     // ID de votre Google Sheet                               │
+│     var sheetId = 'VOTRE_ID_GOOGLE_SHEET_ICI';                │
+│     var sheet = SpreadsheetApp.openById(sheetId)              │
+│                                .getSheetByName('Contact');     │
+│                                                                 │
+│     // Si la feuille n'existe pas, la créer                   │
+│     if (!sheet) {                                              │
+│       sheet = SpreadsheetApp.openById(sheetId)                │
+│                             .insertSheet('Contact');           │
+│       sheet.appendRow(['Date', 'Nom', 'Email',                │
+│                        'Sujet', 'Message']); // En-têtes       │
+│     }                                                           │
+│                                                                 │
+│     // Ajouter les données                                     │
+│     var date = new Date();                                     │
+│     sheet.appendRow([date, name, email, subject, message]);   │
+│                                                                 │
+│     // Retourner succès                                        │
+│     return ContentService.createTextOutput(JSON.stringify({   │
+│       'status': 'success',                                     │
+│       'message': 'Message envoyé avec succès !'               │
+│     })).setMimeType(ContentService.MimeType.JSON);            │
+│                                                                 │
+│   } catch (error) {                                            │
+│     return ContentService.createTextOutput(JSON.stringify({   │
+│       'status': 'error',                                       │
+│       'message': 'Erreur: ' + error.toString()                │
+│     })).setMimeType(ContentService.MimeType.JSON);            │
+│   }                                                             │
+│ }                                                               │
+└─────────────────────────────────────────────────────────────────┘
+
+ÉTAPE 3 : Remplacer l'ID du Sheet
+----------------------------------
+Remplacez 'VOTRE_ID_GOOGLE_SHEET_ICI' par le MÊME ID que précédemment
+(c'est le même Google Sheet, mais deux feuilles différentes).
+
+ÉTAPE 4 : Déployer le Script
+-----------------------------
+Répétez les mêmes étapes que pour Newsletter (Partie 2, Étape 4)
+
+ÉTAPE 5 : Copier l'URL de Déploiement
+--------------------------------------
+Copiez l'URL du déploiement Contact.
+Vous avez maintenant 2 URLs :
+   - URL Newsletter
+   - URL Contact
+
+═══════════════════════════════════════════════════════════════════
+  PARTIE 4 : CONFIGURER LE SITE WEB
+═══════════════════════════════════════════════════════════════════
+
+ÉTAPE 1 : Ouvrir le Fichier forms-handler.js
+---------------------------------------------
+Ouvrez le fichier : forms-handler.js
+
+ÉTAPE 2 : Remplacer les URLs
+-----------------------------
+Trouvez ces lignes (environ lignes 11-14) :
+
+const NEWSLETTER_SCRIPT_URL = 'https://script.google.com/macros/s/VOTRE_ID_NEWSLETTER/exec';
+const CONTACT_SCRIPT_URL = 'https://script.google.com/macros/s/VOTRE_ID_CONTACT/exec';
+
+Remplacez-les par vos URLs de déploiement :
+
+const NEWSLETTER_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbXXXXXXXXXXXX/exec';
+                                                                      ↑ URL Newsletter
+const CONTACT_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbYYYYYYYYYYYY/exec';
+                                                                   ↑ URL Contact
+
+ÉTAPE 3 : Sauvegarder
+----------------------
+Sauvegardez le fichier forms-handler.js
+
+═══════════════════════════════════════════════════════════════════
+  PARTIE 5 : TESTER
+═══════════════════════════════════════════════════════════════════
+
+TEST 1 : Tester le Site en Local
+---------------------------------
+1. Ouvrez index.html dans votre navigateur
+2. Testez le formulaire Newsletter :
+   - Entrez un email
+   - Cliquez sur →
+   - Vous devriez voir : "✅ Inscription réussie !"
+3. Testez le formulaire Contact :
+   - Remplissez tous les champs
+   - Cliquez sur "Envoyer le message"
+   - Vous devriez voir : "Message envoyé avec succès !"
+
+TEST 2 : Vérifier Google Sheets
+--------------------------------
+1. Ouvrez votre Google Sheet
+2. Vous devriez voir 2 nouvelles feuilles :
+   - "Newsletter" avec votre email
+   - "Contact" avec votre message
+
+Si vous voyez les données → ✅ C'EST BON !
+
+═══════════════════════════════════════════════════════════════════
+  PARTIE 6 : HÉBERGER LE SITE
+═══════════════════════════════════════════════════════════════════
+
+Une fois que tout fonctionne en local :
+
+1. Uploadez TOUS les fichiers sur votre hébergeur :
+   - index.html
+   - forms-handler.js ← NOUVEAU FICHIER !
+   - Tous les autres fichiers CSS/JS
+   
+2. Testez sur le site en ligne
+
+3. Les données seront collectées automatiquement dans Google Sheets !
+
+═══════════════════════════════════════════════════════════════════
+  🐛 DÉPANNAGE
+═══════════════════════════════════════════════════════════════════
+
+PROBLÈME : "Erreur de connexion"
+SOLUTION : Vérifiez que les URLs dans forms-handler.js sont correctes
+
+PROBLÈME : "Erreur: Exception: Cannot find sheet"
+SOLUTION : Vérifiez que l'ID du Sheet dans le Google Apps Script est correct
+
+PROBLÈME : Rien ne se passe
+SOLUTION : 
+   1. Ouvrez la console du navigateur (F12)
+   2. Vérifiez s'il y a des erreurs JavaScript
+   3. Vérifiez que forms-handler.js est bien chargé
+
+PROBLÈME : "Access denied"
+SOLUTION : 
+   1. Retournez dans Google Apps Script
+   2. Déploiement → Gérer les déploiements
+   3. Vérifiez que "Qui a accès" = "Tout le monde"
+
+═══════════════════════════════════════════════════════════════════
+  📊 CONSULTER LES DONNÉES
+═══════════════════════════════════════════════════════════════════
+
+Pour voir les inscriptions :
+1. Ouvrez votre Google Sheet
+2. Feuille "Newsletter" : Liste des emails
+3. Feuille "Contact" : Liste des messages
+
+Les données sont ajoutées en temps réel !
+
+═══════════════════════════════════════════════════════════════════
+  🔒 SÉCURITÉ
+═══════════════════════════════════════════════════════════════════
+
+✅ Les données sont stockées dans VOTRE Google Sheet (privé)
+✅ Seuls les propriétaires du Sheet peuvent voir les données
+✅ Les URLs Google Apps Script sont publiques mais sécurisées
+✅ Aucune donnée sensible n'est exposée dans le code du site
+
+═══════════════════════════════════════════════════════════════════
+  ✅ CHECKLIST FINALE
+═══════════════════════════════════════════════════════════════════
+
+[ ] Google Sheet créé avec l'ID copié
+[ ] Script Newsletter créé et déployé
+[ ] Script Contact créé et déployé
+[ ] Les 2 URLs de déploiement copiées
+[ ] forms-handler.js modifié avec les bonnes URLs
+[ ] Testé en local - Newsletter fonctionne
+[ ] Testé en local - Contact fonctionne
+[ ] Données visibles dans Google Sheets
+[ ] Site hébergé avec forms-handler.js inclus
+
+═══════════════════════════════════════════════════════════════════
+
+🎉 Félicitations ! Vos formulaires sont maintenant connectés à Google Sheets !
+
+═══════════════════════════════════════════════════════════════════
+
+Questions ? Vérifiez la console du navigateur (F12) pour les erreurs.
+
+═══════════════════════════════════════════════════════════════════

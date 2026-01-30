@@ -1,0 +1,252 @@
+═══════════════════════════════════════════════════════════════════
+  🔧 SOLUTION - Erreur "openById" Google Apps Script
+  Configuration Corrigée pour Newsletter + Contact
+═══════════════════════════════════════════════════════════════════
+
+❌ PROBLÈME RENCONTRÉ
+---------------------
+Erreur: "Unexpected error while getting the method or property openById 
+on object SpreadsheetApp"
+
+✅ CAUSE
+--------
+Le script créé séparément n'a pas les permissions pour accéder au Sheet.
+
+✅ SOLUTION
+-----------
+Créer le script DEPUIS le Google Sheet (pas séparément).
+Cela donne automatiquement les bonnes permissions.
+
+═══════════════════════════════════════════════════════════════════
+  📋 NOUVELLE MÉTHODE (CORRIGÉE)
+═══════════════════════════════════════════════════════════════════
+
+ÉTAPE 1 : Ouvrir votre Google Sheet
+------------------------------------
+1. Ouvrez votre Sheet :
+   https://docs.google.com/spreadsheets/d/1h4zGCPpImYcc2x5wWi6m0QJpZFJnCtEC9jEfy_mIH30/edit
+
+2. Vous êtes maintenant dans le Sheet
+
+ÉTAPE 2 : Créer le Script depuis le Sheet
+------------------------------------------
+1. Dans le Sheet, cliquez sur : Extensions → Apps Script
+2. Un nouvel onglet s'ouvre avec un éditeur de code
+3. Supprimez tout le code existant
+
+ÉTAPE 3 : Coller le Code SIMPLIFIÉ
+-----------------------------------
+Collez ce nouveau code (VERSION SIMPLIFIÉE) :
+
+┌─────────────────────────────────────────────────────────────────┐
+│ // SDBQL 2026 - Newsletter + Contact                           │
+│                                                                 │
+│ function doPost(e) {                                            │
+│   try {                                                         │
+│     // Déterminer quel formulaire (newsletter ou contact)      │
+│     var formType = e.parameter.formType;                       │
+│                                                                 │
+│     if (formType === 'newsletter') {                           │
+│       return handleNewsletter(e);                              │
+│     } else if (formType === 'contact') {                       │
+│       return handleContact(e);                                 │
+│     } else {                                                    │
+│       return errorResponse('Type de formulaire inconnu');      │
+│     }                                                           │
+│   } catch (error) {                                            │
+│     return errorResponse(error.toString());                    │
+│   }                                                             │
+│ }                                                               │
+│                                                                 │
+│ // Gérer Newsletter                                            │
+│ function handleNewsletter(e) {                                 │
+│   var email = e.parameter.email;                              │
+│   var ss = SpreadsheetApp.getActiveSpreadsheet();             │
+│   var sheet = ss.getSheetByName('Newsletter');                │
+│                                                                 │
+│   // Créer la feuille si elle n'existe pas                    │
+│   if (!sheet) {                                                │
+│     sheet = ss.insertSheet('Newsletter');                     │
+│     sheet.appendRow(['Date', 'Email']);                       │
+│     sheet.getRange('A1:B1').setFontWeight('bold');            │
+│   }                                                             │
+│                                                                 │
+│   // Ajouter les données                                       │
+│   var date = new Date();                                       │
+│   sheet.appendRow([date, email]);                             │
+│                                                                 │
+│   return successResponse('Inscription réussie !');            │
+│ }                                                               │
+│                                                                 │
+│ // Gérer Contact                                               │
+│ function handleContact(e) {                                    │
+│   var name = e.parameter.name;                                │
+│   var email = e.parameter.email;                              │
+│   var subject = e.parameter.subject;                          │
+│   var message = e.parameter.message;                          │
+│   var ss = SpreadsheetApp.getActiveSpreadsheet();             │
+│   var sheet = ss.getSheetByName('Contact');                   │
+│                                                                 │
+│   // Créer la feuille si elle n'existe pas                    │
+│   if (!sheet) {                                                │
+│     sheet = ss.insertSheet('Contact');                        │
+│     sheet.appendRow(['Date', 'Nom', 'Email', 'Sujet', 'Message']); │
+│     sheet.getRange('A1:E1').setFontWeight('bold');            │
+│   }                                                             │
+│                                                                 │
+│   // Ajouter les données                                       │
+│   var date = new Date();                                       │
+│   sheet.appendRow([date, name, email, subject, message]);    │
+│                                                                 │
+│   return successResponse('Message envoyé avec succès !');     │
+│ }                                                               │
+│                                                                 │
+│ // Réponse succès                                              │
+│ function successResponse(message) {                            │
+│   return ContentService.createTextOutput(JSON.stringify({     │
+│     'status': 'success',                                       │
+│     'message': message                                         │
+│   })).setMimeType(ContentService.MimeType.JSON);              │
+│ }                                                               │
+│                                                                 │
+│ // Réponse erreur                                              │
+│ function errorResponse(message) {                              │
+│   return ContentService.createTextOutput(JSON.stringify({     │
+│     'status': 'error',                                         │
+│     'message': 'Erreur: ' + message                           │
+│   })).setMimeType(ContentService.MimeType.JSON);              │
+│ }                                                               │
+└─────────────────────────────────────────────────────────────────┘
+
+ÉTAPE 4 : Enregistrer le Projet
+--------------------------------
+1. Cliquez sur l'icône disquette (💾) ou Ctrl+S
+2. Nommez le projet : "SDBQL Formulaires"
+
+ÉTAPE 5 : Déployer le Script
+-----------------------------
+1. Cliquez sur "Déployer" (en haut à droite) → "Nouveau déploiement"
+2. Cliquez sur l'icône ⚙️ → "Application Web"
+3. Configuration :
+   - Description : "SDBQL Newsletter + Contact"
+   - Exécuter en tant que : "Moi"
+   - Qui a accès : "Tout le monde"
+4. Cliquez sur "Déployer"
+5. Cliquez sur "Autoriser l'accès"
+6. Choisissez votre compte Google
+7. Cliquez sur "Avancé" → "Accéder à SDBQL Formulaires (non sécurisé)"
+8. Cliquez sur "Autoriser"
+
+ÉTAPE 6 : Copier l'URL
+-----------------------
+Vous obtenez UNE SEULE URL (pour les 2 formulaires) :
+
+   https://script.google.com/macros/s/XXXXXXXXXXXXXXX/exec
+                                        ↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
+                                        COPIEZ CETTE URL !
+
+═══════════════════════════════════════════════════════════════════
+  📝 MODIFIER LE FICHIER forms-handler.js
+═══════════════════════════════════════════════════════════════════
+
+Ouvrez forms-handler.js et remplacez les lignes 11-14 par :
+
+// URL UNIQUE pour les 2 formulaires
+const SCRIPT_URL = 'COLLEZ_VOTRE_URL_ICI';
+
+const NEWSLETTER_SCRIPT_URL = SCRIPT_URL;
+const CONTACT_SCRIPT_URL = SCRIPT_URL;
+
+Exemple :
+
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbXXXX/exec';
+const NEWSLETTER_SCRIPT_URL = SCRIPT_URL;
+const CONTACT_SCRIPT_URL = SCRIPT_URL;
+
+═══════════════════════════════════════════════════════════════════
+  🔧 MODIFIER forms-handler.js (Ajout formType)
+═══════════════════════════════════════════════════════════════════
+
+Dans forms-handler.js, trouvez ces lignes et ajoutez formType :
+
+POUR NEWSLETTER (ligne ~48) :
+------------------------------
+AVANT :
+const formData = new FormData();
+formData.append('email', email);
+
+APRÈS :
+const formData = new FormData();
+formData.append('formType', 'newsletter');  // ← AJOUTER
+formData.append('email', email);
+
+
+POUR CONTACT (ligne ~108) :
+----------------------------
+AVANT :
+const formData = new FormData();
+formData.append('name', name);
+formData.append('email', email);
+formData.append('subject', subject);
+formData.append('message', message);
+
+APRÈS :
+const formData = new FormData();
+formData.append('formType', 'contact');  // ← AJOUTER
+formData.append('name', name);
+formData.append('email', email);
+formData.append('subject', subject);
+formData.append('message', message);
+
+═══════════════════════════════════════════════════════════════════
+  ✅ TESTER
+═══════════════════════════════════════════════════════════════════
+
+1. Ouvrez index.html
+2. Testez Newsletter :
+   - Entrez un email
+   - Cliquez sur →
+   - Attendez 2-3 secondes
+   - Vous devriez voir : "✅ Inscription réussie !"
+
+3. Vérifiez Google Sheets :
+   - Nouvelle feuille "Newsletter" créée
+   - Votre email enregistré
+
+4. Testez Contact :
+   - Remplissez le formulaire
+   - Cliquez sur "Envoyer"
+   - Vous devriez voir : "Message envoyé avec succès !"
+
+5. Vérifiez Google Sheets :
+   - Nouvelle feuille "Contact" créée
+   - Votre message enregistré
+
+═══════════════════════════════════════════════════════════════════
+  🎯 AVANTAGES DE CETTE MÉTHODE
+═══════════════════════════════════════════════════════════════════
+
+✅ UN SEUL script au lieu de 2
+✅ Permissions automatiques (pas de problème openById)
+✅ Plus simple à gérer
+✅ Une seule URL à copier
+✅ Fonctionne immédiatement
+
+═══════════════════════════════════════════════════════════════════
+  🐛 SI ÇA NE FONCTIONNE TOUJOURS PAS
+═══════════════════════════════════════════════════════════════════
+
+1. Ouvrez la console du navigateur (F12)
+2. Regardez les erreurs JavaScript
+3. Vérifiez que l'URL est correcte dans forms-handler.js
+4. Vérifiez que formType est bien ajouté
+
+Si vous voyez "CORS error" :
+→ C'est normal pendant le déploiement
+→ Attendez 2-3 minutes et réessayez
+
+═══════════════════════════════════════════════════════════════════
+
+Avec cette méthode, ça devrait fonctionner parfaitement ! 🎉
+
+═══════════════════════════════════════════════════════════════════

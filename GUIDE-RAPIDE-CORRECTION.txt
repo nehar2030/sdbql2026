@@ -1,0 +1,160 @@
+🔧 GUIDE RAPIDE - Corriger l'Erreur "openById"
+=================================================
+
+❌ ERREUR ACTUELLE
+------------------
+"Unexpected error while getting the method or property openById 
+on object SpreadsheetApp"
+
+✅ SOLUTION EN 6 ÉTAPES
+-----------------------
+
+ÉTAPE 1 : Ouvrir votre Google Sheet
+------------------------------------
+Ouvrez : https://docs.google.com/spreadsheets/d/1h4zGCPpImYcc2x5wWi6m0QJpZFJnCtEC9jEfy_mIH30/edit
+
+
+ÉTAPE 2 : Créer le Script DEPUIS le Sheet
+------------------------------------------
+Dans le Sheet : Extensions → Apps Script
+
+
+ÉTAPE 3 : Coller le Nouveau Code
+---------------------------------
+Supprimez tout et collez ce code :
+
+═══════════════════════════════════════════════════════════════
+
+// SDBQL 2026 - Newsletter + Contact
+
+function doPost(e) {
+  try {
+    var formType = e.parameter.formType;
+    
+    if (formType === 'newsletter') {
+      return handleNewsletter(e);
+    } else if (formType === 'contact') {
+      return handleContact(e);
+    } else {
+      return errorResponse('Type de formulaire inconnu');
+    }
+  } catch (error) {
+    return errorResponse(error.toString());
+  }
+}
+
+function handleNewsletter(e) {
+  var email = e.parameter.email;
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getSheetByName('Newsletter');
+  
+  if (!sheet) {
+    sheet = ss.insertSheet('Newsletter');
+    sheet.appendRow(['Date', 'Email']);
+    sheet.getRange('A1:B1').setFontWeight('bold');
+  }
+  
+  var date = new Date();
+  sheet.appendRow([date, email]);
+  
+  return successResponse('Inscription réussie !');
+}
+
+function handleContact(e) {
+  var name = e.parameter.name;
+  var email = e.parameter.email;
+  var subject = e.parameter.subject;
+  var message = e.parameter.message;
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getSheetByName('Contact');
+  
+  if (!sheet) {
+    sheet = ss.insertSheet('Contact');
+    sheet.appendRow(['Date', 'Nom', 'Email', 'Sujet', 'Message']);
+    sheet.getRange('A1:E1').setFontWeight('bold');
+  }
+  
+  var date = new Date();
+  sheet.appendRow([date, name, email, subject, message]);
+  
+  return successResponse('Message envoyé avec succès !');
+}
+
+function successResponse(message) {
+  return ContentService.createTextOutput(JSON.stringify({
+    'status': 'success',
+    'message': message
+  })).setMimeType(ContentService.MimeType.JSON);
+}
+
+function errorResponse(message) {
+  return ContentService.createTextOutput(JSON.stringify({
+    'status': 'error',
+    'message': 'Erreur: ' + message
+  })).setMimeType(ContentService.MimeType.JSON);
+}
+
+═══════════════════════════════════════════════════════════════
+
+
+ÉTAPE 4 : Enregistrer
+----------------------
+Ctrl+S ou icône disquette 💾
+Nommer : "SDBQL Formulaires"
+
+
+ÉTAPE 5 : Déployer
+-------------------
+1. Déployer → Nouveau déploiement
+2. ⚙️ → Application Web
+3. Exécuter en tant que : "Moi"
+4. Qui a accès : "Tout le monde"
+5. Déployer
+6. Autoriser l'accès
+7. Avancé → Accéder à SDBQL Formulaires
+8. Autoriser
+
+
+ÉTAPE 6 : Copier l'URL et Modifier forms-handler.js
+----------------------------------------------------
+1. Copiez l'URL : https://script.google.com/macros/s/XXXXX/exec
+
+2. Ouvrez forms-handler.js (dans votre dossier site web)
+
+3. Ligne 11, remplacez :
+   const SCRIPT_URL = 'https://script.google.com/macros/s/VOTRE_URL_DEPLOIEMENT_ICI/exec';
+
+   Par votre URL :
+   const SCRIPT_URL = 'https://script.google.com/macros/s/XXXXX/exec';
+
+4. Sauvegardez forms-handler.js
+
+
+✅ TESTER
+---------
+1. Ouvrez index.html
+2. Testez Newsletter → "✅ Inscription réussie !"
+3. Testez Contact → "Message envoyé avec succès !"
+4. Vérifiez Google Sheets → 2 feuilles créées
+
+
+🎉 C'EST TOUT !
+---------------
+Le forms-handler.js a déjà été mis à jour avec formType.
+Vous n'avez qu'à copier-coller le nouveau script Google Apps
+et remplacer l'URL !
+
+
+📝 NOTE IMPORTANTE
+------------------
+Le fichier forms-handler.js a été CORRIGÉ automatiquement avec :
+✅ Une seule URL (au lieu de 2)
+✅ Le paramètre formType ajouté automatiquement
+✅ Prêt à l'emploi
+
+Vous n'avez QU'À :
+1. Créer le script Google Apps (code ci-dessus)
+2. Copier l'URL de déploiement
+3. Remplacer l'URL ligne 11 dans forms-handler.js
+
+=================================================
