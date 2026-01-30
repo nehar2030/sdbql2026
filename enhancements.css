@@ -1,6 +1,6 @@
 /* ================================================
-   SDBQL 2026 - AMÃ‰LIORATIONS
-   Mode sombre + Compte Ã  rebours + IcÃ´nes modernes
+   SDBQL 2026 - AMÉLIORATIONS
+   Mode sombre + Compte à rebours + Icônes modernes
    ================================================ */
 
 /* ========================================
@@ -29,7 +29,7 @@
     gap: 30px;
 }
 
-/* CÃ´tÃ© Gauche - Titre et Info */
+/* Côté Gauche - Titre et Info */
 .countdown-widget-left {
     flex: 1;
     min-width: 0;
@@ -54,7 +54,7 @@
     font-weight: 500;
 }
 
-/* SÃ©parateur Vertical */
+/* Séparateur Vertical */
 .countdown-widget-divider {
     width: 2px;
     height: 45px;
@@ -62,7 +62,7 @@
     border-radius: 1px;
 }
 
-/* CÃ´tÃ© Droit - Countdown */
+/* Côté Droit - Countdown */
 .countdown-widget-right {
     display: flex;
     flex-direction: column;
@@ -214,7 +214,7 @@
     }
 }
 
-/* Animation du dÃ©filement */
+/* Animation du défilement */
 @keyframes scroll-left {
     0% {
         transform: translateX(0);
@@ -690,7 +690,7 @@ body.dark-mode .dark-mode-toggle .moon-icon {
     display: block;
 }
 
-/* Ajustements spÃ©cifiques pour le mode sombre */
+/* Ajustements spécifiques pour le mode sombre */
 body.dark-mode .navbar {
     background: rgba(26, 26, 26, 0.85);
     border-bottom-color: #37474f;
@@ -750,7 +750,7 @@ body.dark-mode .widget-panel-header {
 }
 
 /* ========================================
-   2. COMPTE Ã€ REBOURS
+   2. COMPTE À REBOURS
    ======================================== */
 
 .countdown-container {
@@ -812,7 +812,7 @@ body.dark-mode .widget-panel-header {
     color: rgba(255, 255, 255, 0.8);
 }
 
-/* Animation du compte Ã  rebours */
+/* Animation du compte à rebours */
 @keyframes pulse-countdown {
     0%, 100% {
         transform: scale(1);
@@ -823,7 +823,7 @@ body.dark-mode .widget-panel-header {
 }
 
 .countdown-item.pulse {
-    /* Animation supprimÃ©e - texte simple */
+    /* Animation supprimée - texte simple */
 }
 
 /* ========================================
@@ -851,7 +851,7 @@ body.dark-mode .venue-map {
 }
 
 /* ========================================
-   TEXTE EN MODE SOMBRE - Assurer la visibilitÃ©
+   TEXTE EN MODE SOMBRE - Assurer la visibilité
    ======================================== */
 
 body.dark-mode h1,
@@ -967,7 +967,7 @@ body.dark-mode textarea::placeholder {
 }
 
 /* ========================================
-   4. ICÃ”NES SVG MODERNES
+   4. ICÔNES SVG MODERNES
    ======================================== */
 
 .svg-icon {
@@ -992,7 +992,7 @@ body.dark-mode textarea::placeholder {
     height: 48px;
 }
 
-/* Couleurs des icÃ´nes */
+/* Couleurs des icônes */
 .icon-primary {
     fill: var(--color-primary);
 }

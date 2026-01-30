@@ -1,6 +1,6 @@
 /* ================================================
-   SDG TICKER BANNER - Bande dÃ©filante ODD
-   Affichage horizontal animÃ© des donnÃ©es ODD 2025
+   SDG TICKER BANNER - Bande défilante ODD
+   Affichage horizontal animé des données ODD 2025
    ================================================ */
 
 .sdg-ticker-banner {
@@ -48,7 +48,7 @@
     }
 }
 
-/* Conteneur du dÃ©filement */
+/* Conteneur du défilement */
 .sdg-ticker-wrapper {
     padding-left: 180px; /* Espace pour le label */
     overflow: hidden;
@@ -62,7 +62,7 @@
     white-space: nowrap;
 }
 
-/* Animation de dÃ©filement */
+/* Animation de défilement */
 @keyframes ticker-scroll {
     0% {
         transform: translateX(0);
@@ -91,7 +91,7 @@
 }
 
 .sdg-ticker-item::after {
-    content: 'â€¢';
+    content: '•';
     position: absolute;
     right: 12px;
     color: #00bfa5;
@@ -103,7 +103,7 @@
     transform: scale(1.05);
 }
 
-/* IcÃ´nes des items */
+/* Icônes des items */
 .ticker-item-icon {
     font-size: 18px;
     margin-right: 8px;
@@ -118,7 +118,7 @@
     text-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
 }
 
-/* Ã‰tat critique (rouge) */
+/* État critique (rouge) */
 .sdg-ticker-item.critical .ticker-item-value {
     color: #ff5252;
     animation: blink-critical 2s ease-in-out infinite;
@@ -133,7 +133,7 @@
     }
 }
 
-/* Ã‰tat positif (vert clair) */
+/* État positif (vert clair) */
 .sdg-ticker-item.positive .ticker-item-value {
     color: #69f0ae;
 }
@@ -235,7 +235,7 @@
     }
 }
 
-/* Animation de fondu d'entrÃ©e */
+/* Animation de fondu d'entrée */
 .sdg-ticker-banner {
     animation: ticker-fade-in 1s ease-out;
 }
@@ -251,7 +251,7 @@
     }
 }
 
-/* Gradient aux extrÃ©mitÃ©s pour effet de fondu */
+/* Gradient aux extrémités pour effet de fondu */
 .sdg-ticker-wrapper::before,
 .sdg-ticker-wrapper::after {
     content: '';

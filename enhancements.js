@@ -1,6 +1,6 @@
 // ================================================
-// SDBQL 2026 - AMÃ‰LIORATIONS JAVASCRIPT
-// Mode sombre + Compte Ã  rebours
+// SDBQL 2026 - AMÉLIORATIONS JAVASCRIPT
+// Mode sombre + Compte à rebours
 // ================================================
 
 (function() {
@@ -13,7 +13,7 @@
     const darkModeToggle = document.getElementById('darkModeToggle');
     const body = document.body;
     
-    // VÃ©rifier la prÃ©fÃ©rence sauvegardÃ©e
+    // Vérifier la préférence sauvegardée
     const darkModePreference = localStorage.getItem('darkMode');
     
     if (darkModePreference === 'enabled') {
@@ -25,7 +25,7 @@
         darkModeToggle.addEventListener('click', function() {
             body.classList.toggle('dark-mode');
             
-            // Sauvegarder la prÃ©fÃ©rence
+            // Sauvegarder la préférence
             if (body.classList.contains('dark-mode')) {
                 localStorage.setItem('darkMode', 'enabled');
             } else {
@@ -35,11 +35,11 @@
     }
     
     // ========================================
-    // 2. COMPTE Ã€ REBOURS
+    // 2. COMPTE À REBOURS
     // ========================================
     
     function updateCountdown() {
-        // Date de l'Ã©vÃ©nement: 30 Septembre 2026
+        // Date de l'événement: 30 Septembre 2026
         const eventDate = new Date('2026-09-30T09:00:00').getTime();
         const now = new Date().getTime();
         const distance = eventDate - now;
@@ -50,7 +50,7 @@
         const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
         const seconds = Math.floor((distance % (1000 * 60)) / 1000);
         
-        // Mettre Ã  jour l'affichage
+        // Mettre à jour l'affichage
         const daysEl = document.getElementById('countdown-days');
         const hoursEl = document.getElementById('countdown-hours');
         const minutesEl = document.getElementById('countdown-minutes');
@@ -69,13 +69,13 @@
             }, 500);
         }
         
-        // Si le compte Ã  rebours est terminÃ©
+        // Si le compte à rebours est terminé
         if (distance < 0) {
             const countdownContainer = document.querySelector('.countdown-container');
             if (countdownContainer) {
                 countdownContainer.innerHTML = `
                     <div style="text-align: center; padding: 30px;">
-                        <h3 style="color: white; margin-bottom: 10px;">ðŸŽ‰ L'Ã©vÃ©nement a commencÃ© !</h3>
+                        <h3 style="color: white; margin-bottom: 10px;">🎉 L'événement a commencé !</h3>
                         <p style="color: rgba(255,255,255,0.9);">Bienvenue au SDBQL 2026</p>
                     </div>
                 `;
@@ -84,18 +84,18 @@
         }
     }
     
-    // Mettre Ã  jour le compte Ã  rebours toutes les secondes
+    // Mettre à jour le compte à rebours toutes les secondes
     let countdownInterval;
     if (document.getElementById('countdown-days')) {
-        updateCountdown(); // PremiÃ¨re mise Ã  jour immÃ©diate
+        updateCountdown(); // Première mise à jour immédiate
         countdownInterval = setInterval(updateCountdown, 1000);
     }
     
     // ========================================
-    // 3. DÃ‰TECTION PRÃ‰FÃ‰RENCE SYSTÃˆME
+    // 3. DÉTECTION PRÉFÉRENCE SYSTÈME
     // ========================================
     
-    // DÃ©tecter la prÃ©fÃ©rence systÃ¨me de l'utilisateur (si pas de prÃ©fÃ©rence sauvegardÃ©e)
+    // Détecter la préférence système de l'utilisateur (si pas de préférence sauvegardée)
     if (!darkModePreference) {
         if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
             body.classList.add('dark-mode');
@@ -103,7 +103,7 @@
         }
     }
     
-    // Ã‰couter les changements de prÃ©fÃ©rence systÃ¨me
+    // Écouter les changements de préférence système
     if (window.matchMedia) {
         window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', e => {
             if (!localStorage.getItem('darkMode')) {
@@ -125,7 +125,7 @@
         directionsButton.addEventListener('click', function(e) {
             e.preventDefault();
             
-            // CoordonnÃ©es de l'UniversitÃ© de Tlemcen
+            // Coordonnées de l'Université de Tlemcen
             const latitude = 34.8939;
             const longitude = -1.3150;
             
@@ -139,10 +139,10 @@
     // 5. CONSOLE MESSAGE
     // ========================================
     
-    console.log('%cðŸŒ SDBQL 2026 - AmÃ©liorations activÃ©es!', 'color: #00bfa5; font-size: 16px; font-weight: bold;');
-    console.log('%câœ… Mode sombre disponible', 'color: #4caf50; font-size: 14px;');
-    console.log('%câ±ï¸ Compte Ã  rebours actif', 'color: #2196f3; font-size: 14px;');
-    console.log('%cðŸ—ºï¸ Carte interactive intÃ©grÃ©e', 'color: #ff9800; font-size: 14px;');
+    console.log('%c🌍 SDBQL 2026 - Améliorations activées!', 'color: #00bfa5; font-size: 16px; font-weight: bold;');
+    console.log('%c✅ Mode sombre disponible', 'color: #4caf50; font-size: 14px;');
+    console.log('%c⏱️ Compte à rebours actif', 'color: #2196f3; font-size: 14px;');
+    console.log('%c🗺️ Carte interactive intégrée', 'color: #ff9800; font-size: 14px;');
     
     // ========================================
     // 6. EXPORT API

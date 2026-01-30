@@ -190,7 +190,7 @@ if (contactForm) {
         console.log('Form submitted:', data);
         
         // Show success message
-        alert('Merci pour votre message ! Nous vous rÃ©pondrons dans les plus brefs dÃ©lais.');
+        alert('Merci pour votre message ! Nous vous répondrons dans les plus brefs délais.');
         
         // Reset form
         contactForm.reset();
@@ -208,7 +208,7 @@ newsletterForms.forEach(form => {
         
         if (emailInput.value) {
             console.log('Newsletter subscription:', emailInput.value);
-            alert('Merci de vous Ãªtre abonnÃ© Ã  notre newsletter !');
+            alert('Merci de vous être abonné à notre newsletter !');
             form.reset();
         }
     });
@@ -316,7 +316,7 @@ themeBoxes.forEach(box => {
 
 // Scroll to top functionality (optional)
 let scrollTopBtn = document.createElement('button');
-scrollTopBtn.innerHTML = 'â†‘';
+scrollTopBtn.innerHTML = '↑';
 scrollTopBtn.className = 'scroll-top-btn';
 scrollTopBtn.style.cssText = `
     position: fixed;
@@ -394,23 +394,23 @@ window.addEventListener('resize', () => {
 
 // Print welcome message
 console.log(`
-â•”â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•—
-â•‘                                                        â•‘
-â•‘   ðŸŒ± SDBQL 2026                                        â•‘
-â•‘   DÃ©veloppement Durable pour une                       â•‘
-â•‘   Meilleure QualitÃ© de Vie                            â•‘
-â•‘                                                        â•‘
-â•‘   ðŸ“… 30 Septembre 2026                                 â•‘
-â•‘   ðŸ“ UniversitÃ© de Tlemcen, AlgÃ©rie                    â•‘
-â•‘                                                        â•‘
-â•‘   ðŸŒ Ressources Naturelles au Service des ODD         â•‘
-â•‘                                                        â•‘
-â•šâ•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
+╔════════════════════════════════════════════════════════╗
+║                                                        ║
+║   🌱 SDBQL 2026                                        ║
+║   Développement Durable pour une                       ║
+║   Meilleure Qualité de Vie                            ║
+║                                                        ║
+║   📅 30 Septembre 2026                                 ║
+║   📍 Université de Tlemcen, Algérie                    ║
+║                                                        ║
+║   🌍 Ressources Naturelles au Service des ODD         ║
+║                                                        ║
+╚════════════════════════════════════════════════════════╝
 `);
 
-console.log('âœ… Site web chargÃ© avec succÃ¨s !');
-console.log('ðŸŽ¨ Design: Modern Academic Template');
-console.log('ðŸ“§ Contact: benameurnehar@gmail.com');
+console.log('✅ Site web chargé avec succès !');
+console.log('🎨 Design: Modern Academic Template');
+console.log('📧 Contact: benameurnehar@gmail.com');
 
 // ===================================
 // COUNTDOWN TIMERS - Synchronisation
@@ -422,17 +422,17 @@ function updateCountdowns() {
     const now = new Date().getTime();
     const distance = eventDate - now;
 
-    // Calcul des unitÃ©s de temps
+    // Calcul des unités de temps
     const days = Math.floor(distance / (1000 * 60 * 60 * 24));
     const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     const seconds = Math.floor((distance % (1000 * 60)) / 1000);
 
-    // Format avec zÃ©ros
+    // Format avec zéros
     const formatNumber = (n) => String(n).padStart(2, '0');
     const formatDays = (n) => String(n).padStart(3, '0');
 
-    // Mise Ã  jour Widget Header
+    // Mise à jour Widget Header
     const headerDays = document.getElementById('countdown-days-header');
     const headerHours = document.getElementById('countdown-hours-header');
     const headerMinutes = document.getElementById('countdown-minutes-header');
@@ -443,7 +443,7 @@ function updateCountdowns() {
     if (headerMinutes) headerMinutes.textContent = formatNumber(minutes);
     if (headerSeconds) headerSeconds.textContent = formatNumber(seconds);
 
-    // ArrÃªt si la date est passÃ©e
+    // Arrêt si la date est passée
     if (distance < 0) {
         if (headerDays) headerDays.textContent = '000';
         if (headerHours) headerHours.textContent = '00';
