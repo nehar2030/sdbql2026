@@ -11,7 +11,7 @@
     // ========================================
     
     // URL UNIQUE pour Newsletter ET Contact (même script)
-    const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbz79TP2BhVgtEsvKIwGmAFfSZNPlgCZIMAnGY5F6Mx4wMy1CcbUhzRFCpQGx_S-qbFy4Q/exec';
+    const SCRIPT_URL = 'https://script.google.com/macros/...........................................'
     
     // Les deux formulaires utilisent la même URL
     const NEWSLETTER_SCRIPT_URL = SCRIPT_URL;
