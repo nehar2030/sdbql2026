@@ -1,0 +1,778 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SDBQL 2026 — Tableau de Bord du Comité</title>
+<meta name="description" content="Tableau de bord des candidatures au Comité d'Organisation et Scientifique du SDBQL 2026">
+<link rel="icon" type="image/x-icon" href="images/favicon.ico">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+<style>
+/* ========== SITE NAVBAR ========== */
+.site-topbar {
+  background: #1a5632;
+  color: #fff;
+  font-size: 13px;
+  padding: 8px 0;
+}
+.site-topbar .topbar-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.site-topbar a { color: #a7f3d0; text-decoration: none; }
+.site-topbar a:hover { color: #fff; }
+.topbar-contact { display: flex; gap: 20px; }
+
+.site-navbar {
+  background: #fff;
+  border-bottom: 1px solid #e2e8f0;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  box-shadow: 0 1px 6px rgba(0,0,0,0.06);
+}
+.site-navbar .nav-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 64px;
+}
+.nav-logo {
+  font-family: 'Playfair Display', serif;
+  font-weight: 800;
+  font-size: 22px;
+  color: #1a5632;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.nav-logo .logo-sdg { font-size: 24px; }
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  list-style: none;
+}
+.nav-links a {
+  color: #334155;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 8px 14px;
+  border-radius: 8px;
+  transition: background 0.2s, color 0.2s;
+}
+.nav-links a:hover { background: #f0fdf4; color: #1a5632; }
+.nav-links a.active {
+  background: #1a5632;
+  color: #fff;
+}
+.nav-cta {
+  background: linear-gradient(135deg, #1a5632, #22c55e);
+  color: #fff !important;
+  padding: 9px 20px !important;
+  border-radius: 50px !important;
+  font-weight: 600 !important;
+  box-shadow: 0 2px 8px rgba(26,86,50,0.3);
+}
+.nav-cta:hover { opacity: 0.9; background: linear-gradient(135deg, #15803d, #16a34a) !important; }
+
+/* Mobile hamburger */
+.nav-hamburger {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+}
+.nav-hamburger span {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: #334155;
+  margin: 5px 0;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+
+@media (max-width: 900px) {
+  .nav-hamburger { display: block; }
+  .nav-links {
+    display: none;
+    position: absolute;
+    top: 64px;
+    left: 0; right: 0;
+    background: #fff;
+    flex-direction: column;
+    padding: 16px;
+    border-bottom: 1px solid #e2e8f0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+    gap: 4px;
+  }
+  .nav-links.open { display: flex; }
+  .nav-links a { padding: 12px 16px; width: 100%; }
+  .topbar-contact span:nth-child(2) { display: none; }
+}
+
+/* ========== DASHBOARD ========== */
+:root {
+  --bg: #f0f4f8;
+  --card: #ffffff;
+  --card-border: #e2e8f0;
+  --text: #1e293b;
+  --text-muted: #64748b;
+  --accent: #059669;
+  --accent2: #0891b2;
+  --accent3: #7c3aed;
+  --accent4: #d97706;
+  --accent5: #dc2626;
+  --accent6: #db2777;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 30px 24px;
+  position: relative;
+}
+
+/* HEADER */
+.header {
+  text-align: center;
+  margin-bottom: 50px;
+  position: relative;
+}
+.header::after {
+  content: '';
+  position: absolute;
+  bottom: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 3px;
+  background: linear-gradient(90deg, #1a5632, #22c55e);
+  border-radius: 2px;
+}
+.badge {
+  display: inline-block;
+  background: linear-gradient(135deg, rgba(26,86,50,0.1), rgba(34,197,94,0.1));
+  border: 1px solid rgba(26,86,50,0.25);
+  color: #1a5632;
+  padding: 6px 18px;
+  border-radius: 50px;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+.header h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(28px, 4vw, 48px);
+  font-weight: 800;
+  background: linear-gradient(135deg, #1a5632 0%, #059669 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  line-height: 1.2;
+  margin-bottom: 8px;
+}
+.header .subtitle {
+  font-size: 16px;
+  color: var(--text-muted);
+  font-weight: 400;
+}
+.header .date-info {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-top: 8px;
+  opacity: 0.7;
+}
+
+/* KPI CARDS */
+.kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 40px;
+}
+.kpi-card {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 24px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+  transition: transform 0.3s, border-color 0.3s, box-shadow 0.3s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.kpi-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(26,86,50,0.3);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+}
+.kpi-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+}
+.kpi-card:nth-child(1)::before { background: linear-gradient(90deg, #1a5632, #22c55e); }
+.kpi-card:nth-child(2)::before { background: linear-gradient(90deg, #0891b2, #06b6d4); }
+.kpi-card:nth-child(3)::before { background: linear-gradient(90deg, #7c3aed, #a78bfa); }
+.kpi-card:nth-child(4)::before { background: linear-gradient(90deg, #d97706, #fbbf24); }
+.kpi-card:nth-child(5)::before { background: linear-gradient(90deg, #0891b2, #7c3aed); }
+.kpi-icon { font-size: 28px; margin-bottom: 8px; }
+.kpi-value {
+  font-family: 'Playfair Display', serif;
+  font-size: 40px;
+  font-weight: 800;
+  color: #1e293b;
+  line-height: 1;
+  margin-bottom: 4px;
+}
+.kpi-label { font-size: 13px; color: var(--text-muted); font-weight: 400; }
+
+/* SECTION */
+.section-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  font-weight: 700;
+  margin-bottom: 20px;
+  padding-left: 16px;
+  border-left: 3px solid #1a5632;
+  color: #1e293b;
+}
+
+/* CHART GRID */
+.charts-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  margin-bottom: 40px;
+}
+@media (max-width: 900px) { .charts-grid { grid-template-columns: 1fr; } }
+.chart-card {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 24px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.chart-card:hover {
+  border-color: rgba(26,86,50,0.25);
+  box-shadow: 0 4px 16px rgba(0,0,0,0.06);
+}
+.chart-card h3 { font-size: 15px; font-weight: 600; margin-bottom: 4px; color: #1e293b; }
+.chart-card .chart-subtitle { font-size: 12px; color: var(--text-muted); margin-bottom: 16px; }
+.chart-card canvas { max-height: 320px; }
+.chart-card.full-width { grid-column: 1 / -1; }
+
+/* TABLE */
+.table-card {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 40px;
+  overflow-x: auto;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+table { width: 100%; border-collapse: collapse; }
+thead th {
+  text-align: left;
+  padding: 12px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  border-bottom: 1px solid var(--card-border);
+}
+tbody td {
+  padding: 12px 16px;
+  font-size: 14px;
+  border-bottom: 1px solid rgba(226,232,240,0.8);
+}
+tbody tr:hover { background: rgba(26,86,50,0.03); }
+.tag {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 50px;
+  font-size: 11px;
+  font-weight: 600;
+}
+.tag-green { background: rgba(5,150,105,0.12); color: var(--accent); }
+.tag-blue { background: rgba(8,145,178,0.12); color: var(--accent2); }
+.tag-purple { background: rgba(124,58,237,0.12); color: var(--accent3); }
+.tag-yellow { background: rgba(217,119,6,0.12); color: var(--accent4); }
+
+/* INSTITUTIONS */
+.inst-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 40px;
+}
+.inst-badge {
+  background: var(--card);
+  border: 1px solid var(--card-border);
+  border-radius: 10px;
+  padding: 10px 16px;
+  font-size: 13px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.inst-badge .count {
+  background: linear-gradient(135deg, #1a5632, #22c55e);
+  color: #fff;
+  font-weight: 700;
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 50px;
+}
+
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+@media (max-width: 900px) { .two-col { grid-template-columns: 1fr; } }
+
+/* FOOTER */
+.site-footer {
+  background: #1a5632;
+  color: #a7f3d0;
+  text-align: center;
+  padding: 30px 24px;
+  font-size: 14px;
+}
+.site-footer a { color: #fff; text-decoration: none; }
+.site-footer .copy { opacity: 0.6; font-size: 12px; margin-top: 10px; }
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-in { animation: fadeUp 0.6s ease forwards; opacity: 0; }
+.delay-1 { animation-delay: 0.1s; }
+.delay-2 { animation-delay: 0.2s; }
+.delay-3 { animation-delay: 0.3s; }
+.delay-4 { animation-delay: 0.4s; }
+.delay-5 { animation-delay: 0.5s; }
+
+/* Print-friendly */
+@media print {
+  .site-topbar, .site-navbar { position: static; }
+  .chart-card, .kpi-card { break-inside: avoid; box-shadow: none; border: 1px solid #ddd; }
+}
+</style>
+</head>
+<body>
+
+<!-- ========== SITE TOP BAR ========== -->
+<div class="site-topbar">
+  <div class="topbar-inner">
+    <div class="topbar-contact">
+      <span><a href="tel:+213432173786">📞 +213 43 21 73 86</a></span>
+      <span><a href="mailto:sdbql2026@gmail.com">✉ sdbql2026@gmail.com</a></span>
+    </div>
+    <div>
+      <a href="index.html">🇫🇷 FR</a> &nbsp;|&nbsp;
+      <a href="index-en.html">🇬🇧 EN</a> &nbsp;|&nbsp;
+      <a href="index-ar.html">🇩🇿 AR</a>
+    </div>
+  </div>
+</div>
+
+<!-- ========== SITE NAVBAR ========== -->
+<nav class="site-navbar">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <span class="logo-sdg">🌍</span> SDBQL 2026
+    </a>
+    <button class="nav-hamburger" onclick="document.querySelector('.nav-links').classList.toggle('open')" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+    <div class="nav-links">
+      <a href="index.html">Accueil</a>
+      <a href="index.html#about">À propos</a>
+      <a href="index.html#themes">Axes</a>
+      <a href="comite-dashboard.html" class="active">📊 Comité</a>
+      <a href="index.html#dates">Dates</a>
+      <a href="index.html#venue">Lieu</a>
+      <a href="index.html#contact">Contact</a>
+      <a href="https://docs.google.com/forms/d/e/1FAIpQLScnKBF7ApG3s6HqTpQArxrY5RMmayHWlM6b1AcbKfcsSAtQEA/viewform?usp=header" class="nav-cta">S'inscrire</a>
+    </div>
+  </div>
+</nav>
+
+<!-- ========== DASHBOARD CONTENT ========== -->
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header animate-in">
+    <div class="badge">🌍 Rapport d'Avancement</div>
+    <h1>Tableau de Bord — Comité SDBQL 2026</h1>
+    <div class="subtitle">Candidatures au Comité d'Organisation & Scientifique</div>
+    <div class="date-info">2ème Congrès International sur le Développement Durable • 30 Sept – 2 Oct 2026 • Université de Tlemcen</div>
+    <div class="date-info">Données collectées du 30 Jan au 08 Fév 2026 • Généré le 08/02/2026</div>
+  </div>
+
+  <!-- KPI CARDS -->
+  <div class="kpi-grid">
+    <div class="kpi-card animate-in delay-1">
+      <div class="kpi-icon">👥</div>
+      <div class="kpi-value">77</div>
+      <div class="kpi-label">Total Candidatures</div>
+    </div>
+    <div class="kpi-card animate-in delay-2">
+      <div class="kpi-icon">🔬</div>
+      <div class="kpi-value">37</div>
+      <div class="kpi-label">Comité Scientifique</div>
+    </div>
+    <div class="kpi-card animate-in delay-3">
+      <div class="kpi-icon">🤝</div>
+      <div class="kpi-value">35</div>
+      <div class="kpi-label">Les Deux Comités</div>
+    </div>
+    <div class="kpi-card animate-in delay-4">
+      <div class="kpi-icon">🏛️</div>
+      <div class="kpi-value">5</div>
+      <div class="kpi-label">Comité Organisateur</div>
+    </div>
+    <div class="kpi-card animate-in delay-5">
+      <div class="kpi-icon">🌐</div>
+      <div class="kpi-value">8+</div>
+      <div class="kpi-label">Institutions</div>
+    </div>
+  </div>
+
+  <!-- CHARTS ROW 1 -->
+  <div class="section-title animate-in">📊 Analyse des Candidatures</div>
+  <div class="charts-grid">
+    <div class="chart-card animate-in delay-1">
+      <h3>Répartition par Comité</h3>
+      <div class="chart-subtitle">Type de comité choisi par les candidats</div>
+      <canvas id="chartComite"></canvas>
+    </div>
+    <div class="chart-card animate-in delay-2">
+      <h3>Répartition par Grade Académique</h3>
+      <div class="chart-subtitle">Distribution des candidats selon leur rang</div>
+      <canvas id="chartGrade"></canvas>
+    </div>
+    <div class="chart-card animate-in delay-3">
+      <h3>Répartition par Titre</h3>
+      <div class="chart-subtitle">Dr, Pr, Mme, M.</div>
+      <canvas id="chartTitre"></canvas>
+    </div>
+    <div class="chart-card animate-in delay-4">
+      <h3>Années d'Expérience</h3>
+      <div class="chart-subtitle">Ancienneté professionnelle des candidats</div>
+      <canvas id="chartExperience"></canvas>
+    </div>
+  </div>
+
+  <!-- AXES THEMATIQUES -->
+  <div class="section-title animate-in">🎯 Axes Thématiques</div>
+  <div class="charts-grid">
+    <div class="chart-card full-width animate-in">
+      <h3>Nombre de candidats par Axe Thématique</h3>
+      <div class="chart-subtitle">Un candidat peut choisir plusieurs axes — total des mentions par axe</div>
+      <canvas id="chartAxes" style="max-height:360px"></canvas>
+    </div>
+  </div>
+
+  <!-- TIMELINE -->
+  <div class="section-title animate-in">📈 Dynamique des Inscriptions</div>
+  <div class="charts-grid">
+    <div class="chart-card full-width animate-in">
+      <h3>Candidatures par Jour</h3>
+      <div class="chart-subtitle">Évolution quotidienne des inscriptions</div>
+      <canvas id="chartTimeline" style="max-height:300px"></canvas>
+    </div>
+  </div>
+
+  <!-- DISPONIBILITE & EXPERIENCE ORG -->
+  <div class="section-title animate-in">🧑‍🔬 Profils des Candidats</div>
+  <div class="charts-grid">
+    <div class="chart-card animate-in delay-1">
+      <h3>Disponibilité</h3>
+      <div class="chart-subtitle">Niveau d'engagement déclaré</div>
+      <canvas id="chartDispo"></canvas>
+    </div>
+    <div class="chart-card animate-in delay-2">
+      <h3>Expérience en Organisation</h3>
+      <div class="chart-subtitle">Participation antérieure à des événements scientifiques</div>
+      <canvas id="chartOrgExp"></canvas>
+    </div>
+  </div>
+
+  <!-- COMPÉTENCES -->
+  <div class="section-title animate-in">💡 Compétences Proposées</div>
+  <div class="charts-grid">
+    <div class="chart-card full-width animate-in">
+      <h3>Compétences offertes par les Candidats</h3>
+      <div class="chart-subtitle">Nombre total de mentions par compétence</div>
+      <canvas id="chartSkills" style="max-height:300px"></canvas>
+    </div>
+  </div>
+
+  <!-- DOMAINES D'EXPERTISE -->
+  <div class="section-title animate-in">🔬 Grands Domaines d'Expertise</div>
+  <div class="chart-card animate-in" style="margin-bottom:40px">
+    <h3>Regroupement par Domaine Principal</h3>
+    <div class="chart-subtitle">Classification thématique des spécialités déclarées</div>
+    <canvas id="chartDomains" style="max-height:360px"></canvas>
+  </div>
+
+  <!-- GRADE × COMITÉ -->
+  <div class="section-title animate-in">📋 Croisement Grade × Comité</div>
+  <div class="table-card animate-in">
+    <table>
+      <thead>
+        <tr>
+          <th>Grade Académique</th>
+          <th>Comité Scientifique</th>
+          <th>Les Deux Comités</th>
+          <th>Comité Organisateur</th>
+          <th>Total</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Professeur</td>
+          <td><span class="tag tag-blue">13</span></td>
+          <td><span class="tag tag-purple">11</span></td>
+          <td><span class="tag tag-yellow">0</span></td>
+          <td><strong>24</strong></td>
+        </tr>
+        <tr>
+          <td>MCB (Maître de Conférences B)</td>
+          <td><span class="tag tag-blue">11</span></td>
+          <td><span class="tag tag-purple">13</span></td>
+          <td><span class="tag tag-yellow">3</span></td>
+          <td><strong>27</strong></td>
+        </tr>
+        <tr>
+          <td>MCA (Maître de Conférences A)</td>
+          <td><span class="tag tag-blue">13</span></td>
+          <td><span class="tag tag-purple">10</span></td>
+          <td><span class="tag tag-yellow">1</span></td>
+          <td><strong>24</strong></td>
+        </tr>
+        <tr>
+          <td>Maître Assistant A</td>
+          <td><span class="tag tag-blue">0</span></td>
+          <td><span class="tag tag-purple">1</span></td>
+          <td><span class="tag tag-yellow">0</span></td>
+          <td><strong>1</strong></td>
+        </tr>
+        <tr>
+          <td>Doctorant</td>
+          <td><span class="tag tag-blue">0</span></td>
+          <td><span class="tag tag-purple">0</span></td>
+          <td><span class="tag tag-yellow">1</span></td>
+          <td><strong>1</strong></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- INSTITUTIONS -->
+  <div class="section-title animate-in">🏫 Institutions Représentées</div>
+  <div class="inst-grid animate-in">
+    <div class="inst-badge"><span class="count">~70</span> Université Abou Bekr Belkaid – Tlemcen</div>
+    <div class="inst-badge"><span class="count">1</span> Université de Naama</div>
+    <div class="inst-badge"><span class="count">1</span> King Saud University (Arabie S.)</div>
+    <div class="inst-badge"><span class="count">1</span> Université de Béchar</div>
+    <div class="inst-badge"><span class="count">1</span> INRF (Inst. Nat. Recherche Forestière)</div>
+    <div class="inst-badge"><span class="count">1</span> Université Aïn Témouchent</div>
+    <div class="inst-badge"><span class="count">1</span> Université de Saïda</div>
+  </div>
+
+  <!-- KEY INSIGHTS -->
+  <div class="section-title animate-in">🔑 Points Clés & Recommandations</div>
+  <div class="two-col">
+    <div class="chart-card animate-in delay-1">
+      <h3>✅ Points Forts</h3>
+      <div style="margin-top:12px; line-height:2; font-size:14px; color:var(--text-muted);">
+        <div>• <strong style="color:var(--accent)">77 candidatures</strong> en seulement <strong>10 jours</strong> — forte adhésion</div>
+        <div>• <strong style="color:var(--accent)">83%</strong> ont une expérience préalable en organisation</div>
+        <div>• <strong style="color:var(--accent)">52%</strong> ont plus de 11 ans d'expérience — profils seniors</div>
+        <div>• Excellente couverture des <strong style="color:var(--accent)">6 axes thématiques</strong></div>
+        <div>• Engagement fort : 100% de consentement et acceptation des communications</div>
+        <div>• Présence internationale (Arabie Saoudite, plusieurs universités algériennes)</div>
+      </div>
+    </div>
+    <div class="chart-card animate-in delay-2">
+      <h3>⚠️ Points d'Attention</h3>
+      <div style="margin-top:12px; line-height:2; font-size:14px; color:var(--text-muted);">
+        <div>• <strong style="color:var(--accent5)">Faible diversité institutionnelle</strong> — 91% de Tlemcen</div>
+        <div>• <strong style="color:var(--accent5)">Axe 6 (Partenariats Socio-éco)</strong> sous-représenté (5 mentions)</div>
+        <div>• Seulement <strong style="color:var(--accent5)">1 doctorant</strong> et <strong style="color:var(--accent5)">1 Maître Assistant</strong></div>
+        <div>• <strong style="color:var(--accent5)">Comité Organisateur : 5 candidats</strong> — potentiellement insuffisant</div>
+        <div>• <strong style="color:var(--accent5)">74%</strong> seulement moyennement disponibles</div>
+        <div>• Manque de compétences en fundraising et tech</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA REJOINDRE -->
+  <div style="text-align:center; margin-bottom:40px;" class="animate-in">
+    <a href="https://docs.google.com/forms/d/e/1FAIpQLSdkZsmZV4B7qkKiukErWhR2sYaqpgjvDrJLS63BuS2n4eS8LQ/viewform?usp=header"
+       style="display:inline-block; background:linear-gradient(135deg,#1a5632,#22c55e); color:#fff; padding:16px 40px; border-radius:50px; text-decoration:none; font-weight:700; font-size:16px; box-shadow:0 4px 16px rgba(26,86,50,0.35); transition:transform 0.2s;"
+       onmouseover="this.style.transform='translateY(-2px)'" onmouseout="this.style.transform='none'">
+      Rejoindre le Comité d'Organisation et Scientifique →
+    </a>
+  </div>
+
+</div>
+
+<!-- ========== SITE FOOTER ========== -->
+<footer class="site-footer">
+  <div>🌍 SDBQL 2026 — Développement Durable pour une Meilleure Qualité de Vie</div>
+  <div>Université Abou Bekr Belkaid, Tlemcen • 30 Sept – 2 Oct 2026</div>
+  <div class="copy">© 2026 SDBQL. Tous droits réservés. • <a href="index.html">Retour à l'accueil</a></div>
+</footer>
+
+<!-- ========== CHARTS ========== -->
+<script>
+Chart.defaults.color = '#64748b';
+Chart.defaults.font.family = "'DM Sans', sans-serif";
+Chart.defaults.font.size = 12;
+Chart.defaults.plugins.legend.labels.padding = 14;
+Chart.defaults.plugins.legend.labels.usePointStyle = true;
+
+// 1. COMITÉ
+new Chart(document.getElementById('chartComite'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Comité Scientifique', 'Les Deux Comités', 'Comité Organisateur'],
+    datasets: [{ data: [37, 35, 5], backgroundColor: ['#0891b2','#7c3aed','#d97706'], borderWidth: 0, hoverOffset: 8 }]
+  },
+  options: { responsive: true, cutout: '60%', plugins: { legend: { position: 'bottom' }, tooltip: { callbacks: { label: ctx => `${ctx.label}: ${ctx.parsed} (${(ctx.parsed/77*100).toFixed(1)}%)` }}}}
+});
+
+// 2. GRADE
+new Chart(document.getElementById('chartGrade'), {
+  type: 'bar',
+  data: {
+    labels: ['MCB', 'MCA', 'Professeur', 'MA-A', 'Doctorant'],
+    datasets: [{ label: 'Candidats', data: [27, 24, 24, 1, 1], backgroundColor: ['#059669','#0891b2','#7c3aed','#d97706','#dc2626'], borderRadius: 8, borderSkipped: false, barPercentage: 0.6 }]
+  },
+  options: { responsive: true, indexAxis: 'y', plugins: { legend: { display: false } }, scales: { x: { grid: { color: 'rgba(203,213,225,0.5)' }, ticks: { stepSize: 5 } }, y: { grid: { display: false } }}}
+});
+
+// 3. TITRE
+new Chart(document.getElementById('chartTitre'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Dr', 'Pr', 'Mme', 'M.'],
+    datasets: [{ data: [45, 27, 4, 1], backgroundColor: ['#0891b2','#7c3aed','#db2777','#d97706'], borderWidth: 0, hoverOffset: 8 }]
+  },
+  options: { responsive: true, cutout: '60%', plugins: { legend: { position: 'bottom' } }}
+});
+
+// 4. EXPERIENCE
+new Chart(document.getElementById('chartExperience'), {
+  type: 'bar',
+  data: {
+    labels: ['0-2 ans', '3-5 ans', '6-10 ans', '11-15 ans', '+15 ans'],
+    datasets: [{ label: 'Candidats', data: [8, 13, 9, 14, 26], backgroundColor: ['#dc2626','#d97706','#0891b2','#7c3aed','#059669'], borderRadius: 8, borderSkipped: false, barPercentage: 0.65 }]
+  },
+  options: { responsive: true, plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => `${ctx.parsed.y} candidats (${(ctx.parsed.y/77*100).toFixed(1)}%)` }}}, scales: { x: { grid: { display: false } }, y: { grid: { color: 'rgba(203,213,225,0.5)' }, beginAtZero: true }}}
+});
+
+// 5. AXES
+new Chart(document.getElementById('chartAxes'), {
+  type: 'bar',
+  data: {
+    labels: ['🌾 Axe 1: Agriculture\nDurable & Séc. Alim.','⚡ Axe 2: Bioénergie\n& Éner. Renouv.','🦋 Axe 3: Biodiversité\n& Gestion Milieux','🌍 Axe 4: Action\npour le Climat','💚 Axe 5: Santé\net Bien-être','🤝 Axe 6: Partenariats\nSocio-éco.'],
+    datasets: [{ label: 'Mentions', data: [30, 17, 36, 21, 39, 5], backgroundColor: ['rgba(217,119,6,0.8)','rgba(220,38,38,0.8)','rgba(5,150,105,0.8)','rgba(8,145,178,0.8)','rgba(219,39,119,0.8)','rgba(124,58,237,0.8)'], borderRadius: 10, borderSkipped: false, barPercentage: 0.55 }]
+  },
+  options: { responsive: true, plugins: { legend: { display: false }, tooltip: { callbacks: { label: ctx => `${ctx.parsed.y} mentions` }}}, scales: { x: { grid: { display: false }, ticks: { maxRotation: 0, font: { size: 11 } } }, y: { grid: { color: 'rgba(203,213,225,0.5)' }, beginAtZero: true }}}
+});
+
+// 6. TIMELINE
+new Chart(document.getElementById('chartTimeline'), {
+  type: 'line',
+  data: {
+    labels: ['30 Jan','31 Jan','01 Fév','02 Fév','03 Fév','04 Fév','05 Fév','06 Fév','07 Fév','08 Fév'],
+    datasets: [{
+      label: 'Candidatures / jour', data: [3,1,5,19,6,7,2,9,22,3],
+      fill: true, backgroundColor: 'rgba(26,86,50,0.08)', borderColor: '#1a5632', borderWidth: 3,
+      pointBackgroundColor: '#1a5632', pointRadius: 5, pointHoverRadius: 8, tension: 0.35
+    },{
+      label: 'Cumul', data: [3,4,9,28,34,41,43,52,74,77],
+      fill: false, borderColor: '#7c3aed', borderWidth: 2, borderDash: [5,5],
+      pointBackgroundColor: '#7c3aed', pointRadius: 4, tension: 0.35, yAxisID: 'y1'
+    }]
+  },
+  options: { responsive: true, interaction: { mode: 'index', intersect: false }, plugins: { legend: { position: 'bottom' } }, scales: { x: { grid: { color: 'rgba(203,213,225,0.4)' } }, y: { grid: { color: 'rgba(203,213,225,0.5)' }, beginAtZero: true, title: { display: true, text: 'Par jour' } }, y1: { position: 'right', grid: { display: false }, beginAtZero: true, title: { display: true, text: 'Cumul' } }}}
+});
+
+// 7. DISPONIBILITÉ
+new Chart(document.getElementById('chartDispo'), {
+  type: 'doughnut',
+  data: {
+    labels: ['⭐⭐ Moyennement disponible', '⭐⭐⭐ Très disponible', '⭐ Peu disponible'],
+    datasets: [{ data: [57, 18, 2], backgroundColor: ['#d97706','#059669','#dc2626'], borderWidth: 0, hoverOffset: 8 }]
+  },
+  options: { responsive: true, cutout: '60%', plugins: { legend: { position: 'bottom' }, tooltip: { callbacks: { label: ctx => `${ctx.label}: ${ctx.parsed} (${(ctx.parsed/77*100).toFixed(1)}%)` }}}}
+});
+
+// 8. ORG EXPERIENCE
+new Chart(document.getElementById('chartOrgExp'), {
+  type: 'doughnut',
+  data: {
+    labels: ['Oui – Expérience antérieure', 'Non – Première fois'],
+    datasets: [{ data: [64, 13], backgroundColor: ['#059669','#dc2626'], borderWidth: 0, hoverOffset: 8 }]
+  },
+  options: { responsive: true, cutout: '60%', plugins: { legend: { position: 'bottom' }, tooltip: { callbacks: { label: ctx => `${ctx.label}: ${ctx.parsed} (${(ctx.parsed/77*100).toFixed(1)}%)` }}}}
+});
+
+// 9. COMPÉTENCES
+new Chart(document.getElementById('chartSkills'), {
+  type: 'bar',
+  data: {
+    labels: ['📝 Révision scientifique','🏢 Logistique & organisation','📢 Communication & RP','📊 Gestion de projet','💻 Compétences tech','🌐 Réseaux professionnels','💰 Fundraising & partenariats'],
+    datasets: [{ label: 'Mentions', data: [68,20,28,20,12,14,4], backgroundColor: ['rgba(5,150,105,0.85)','rgba(217,119,6,0.85)','rgba(8,145,178,0.85)','rgba(124,58,237,0.85)','rgba(79,70,229,0.85)','rgba(219,39,119,0.85)','rgba(220,38,38,0.85)'], borderRadius: 8, borderSkipped: false, barPercentage: 0.6 }]
+  },
+  options: { responsive: true, indexAxis: 'y', plugins: { legend: { display: false } }, scales: { x: { grid: { color: 'rgba(203,213,225,0.5)' }, beginAtZero: true }, y: { grid: { display: false } }}}
+});
+
+// 10. DOMAINES
+new Chart(document.getElementById('chartDomains'), {
+  type: 'polarArea',
+  data: {
+    labels: ['Biochimie & Nutrition','Écologie & Environnement','Chimie & Phytochimie','Santé & Médecine','Sciences de la Terre & Eau','Microbiologie & Biotech','Énergie Renouvelable','Agronomie & Agroalim.','Biodiversité & Conservation','Foresterie & SIG'],
+    datasets: [{ data: [30,25,21,15,12,10,8,8,7,3], backgroundColor: ['rgba(5,150,105,0.7)','rgba(219,39,119,0.7)','rgba(8,145,178,0.7)','rgba(124,58,237,0.7)','rgba(220,38,38,0.7)','rgba(217,119,6,0.7)','rgba(251,191,36,0.7)','rgba(79,70,229,0.7)','rgba(13,148,136,0.7)','rgba(168,85,247,0.7)'], borderWidth: 0 }]
+  },
+  options: { responsive: true, plugins: { legend: { position: 'right', labels: { font: { size: 11 }, padding: 10 } } }, scales: { r: { grid: { color: 'rgba(203,213,225,0.5)' }, ticks: { display: false } }}}
+});
+</script>
+
+</body>
+</html>
