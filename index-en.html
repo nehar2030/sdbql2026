@@ -7,12 +7,12 @@
     <title>SDBQL 2026 - Sustainable Development for a Better Quality of Life</title>
     
     <!-- Styles CSS -->
-    <link rel="stylesheet" href="../styles.css">
-    <link rel="stylesheet" href="../sdg-ticker-updated.css">
-    <link rel="stylesheet" href="../sdg-widget.css">
-    <link rel="stylesheet" href="../enhancements.css">
-    <link rel="stylesheet" href="../finalization-status.css">
-    <link rel="stylesheet" href="../topbar-enhancements.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="sdg-ticker-updated.css">
+    <link rel="stylesheet" href="sdg-widget.css">
+    <link rel="stylesheet" href="enhancements.css">
+    <link rel="stylesheet" href="finalization-status.css">
+    <link rel="stylesheet" href="topbar-enhancements.css">
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -21,7 +21,7 @@
 </head>
 <body>
     
-    <!-- Dark Mode Button -->
+    <!-- Dark Mode Toggle -->
     <button class="dark-mode-toggle" id="darkModeToggle" aria-label="Toggle dark mode">
         <svg class="svg-icon sun-icon">
             <use xlink:href="#icon-sun"></use>
@@ -32,6 +32,13 @@
     </button>
 
     <!-- SVG Icon Library -->
+<!-- ================================================
+     SDBQL 2026 - MODERN SVG ICON LIBRARY
+     Replaces emojis with professional icons
+     ================================================ -->
+
+<!-- To integrate in index.html just after <body> -->
+
 <svg style="display: none;">
     <defs>
         <!-- ICON: Globe -->
@@ -144,29 +151,50 @@
             <path d="M9 16.2L4.8 12l-1.4 1.4L9 19 21 7l-1.4-1.4L9 16.2z"/>
         </symbol>
 
-        <!-- ICON: SDG Wheel -->
+        <!-- ICON: SDG Wheel (Sustainable Development Goals) -->
         <symbol id="icon-sdg-wheel" viewBox="0 0 100 100">
+            <!-- Outer circle -->
             <circle cx="50" cy="50" r="48" fill="none" stroke="#00BFA5" stroke-width="2"/>
+            <!-- Colored segments representing the 17 SDGs -->
             <g transform="translate(50,50)">
+                <!-- Segment 1 - Red -->
                 <path d="M 0,-45 A 45,45 0 0,1 11.6,-43.5 L 0,0 Z" fill="#E5243B"/>
+                <!-- Segment 2 - Yellow/Orange -->
                 <path d="M 11.6,-43.5 A 45,45 0 0,1 22.5,-39.2 L 0,0 Z" fill="#DDA63A"/>
+                <!-- Segment 3 - Dark Green -->
                 <path d="M 22.5,-39.2 A 45,45 0 0,1 31.8,-32.6 L 0,0 Z" fill="#4C9F38"/>
+                <!-- Segment 4 - Dark Red -->
                 <path d="M 31.8,-32.6 A 45,45 0 0,1 39.2,-24.1 L 0,0 Z" fill="#C5192D"/>
+                <!-- Segment 5 - Bright Red -->
                 <path d="M 39.2,-24.1 A 45,45 0 0,1 44.1,-14.2 L 0,0 Z" fill="#FF3A21"/>
+                <!-- Segment 6 - Cyan -->
                 <path d="M 44.1,-14.2 A 45,45 0 0,1 45,0 L 0,0 Z" fill="#26BDE2"/>
+                <!-- Segment 7 - Yellow -->
                 <path d="M 45,0 A 45,45 0 0,1 44.1,14.2 L 0,0 Z" fill="#FCC30B"/>
+                <!-- Segment 8 - Brown -->
                 <path d="M 44.1,14.2 A 45,45 0 0,1 39.2,24.1 L 0,0 Z" fill="#A21942"/>
+                <!-- Segment 9 - Orange -->
                 <path d="M 39.2,24.1 A 45,45 0 0,1 31.8,32.6 L 0,0 Z" fill="#FD6925"/>
+                <!-- Segment 10 - Pink -->
                 <path d="M 31.8,32.6 A 45,45 0 0,1 22.5,39.2 L 0,0 Z" fill="#DD1367"/>
+                <!-- Segment 11 - Light Orange -->
                 <path d="M 22.5,39.2 A 45,45 0 0,1 11.6,43.5 L 0,0 Z" fill="#FD9D24"/>
+                <!-- Segment 12 - Gold/Yellow -->
                 <path d="M 11.6,43.5 A 45,45 0 0,1 0,45 L 0,0 Z" fill="#BF8B2E"/>
+                <!-- Segment 13 - Green -->
                 <path d="M 0,45 A 45,45 0 0,1 -11.6,43.5 L 0,0 Z" fill="#3F7E44"/>
+                <!-- Segment 14 - Blue -->
                 <path d="M -11.6,43.5 A 45,45 0 0,1 -22.5,39.2 L 0,0 Z" fill="#0A97D9"/>
+                <!-- Segment 15 - Light Green -->
                 <path d="M -22.5,39.2 A 45,45 0 0,1 -31.8,32.6 L 0,0 Z" fill="#56C02B"/>
+                <!-- Segment 16 - Dark Blue -->
                 <path d="M -31.8,32.6 A 45,45 0 0,1 -39.2,24.1 L 0,0 Z" fill="#00689D"/>
+                <!-- Segment 17 - Night Blue -->
                 <path d="M -39.2,24.1 A 45,45 0 0,1 -44.1,14.2 L 0,0 Z" fill="#19486A"/>
             </g>
+            <!-- Central circle -->
             <circle cx="50" cy="50" r="15" fill="#00BFA5"/>
+            <!-- "SDG" text in center -->
             <text x="50" y="55" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="white" text-anchor="middle">SDG</text>
         </symbol>
         </symbol>
@@ -216,13 +244,13 @@
                             <span class="lang-arrow">▼</span>
                         </button>
                         <div class="lang-dropdown" id="langDropdown">
-                            <a href="../index.html" class="lang-option">
+                            <a href="index.html" class="lang-option">
                                 <span class="flag">🇫🇷</span> Français
                             </a>
-                            <a href="index.html" class="lang-option active">
+                            <a href="index-en.html" class="lang-option active">
                                 <span class="flag">🇬🇧</span> English
                             </a>
-                            <a href="../index-ar.html" class="lang-option">
+                            <a href="index-ar.html" class="lang-option">
                                 <span class="flag">🇩🇿</span> العربية
                             </a>
                         </div>
@@ -265,7 +293,7 @@
                     <a href="#venue" class="nav-link" data-translate="nav-venue">Venue</a>
                     <a href="#contact" class="nav-link" data-translate="nav-contact">Contact</a>
                 </div>
-                <a href="https://docs.google.com/forms/d/e/1FAIpQLScnKBF7ApG3s6HqTpQArxrY5RMmayHWlM6b1AcbKfcsSAtQEA/viewform?usp=header" target="_blank" class="nav-btn" data-translate="nav-register">Register</a>
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLScnKBF7ApG3s6HqTpQArxrY5RMmayHWlM6b1AcbKfcsSAtQEA/viewform?usp=header" target="_blank" class="nav-btn" data-translate="nav-register">Register Now</a>
                 <button class="nav-toggle" id="navToggle">
                     <span></span>
                     <span></span>
@@ -275,43 +303,48 @@
         </div>
     </nav>
 
-    <!-- SDG Ticker Banner -->
+    <!-- =============================================== -->
+    <!-- SDG TICKER BANNER - SDG 2025 Scrolling Banner -->
+    <!-- =============================================== -->
     <div class="sdg-ticker-banner">
+        <!-- Fixed label on left -->
         <div class="sdg-ticker-label">
             <span class="ticker-icon">🌍</span>
             <span>SDG DATA 2025</span>
         </div>
         
+        <!-- Scrolling container -->
         <div class="sdg-ticker-wrapper">
             <div class="sdg-ticker-content">
+                <!-- First set of data -->
                 <div class="sdg-ticker-item positive">
                     <span class="ticker-item-icon">✅</span>
-                    <span>SDGs on track:</span>
+                    <span>SDGs On Track:</span>
                     <span class="ticker-item-value">18%</span>
                 </div>
                 
                 <div class="sdg-ticker-item critical">
                     <span class="ticker-item-icon">⬇️</span>
-                    <span>SDGs regressing:</span>
+                    <span>SDGs In Decline:</span>
                     <span class="ticker-item-value">18%</span>
                     <span class="ticker-urgent-badge">Urgent</span>
                 </div>
                 
                 <div class="sdg-ticker-item positive">
                     <span class="ticker-item-icon">⚡</span>
-                    <span>Electricity access:</span>
+                    <span>Electricity Access:</span>
                     <span class="ticker-item-value">92%</span>
                 </div>
                 
                 <div class="sdg-ticker-item">
                     <span class="ticker-item-icon">💧</span>
-                    <span>Safe drinking water:</span>
+                    <span>Safe Drinking Water:</span>
                     <span class="ticker-item-value">74%</span>
                 </div>
                 
                 <div class="sdg-ticker-item">
                     <span class="ticker-item-icon">🚽</span>
-                    <span>Managed sanitation:</span>
+                    <span>Managed Sanitation:</span>
                     <span class="ticker-item-value">58%</span>
                 </div>
                 
@@ -330,100 +363,100 @@
                 
                 <div class="sdg-ticker-item critical">
                     <span class="ticker-item-icon">🌊</span>
-                    <span>Coral reefs bleached:</span>
+                    <span>Coral Reefs Bleached:</span>
                     <span class="ticker-item-value">84%</span>
                 </div>
                 
                 <div class="sdg-ticker-item">
                     <span class="ticker-item-icon">🔵</span>
-                    <span>Marine protected areas:</span>
+                    <span>Marine Protected Areas:</span>
                     <span class="ticker-item-value">8.4%</span>
                 </div>
                 
                 <div class="sdg-ticker-item">
                     <span class="ticker-item-icon">🌳</span>
-                    <span>Global forest cover:</span>
+                    <span>Global Forest Cover:</span>
                     <span class="ticker-item-value">31%</span>
                 </div>
                 
                 <div class="sdg-ticker-item critical">
                     <span class="ticker-item-icon">🦋</span>
-                    <span>Threatened species:</span>
+                    <span>Threatened Species:</span>
                     <span class="ticker-item-value">47,000+</span>
                 </div>
                 
                 <div class="sdg-ticker-item">
                     <span class="ticker-item-icon">🌿</span>
-                    <span>Protected terrestrial areas:</span>
+                    <span>Protected Terrestrial Areas:</span>
                     <span class="ticker-item-value">17.6%</span>
                 </div>
                 
                 <div class="sdg-ticker-item critical">
                     <span class="ticker-item-icon">🐟</span>
-                    <span>Overfished stocks:</span>
+                    <span>Overfished Stocks:</span>
                     <span class="ticker-item-value">35.5%</span>
                 </div>
                 
                 <div class="sdg-ticker-item critical">
                     <span class="ticker-item-icon">😢</span>
-                    <span>Extreme poverty:</span>
+                    <span>Extreme Poverty:</span>
                     <span class="ticker-item-value">808M people</span>
                 </div>
                 
                 <div class="sdg-ticker-item critical">
                     <span class="ticker-item-icon">🍽️</span>
-                    <span>Food insecurity:</span>
+                    <span>Food Insecurity:</span>
                     <span class="ticker-item-value">2.3B people</span>
                     <span class="ticker-urgent-badge">Crisis</span>
                 </div>
                 
                 <div class="sdg-ticker-item critical">
                     <span class="ticker-item-icon">🏃</span>
-                    <span>Forced displacements:</span>
+                    <span>Forcibly Displaced:</span>
                     <span class="ticker-item-value">123M</span>
                 </div>
                 
                 <div class="sdg-ticker-item critical">
                     <span class="ticker-item-icon">💧</span>
-                    <span>Without safe water:</span>
+                    <span>Without Clean Water:</span>
                     <span class="ticker-item-value">2.2B people</span>
                 </div>
                 
                 <div class="sdg-ticker-item">
                     <span class="ticker-item-icon">🔥</span>
-                    <span>Clean cooking access:</span>
+                    <span>Clean Cooking Access:</span>
                     <span class="ticker-item-value">74%</span>
                 </div>
                 
-                <!-- Duplicate for continuous scrolling -->
+                <!-- Second set (copy for continuous scrolling) -->
                 <div class="sdg-ticker-item positive">
                     <span class="ticker-item-icon">✅</span>
-                    <span>SDGs on track:</span>
+                    <span>SDGs On Track:</span>
                     <span class="ticker-item-value">18%</span>
                 </div>
                 
                 <div class="sdg-ticker-item critical">
                     <span class="ticker-item-icon">⬇️</span>
-                    <span>SDGs regressing:</span>
+                    <span>SDGs In Decline:</span>
                     <span class="ticker-item-value">18%</span>
                     <span class="ticker-urgent-badge">Urgent</span>
                 </div>
                 
                 <div class="sdg-ticker-item positive">
                     <span class="ticker-item-icon">⚡</span>
-                    <span>Electricity access:</span>
+                    <span>Electricity Access:</span>
                     <span class="ticker-item-value">92%</span>
                 </div>
                 
                 <div class="sdg-ticker-item">
                     <span class="ticker-item-icon">💧</span>
-                    <span>Safe drinking water:</span>
+                    <span>Safe Drinking Water:</span>
                     <span class="ticker-item-value">74%</span>
                 </div>
                 
                 <div class="sdg-ticker-item">
                     <span class="ticker-item-icon">🚽</span>
-                    <span>Managed sanitation:</span>
+                    <span>Managed Sanitation:</span>
                     <span class="ticker-item-value">58%</span>
                 </div>
                 
@@ -442,77 +475,82 @@
                 
                 <div class="sdg-ticker-item critical">
                     <span class="ticker-item-icon">🌊</span>
-                    <span>Coral reefs bleached:</span>
+                    <span>Coral Reefs Bleached:</span>
                     <span class="ticker-item-value">84%</span>
                 </div>
                 
                 <div class="sdg-ticker-item">
                     <span class="ticker-item-icon">🔵</span>
-                    <span>Marine protected areas:</span>
+                    <span>Marine Protected Areas:</span>
                     <span class="ticker-item-value">8.4%</span>
                 </div>
                 
                 <div class="sdg-ticker-item">
                     <span class="ticker-item-icon">🌳</span>
-                    <span>Global forest cover:</span>
+                    <span>Global Forest Cover:</span>
                     <span class="ticker-item-value">31%</span>
                 </div>
                 
                 <div class="sdg-ticker-item critical">
                     <span class="ticker-item-icon">🦋</span>
-                    <span>Threatened species:</span>
+                    <span>Threatened Species:</span>
                     <span class="ticker-item-value">47,000+</span>
                 </div>
                 
                 <div class="sdg-ticker-item">
                     <span class="ticker-item-icon">🌿</span>
-                    <span>Protected terrestrial areas:</span>
+                    <span>Protected Terrestrial Areas:</span>
                     <span class="ticker-item-value">17.6%</span>
                 </div>
                 
                 <div class="sdg-ticker-item critical">
                     <span class="ticker-item-icon">🐟</span>
-                    <span>Overfished stocks:</span>
+                    <span>Overfished Stocks:</span>
                     <span class="ticker-item-value">35.5%</span>
                 </div>
                 
                 <div class="sdg-ticker-item critical">
                     <span class="ticker-item-icon">😢</span>
-                    <span>Extreme poverty:</span>
+                    <span>Extreme Poverty:</span>
                     <span class="ticker-item-value">808M people</span>
                 </div>
                 
                 <div class="sdg-ticker-item critical">
                     <span class="ticker-item-icon">🍽️</span>
-                    <span>Food insecurity:</span>
+                    <span>Food Insecurity:</span>
                     <span class="ticker-item-value">2.3B people</span>
                     <span class="ticker-urgent-badge">Crisis</span>
                 </div>
                 
                 <div class="sdg-ticker-item critical">
                     <span class="ticker-item-icon">🏃</span>
-                    <span>Forced displacements:</span>
+                    <span>Forcibly Displaced:</span>
                     <span class="ticker-item-value">123M</span>
                 </div>
                 
                 <div class="sdg-ticker-item critical">
                     <span class="ticker-item-icon">💧</span>
-                    <span>Without safe water:</span>
+                    <span>Without Clean Water:</span>
                     <span class="ticker-item-value">2.2B people</span>
                 </div>
                 
                 <div class="sdg-ticker-item">
                     <span class="ticker-item-icon">🔥</span>
-                    <span>Clean cooking access:</span>
+                    <span>Clean Cooking Access:</span>
                     <span class="ticker-item-value">74%</span>
                 </div>
             </div>
         </div>
         
+        <!-- "See more" button -->
         <a href="sdg-infographics-2025-corrected.html" target="_blank" class="sdg-ticker-more">Details →</a>
     </div>
+    <!-- =============================================== -->
+    <!-- END SDG TICKER BANNER -->
 
-    <!-- SDG Widget Floating -->
+    <!-- =============================================== -->
+    <!-- FLOATING SDG WIDGET -->
+    <!-- =============================================== -->
     <div class="sdg-widget" id="sdgWidget">
         <button class="sdg-widget-toggle" id="sdgToggle">
             <span class="widget-icon">📊</span>
@@ -560,17 +598,27 @@
                     
                     <div class="widget-progress-item">
                         <div class="widget-progress-label">
-                            <span>⚠️ Stagnant</span>
-                            <span>30%</span>
+                            <span>⚠️ Marginal Progress</span>
+                            <span>31%</span>
                         </div>
                         <div class="widget-progress-bar">
-                            <div class="widget-progress-fill warning" style="width: 30%;"></div>
+                            <div class="widget-progress-fill warning" style="width: 31%;"></div>
                         </div>
                     </div>
                     
                     <div class="widget-progress-item">
                         <div class="widget-progress-label">
-                            <span>📉 Regressing</span>
+                            <span>⏸️ Stagnation</span>
+                            <span>17%</span>
+                        </div>
+                        <div class="widget-progress-bar">
+                            <div class="widget-progress-fill danger" style="width: 17%;"></div>
+                        </div>
+                    </div>
+                    
+                    <div class="widget-progress-item">
+                        <div class="widget-progress-label">
+                            <span>⬇️ Decline</span>
                             <span>18%</span>
                         </div>
                         <div class="widget-progress-bar">
@@ -578,46 +626,227 @@
                         </div>
                     </div>
                     
-                    <div class="widget-progress-item">
-                        <div class="widget-progress-label">
-                            <span>🔍 Insufficient Data</span>
-                            <span>17%</span>
+                    <div class="widget-cta">
+                        <a href="sdg-infographics-2025-corrected.html" target="_blank" class="widget-btn">
+                            View All Infographics →
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="widget-tab-content" id="tab-environment">
+                    <h4>Environmental Indicators</h4>
+                    <p class="widget-source">Data 2023-2024</p>
+                    
+                    <div class="widget-stat-grid">
+                        <div class="widget-stat-box">
+                            <div class="widget-stat-icon">⚡</div>
+                            <div class="widget-stat-value">92%</div>
+                            <div class="widget-stat-label">Electricity Access</div>
                         </div>
-                        <div class="widget-progress-bar">
-                            <div class="widget-progress-fill neutral" style="width: 17%;"></div>
+                        <div class="widget-stat-box">
+                            <div class="widget-stat-icon">🔥</div>
+                            <div class="widget-stat-value">74%</div>
+                            <div class="widget-stat-label">Clean Cooking</div>
                         </div>
+                        <div class="widget-stat-box">
+                            <div class="widget-stat-icon">💧</div>
+                            <div class="widget-stat-value">74%</div>
+                            <div class="widget-stat-label">Safe Drinking Water</div>
+                        </div>
+                        <div class="widget-stat-box">
+                            <div class="widget-stat-icon">🚽</div>
+                            <div class="widget-stat-value">58%</div>
+                            <div class="widget-stat-label">Sanitation</div>
+                        </div>
+                    </div>
+                    
+                    <div class="widget-cta">
+                        <a href="sdg-infographics-2025-corrected.html" target="_blank" class="widget-btn">
+                            View Details →
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="widget-tab-content" id="tab-climate">
+                    <h4>Climate Emergency 2024</h4>
+                    <p class="widget-source">Hottest year on record</p>
+                    
+                    <div class="widget-climate-alert">
+                        <div class="widget-alert-icon">🌡️</div>
+                        <div class="widget-alert-content">
+                            <div class="widget-alert-value">+1.55°C</div>
+                            <div class="widget-alert-label">Above Pre-Industrial Levels</div>
+                        </div>
+                    </div>
+                    
+                    <div class="widget-stat-list">
+                        <div class="widget-stat-item">
+                            <span class="widget-stat-icon-small">💨</span>
+                            <span class="widget-stat-text">CO₂ Emissions: <strong>37.6 Gt</strong></span>
+                        </div>
+                        <div class="widget-stat-item">
+                            <span class="widget-stat-icon-small">🌊</span>
+                            <span class="widget-stat-text">Coral Bleaching: <strong>84%</strong></span>
+                        </div>
+                        <div class="widget-stat-item">
+                            <span class="widget-stat-icon-small">🔵</span>
+                            <span class="widget-stat-text">Marine Protected Areas: <strong>8.4%</strong></span>
+                        </div>
+                    </div>
+                    
+                    <div class="widget-cta">
+                        <a href="sdg-infographics-2025-corrected.html" target="_blank" class="widget-btn">
+                            View Infographic →
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="widget-tab-content" id="tab-bio">
+                    <h4>Biodiversity Status</h4>
+                    <p class="widget-source">Critical biodiversity loss</p>
+                    
+                    <div class="widget-stat-list">
+                        <div class="widget-stat-item">
+                            <span class="widget-stat-icon-small">🌳</span>
+                            <span class="widget-stat-text">Forest Cover: <strong>31%</strong></span>
+                        </div>
+                        <div class="widget-stat-item">
+                            <span class="widget-stat-icon-small">🦋</span>
+                            <span class="widget-stat-text">Threatened Species: <strong>47,000+</strong></span>
+                        </div>
+                        <div class="widget-stat-item">
+                            <span class="widget-stat-icon-small">🌿</span>
+                            <span class="widget-stat-text">Protected Areas: <strong>17.6%</strong></span>
+                        </div>
+                        <div class="widget-stat-item">
+                            <span class="widget-stat-icon-small">🐟</span>
+                            <span class="widget-stat-text">Overfishing: <strong>35.5%</strong></span>
+                        </div>
+                        <div class="widget-stat-item">
+                            <span class="widget-stat-icon-small">🌾</span>
+                            <span class="widget-stat-text">Degraded Land: <strong>15.5%</strong></span>
+                        </div>
+                    </div>
+                    
+                    <div class="widget-cta">
+                        <a href="sdg-infographics-2025-corrected.html" target="_blank" class="widget-btn">
+                            View Data →
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="widget-tab-content" id="tab-crisis">
+                    <h4>Humanitarian Challenges 2024-2025</h4>
+                    <p class="widget-source">Key figures from global crises</p>
+                    
+                    <div class="widget-stat-list">
+                        <div class="widget-stat-item alert">
+                            <span class="widget-stat-icon-small">😢</span>
+                            <span class="widget-stat-text">Extreme Poverty: <strong>808M</strong></span>
+                        </div>
+                        <div class="widget-stat-item alert">
+                            <span class="widget-stat-icon-small">🍽️</span>
+                            <span class="widget-stat-text">Food Insecurity: <strong>2.3B</strong></span>
+                        </div>
+                        <div class="widget-stat-item alert">
+                            <span class="widget-stat-icon-small">🏃</span>
+                            <span class="widget-stat-text">Forcibly Displaced: <strong>123M</strong></span>
+                        </div>
+                        <div class="widget-stat-item alert">
+                            <span class="widget-stat-icon-small">💧</span>
+                            <span class="widget-stat-text">Without Clean Water: <strong>2.2B</strong></span>
+                        </div>
+                        <div class="widget-stat-item alert">
+                            <span class="widget-stat-icon-small">⚡</span>
+                            <span class="widget-stat-text">Without Electricity: <strong>666M</strong></span>
+                        </div>
+                    </div>
+                    
+                    <div class="widget-cta">
+                        <a href="sdg-infographics-2025-corrected.html" target="_blank" class="widget-btn">
+                            View All Data →
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <!-- =============================================== -->
+    <!-- END SDG WIDGET -->
+    <!-- =============================================== -->
 
-    <!-- Hero Section -->
-    <section id="home" class="hero-section">
-        <div class="hero-background">
-            <div class="hero-overlay"></div>
-        </div>
-        <div class="container">
-            <div class="hero-content">
-                <div class="hero-badge">
-                    <span class="badge-icon">
-                        <svg class="svg-icon" style="width: 20px; height: 20px;">
-                            <use xlink:href="#icon-globe"></use>
-                        </svg>
-                    </span>
-                    <span>2nd International Congress</span>
+    <!-- =============================================== -->
+
+
+
+    
+    <!-- Widget Countdown removed - now in the top-bar -->
+
+    <!-- Partner Ticker Banner - Repositioned -->
+    <div class="partners-ticker-banner">
+        <div class="partners-ticker-label">PARTNERS & INSTITUTIONS</div>
+        <div class="partners-ticker-wrapper">
+            <div class="partners-ticker-content">
+                <!-- First set of logos -->
+                <div class="partner-ticker-item">
+                    <img src="images/7.png" alt="Partner Logo 1" class="partner-logo-image">
                 </div>
+                <div class="partner-ticker-item">
+                    <img src="images/8.jpg" alt="Partner Logo 2" class="partner-logo-image">
+                </div>
+                <div class="partner-ticker-item">
+                    <img src="images/9.jpg" alt="Partner Logo 3" class="partner-logo-image">
+                </div>
+                <div class="partner-ticker-item">
+                    <img src="images/10.png" alt="Partner Logo 4" class="partner-logo-image">
+                </div>
+                <div class="partner-ticker-item">
+                    <img src="images/11.jpg" alt="Partner Logo 5" class="partner-logo-image">
+                </div>
+                <div class="partner-ticker-item">
+                    <img src="images/12.jpg" alt="Partner Logo 6" class="partner-logo-image">
+                </div>
+                <div class="partner-ticker-item">
+                    <img src="images/13.png" alt="Partner Logo 7" class="partner-logo-image">
+                </div>
+           
                 
-                <h1 class="hero-title">
-                    Sustainable Development<br>
-                    for a <span class="highlight">Better Quality of Life</span>
-                </h1>
+                <!-- Second set (copy for continuous scrolling) -->
+                <div class="partner-ticker-item">
+                    <img src="images/7.png" alt="Partner Logo 1" class="partner-logo-image">
+                </div>
+                <div class="partner-ticker-item">
+                    <img src="images/8.jpg" alt="Partner Logo 2" class="partner-logo-image">
+                </div>
+                <div class="partner-ticker-item">
+                    <img src="images/9.jpg" alt="Partner Logo 3" class="partner-logo-image">
+                </div>
+                <div class="partner-ticker-item">
+                    <img src="images/10.png" alt="Partner Logo 4" class="partner-logo-image">
+                </div>
+                <div class="partner-ticker-item">
+                    <img src="images/11.jpg" alt="Partner Logo 5" class="partner-logo-image">
+                </div>
+                <div class="partner-ticker-item">
+                    <img src="images/12.jpg" alt="Partner Logo 6" class="partner-logo-image">
+                </div>
+                <div class="partner-ticker-item">
+                    <img src="images/13.png" alt="Partner Logo 7" class="partner-logo-image">
+                </div>
+             
+            </div>
+        </div>
+    </div>
+
+    <!-- Section Congress Info & Registration -->
+    <div class="congress-highlight-section">
+        <div class="congress-highlight-content">
+            <div class="congress-highlight-text">
+                <h3 class="congress-highlight-subtitle">The largest sustainable development gathering</h3>
+                <h2 class="congress-highlight-title">2nd International Congress<br>on Sustainable Development</h2>
+                <p class="congress-highlight-description">For a Better Quality of Life - Bringing together researchers, experts and field practitioners</p>
                 
-                <p class="hero-subtitle">
-                    Join us in Tlemcen, Algeria for a transdisciplinary event bringing together experts, researchers, and practitioners to share knowledge, experiences, and innovative solutions for a sustainable future.
-                </p>
-                
-                <div class="hero-info">
+                <div class="congress-info-block">
                     <div class="congress-info-item">
                         <span class="congress-info-icon">📅</span>
                         <div class="congress-info-text">
@@ -662,6 +891,8 @@
         </div>
     </div>
     
+    <!-- Hero Slider -->
+
     <!-- Welcome Section -->
     <section id="about" class="welcome-section">
         <div class="container">
@@ -669,7 +900,7 @@
                 <div class="welcome-content">
                     <span class="section-label">Welcome to SDBQL 2026</span>
                     <h2 class="section-title">A transdisciplinary event for a sustainable future</h2>
-                    <p>The 2nd International Congress on Sustainable Development for a Better Quality of Life will bring together experts, researchers, and practitioners to share knowledge, experiences, and innovative solutions.</p>
+                    <p>The 2nd International Congress on Sustainable Development for a Better Quality of Life will bring together experts, researchers and field practitioners to share knowledge, experiences and innovative solutions.</p>
                     <p>Organized by the Faculty of Natural and Life Sciences and Earth and Universe Sciences in collaboration with the Faculty of Economic Sciences at Abou Bekr Belkaid University in Tlemcen.</p>
                     <div class="welcome-stats">
                         <div class="stat-box">
@@ -689,7 +920,7 @@
                 </div>
                 <div class="welcome-image">
                     <div class="image-placeholder">
-                        <img src="../images/4.jpg" alt="SDBQL Congress">
+                        <img src="images/4.jpg" alt="SDBQL Congress">
                     </div>
                     <div class="image-badge">
                         <span class="badge-icon">
@@ -712,7 +943,7 @@
         <div class="container">
             <div class="section-header-center">
                 <span class="section-label">Organization</span>
-                <h2 class="section-title">Organizing Committee <span class="finalization-badge">under finalization</span></h2>
+                <h2 class="section-title">Organizing Committee <span class="finalization-badge">being finalized</span></h2>
             </div>
             <div class="committee-grid">
                 <div class="committee-box honor">
@@ -720,7 +951,7 @@
                     <div class="member-list">
                         <div class="member-item">
                             <strong>Prof. Mourad MEGHACHOU</strong>
-                            <span>President of Tlemcen University</span>
+                            <span>Rector of Tlemcen University</span>
                         </div>
                         <div class="member-item">
                             <strong>Prof. Nassima MOUKHTARI</strong>
@@ -747,6 +978,7 @@
                 </div>
             </div>
             
+            <!-- Committee Join Button -->
             <div style="text-align: center; margin-top: 40px;">
                 <a href="https://docs.google.com/forms/d/e/1FAIpQLSdkZsmZV4B7qkKiukErWhR2sYaqpgjvDrJLS63BuS2n4eS8LQ/viewform?usp=header" target="_blank" class="btn btn-primary" style="padding: 15px 40px; font-size: 16px; display: inline-flex; align-items: center; gap: 10px;">
                     <svg class="svg-icon-sm" style="width: 20px; height: 20px; display: inline-block; fill:currentColor;">
@@ -764,7 +996,7 @@
             <div class="section-header-center">
                 <span class="section-label">Congress Tracks</span>
                 <h2 class="section-title">Thematic Tracks</h2>
-                <p class="section-desc">Six key tracks to build a sustainable future together</p>
+                <p class="section-desc">Six key pillars for building a sustainable future together</p>
             </div>
             <div class="themes-grid">
                 <div class="theme-box">
@@ -795,7 +1027,7 @@
                     <div class="theme-number">05</div>
                     <div class="theme-icon">💚</div>
                     <h3>Health and Well-being</h3>
-                    <p>The link between environment and health, holistic approaches to promote well-being for all.</p>
+                    <p>Link between environment and health, holistic approaches to promote well-being for all.</p>
                 </div>
                 <div class="theme-box">
                     <div class="theme-number">06</div>
@@ -815,7 +1047,7 @@
                 <h2 class="section-title">The Success of SDBQL 2024</h2>
             </div>
             <div class="history-content">
-                <p class="history-intro">The first edition of the SDBQL congress was held on June 26-27, 2024 at the Andalusian Studies Center in Tlemcen, bringing together 169 participants from more than 20 countries.</p>
+                <p class="history-intro">The first edition of the SDBQL congress was held on June 26-27, 2024 at the Andalusian Studies Center in Tlemcen, bringing together 169 participants from over 20 countries.</p>
                 <div class="history-stats-grid">
                     <div class="history-stat-box">
                         <div class="stat-icon-circle">👥</div>
@@ -873,93 +1105,220 @@
         <div class="container">
             <div class="section-header-center">
                 <span class="section-label">Schedule</span>
-                <h2 class="section-title">Important Dates <span class="finalization-badge">under finalization</span></h2>
+                <h2 class="section-title">Important Dates <span class="finalization-badge">being finalized</span></h2>
                 <p class="section-desc">Don't miss any deadline</p>
             </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">March 2026</span>
+                        <h4>Submissions Open</h4>
+                        <p>Submission of abstracts and full papers</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">June 2026</span>
+                        <h4>Submission Deadline</h4>
+                        <p>Final deadline for submitting your contributions</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">July 2026</span>
+                        <h4>Notification of Acceptance</h4>
+                        <p>Authors will be notified of acceptance</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">August 2026</span>
+                        <h4>Early Registration</h4>
+                        <p>Reduced rates for early registrations</p>
+                    </div>
+                </div>
+                <div class="timeline-item featured">
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">September 30, 2026</span>
+                        <h4>SDBQL 2026 Congress</h4>
+                        <p>Event begins in Tlemcen</p>
+                    </div>
+                </div>
+            </div>
             
-            <div class="dates-grid">
-                <div class="date-card">
-                    <div class="date-icon">📝</div>
-                    <div class="date-content">
-                        <span class="date-label">Abstract Submission</span>
-                        <h3>June 30, 2026</h3>
-                        <p>Submit your research abstracts</p>
+            <!-- Participant Registration Button -->
+            <div style="text-align: center; margin-top: 50px;">
+                <a href="https://docs.google.com/forms/d/e/1FAIpQLScnKBF7ApG3s6HqTpQArxrY5RMmayHWlM6b1AcbKfcsSAtQEA/viewform?usp=header" target="_blank" class="btn btn-primary" style="padding: 18px 50px; font-size: 18px; display: inline-flex; align-items: center; gap: 12px; box-shadow: 0 6px 20px rgba(0, 121, 107, 0.4);">
+                    <svg class="svg-icon-sm" style="width: 22px; height: 22px; display: inline-block; fill:currentColor;">
+                        <use xlink:href="#icon-calendar"></use>
+                    </svg>
+                    <span style="font-weight: 700;">Participant Registration - SDBQL 2026</span>
+                    <span style="font-size: 24px;">→</span>
+                </a>
+                <p style="margin-top: 15px; color: #546e7a; font-size: 14px;">Limited spots - Register now!</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sponsoring Section -->
+    <section id="registration" class="sponsoring-section">
+        <div class="container">
+            <div class="section-header-center">
+                <span class="section-label">Partnership</span>
+                <h2 class="section-title">Sponsorship and Registration <span class="finalization-badge">being finalized</span></h2>
+                <p class="section-desc">Become a privileged partner of SDBQL 2026</p>
+            </div>
+            <div class="pricing-boxes">
+                <div class="pricing-box featured">
+                    <div class="pricing-badge">Recommended</div>
+                    <h3>Official Sponsor</h3>
+                    <div class="pricing-price">
+                        <span class="price-amount">1 000 000</span>
+                        <span class="price-currency">DA</span>
                     </div>
+                    <ul class="pricing-features">
+                        <li>✓ Mention on all materials</li>
+                        <li>✓ Logo on letterhead</li>
+                        <li>✓ Presence on website</li>
+                        <li>✓ Presentation booth</li>
+                        <li>✓ Advertising panels</li>
+                        <li>✓ Communication on services</li>
+                        <li>✓ Maximum visibility</li>
+                    </ul>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScODq7J2NlHnOzkSfDHUD6vNay6ZeTq_F4HbliaLun-lJpliw/viewform?usp=header" target="_blank" class="btn btn-primary">Become a sponsor</a>
                 </div>
-                
-                <div class="date-card">
-                    <div class="date-icon">✅</div>
-                    <div class="date-content">
-                        <span class="date-label">Notification of Acceptance</span>
-                        <h3>July 15, 2026</h3>
-                        <p>Authors will be notified</p>
+                <div class="pricing-box">
+                    <h3>Senior Sponsor</h3>
+                    <div class="pricing-price">
+                        <span class="price-amount">400 000</span>
+                        <span class="price-currency">DA</span>
                     </div>
+                    <ul class="pricing-features">
+                        <li>✓ Mention on website</li>
+                        <li>✓ Logo on posters</li>
+                        <li>✓ Presence in documentation</li>
+                        <li>✓ Advertising panels</li>
+                        <li>✓ Communication on services</li>
+                        <li>✓ Significant visibility</li>
+                    </ul>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScODq7J2NlHnOzkSfDHUD6vNay6ZeTq_F4HbliaLun-lJpliw/viewform?usp=header" target="_blank" class="btn btn-outline">Become a sponsor</a>
                 </div>
-                
-                <div class="date-card">
-                    <div class="date-icon">📄</div>
-                    <div class="date-content">
-                        <span class="date-label">Full Paper Submission</span>
-                        <h3>August 15, 2023</h3>
-                        <p>Submit complete papers</p>
+                <div class="pricing-box">
+                    <h3>Junior Sponsor</h3>
+                    <div class="pricing-price">
+                        <span class="price-amount">200 000</span>
+                        <span class="price-currency">DA</span>
                     </div>
+                    <ul class="pricing-features">
+                        <li>✓ Mention on website</li>
+                        <li>✓ Logo on posters</li>
+                        <li>✓ Presence in documentation</li>
+                        <li>✓ Communication on initiatives</li>
+                        <li>✓ Event visibility</li>
+                    </ul>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLScODq7J2NlHnOzkSfDHUD6vNay6ZeTq_F4HbliaLun-lJpliw/viewform?usp=header" target="_blank" class="btn btn-outline">Become a sponsor</a>
                 </div>
-                
-                <div class="date-card">
-                    <div class="date-icon">💳</div>
-                    <div class="date-content">
-                        <span class="date-label">Early Bird Registration</span>
-                        <h3>August 31, 2026</h3>
-                        <p>Reduced registration fees</p>
+            </div>
+            <div class="partners-box">
+                <h3>Confirmed Partners <span class="finalization-badge">being finalized</span></h3>
+                <div class="partners-list">
+                    <div class="partner-item">
+                        <strong>ONA</strong>
+                        <span>National Sanitation Office</span>
                     </div>
-                </div>
-                
-                <div class="date-card">
-                    <div class="date-icon">🎓</div>
-                    <div class="date-content">
-                        <span class="date-label">Congress Dates</span>
-                        <h3>September 30 - October 2, 2026</h3>
-                        <p>Join us in Tlemcen</p>
+                    <div class="partner-item placeholder">
+                        <strong>Your Company</strong>
+                        <span>Join Us</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+    
     <!-- Venue Section -->
     <section id="venue" class="venue-section">
         <div class="container">
-            <div class="venue-info">
-                <span class="section-label">Congress Venue</span>
-                <h2>Abou Bekr Belkaid University<br>Tlemcen, Algeria</h2>
-                <p class="venue-description">Tlemcen, known as the "Little Switzerland of North Africa," offers a unique setting with its rich cultural heritage, stunning landscapes, and welcoming hospitality. The city is famous for its Andalusian monuments, thermal springs, and vibrant traditions.</p>
-                
-                <div class="venue-features">
-                    <div class="venue-feature">
-                        <span class="feature-icon">🏛️</span>
-                        <span>Andalusian Heritage</span>
+            <div class="venue-grid">
+                <div class="venue-info">
+                    <span class="section-label">Congress Venue</span>
+                    <h2>Abou Bekr Belkaid University<br>Tlemcen, Algeria</h2>
+                    <h3>SNV-STU Faculty</h3>
+                    <p class="venue-address"><strong>New Pole - Ring Road II - Mansourah</strong><br>Tlemcen 13000, Algeria</p>
+                    <p>The Faculty of Natural and Life Sciences and Earth and Universe Sciences has modern facilities and spacious amphitheaters to host this major scientific event.</p>
+                    <div class="venue-features">
+                        <div class="feature-item">
+                            <span class="feature-icon">🏛️</span>
+                            <span>Modern Campus</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">🎓</span>
+                            <span>Equipped Amphitheaters</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">📡</span>
+                            <span>High-Speed Internet</span>
+                        </div>
+                        <div class="feature-item">
+                            <span class="feature-icon">🍽️</span>
+                            <span>On-site Catering</span>
+                        </div>
                     </div>
-                    <div class="venue-feature">
-                        <span class="feature-icon">🌿</span>
-                        <span>Natural Beauty</span>
+                    <h4>Discover Tlemcen</h4>
+                    <p>Known as the "Pearl of the Maghreb", Tlemcen is a city rich in history and culture. Participants will be able to discover its exceptional heritage.</p>
+                </div>
+                <div class="venue-images">
+                    <div class="venue-image-main">
+                        <img src="images/3.png" alt="Tlemcen University">
                     </div>
-                    <div class="venue-feature">
-                        <span class="feature-icon">🏨</span>
-                        <span>Quality Accommodation</span>
-                    </div>
-                    <div class="venue-feature">
-                        <span class="feature-icon">✈️</span>
-                        <span>Easy Access</span>
+                    <div class="venue-images-small">
+                        <div class="venue-image-small">
+                            <img src="images/2.jpg" alt="Campus">
+                        </div>
+                        <div class="venue-image-small">
+                            <img src="images/1.jpg" alt="Amphitheater">
+                        </div>
                     </div>
                 </div>
-                
-                <a href="https://www.google.com/maps/place/Université+Abou+Bekr+Belkaid+Tlemcen/@34.8823,-1.2985,17z" target="_blank" class="btn btn-outline">
-                    <span>View on Map</span>
-                    <span>📍</span>
+            </div>
+            
+            <!-- NEW: Interactive Google Maps -->
+            <div class="venue-map">
+                <iframe 
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d26253.726031651!2d-1.342804725!3d34.8812913!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd78c8ec536da0f1%3A0x4f7f6b8c8c8c8c8c!2sFacult%C3%A9%20SNV-STU%2C%20Universit%C3%A9%20de%20Tlemcen!5e0!3m2!1sfr!2sdz!4v1706458000000!5m2!1sfr!2sdz" 
+                    allowfullscreen="" 
+                    loading="lazy" 
+                    referrerpolicy="no-referrer-when-downgrade"
+                    title="Location of SNV-STU Faculty Tlemcen">
+                </iframe>
+            </div>
+            
+            <!-- Directions Instructions -->
+            <div class="map-directions">
+                <h4>
+                    <svg class="svg-icon" style="width: 24px; height: 24px; display: inline-block; vertical-align: middle; margin-right: 8px;">
+                        <use xlink:href="#icon-directions"></use>
+                    </svg>
+                    How to Get There
+                </h4>
+                <p><strong>By car:</strong> Take Ring Road II, exit at Mansourah</p>
+                <p><strong>By transport:</strong> Bus lines 3 and 7, stop at "University SNV-STU"</p>
+                <p><strong>GPS coordinates:</strong> 34.8813° N, 1.3156° W</p>
+                <a href="https://maps.app.goo.gl/R4V7KSkY1Ah8ioUS9" target="_blank" class="btn btn-outline">
+                    <svg class="svg-icon-sm" style="width: 18px; height: 18px; display: inline-block; vertical-align: middle; margin-right: 5px;">
+                        <use xlink:href="#icon-map"></use>
+                    </svg>
+                    Get Directions
                 </a>
             </div>
         </div>
     </section>
+
 
     <!-- Contact Section -->
     <section id="contact" class="contact-section">
@@ -968,56 +1327,63 @@
                 <span class="section-label">Contact Us</span>
                 <h2 class="section-title">Let's Stay in Touch</h2>
             </div>
-            
             <div class="contact-grid">
-                <div class="contact-info">
-                    <div class="contact-item">
-                        <div class="contact-icon">📍</div>
-                        <div class="contact-details">
-                            <h3>Address</h3>
-                            <p>Faculty of Natural and Life Sciences<br>Abou Bekr Belkaid University<br>Tlemcen, Algeria</p>
+                <div class="contact-info-box">
+                    <h3>General Information</h3>
+                    <div class="contact-list">
+                        <div class="contact-item">
+                            <span class="contact-icon">📧</span>
+                            <div>
+                                <strong>Email</strong>
+                                <a href="/cdn-cgi/l/email-protection#1133343f303c3424233f3439302311363c30383d7f323e3c"><span class="__cf_email__" data-cfemail="2301060d020e0616110d060b021123040e020a0f4d000c0e">[email&#160;protected]</span></a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">📱</span>
+                            <div>
+                                <strong>Phone</strong>
+                                <a href="tel:+213432173786">+213 43 21 73 86</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">📠</span>
+                            <div>
+                                <strong>Fax</strong>
+                                <span>+213 43 21 55 34</span>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <span class="contact-icon">📍</span>
+                            <div>
+                                <strong>Address</strong>
+                                <span>BP 226 Tlemcen 13000, Algeria</span>
+                            </div>
                         </div>
                     </div>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">📧</div>
-                        <div class="contact-details">
-                            <h3>Email</h3>
-                            <p>sdbql2026@univ-tlemcen.dz</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-item">
-                        <div class="contact-icon">📞</div>
-                        <div class="contact-details">
-                            <h3>Phone</h3>
-                            <p>+213 43 21 73 86</p>
-                        </div>
-                    </div>
-                    
-                    <div class="contact-social">
-                        <a href="https://www.facebook.com/profile.php?id=61555922292059" target="_blank" class="social-link">Facebook</a>
-                        <a href="https://sdbql2024tlemcen.wixsite.com/main" target="_blank" class="social-link">SDBQL 2024</a>
+                    <div class="direction-info">
+                        <h4>Congress Direction</h4>
+                        <p><strong>President:</strong> Prof. Nassima Amal Soulimane</p>
+                        <p><strong>General Coordinator:</strong> Prof. Dr. Benameur NEHAR</p>
                     </div>
                 </div>
-                
-                <div class="contact-form">
-                    <h3>Send us a Message</h3>
-                    <form>
+                <div class="contact-form-box">
+                    <h3>Send Us a Message</h3>
+                    <form class="contact-form" id="contactForm">
                         <div class="form-group">
-                            <input type="text" placeholder="Your Name" required>
+                            <input type="text" name="name" placeholder="Full Name" required>
                         </div>
                         <div class="form-group">
-                            <input type="email" placeholder="Your Email" required>
+                            <input type="email" name="email" placeholder="Email" required>
                         </div>
                         <div class="form-group">
-                            <input type="text" placeholder="Subject">
+                            <input type="text" name="subject" placeholder="Subject" required>
                         </div>
                         <div class="form-group">
-                            <textarea placeholder="Your Message" rows="5" required></textarea>
+                            <textarea name="message" placeholder="Your message" rows="5" required></textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Send Message</button>
+                        <button type="submit" class="btn btn-primary btn-block">Send Message</button>
                     </form>
+                    <div id="contactStatus" style="margin-top: 15px; padding: 10px; border-radius: 5px; font-size: 14px; display: none;"></div>
                 </div>
             </div>
         </div>
@@ -1027,22 +1393,21 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-grid">
-                <div class="footer-brand">
+                <div class="footer-col">
                     <div class="footer-logo">
                         <span class="logo-icon">
-                            <svg class="svg-icon" style="width: 40px; height: 40px;">
+                            <svg class="svg-icon" style="width: 45px; height: 45px;">
                                 <use xlink:href="#icon-sdg-wheel"></use>
                             </svg>
                         </span>
-                        <div class="logo-text">
-                            <span class="logo-title">SDBQL</span>
-                            <span class="logo-subtitle">2026</span>
+                        <div>
+                            <h4>SDBQL 2026</h4>
+                            <p>Sustainable Development for a Better Quality of Life</p>
                         </div>
                     </div>
-                    <p>2nd International Congress on Sustainable Development for a Better Quality of Life</p>
+                    <p>A transdisciplinary event dedicated to Sustainable Development Goals and improving quality of life.</p>
                 </div>
-                
-                <div class="footer-links">
+                <div class="footer-col">
                     <h4>Quick Links</h4>
                     <ul>
                         <li><a href="#about">About</a></li>
@@ -1051,36 +1416,54 @@
                         <li><a href="#dates">Important Dates</a></li>
                     </ul>
                 </div>
-                
-                <div class="footer-links">
-                    <h4>Information</h4>
+                <div class="footer-col">
+                    <h4>Participation</h4>
                     <ul>
-                        <li><a href="#registration">Sponsoring</a></li>
+                        <li><a href="#registration">Sponsorship</a></li>
                         <li><a href="#venue">Venue</a></li>
                         <li><a href="#contact">Contact</a></li>
                         <li><a href="https://sdbql2024tlemcen.wixsite.com/main" target="_blank">2024 Edition</a></li>
                     </ul>
                 </div>
-                
-                <div class="footer-contact">
-                    <h4>Contact</h4>
-                    <p>📍 Tlemcen, Algeria</p>
-                    <p>📧 sdbql2026@univ-tlemcen.dz</p>
-                    <p>📞 +213 43 21 73 86</p>
+                <div class="footer-col">
+                    <h4>Newsletter</h4>
+                    <p>Stay informed about news</p>
+                    <form class="newsletter-form" id="newsletterForm">
+                        <input type="email" name="email" placeholder="Your email" required>
+                        <button type="submit">→</button>
+                    </form>
+                    <div id="newsletterStatus" style="margin-top: 10px; font-size: 12px; display: none;"></div>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/profile.php?id=61555922292059" target="_blank">Facebook</a>
+                        <a href="https://sdbql2024tlemcen.wixsite.com/main" target="_blank">2024 Site</a>
+                    </div>
                 </div>
             </div>
             
-            <div class="footer-bottom">
-                <p>&copy; 2026 SDBQL Congress. All rights reserved.</p>
+            <!-- Visitor Counter -->
+            <div style="text-align: center; margin-top: 40px; padding-top: 30px; border-top: 1px solid rgba(255,255,255,0.1);">
+                <p style="color: rgba(255,255,255,0.7); margin-bottom: 15px; font-size: 14px;">Site Visitors</p>
+                <a href="https://info.flagcounter.com/vwhK"><img src="https://s01.flagcounter.com/count/vwhK/bg_FFFFFF/txt_000000/border_CCCCCC/columns_2/maxflags_18/viewers_0/labels_0/pageviews_0/flags_0/percent_0/" alt="Flag Counter" border="0"></a>
+            </div>
+            
+            <!-- Copyright -->
+            <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid rgba(255,255,255,0.1);">
+                <p style="color: rgba(255,255,255,0.6); font-size: 13px;">© 2026 SDBQL - Abou Bekr Belkaid University, Tlemcen. All rights reserved.</p>
+                <p style="color: rgba(255,255,255,0.5); font-size: 12px; margin-top: 10px;">
+                    Website created by 
+                    <a href="https://dz.linkedin.com/in/benameur-nehar-86459693" target="_blank" style="color: #00bfa5; text-decoration: none; font-weight: 600; transition: all 0.3s ease;">
+                        Dr Nehar Benameur
+                    </a>
+                </p>
             </div>
         </div>
     </footer>
-
-    <!-- JavaScript -->
-    <script src="../script.js"></script>
-    <script src="../forms-handler.js"></script>
-    <script src="../topbar-enhancements.js"></script>
-    <script src="../sdg-widget.js"></script>
-    <script src="../google-translate.js"></script>
+    
+    <!-- JavaScript Scripts -->
+    <script src="script.js"></script>
+    <script src="sdg-widget.js"></script>
+    <script src="enhancements.js"></script>
+    <script src="topbar-enhancements.js"></script>
+    <script src="forms-handler.js"></script>
 </body>
 </html>
