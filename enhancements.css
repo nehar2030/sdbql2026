@@ -144,7 +144,7 @@
 .partners-ticker-content {
     display: flex;
     gap: 40px;
-    animation: scroll-left 30s linear infinite;
+    animation: scroll-left 15s linear infinite;
     padding: 20px 0;
 }
 
