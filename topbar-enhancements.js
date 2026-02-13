@@ -43,14 +43,21 @@
     }
     
     // ========================================
-    // 2. SÉLECTEUR DE LANGUE
+    // 2. SÉLECTEUR DE LANGUE (NOUVEAU SYSTÈME DE BOUTONS)
     // ========================================
+    // Le sélecteur de langue a été remplacé par des boutons simples:
+    // - FR: lien vers index.html
+    // - EN: lien vers index-en.html  
+    // - AR: lien vers index-ar.html
+    // Ce code JavaScript n'est plus nécessaire car les boutons
+    // sont maintenant des liens directs HTML.
     
+    // Ancien code (commenté):
+    /*
     const langToggle = document.getElementById('langToggle');
     const langDropdown = document.getElementById('langDropdown');
     const langOptions = document.querySelectorAll('.lang-option');
     
-    // Toggle du dropdown
     if (langToggle && langDropdown) {
         langToggle.addEventListener('click', function(e) {
             e.stopPropagation();
@@ -58,7 +65,6 @@
             langToggle.classList.toggle('active');
         });
         
-        // Fermer le dropdown en cliquant ailleurs
         document.addEventListener('click', function(e) {
             if (!langToggle.contains(e.target) && !langDropdown.contains(e.target)) {
                 langDropdown.classList.remove('active');
@@ -67,31 +73,23 @@
         });
     }
     
-    // Changement de langue
     langOptions.forEach(option => {
         option.addEventListener('click', function(e) {
             e.preventDefault();
             const selectedLang = this.getAttribute('data-lang');
             changeLanguage(selectedLang);
-            
-            // Mettre à jour l'affichage
             langOptions.forEach(opt => opt.classList.remove('active'));
             this.classList.add('active');
-            
-            // Mettre à jour le bouton
             const langText = langToggle.querySelector('.lang-text');
             if (langText) {
                 langText.textContent = selectedLang.toUpperCase();
             }
-            
-            // Fermer le dropdown
             langDropdown.classList.remove('active');
             langToggle.classList.remove('active');
-            
-            // Sauvegarder la préférence
             localStorage.setItem('sdbql-language', selectedLang);
         });
     });
+    */
     
     // ========================================
     // 3. SYSTÈME DE TRADUCTION
@@ -300,6 +298,12 @@
     
     // Charger la langue sauvegardée au démarrage
     function initializeLanguage() {
+        // Le nouveau système de boutons ne nécessite pas de JavaScript
+        // Les liens directs vers les pages suffisent
+        
+        // Ce code est commenté car le nouveau système de boutons
+        // ne nécessite pas de manipulation JavaScript
+        /*
         const savedLang = localStorage.getItem('sdbql-language') || 'fr';
         
         // Mettre à jour l'affichage du bouton
@@ -321,6 +325,7 @@
         if (savedLang !== 'fr') {
             changeLanguage(savedLang);
         }
+        */
     }
     
     // Initialiser la langue au chargement
