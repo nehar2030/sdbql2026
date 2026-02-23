@@ -1,0 +1,1904 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SDBQL 2026 — Gestion Guest Speakers</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@300;400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   ROOT & RESET
+============================================================ */
+:root {
+  --bg:       #f5f3ee;
+  --bg2:      #ede9e1;
+  --surface:  #ffffff;
+  --border:   #ddd8cf;
+  --border2:  #c9c3b8;
+
+  --ink:      #1a1714;
+  --ink2:     #3d3830;
+  --muted:    #8c8478;
+
+  --gold:     #b8922a;
+  --gold-lt:  #f0e4c0;
+  --gold-bg:  #fdf8ed;
+
+  --green:    #2d6a4f;
+  --green-lt: #d8ead3;
+  --green-bg: #f0f7ee;
+
+  --blue:     #1d4e89;
+  --blue-lt:  #c9daf8;
+  --blue-bg:  #eef4fd;
+
+  --red:      #a33b2a;
+  --red-lt:   #f4cccc;
+  --red-bg:   #fdf0ee;
+
+  --orange:   #b45309;
+  --orange-lt:#fde68a;
+  --orange-bg:#fffbeb;
+
+  --violet:   #5b21b6;
+  --violet-lt:#e9d5ff;
+  --violet-bg:#f5f0ff;
+
+  --teal:     #0f766e;
+  --teal-lt:  #ccfbf1;
+  --teal-bg:  #f0fdfa;
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--bg);
+  color: var(--ink);
+  min-height: 100vh;
+}
+
+/* ============================================================
+   PRINT BUTTON
+============================================================ */
+.print-btn {
+  position: fixed;
+  top: 1.5rem; right: 1.5rem;
+  background: var(--ink);
+  color: #fff;
+  border: none;
+  padding: 0.6rem 1.2rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  border-radius: 4px;
+  cursor: pointer;
+  z-index: 999;
+  display: flex; align-items: center; gap: 0.5rem;
+  transition: background 0.2s;
+}
+.print-btn:hover { background: var(--gold); }
+
+/* ============================================================
+   HEADER MASTHEAD
+============================================================ */
+.masthead {
+  background: var(--ink);
+  color: #f5f3ee;
+  padding: 3rem 3rem 2.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.masthead::before {
+  content: 'SDBQL';
+  position: absolute;
+  right: -1rem; top: -1.5rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 14rem;
+  font-weight: 700;
+  color: rgba(255,255,255,0.03);
+  letter-spacing: -0.04em;
+  pointer-events: none;
+  line-height: 1;
+}
+
+.masthead-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.masthead-label {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(245,243,238,0.45);
+  margin-bottom: 0.6rem;
+}
+
+.masthead h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 700;
+  line-height: 1.1;
+  color: #f5f3ee;
+  margin-bottom: 0.4rem;
+}
+
+.masthead-sub {
+  font-size: 0.88rem;
+  color: rgba(245,243,238,0.5);
+  font-weight: 300;
+  max-width: 500px;
+  line-height: 1.6;
+}
+
+.masthead-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 0.6rem;
+}
+
+.meta-chip {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.35rem 0.8rem;
+  border-radius: 3px;
+  white-space: nowrap;
+}
+
+.chip-gold   { background: rgba(184,146,42,0.2);  color: #d4a943; border: 1px solid rgba(184,146,42,0.3); }
+.chip-green  { background: rgba(45,106,79,0.2);   color: #4ade80; border: 1px solid rgba(45,106,79,0.4); }
+.chip-blue   { background: rgba(29,78,137,0.2);   color: #93c5fd; border: 1px solid rgba(29,78,137,0.4); }
+
+.masthead-divider {
+  border: none;
+  border-top: 1px solid rgba(245,243,238,0.1);
+  margin: 2rem 0 1.5rem;
+}
+
+/* Summary stats */
+.masthead-stats {
+  display: flex;
+  gap: 3rem;
+  flex-wrap: wrap;
+}
+
+.stat { }
+.stat-num {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #f5f3ee;
+  line-height: 1;
+}
+.stat-lbl {
+  font-size: 0.72rem;
+  color: rgba(245,243,238,0.45);
+  font-family: 'Space Mono', monospace;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  margin-top: 0.2rem;
+}
+
+/* ============================================================
+   SECTION WRAPPER
+============================================================ */
+.wrap {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 2.5rem 2rem;
+}
+
+.section-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--ink);
+  margin-bottom: 0.3rem;
+}
+.section-sub {
+  font-size: 0.82rem;
+  color: var(--muted);
+  margin-bottom: 1.8rem;
+  font-weight: 300;
+}
+
+/* ============================================================
+   PROCESS TIMELINE (horizontal)
+============================================================ */
+.process-strip {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 1.5rem 2rem;
+  margin-bottom: 2.5rem;
+  overflow-x: auto;
+}
+
+.process-title {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1.2rem;
+}
+
+.process-steps {
+  display: flex;
+  align-items: flex-start;
+  gap: 0;
+  min-width: 700px;
+}
+
+.proc-step {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  text-align: center;
+}
+
+.proc-step:not(:last-child)::after {
+  content: '';
+  position: absolute;
+  top: 16px;
+  left: 50%;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), var(--border2));
+  z-index: 0;
+}
+
+.proc-dot {
+  width: 34px; height: 34px;
+  border-radius: 50%;
+  background: var(--gold-bg);
+  border: 2px solid var(--gold);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.68rem;
+  font-weight: 700;
+  color: var(--gold);
+  position: relative;
+  z-index: 1;
+  margin-bottom: 0.6rem;
+  flex-shrink: 0;
+}
+
+.proc-name {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--ink2);
+  line-height: 1.3;
+  padding: 0 0.3rem;
+}
+
+.proc-date {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  color: var(--muted);
+  margin-top: 0.2rem;
+}
+
+/* ============================================================
+   SPEAKER CARDS GRID
+============================================================ */
+.cards-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+/* Individual Speaker Card */
+.spk-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  transition: box-shadow 0.25s, transform 0.2s;
+  position: relative;
+}
+
+.spk-card:hover {
+  box-shadow: 0 8px 40px rgba(0,0,0,0.1);
+  transform: translateY(-2px);
+}
+
+/* Color accent top bar */
+.spk-card-bar {
+  height: 4px;
+  width: 100%;
+}
+
+.spk-card-head {
+  padding: 1.3rem 1.4rem 1rem;
+  display: flex;
+  gap: 1rem;
+  align-items: flex-start;
+  border-bottom: 1px solid var(--border);
+}
+
+.spk-avatar {
+  width: 58px; height: 58px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.6rem;
+  position: relative;
+  border: 2px solid var(--border);
+}
+
+.spk-format-badge {
+  position: absolute;
+  bottom: -3px; right: -3px;
+  width: 20px; height: 20px;
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.65rem;
+  border: 2px solid white;
+}
+
+.spk-info { flex: 1; min-width: 0; }
+
+.spk-role {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.25rem;
+  font-weight: 700;
+}
+
+.spk-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--ink);
+  line-height: 1.2;
+  margin-bottom: 0.2rem;
+}
+
+.spk-institution {
+  font-size: 0.78rem;
+  color: var(--muted);
+  line-height: 1.4;
+  margin-bottom: 0.35rem;
+}
+
+.spk-tags {
+  display: flex; flex-wrap: wrap; gap: 0.3rem;
+}
+
+.spk-tag {
+  font-size: 0.62rem;
+  font-family: 'Space Mono', monospace;
+  padding: 0.15rem 0.45rem;
+  border-radius: 3px;
+  font-weight: 700;
+}
+
+/* Card body */
+.spk-body {
+  padding: 1rem 1.4rem;
+}
+
+.spk-section-lbl {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.58rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 0.5rem;
+  margin-top: 0.8rem;
+}
+.spk-section-lbl:first-child { margin-top: 0; }
+
+.spk-conference-title {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--ink2);
+  line-height: 1.4;
+  font-style: italic;
+}
+
+/* Timeline mini inside card */
+.spk-timeline {
+  display: grid;
+  gap: 0.45rem;
+}
+
+.spk-tl-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+}
+
+.spk-tl-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  margin-top: 5px;
+}
+
+.spk-tl-date {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.62rem;
+  color: var(--gold);
+  font-weight: 700;
+  flex-shrink: 0;
+  min-width: 70px;
+}
+
+.spk-tl-action {
+  font-size: 0.78rem;
+  color: var(--ink2);
+  line-height: 1.4;
+}
+
+/* Status checkboxes */
+.spk-checklist {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.spk-check {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-size: 0.78rem;
+  color: var(--ink2);
+  cursor: pointer;
+  padding: 0.25rem 0.4rem;
+  border-radius: 4px;
+  transition: background 0.15s;
+  user-select: none;
+}
+.spk-check:hover { background: var(--bg); }
+
+.chk-box {
+  width: 15px; height: 15px;
+  border-radius: 3px;
+  border: 1.5px solid var(--border2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.55rem;
+  flex-shrink: 0;
+  transition: all 0.15s;
+}
+.spk-check.done .chk-box {
+  background: var(--green);
+  border-color: var(--green);
+  color: white;
+}
+.spk-check.done span { text-decoration: line-through; color: var(--muted); }
+
+/* Card footer */
+.spk-foot {
+  padding: 0.8rem 1.4rem;
+  border-top: 1px solid var(--border);
+  background: var(--bg);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.spk-responsible {
+  font-size: 0.75rem;
+  color: var(--muted);
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.responsible-avatar {
+  width: 22px; height: 22px;
+  border-radius: 50%;
+  background: var(--ink);
+  color: #fff;
+  font-size: 0.55rem;
+  font-family: 'Space Mono', monospace;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+
+.status-pill {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.6rem;
+  padding: 0.22rem 0.6rem;
+  border-radius: 99px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+.status-todo     { background: var(--red-lt);    color: var(--red);    border: 1px solid rgba(163,59,42,0.25); }
+.status-progress { background: var(--orange-lt); color: var(--orange); border: 1px solid rgba(180,83,9,0.3); }
+.status-done     { background: var(--green-lt);  color: var(--green);  border: 1px solid rgba(45,106,79,0.3); }
+.status-wait     { background: var(--blue-lt);   color: var(--blue);   border: 1px solid rgba(29,78,137,0.3); }
+
+/* ============================================================
+   SESSION DAY PLAN TABLE
+============================================================ */
+.day-table-wrap {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 2.5rem;
+}
+
+.day-table-header {
+  display: grid;
+  grid-template-columns: 110px 1fr 1fr 1fr;
+  background: var(--ink);
+  color: rgba(245,243,238,0.8);
+  font-family: 'Space Mono', monospace;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+.day-table-header div { padding: 0.9rem 1rem; }
+
+.day-row {
+  display: grid;
+  grid-template-columns: 110px 1fr 1fr 1fr;
+  border-bottom: 1px solid var(--border);
+  transition: background 0.15s;
+}
+.day-row:last-child { border-bottom: none; }
+.day-row:hover { background: var(--bg); }
+
+.day-cell {
+  padding: 0.9rem 1rem;
+  font-size: 0.82rem;
+  vertical-align: top;
+  border-right: 1px solid var(--border);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.day-cell:last-child { border-right: none; }
+
+.day-cell .time {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.7rem;
+  color: var(--gold);
+  font-weight: 700;
+}
+
+.day-cell .event-name {
+  font-weight: 600;
+  color: var(--ink);
+  font-size: 0.82rem;
+  line-height: 1.3;
+}
+
+.day-cell .event-sub {
+  font-size: 0.73rem;
+  color: var(--muted);
+  margin-top: 0.2rem;
+  line-height: 1.4;
+}
+
+.day-badge {
+  font-family: 'Space Mono', monospace;
+  font-size: 0.58rem;
+  padding: 0.15rem 0.4rem;
+  border-radius: 2px;
+  margin-top: 0.3rem;
+  display: inline-block;
+  width: fit-content;
+}
+
+.day-sep {
+  grid-column: 1 / -1;
+  background: var(--bg2);
+  padding: 0.45rem 1rem;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.62rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--muted);
+  border-bottom: 1px solid var(--border);
+}
+
+/* ============================================================
+   TECH CHECKLIST TABLE
+============================================================ */
+.tech-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 1.2rem;
+  margin-bottom: 2.5rem;
+}
+
+.tech-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.tech-card-head {
+  padding: 0.8rem 1.1rem;
+  display: flex; align-items: center; gap: 0.7rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+}
+
+.tech-icon {
+  font-size: 1.2rem;
+}
+
+.tech-title {
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.tech-card-body {
+  padding: 0.9rem 1.1rem;
+}
+
+.tech-list {
+  list-style: none;
+  display: grid;
+  gap: 0.4rem;
+}
+
+.tech-list li {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  color: var(--ink2);
+  line-height: 1.5;
+  cursor: pointer;
+  padding: 0.2rem 0.3rem;
+  border-radius: 3px;
+  transition: background 0.12s;
+}
+.tech-list li:hover { background: var(--bg); }
+
+.tech-list li .cb {
+  width: 14px; height: 14px;
+  border-radius: 3px;
+  border: 1.5px solid var(--border2);
+  flex-shrink: 0;
+  margin-top: 2px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.5rem;
+  transition: all 0.15s;
+}
+.tech-list li.ck .cb { background: var(--green); border-color: var(--green); color: #fff; }
+.tech-list li.ck span { text-decoration: line-through; color: var(--muted); }
+
+/* ============================================================
+   LETTER TEMPLATE
+============================================================ */
+.letter-wrap {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  margin-bottom: 2.5rem;
+}
+
+.letter-tabs {
+  display: flex;
+  border-bottom: 1px solid var(--border);
+  background: var(--bg);
+}
+
+.letter-tab {
+  padding: 0.75rem 1.5rem;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--muted);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+  transition: all 0.15s;
+  background: none;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+}
+.letter-tab.active {
+  color: var(--gold);
+  border-bottom-color: var(--gold);
+}
+
+.letter-content {
+  display: none;
+  padding: 1.5rem 2rem;
+}
+.letter-content.active { display: block; }
+
+.letter-body {
+  font-size: 0.85rem;
+  line-height: 1.8;
+  color: var(--ink2);
+  white-space: pre-wrap;
+  font-family: 'DM Sans', sans-serif;
+}
+
+.letter-field {
+  display: inline;
+  background: var(--gold-lt);
+  color: var(--gold);
+  padding: 0.05rem 0.3rem;
+  border-radius: 2px;
+  font-family: 'Space Mono', monospace;
+  font-size: 0.75em;
+}
+
+/* ============================================================
+   FOOTER
+============================================================ */
+footer {
+  background: var(--ink);
+  color: rgba(245,243,238,0.4);
+  text-align: center;
+  padding: 2rem;
+  font-size: 0.75rem;
+  font-family: 'Space Mono', monospace;
+  letter-spacing: 0.08em;
+}
+
+/* ============================================================
+   UTILITIES
+============================================================ */
+.sep {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2.5rem 0;
+}
+
+@media (max-width: 700px) {
+  .cards-grid { grid-template-columns: 1fr; }
+  .day-table-header, .day-row { grid-template-columns: 90px 1fr; }
+  .day-table-header div:nth-child(n+3),
+  .day-row .day-cell:nth-child(n+3) { display: none; }
+  .masthead { padding: 2rem 1.2rem; }
+  .wrap { padding: 1.5rem 1rem; }
+}
+
+@media print {
+  .print-btn { display: none; }
+  .spk-card { break-inside: avoid; }
+  body { background: white; }
+}
+
+/* COLOR THEMES per card */
+.theme-keynote-1 .spk-card-bar { background: linear-gradient(90deg, #b8922a, #d4a943); }
+.theme-keynote-1 .spk-role { color: var(--gold); }
+.theme-keynote-1 .spk-tl-dot { background: var(--gold); }
+.theme-keynote-1 .spk-avatar { background: var(--gold-bg); border-color: var(--gold-lt); }
+
+.theme-keynote-4 .spk-card-bar { background: linear-gradient(90deg, #2d6a4f, #40916c); }
+.theme-keynote-4 .spk-role { color: var(--green); }
+.theme-keynote-4 .spk-tl-dot { background: var(--green); }
+.theme-keynote-4 .spk-avatar { background: var(--green-bg); border-color: var(--green-lt); }
+
+.theme-online .spk-card-bar { background: linear-gradient(90deg, #1d4e89, #2563eb); }
+.theme-online .spk-role { color: var(--blue); }
+.theme-online .spk-tl-dot { background: var(--blue); }
+.theme-online .spk-avatar { background: var(--blue-bg); border-color: var(--blue-lt); }
+
+.theme-hybrid .spk-card-bar { background: linear-gradient(90deg, #5b21b6, #7c3aed); }
+.theme-hybrid .spk-role { color: var(--violet); }
+.theme-hybrid .spk-tl-dot { background: var(--violet); }
+.theme-hybrid .spk-avatar { background: var(--violet-bg); border-color: var(--violet-lt); }
+
+.theme-teal .spk-card-bar { background: linear-gradient(90deg, #0f766e, #14b8a6); }
+.theme-teal .spk-role { color: var(--teal); }
+.theme-teal .spk-tl-dot { background: var(--teal); }
+.theme-teal .spk-avatar { background: var(--teal-bg); border-color: var(--teal-lt); }
+
+</style>
+</head>
+<body>
+
+<button class="print-btn" onclick="window.print()">🖨 Imprimer / PDF</button>
+
+<!-- ============================================================
+     MASTHEAD
+============================================================ -->
+<div class="masthead">
+  <div class="masthead-top">
+    <div>
+      <div class="masthead-label">Document interne — Équipe d'organisation</div>
+      <h1>Gestion des<br>Guest Speakers</h1>
+      <p class="masthead-sub">Carte complète de suivi : rôles, dates, actions, responsables<br>Congrès SDBQL 2026 — Université Abou Bekr Belkaid, Tlemcen</p>
+    </div>
+    <div class="masthead-meta">
+      <span class="meta-chip chip-gold">SDBQL 2026</span>
+      <span class="meta-chip chip-green">30 Sept — 2 Oct 2026</span>
+      <span class="meta-chip chip-blue">Format Hybride</span>
+    </div>
+  </div>
+  <hr class="masthead-divider">
+  <div class="masthead-stats">
+    <div class="stat"><div class="stat-num">10</div><div class="stat-lbl">Speakers Total</div></div>
+    <div class="stat"><div class="stat-num">4</div><div class="stat-lbl">Keynotes Plénières</div></div>
+    <div class="stat"><div class="stat-num">6</div><div class="stat-lbl">Guest Speakers par Axe</div></div>
+    <div class="stat"><div class="stat-num">4</div><div class="stat-lbl">Présentiel</div></div>
+    <div class="stat"><div class="stat-num">6</div><div class="stat-lbl">En Ligne</div></div>
+  </div>
+</div>
+
+<!-- ============================================================
+     PROCESS STRIP
+============================================================ -->
+<div class="wrap">
+
+  <div class="process-strip">
+    <div class="process-title">📅 Processus de gestion — 7 étapes de Mars à Octobre 2026</div>
+    <div class="process-steps">
+      <div class="proc-step">
+        <div class="proc-dot">01</div>
+        <div class="proc-name">Identification</div>
+        <div class="proc-date">Mars — S1</div>
+      </div>
+      <div class="proc-step">
+        <div class="proc-dot">02</div>
+        <div class="proc-name">Lettre d'invitation</div>
+        <div class="proc-date">Mars — S2</div>
+      </div>
+      <div class="proc-step">
+        <div class="proc-dot">03</div>
+        <div class="proc-name">Confirmation</div>
+        <div class="proc-date">Avril — S1</div>
+      </div>
+      <div class="proc-step">
+        <div class="proc-dot">04</div>
+        <div class="proc-name">Collecte contenus</div>
+        <div class="proc-date">Avril — S2</div>
+      </div>
+      <div class="proc-step">
+        <div class="proc-dot">05</div>
+        <div class="proc-name">Publication site</div>
+        <div class="proc-date">Mai — S1</div>
+      </div>
+      <div class="proc-step">
+        <div class="proc-dot">06</div>
+        <div class="proc-name">Test technique</div>
+        <div class="proc-date">22 Sept 2026</div>
+      </div>
+      <div class="proc-step">
+        <div class="proc-dot">07</div>
+        <div class="proc-name">Jour J</div>
+        <div class="proc-date">30/9 — 2/10</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================================
+       SECTION 1 : KEYNOTE SPEAKERS
+  ============================================================ -->
+  <div class="section-title">🎤 Keynote Speakers — Séances Plénières</div>
+  <div class="section-sub">4 conférenciers principaux visibles par TOUS les participants (300+). Présence physique ou en ligne selon le profil.</div>
+
+  <div class="cards-grid">
+
+    <!-- KEYNOTE 1 — Présentiel — Ouverture -->
+    <div class="spk-card theme-keynote-1">
+      <div class="spk-card-bar"></div>
+      <div class="spk-card-head">
+        <div class="spk-avatar">
+          🎓
+          <div class="spk-format-badge" style="background:#2d6a4f">🏛</div>
+        </div>
+        <div class="spk-info">
+          <div class="spk-role">Keynote 1 · Cérémonie d'ouverture · Présentiel</div>
+          <div class="spk-name">À confirmer — Profil Senior</div>
+          <div class="spk-institution">Chercheur ODD reconnu — Université algérienne ou MESRS</div>
+          <div class="spk-tags">
+            <span class="spk-tag" style="background:var(--gold-bg);color:var(--gold);border:1px solid var(--gold-lt)">🏛 Présentiel</span>
+            <span class="spk-tag" style="background:var(--green-bg);color:var(--green);border:1px solid var(--green-lt)">Plénière</span>
+          </div>
+        </div>
+      </div>
+      <div class="spk-body">
+        <div class="spk-section-lbl">🎯 Thème de conférence attendu</div>
+        <div class="spk-conference-title">"Bilan et perspectives des ODD en Algérie et au Maghreb — 2025-2030"</div>
+
+        <div class="spk-section-lbl">📅 Échéancier actions</div>
+        <div class="spk-timeline">
+          <div class="spk-tl-row">
+            <div class="spk-tl-dot" style="background:var(--gold)"></div>
+            <div class="spk-tl-date">01 Mars</div>
+            <div class="spk-tl-action">Identifier le profil + valider avec la Présidente du congrès</div>
+          </div>
+          <div class="spk-tl-row">
+            <div class="spk-tl-dot" style="background:var(--gold)"></div>
+            <div class="spk-tl-date">10 Mars</div>
+            <div class="spk-tl-action">Envoyer lettre d'invitation officielle (entête université)</div>
+          </div>
+          <div class="spk-tl-row">
+            <div class="spk-tl-dot" style="background:var(--gold)"></div>
+            <div class="spk-tl-date">01 Avril</div>
+            <div class="spk-tl-action">Obtenir confirmation écrite + titre conférence</div>
+          </div>
+          <div class="spk-tl-row">
+            <div class="spk-tl-dot" style="background:var(--gold)"></div>
+            <div class="spk-tl-date">15 Avril</div>
+            <div class="spk-tl-action">Collecter photo HD + bio 150 mots (FR + EN)</div>
+          </div>
+          <div class="spk-tl-row">
+            <div class="spk-tl-dot" style="background:var(--gold)"></div>
+            <div class="spk-tl-date">01 Mai</div>
+            <div class="spk-tl-action">Publier fiche speaker sur le site SDBQL 2026</div>
+          </div>
+          <div class="spk-tl-row">
+            <div class="spk-tl-dot" style="background:var(--gold)"></div>
+            <div class="spk-tl-date">28 Sept</div>
+            <div class="spk-tl-action">Accueil à Tlemcen + remise programme officiel</div>
+          </div>
+        </div>
+
+        <div class="spk-section-lbl">✅ Suivi des tâches</div>
+        <div class="spk-checklist">
+          <div class="spk-check" onclick="toggle(this)"><div class="chk-box">✓</div><span>Speaker identifié et approuvé</span></div>
+          <div class="spk-check" onclick="toggle(this)"><div class="chk-box">✓</div><span>Lettre d'invitation envoyée</span></div>
+          <div class="spk-check" onclick="toggle(this)"><div class="chk-box">✓</div><span>Confirmation reçue par écrit</span></div>
+          <div class="spk-check" onclick="toggle(this)"><div class="chk-box">✓</div><span>Photo HD + bio reçus</span></div>
+          <div class="spk-check" onclick="toggle(this)"><div class="chk-box">✓</div><span>Fiche publiée sur le site</span></div>
+          <div class="spk-check" onclick="toggle(this)"><div class="chk-box">✓</div><span>Hôtel + transport réservé</span></div>
+        </div>
+      </div>
+      <div class="spk-foot">
+        <div class="spk-responsible"><div class="responsible-avatar">NS</div> Prof. N. Soulimane (+ equipe)</div>
+        <span class="status-pill status-todo">En attente</span>
+      </div>
+    </div>
+
+    <!-- KEYNOTE 2 — En ligne — Jour 1 -->
+    <div class="spk-card theme-online">
+      <div class="spk-card-bar"></div>
+      <div class="spk-card-head">
+        <div class="spk-avatar">
+          🌍
+          <div class="spk-format-badge" style="background:var(--blue)">🖥</div>
+        </div>
+        <div class="spk-info">
+          <div class="spk-role">Keynote 2 · Journée 1 · En ligne</div>
+          <div class="spk-name">À confirmer — Profil International</div>
+          <div class="spk-institution">Expert ODD — Europe / Amérique du Nord (FAO, ONU Environnement…)</div>
+          <div class="spk-tags">
+            <span class="spk-tag" style="background:var(--blue-bg);color:var(--blue);border:1px solid var(--blue-lt)">🖥 En ligne</span>
+            <span class="spk-tag" style="background:var(--green-bg);color:var(--green);border:1px solid var(--green-lt)">Plénière</span>
+          </div>
+        </div>
+      </div>
+      <div class="spk-body">
+        <div class="spk-section-lbl">🎯 Thème attendu</div>
+        <div class="spk-conference-title">"L'état mondial des ODD en 2025 : chiffres, crises et leviers d'action"</div>
+
+        <div class="spk-section-lbl">📅 Échéancier actions</div>
+        <div class="spk-timeline">
+          <div class="spk-tl-row">
+            <div class="spk-tl-dot"></div>
+            <div class="spk-tl-date">05 Mars</div>
+            <div class="spk-tl-action">Recherche sur ResearchGate / LinkedIn — profil international ODD</div>
+          </div>
+          <div class="spk-tl-row">
+            <div class="spk-tl-dot"></div>
+            <div class="spk-tl-date">15 Mars</div>
+            <div class="spk-tl-action">Envoi lettre d'invitation par email (EN) — cc: Coordinateur général</div>
+          </div>
+          <div class="spk-tl-row">
+            <div class="spk-tl-dot"></div>
+            <div class="spk-tl-date">01 Avril</div>
+            <div class="spk-tl-action">Confirmation + envoi formulaire de collecte (photo, bio, titre)</div>
+          </div>
+          <div class="spk-tl-row">
+            <div class="spk-tl-dot"></div>
+            <div class="spk-tl-date">15 Avril</div>
+            <div class="spk-tl-action">Réception contenus → publication site web</div>
+          </div>
+          <div class="spk-tl-row">
+            <div class="spk-tl-dot"></div>
+            <div class="spk-tl-date">22 Sept</div>
+            <div class="spk-tl-action">Test technique Zoom (15 min) — vérifier fuseau horaire</div>
+          </div>
+          <div class="spk-tl-row">
+            <div class="spk-tl-dot"></div>
+            <div class="spk-tl-date">29 Sept</div>
+            <div class="spk-tl-action">Envoi lien Zoom définitif + rappel heure (fuseau horaire)</div>
+          </div>
+        </div>
+
+        <div class="spk-section-lbl">✅ Suivi des tâches</div>
+        <div class="spk-checklist">
+          <div class="spk-check" onclick="toggle(this)"><div class="chk-box">✓</div><span>Speaker identifié</span></div>
+          <div class="spk-check" onclick="toggle(this)"><div class="chk-box">✓</div><span>Invitation envoyée (EN)</span></div>
+          <div class="spk-check" onclick="toggle(this)"><div class="chk-box">✓</div><span>Confirmation + formulaire reçu</span></div>
+          <div class="spk-check" onclick="toggle(this)"><div class="chk-box">✓</div><span>Photo HD + bio publiés sur site</span></div>
+          <div class="spk-check" onclick="toggle(this)"><div class="chk-box">✓</div><span>Test technique Zoom effectué</span></div>
+          <div class="spk-check" onclick="toggle(this)"><div class="chk-box">✓</div><span>Lien Zoom J-1 envoyé</span></div>
+        </div>
+      </div>
+      <div class="spk-foot">
+        <div class="spk-responsible"><div class="responsible-avatar">BN</div> Dr. B. Nehar (+ equipe)</div>
+        <span class="status-pill status-todo">En attente</span>
+      </div>
+    </div>
+
+    <!-- KEYNOTE 3 — En ligne — Jour 2 -->
+    <div class="spk-card theme-online">
+      <div class="spk-card-bar"></div>
+      <div class="spk-card-head">
+        <div class="spk-avatar">
+          🌿
+          <div class="spk-format-badge" style="background:var(--blue)">🖥</div>
+        </div>
+        <div class="spk-info">
+          <div class="spk-role">Keynote 3 · Journée 2 · En ligne</div>
+          <div class="spk-name">À confirmer — Profil Climat/Environnement</div>
+          <div class="spk-institution">Chercheur GIEC, PNUE ou université méditerranéenne</div>
+          <div class="spk-tags">
+            <span class="spk-tag" style="background:var(--blue-bg);color:var(--blue);border:1px solid var(--blue-lt)">🖥 En ligne</span>
+            <span class="spk-tag" style="background:var(--green-bg);color:var(--green);border:1px solid var(--green-lt)">Plénière</span>
+          </div>
+        </div>
+      </div>
+      <div class="spk-body">
+        <div class="spk-section-lbl">🎯 Thème attendu</div>
+        <div class="spk-conference-title">"Changement climatique et ODD : urgence, adaptation et solutions locales"</div>
+
+        <div class="spk-section-lbl">📅 Échéancier actions</div>
+        <div class="spk-timeline">
+          <div class="spk-tl-row">
+            <div class="spk-tl-dot"></div>
+            <div class="spk-tl-date">05 Mars</div>
+            <div class="spk-tl-action">Identifier profil via publications GIEC, PNUE ou IPBES ...</div>
+          </div>
+          <div class="spk-tl-row">
+            <div class="spk-tl-dot"></div>
+            <div class="spk-tl-date">15 Mars</div>
+            <div class="spk-tl-action">Envoi lettre invitation (FR ou EN selon nationalité)</div>
+          </div>
+          <div class="spk-tl-row">
+            <div class="spk-tl-dot"></div>
+            <div class="spk-tl-date">05 Avril</div>
+            <div class="spk-tl-action">Confirmation + collecte photo HD, bio, titre conférence</div>
+          </div>
+          <div class="spk-tl-row">
+            <div class="spk-tl-dot"></div>
+            <div class="spk-tl-date">20 Avril</div>
+            <div class="spk-tl-action">Publication fiche sur site SDBQL + post LinkedIn</div>
+          </div>
+          <div class="spk-tl-row">
+            <div class="spk-tl-dot"></div>
+            <div class="spk-tl-date">23 Sept</div>
+            <div class="spk-tl-action">Test technique Zoom + vérification slides PowerPoint SDBQL</div>
+          </div>
+        </div>
+
+        <div class="spk-section-lbl">✅ Suivi des tâches</div>
+        <div class="spk-checklist">
+          <div class="spk-check" onclick="toggle(this)"><div class="chk-box">✓</div><span>Speaker identifié</span></div>
+          <div class="spk-check" onclick="toggle(this)"><div class="chk-box">✓</div><span>Invitation envoyée</span></div>
+          <div class="spk-check" onclick="toggle(this)"><div class="chk-box">✓</div><span>Confirmation reçue</span></div>
+          <div class="spk-check" onclick="toggle(this)"><div class="chk-box">✓</div><span>Photo + bio publiés sur site</span></div>
+          <div class="spk-check" onclick="toggle(this)"><div class="chk-box">✓</div><span>Test Zoom effectué</span></div>
+        </div>
+      </div>
+      <div class="spk-foot">
+        <div class="spk-responsible"><div class="responsible-avatar">BN</div> Dr. B. Nehar (+ equipe)</div>
+        <span class="status-pill status-todo">En attente</span>
+      </div>
+    </div>
+
+    <!-- KEYNOTE 4 — Présentiel — Clôture -->
+    <div class="spk-card theme-keynote-4">
+      <div class="spk-card-bar"></div>
+      <div class="spk-card-head">
+        <div class="spk-avatar">
+          🏅
+          <div class="spk-format-badge" style="background:var(--green)">🏛</div>
+        </div>
+        <div class="spk-info">
+          <div class="spk-role">Keynote 4 · Cérémonie de clôture · Présentiel</div>
+          <div class="spk-name">À confirmer — Académicien Senior Algérien</div>
+          <div class="spk-institution">Professeur émérite ou Recteur honoraire — Tlemcen / Oran / Alger</div>
+          <div class="spk-tags">
+            <span class="spk-tag" style="background:var(--green-bg);color:var(--green);border:1px solid var(--green-lt)">🏛 Présentiel</span>
+            <span class="spk-tag" style="background:var(--gold-bg);color:var(--gold);border:1px solid var(--gold-lt)">Clôture</span>
+          </div>
+        </div>
+      </div>
+      <div class="spk-body">
+        <div class="spk-section-lbl">🎯 Thème attendu</div>
+        <div class="spk-conference-title">"De la recherche à l'action : mobiliser la science algérienne au service des ODD 2030"</div>
+
+        <div class="spk-section-lbl">📅 Échéancier actions</div>
+        <div class="spk-timeline">
+          <div class="spk-tl-row">
+            <div class="spk-tl-dot"></div>
+            <div class="spk-tl-date">01 Mars</div>
+            <div class="spk-tl-action">Sélectionner le profil avec le comité d'honneur</div>
+          </div>
+          <div class="spk-tl-row">
+            <div class="spk-tl-dot"></div>
+            <div class="spk-tl-date">10 Mars</div>
+            <div class="spk-tl-action">Lettre d'invitation signée par le Recteur de l'université</div>
+          </div>
+          <div class="spk-tl-row">
+            <div class="spk-tl-dot"></div>
+            <div class="spk-tl-date">01 Avril</div>
+            <div class="spk-tl-action">Confirmation + collecte bio + titre conférence de clôture</div>
+          </div>
+          <div class="spk-tl-row">
+            <div class="spk-tl-dot"></div>
+            <div class="spk-tl-date">01 Mai</div>
+            <div class="spk-tl-action">Publication sur site web + post réseaux sociaux</div>
+          </div>
+          <div class="spk-tl-row">
+            <div class="spk-tl-dot"></div>
+            <div class="spk-tl-date">28 Sept</div>
+            <div class="spk-tl-action">Accueil + remise du programme + visite du campus</div>
+          </div>
+        </div>
+
+        <div class="spk-section-lbl">✅ Suivi des tâches</div>
+        <div class="spk-checklist">
+          <div class="spk-check" onclick="toggle(this)"><div class="chk-box">✓</div><span>Approuvé par comité d'honneur</span></div>
+          <div class="spk-check" onclick="toggle(this)"><div class="chk-box">✓</div><span>Lettre signée par le Recteur</span></div>
+          <div class="spk-check" onclick="toggle(this)"><div class="chk-box">✓</div><span>Confirmation + bio reçus</span></div>
+          <div class="spk-check" onclick="toggle(this)"><div class="chk-box">✓</div><span>Publié sur le site web</span></div>
+          <div class="spk-check" onclick="toggle(this)"><div class="chk-box">✓</div><span>Hébergement réservé</span></div>
+        </div>
+      </div>
+      <div class="spk-foot">
+        <div class="spk-responsible"><div class="responsible-avatar">NS</div> Prof. N. Soulimane (+ equipe)</div>
+        <span class="status-pill status-todo">En attente</span>
+      </div>
+    </div>
+
+  </div>
+
+  <hr class="sep">
+
+  <!-- ============================================================
+       SECTION 2 : GUEST SPEAKERS PAR AXE
+  ============================================================ -->
+  <div class="section-title">🔬 Guest Speakers par Axe Thématique</div>
+  <div class="section-sub">1 speaker invité par axe = 6 speakers. Ils ouvrent chaque session thématique (30-45 min) avant les communications. Majoritairement en ligne.</div>
+
+  <div class="cards-grid">
+
+    <!-- AXE 1 — Agriculture -->
+    <div class="spk-card theme-online">
+      <div class="spk-card-bar"></div>
+      <div class="spk-card-head">
+        <div class="spk-avatar">
+          🌾
+          <div class="spk-format-badge" style="background:var(--blue)">🖥</div>
+        </div>
+        <div class="spk-info">
+          <div class="spk-role">Axe 01 · Agriculture Durable · En ligne</div>
+          <div class="spk-name">À confirmer — Expert FAO / CIHEAM</div>
+          <div class="spk-institution">FAO Afrique du Nord ou Autre organisation renomée</div>
+          <div class="spk-tags">
+            <span class="spk-tag" style="background:var(--blue-bg);color:var(--blue);border:1px solid var(--blue-lt)">🖥 En ligne</span>
+            <span class="spk-tag" style="background:var(--orange-bg);color:var(--orange);border:1px solid var(--orange-lt)">Axe 1</span>
+          </div>
+        </div>
+      </div>
+      <div class="spk-body">
+        <div class="spk-section-lbl">🎯 Thème attendu</div>
+        <div class="spk-conference-title">"Systèmes alimentaires durables en Afrique du Nord : innovations et défis"</div>
+
+        <div class="spk-section-lbl">📅 Échéancier</div>
+        <div class="spk-timeline">
+          <div class="spk-tl-row">
+            <div class="spk-tl-dot"></div>
+            <div class="spk-tl-date">08 Mars</div>
+            <div class="spk-tl-action">Identifier le profil (Google Scholar : "food security SDG North Africa")</div>
+          </div>
+          <div class="spk-tl-row">
+            <div class="spk-tl-dot"></div>
+            <div class="spk-tl-date">20 Mars</div>
+            <div class="spk-tl-action">Envoi invitation EN/FR + descriptif de l'axe</div>
+          </div>
+          <div class="spk-tl-row">
+            <div class="spk-tl-dot"></div>
+            <div class="spk-tl-date">10 Avril</div>
+            <div class="spk-tl-action">Collecte photo + bio + titre → publication site</div>
+          </div>
+          <div class="spk-tl-row">
+            <div class="spk-tl-dot"></div>
+            <div class="spk-tl-date">23 Sept</div>
+            <div class="spk-tl-action">Test technique 15 min (Zoom/Teams)</div>
+          </div>
+        </div>
+
+        <div class="spk-section-lbl">✅ Suivi</div>
+        <div class="spk-checklist">
+          <div class="spk-check" onclick="toggle(this)"><div class="chk-box">✓</div><span>Profil identifié</span></div>
+          <div class="spk-check" onclick="toggle(this)"><div class="chk-box">✓</div><span>Invitation envoyée</span></div>
+          <div class="spk-check" onclick="toggle(this)"><div class="chk-box">✓</div><span>Photo + bio publiés sur site</span></div>
+          <div class="spk-check" onclick="toggle(this)"><div class="chk-box">✓</div><span>Test Zoom effectué</span></div>
+        </div>
+      </div>
+      <div class="spk-foot">
+        <div class="spk-responsible"><div class="responsible-avatar">A1</div> Resp. Axe 1</div>
+        <span class="status-pill status-todo">En attente</span>
+      </div>
+    </div>
+
+    <!-- AXE 2 — Bioénergie -->
+    <div class="spk-card theme-online">
+      <div class="spk-card-bar"></div>
+      <div class="spk-card-head">
+        <div class="spk-avatar">
+          ⚡
+          <div class="spk-format-badge" style="background:var(--blue)">🖥</div>
+        </div>
+        <div class="spk-info">
+          <div class="spk-role">Axe 02 · Bioénergie & Renouvelables · En ligne</div>
+          <div class="spk-name">À confirmer — Expert APRUE, ...</div>
+          <div class="spk-institution">APRUE Algérie, ...</div>
+          <div class="spk-tags">
+            <span class="spk-tag" style="background:var(--blue-bg);color:var(--blue);border:1px solid var(--blue-lt)">🖥 En ligne</span>
+            <span class="spk-tag" style="background:var(--orange-bg);color:var(--orange);border:1px solid var(--orange-lt)">Axe 2</span>
+          </div>
+        </div>
+      </div>
+      <div class="spk-body">
+        <div class="spk-section-lbl">🎯 Thème attendu</div>
+        <div class="spk-conference-title">"Transition énergétique en Algérie : potentiel solaire, bioénergie et ODD 7"</div>
+
+        <div class="spk-section-lbl">📅 Échéancier</div>
+        <div class="spk-timeline">
+          <div class="spk-tl-row">
+            <div class="spk-tl-dot"></div>
+            <div class="spk-tl-date">08 Mars</div>
+            <div class="spk-tl-action">Identifier profil via IRENA.org ou AFREC</div>
+          </div>
+          <div class="spk-tl-row">
+            <div class="spk-tl-dot"></div>
+            <div class="spk-tl-date">20 Mars</div>
+            <div class="spk-tl-action">Envoi invitation EN + description axe bioénergie</div>
+          </div>
+          <div class="spk-tl-row">
+            <div class="spk-tl-dot"></div>
+            <div class="spk-tl-date">10 Avril</div>
+            <div class="spk-tl-action">Collecte contenus → publication site + post LinkedIn</div>
+          </div>
+          <div class="spk-tl-row">
+            <div class="spk-tl-dot"></div>
+            <div class="spk-tl-date">23 Sept</div>
+            <div class="spk-tl-action">Test Zoom + vérification présentation</div>
+          </div>
+        </div>
+
+        <div class="spk-section-lbl">✅ Suivi</div>
+        <div class="spk-checklist">
+          <div class="spk-check" onclick="toggle(this)"><div class="chk-box">✓</div><span>Profil identifié</span></div>
+          <div class="spk-check" onclick="toggle(this)"><div class="chk-box">✓</div><span>Invitation envoyée</span></div>
+          <div class="spk-check" onclick="toggle(this)"><div class="chk-box">✓</div><span>Photo + bio publiés</span></div>
+          <div class="spk-check" onclick="toggle(this)"><div class="chk-box">✓</div><span>Test Zoom effectué</span></div>
+        </div>
+      </div>
+      <div class="spk-foot">
+        <div class="spk-responsible"><div class="responsible-avatar">A2</div> Resp. Axe 2</div>
+        <span class="status-pill status-todo">En attente</span>
+      </div>
+    </div>
+
+    <!-- AXE 3 — Biodiversité (Présentiel) -->
+    <div class="spk-card theme-keynote-4">
+      <div class="spk-card-bar"></div>
+      <div class="spk-card-head">
+        <div class="spk-avatar">
+          🦋
+          <div class="spk-format-badge" style="background:var(--green)">🏛</div>
+        </div>
+        <div class="spk-info">
+          <div class="spk-role">Axe 03 · Biodiversité & Écosystèmes · Présentiel</div>
+          <div class="spk-name">À confirmer — Expert UICN / CNRPAH</div>
+          <div class="spk-institution">UICN Afrique du Nord · CNRPAH Alger · Université de Béjaïa</div>
+          <div class="spk-tags">
+            <span class="spk-tag" style="background:var(--green-bg);color:var(--green);border:1px solid var(--green-lt)">🏛 Présentiel</span>
+            <span class="spk-tag" style="background:var(--orange-bg);color:var(--orange);border:1px solid var(--orange-lt)">Axe 3</span>
+          </div>
+        </div>
+      </div>
+      <div class="spk-body">
+        <div class="spk-section-lbl">🎯 Thème attendu</div>
+        <div class="spk-conference-title">"Biodiversité méditerranéenne et steppique : état des lieux et conservation"</div>
+
+        <div class="spk-section-lbl">📅 Échéancier</div>
+        <div class="spk-timeline">
+          <div class="spk-tl-row">
+            <div class="spk-tl-dot"></div>
+            <div class="spk-tl-date">08 Mars</div>
+            <div class="spk-tl-action">Contact CNRPAH ou réseau UICN Algérie</div>
+          </div>
+          <div class="spk-tl-row">
+            <div class="spk-tl-dot"></div>
+            <div class="spk-tl-date">20 Mars</div>
+            <div class="spk-tl-action">Lettre invitation + proposition prise en charge déplacement</div>
+          </div>
+          <div class="spk-tl-row">
+            <div class="spk-tl-dot"></div>
+            <div class="spk-tl-date">10 Avril</div>
+            <div class="spk-tl-action">Collecte contenus → publication site</div>
+          </div>
+          <div class="spk-tl-row">
+            <div class="spk-tl-dot"></div>
+            <div class="spk-tl-date">28 Sept</div>
+            <div class="spk-tl-action">Accueil à Tlemcen + coordination salle</div>
+          </div>
+        </div>
+
+        <div class="spk-section-lbl">✅ Suivi</div>
+        <div class="spk-checklist">
+          <div class="spk-check" onclick="toggle(this)"><div class="chk-box">✓</div><span>Profil identifié</span></div>
+          <div class="spk-check" onclick="toggle(this)"><div class="chk-box">✓</div><span>Invitation envoyée</span></div>
+          <div class="spk-check" onclick="toggle(this)"><div class="chk-box">✓</div><span>Photo + bio publiés</span></div>
+          <div class="spk-check" onclick="toggle(this)"><div class="chk-box">✓</div><span>Transport/hébergement réservé</span></div>
+        </div>
+      </div>
+      <div class="spk-foot">
+        <div class="spk-responsible"><div class="responsible-avatar">A3</div> Resp. Axe 3</div>
+        <span class="status-pill status-todo">En attente</span>
+      </div>
+    </div>
+
+    <!-- AXE 4 — Climat -->
+    <div class="spk-card theme-online">
+      <div class="spk-card-bar"></div>
+      <div class="spk-card-head">
+        <div class="spk-avatar">
+          🌡️
+          <div class="spk-format-badge" style="background:var(--blue)">🖥</div>
+        </div>
+        <div class="spk-info">
+          <div class="spk-role">Axe 04 · Action Climatique · En ligne</div>
+          <div class="spk-name">À confirmer — Expert GIEC / Université Med.</div>
+          <div class="spk-institution">GIEC · Université de Carthage (Tunisie) · Autre ...</div>
+          <div class="spk-tags">
+            <span class="spk-tag" style="background:var(--blue-bg);color:var(--blue);border:1px solid var(--blue-lt)">🖥 En ligne</span>
+            <span class="spk-tag" style="background:var(--orange-bg);color:var(--orange);border:1px solid var(--orange-lt)">Axe 4</span>
+          </div>
+        </div>
+      </div>
+      <div class="spk-body">
+        <div class="spk-section-lbl">🎯 Thème attendu</div>
+        <div class="spk-conference-title">"Adaptation climatique en zone aride et semi-aride : cas de l'algerie, tunisie ..."</div>
+
+        <div class="spk-section-lbl">📅 Échéancier</div>
+        <div class="spk-timeline">
+          <div class="spk-tl-row">
+            <div class="spk-tl-dot"></div>
+            <div class="spk-tl-date">08 Mars</div>
+            <div class="spk-tl-action">Identifier profil GIEC ou réseau Med-IPCC</div>
+          </div>
+          <div class="spk-tl-row">
+            <div class="spk-tl-dot"></div>
+            <div class="spk-tl-date">20 Mars</div>
+            <div class="spk-tl-action">Envoi invitation FR/EN</div>
+          </div>
+          <div class="spk-tl-row">
+            <div class="spk-tl-dot"></div>
+            <div class="spk-tl-date">10 Avril</div>
+            <div class="spk-tl-action">Collecte contenus → publication site + promotion</div>
+          </div>
+          <div class="spk-tl-row">
+            <div class="spk-tl-dot"></div>
+            <div class="spk-tl-date">24 Sept</div>
+            <div class="spk-tl-action">Test Zoom + confirmation créneau horaire</div>
+          </div>
+        </div>
+
+        <div class="spk-section-lbl">✅ Suivi</div>
+        <div class="spk-checklist">
+          <div class="spk-check" onclick="toggle(this)"><div class="chk-box">✓</div><span>Profil identifié</span></div>
+          <div class="spk-check" onclick="toggle(this)"><div class="chk-box">✓</div><span>Invitation envoyée</span></div>
+          <div class="spk-check" onclick="toggle(this)"><div class="chk-box">✓</div><span>Photo + bio publiés</span></div>
+          <div class="spk-check" onclick="toggle(this)"><div class="chk-box">✓</div><span>Test Zoom effectué</span></div>
+        </div>
+      </div>
+      <div class="spk-foot">
+        <div class="spk-responsible"><div class="responsible-avatar">A4</div> Resp. Axe 4</div>
+        <span class="status-pill status-todo">En attente</span>
+      </div>
+    </div>
+
+    <!-- AXE 5 — Santé (Présentiel) -->
+    <div class="spk-card theme-teal">
+      <div class="spk-card-bar"></div>
+      <div class="spk-card-head">
+        <div class="spk-avatar">
+          💚
+          <div class="spk-format-badge" style="background:var(--teal)">🏛</div>
+        </div>
+        <div class="spk-info">
+          <div class="spk-role">Axe 05 · Santé & Bien-être · Présentiel</div>
+          <div class="spk-name">À confirmer — OMS Bureau Algérie</div>
+          <div class="spk-institution">OMS Algérie · Ministère de la Santé · Université d'Oran</div>
+          <div class="spk-tags">
+            <span class="spk-tag" style="background:var(--teal-bg);color:var(--teal);border:1px solid var(--teal-lt)">🏛 Présentiel</span>
+            <span class="spk-tag" style="background:var(--orange-bg);color:var(--orange);border:1px solid var(--orange-lt)">Axe 5</span>
+          </div>
+        </div>
+      </div>
+      <div class="spk-body">
+        <div class="spk-section-lbl">🎯 Thème attendu</div>
+        <div class="spk-conference-title">"Environnement et santé en Algérie : vers un ODD 3 ancré dans la réalité locale"</div>
+
+        <div class="spk-section-lbl">📅 Échéancier</div>
+        <div class="spk-timeline">
+          <div class="spk-tl-row">
+            <div class="spk-tl-dot"></div>
+            <div class="spk-tl-date">08 Mars</div>
+            <div class="spk-tl-action">Contact OMS bureau Alger ou réseau SIAM</div>
+          </div>
+          <div class="spk-tl-row">
+            <div class="spk-tl-dot"></div>
+            <div class="spk-tl-date">20 Mars</div>
+            <div class="spk-tl-action">Lettre invitation officielle + prise en charge transport</div>
+          </div>
+          <div class="spk-tl-row">
+            <div class="spk-tl-dot"></div>
+            <div class="spk-tl-date">10 Avril</div>
+            <div class="spk-tl-action">Collecte photo + bio → publication site</div>
+          </div>
+          <div class="spk-tl-row">
+            <div class="spk-tl-dot"></div>
+            <div class="spk-tl-date">28 Sept</div>
+            <div class="spk-tl-action">Accueil à Tlemcen + remise programme</div>
+          </div>
+        </div>
+
+        <div class="spk-section-lbl">✅ Suivi</div>
+        <div class="spk-checklist">
+          <div class="spk-check" onclick="toggle(this)"><div class="chk-box">✓</div><span>Profil identifié</span></div>
+          <div class="spk-check" onclick="toggle(this)"><div class="chk-box">✓</div><span>Invitation envoyée</span></div>
+          <div class="spk-check" onclick="toggle(this)"><div class="chk-box">✓</div><span>Photo + bio publiés</span></div>
+          <div class="spk-check" onclick="toggle(this)"><div class="chk-box">✓</div><span>Transport/hébergement réservé</span></div>
+        </div>
+      </div>
+      <div class="spk-foot">
+        <div class="spk-responsible"><div class="responsible-avatar">A5</div> Resp. Axe 5</div>
+        <span class="status-pill status-todo">En attente</span>
+      </div>
+    </div>
+
+    <!-- AXE 6 — Socio-économie -->
+    <div class="spk-card theme-hybrid">
+      <div class="spk-card-bar"></div>
+      <div class="spk-card-head">
+        <div class="spk-avatar">
+          🤝
+          <div class="spk-format-badge" style="background:var(--blue)">🖥</div>
+        </div>
+        <div class="spk-info">
+          <div class="spk-role">Axe 06 · Partenariats Socio-économiques · En ligne</div>
+          <div class="spk-name">À confirmer — Expert PNUD / MDI</div>
+          <div class="spk-institution">PNUD Algérie · MDI Business School · Banque Mondiale</div>
+          <div class="spk-tags">
+            <span class="spk-tag" style="background:var(--blue-bg);color:var(--blue);border:1px solid var(--blue-lt)">🖥 En ligne</span>
+            <span class="spk-tag" style="background:var(--orange-bg);color:var(--orange);border:1px solid var(--orange-lt)">Axe 6</span>
+          </div>
+        </div>
+      </div>
+      <div class="spk-body">
+        <div class="spk-section-lbl">🎯 Thème attendu</div>
+        <div class="spk-conference-title">"Partenariats public-privé et financement durable : leçons pour l'afrique"</div>
+
+        <div class="spk-section-lbl">📅 Échéancier</div>
+        <div class="spk-timeline">
+          <div class="spk-tl-row">
+            <div class="spk-tl-dot"></div>
+            <div class="spk-tl-date">08 Mars</div>
+            <div class="spk-tl-action">Contact MDI Business School (partenaire 2024) ou PNUD</div>
+          </div>
+          <div class="spk-tl-row">
+            <div class="spk-tl-dot"></div>
+            <div class="spk-tl-date">20 Mars</div>
+            <div class="spk-tl-action">Envoi invitation FR/EN + présentation du congrès</div>
+          </div>
+          <div class="spk-tl-row">
+            <div class="spk-tl-dot"></div>
+            <div class="spk-tl-date">10 Avril</div>
+            <div class="spk-tl-action">Collecte contenus → publication site</div>
+          </div>
+          <div class="spk-tl-row">
+            <div class="spk-tl-dot"></div>
+            <div class="spk-tl-date">24 Sept</div>
+            <div class="spk-tl-action">Test Zoom + confirmation créneau final</div>
+          </div>
+        </div>
+
+        <div class="spk-section-lbl">✅ Suivi</div>
+        <div class="spk-checklist">
+          <div class="spk-check" onclick="toggle(this)"><div class="chk-box">✓</div><span>Profil identifié</span></div>
+          <div class="spk-check" onclick="toggle(this)"><div class="chk-box">✓</div><span>Invitation envoyée</span></div>
+          <div class="spk-check" onclick="toggle(this)"><div class="chk-box">✓</div><span>Photo + bio publiés</span></div>
+          <div class="spk-check" onclick="toggle(this)"><div class="chk-box">✓</div><span>Test Zoom effectué</span></div>
+        </div>
+      </div>
+      <div class="spk-foot">
+        <div class="spk-responsible"><div class="responsible-avatar">A6</div> Resp. Axe 6</div>
+        <span class="status-pill status-todo">En attente</span>
+      </div>
+    </div>
+
+  </div>
+
+  <hr class="sep">
+
+  <!-- ============================================================
+       SECTION 3 : PLANNING DES SESSIONS
+  ============================================================ -->
+  <div class="section-title">📅 Planning des Sessions — 3 Jours</div>
+  <div class="section-sub">Vue d'ensemble des créneaux speakers sur les 3 journées du congrès.</div>
+
+  <div class="day-table-wrap">
+    <div class="day-table-header">
+      <div>Horaire</div>
+      <div>Mardi 30 Sept</div>
+      <div>Mercredi 1er Oct</div>
+      <div>Jeudi 2 Oct</div>
+    </div>
+
+    <div class="day-sep">🌅 Matin</div>
+
+    <div class="day-row">
+      <div class="day-cell"><span class="time">08:00 – 09:30</span></div>
+      <div class="day-cell">
+        <span class="event-name">Accueil & Inscriptions</span>
+        <span class="event-sub">Hall principal — Remise des kits</span>
+      </div>
+      <div class="day-cell">
+        <span class="event-name">Accueil 2ème journée</span>
+        <span class="event-sub">Reprise des inscriptions tardives</span>
+      </div>
+      <div class="day-cell">
+        <span class="event-name">Accueil 3ème journée</span>
+        <span class="event-sub">Sessions finales</span>
+      </div>
+    </div>
+
+    <div class="day-row">
+      <div class="day-cell"><span class="time">09:30 – 10:30</span></div>
+      <div class="day-cell">
+        <span class="event-name">🎊 Cérémonie d'ouverture</span>
+        <span class="event-sub">Recteur + Doyens + Présidente du congrès</span>
+        <span class="day-badge" style="background:var(--gold-bg);color:var(--gold)">🏛 Présentiel</span>
+      </div>
+      <div class="day-cell">
+        <span class="event-name">🌍 KEYNOTE 3 (En ligne)</span>
+        <span class="event-sub">Climat & ODD — Expert GIEC</span>
+        <span class="day-badge" style="background:var(--blue-bg);color:var(--blue)">🖥 Zoom</span>
+      </div>
+      <div class="day-cell">
+        <span class="event-name">Sessions parallèles finales</span>
+        <span class="event-sub">Axes 1, 3, 5 — Résultats et synthèses</span>
+      </div>
+    </div>
+
+    <div class="day-row">
+      <div class="day-cell"><span class="time">10:30 – 11:30</span></div>
+      <div class="day-cell">
+        <span class="event-name">🎓 KEYNOTE 1 (Présentiel)</span>
+        <span class="event-sub">ODD en Algérie — Académicien senior</span>
+        <span class="day-badge" style="background:var(--green-bg);color:var(--green)">🏛 Présentiel</span>
+      </div>
+      <div class="day-cell">
+        <span class="event-name">Sessions parallèles</span>
+        <span class="event-sub">Axes 2, 4, 6 + Posters</span>
+      </div>
+      <div class="day-cell">
+        <span class="event-name">Sessions parallèles finales</span>
+        <span class="event-sub">Axes 2, 4, 6</span>
+      </div>
+    </div>
+
+    <div class="day-row">
+      <div class="day-cell"><span class="time">11:30 – 12:30</span></div>
+      <div class="day-cell">
+        <span class="event-name">🌍 KEYNOTE 2 (En ligne)</span>
+        <span class="event-sub">ODD monde — Expert international</span>
+        <span class="day-badge" style="background:var(--blue-bg);color:var(--blue)">🖥 Zoom</span>
+      </div>
+      <div class="day-cell">
+        <span class="event-name">🎤 Guest Axe 4 (En ligne)</span>
+        <span class="event-sub">Action climatique — GIEC/Tunisie</span>
+        <span class="day-badge" style="background:var(--blue-bg);color:var(--blue)">🖥 Zoom</span>
+      </div>
+      <div class="day-cell">
+        <span class="event-name">🏆 Remise des Prix</span>
+        <span class="event-sub">Meilleure communication, poster, jeune chercheur</span>
+        <span class="day-badge" style="background:var(--gold-bg);color:var(--gold)">Cérémonie</span>
+      </div>
+    </div>
+
+    <div class="day-sep">🍽 Déjeuner — 12:30 à 14:00</div>
+
+    <div class="day-sep">🌆 Après-midi</div>
+
+    <div class="day-row">
+      <div class="day-cell"><span class="time">14:00 – 15:00</span></div>
+      <div class="day-cell">
+        <span class="event-name">🌾 Guest Axe 1 (En ligne)</span>
+        <span class="event-sub">Agriculture durable — FAO/CIHEAM</span>
+        <span class="day-badge" style="background:var(--blue-bg);color:var(--blue)">🖥 Zoom</span>
+      </div>
+      <div class="day-cell">
+        <span class="event-name">🎤 Guest Axe 5 (Présentiel)</span>
+        <span class="event-sub">Santé & environnement — OMS Algérie</span>
+        <span class="day-badge" style="background:var(--green-bg);color:var(--green)">🏛 Présentiel</span>
+      </div>
+      <div class="day-cell">
+        <span class="event-name">🏅 Cérémonie de Clôture</span>
+        <span class="event-sub">KEYNOTE 4 (Présentiel) + SDBQL 2028</span>
+        <span class="day-badge" style="background:var(--green-bg);color:var(--green)">🏛 Présentiel</span>
+      </div>
+    </div>
+
+    <div class="day-row">
+      <div class="day-cell"><span class="time">15:00 – 16:00</span></div>
+      <div class="day-cell">
+        <span class="event-name">⚡ Guest Axe 2 (En ligne)</span>
+        <span class="event-sub">Bioénergie — Jordanie, Egypt ou autre </span>
+        <span class="day-badge" style="background:var(--blue-bg);color:var(--blue)">🖥 Zoom</span>
+      </div>
+      <div class="day-cell">
+        <span class="event-name">🎤 Guest Axe 6 (En ligne)</span>
+        <span class="event-sub">Partenariats — PNUD/MDI</span>
+        <span class="day-badge" style="background:var(--blue-bg);color:var(--blue)">🖥 Zoom</span>
+      </div>
+      <div class="day-cell">
+        <span class="event-name">🌆 Visite culturelle</span>
+        <span class="event-sub">Mechouar · Grottes Beni Add · Tlemcen</span>
+      </div>
+    </div>
+
+    <div class="day-row">
+      <div class="day-cell"><span class="time">16:00 – 17:30</span></div>
+      <div class="day-cell">
+        <span class="event-name">🦋 Guest Axe 3 (Présentiel)</span>
+        <span class="event-sub">Biodiversité — UICN/CNRPAH</span>
+        <span class="day-badge" style="background:var(--green-bg);color:var(--green)">🏛 Présentiel</span>
+      </div>
+      <div class="day-cell">
+        <span class="event-name">📋 Atelier Doctoral</span>
+        <span class="event-sub">24+ posters doctorants</span>
+      </div>
+      <div class="day-cell">—</div>
+    </div>
+
+    <div class="day-sep">🌙 Soirée</div>
+
+    <div class="day-row">
+      <div class="day-cell"><span class="time">20:00</span></div>
+      <div class="day-cell">
+        <span class="event-name">🥂 Dîner de gala</span>
+        <span class="event-sub">Networking officiel — tous les speakers</span>
+      </div>
+      <div class="day-cell">
+        <span class="event-name">🥂 Dîner de gala</span>
+        <span class="event-sub">Soirée officielle du congrès</span>
+      </div>
+      <div class="day-cell">—</div>
+    </div>
+  </div>
+
+  <hr class="sep">
+
+  <!-- ============================================================
+       SECTION 4 : CHECKLIST TECHNIQUE ONLINE
+  ============================================================ -->
+  <div class="section-title">🔧 Checklist Technique — Speakers En Ligne</div>
+  <div class="section-sub">À vérifier pour chacun des 6 speakers qui interviennent en visioconférence.</div>
+
+  <div class="tech-grid">
+    <div class="tech-card">
+      <div class="tech-card-head"><div class="tech-icon">📋</div><div class="tech-title">Avant l'invitation</div></div>
+      <div class="tech-card-body">
+        <ul class="tech-list">
+          <li onclick="ck(this)"><div class="cb">✓</div><span>Rédiger lettre invitation EN + FR</span></li>
+          <li onclick="ck(this)"><div class="cb">✓</div><span>Préparer le Google Form de collecte (photo, bio, titre)</span></li>
+          <li onclick="ck(this)"><div class="cb">✓</div><span>Créer template PowerPoint SDBQL 2026</span></li>
+          <li onclick="ck(this)"><div class="cb">✓</div><span>Préparer le certificat de participation speaker</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-card-head"><div class="tech-icon">📨</div><div class="tech-title">Après confirmation</div></div>
+      <div class="tech-card-body">
+        <ul class="tech-list">
+          <li onclick="ck(this)"><div class="cb">✓</div><span>Envoyer le Google Form de collecte</span></li>
+          <li onclick="ck(this)"><div class="cb">✓</div><span>Demander photo HD (min 800×800px)</span></li>
+          <li onclick="ck(this)"><div class="cb">✓</div><span>Obtenir la bio 150 mots (FR + EN)</span></li>
+          <li onclick="ck(this)"><div class="cb">✓</div><span>Obtenir le titre + résumé de la conférence</span></li>
+          <li onclick="ck(this)"><div class="cb">✓</div><span>Confirmer le fuseau horaire du speaker</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-card-head"><div class="tech-icon">🌐</div><div class="tech-title">Publication sur le site</div></div>
+      <div class="tech-card-body">
+        <ul class="tech-list">
+          <li onclick="ck(this)"><div class="cb">✓</div><span>Créer la page "Conférenciers Invités"</span></li>
+          <li onclick="ck(this)"><div class="cb">✓</div><span>Ajouter photo + nom + institution + pays</span></li>
+          <li onclick="ck(this)"><div class="cb">✓</div><span>Publier le titre et résumé de la conférence</span></li>
+          <li onclick="ck(this)"><div class="cb">✓</div><span>Indiquer le format (🖥 En ligne / 🏛 Présentiel)</span></li>
+          <li onclick="ck(this)"><div class="cb">✓</div><span>Post LinkedIn + Facebook dédié pour chaque speaker</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-card-head"><div class="tech-icon">🖥️</div><div class="tech-title">Test technique (J-7)</div></div>
+      <div class="tech-card-body">
+        <ul class="tech-list">
+          <li onclick="ck(this)"><div class="cb">✓</div><span>Planifier session Zoom de test (15 min)</span></li>
+          <li onclick="ck(this)"><div class="cb">✓</div><span>Vérifier qualité vidéo + éclairage speaker</span></li>
+          <li onclick="ck(this)"><div class="cb">✓</div><span>Vérifier qualité audio (micro dédié recommandé)</span></li>
+          <li onclick="ck(this)"><div class="cb">✓</div><span>Tester le partage d'écran PowerPoint</span></li>
+          <li onclick="ck(this)"><div class="cb">✓</div><span>Confirmer l'heure exacte (converti en heure Algérie)</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-card-head"><div class="tech-icon">⚙️</div><div class="tech-title">Équipement salle (Tlemcen)</div></div>
+      <div class="tech-card-body">
+        <ul class="tech-list">
+          <li onclick="ck(this)"><div class="cb">✓</div><span>Grand écran ou vidéoprojecteur dédié speaker</span></li>
+          <li onclick="ck(this)"><div class="cb">✓</div><span>Caméra HD pointée vers le public (speaker voit la salle)</span></li>
+          <li onclick="ck(this)"><div class="cb">✓</div><span>Micro de salle + haut-parleurs de qualité</span></li>
+          <li onclick="ck(this)"><div class="cb">✓</div><span>Connexion filaire dédiée (pas Wi-Fi)</span></li>
+          <li onclick="ck(this)"><div class="cb">✓</div><span>Technicien dédié présent dans la salle</span></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="tech-card">
+      <div class="tech-card-head"><div class="tech-icon">🚨</div><div class="tech-title">Plan B — Urgences</div></div>
+      <div class="tech-card-body">
+        <ul class="tech-list">
+          <li onclick="ck(this)"><div class="cb">✓</div><span>Demander une vidéo pré-enregistrée (plan B coupure)</span></li>
+          <li onclick="ck(this)"><div class="cb">✓</div><span>Numéro WhatsApp direct du speaker le jour J</span></li>
+          <li onclick="ck(this)"><div class="cb">✓</div><span>Connexion 4G de secours (hotspot téléphone)</span></li>
+          <li onclick="ck(this)"><div class="cb">✓</div><span>Alternative plateforme (Teams si Zoom défaillant)</span></li>
+          <li onclick="ck(this)"><div class="cb">✓</div><span>Modérateur prêt à gérer un retard de 5-10 min</span></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <hr class="sep">
+
+  <!-- ============================================================
+       SECTION 5 : INVITATION PAR EMAIL 
+  ============================================================ -->
+  <div class="section-title">📝 Modèle de Lettre d'Invitation "PAR EMAIL" </div>
+  <div class="section-sub">À personnaliser pour chaque speaker. Versions Français et Anglais.</div>
+
+  <div class="letter-wrap">
+    <div class="letter-tabs">
+      <button class="letter-tab active" onclick="showLetter('fr', this)">🇫🇷 Français</button>
+      <button class="letter-tab" onclick="showLetter('en', this)">🇬🇧 English</button>
+    </div>
+    <div id="letter-fr" class="letter-content active">
+      <div class="letter-body">Tlemcen, le <span class="letter-field">[DATE]</span>
+
+Madame / Monsieur <span class="letter-field">[NOM COMPLET]</span>
+<span class="letter-field">[Titre, Institution, Pays]</span>
+
+Objet : Invitation à participer au 2ème Congrès International SDBQL 2026
+
+Madame / Monsieur,
+
+C'est avec un grand honneur que nous vous adressons cette invitation au nom du Comité d'Organisation du <strong>2ème Congrès International sur le Développement Durable pour une Meilleure Qualité de Vie (SDBQL 2026)</strong>, qui se tiendra les <strong>30 septembre, 1er et 2 octobre 2026</strong> à l'Université Abou Bekr Belkaid de Tlemcen, Algérie.
+
+Ce congrès, organisé par la Faculté des Sciences de la Nature et de la Vie (SNV-STU) en collaboration avec la Faculté des Sciences Économiques, réunira plus de 300 chercheurs, experts et praticiens de terrain issus de plus de 20 pays.
+
+Vos travaux sur <span class="letter-field">[DOMAINE DE RECHERCHE DU SPEAKER]</span> correspondent parfaitement à l'axe thématique <span class="letter-field">[AXE CONCERNÉ]</span>. C'est pourquoi nous vous sollicitons en tant que <strong>Conférencier(ère) Invité(e)</strong> pour une présentation plénière de <strong>45 minutes</strong> lors de cet événement.
+
+Le congrès se déroulera en format <strong>hybride</strong>. Votre participation est envisagée <span class="letter-field">[en présentiel / en ligne via Zoom]</span>.
+
+En acceptant cette invitation, vous bénéficierez de :
+  → Une visibilité internationale auprès de plus de 300 participants de 20+ pays
+  → La publication de votre contribution dans les Actes du Congrès (ISBN)
+  → Un certificat de conférencier invité signé par la direction du congrès
+  → <span class="letter-field">[Prise en charge transport + hébergement / Frais de participation offerts]</span>
+
+Nous vous serions reconnaissants de bien vouloir nous faire parvenir votre réponse avant le <span class="letter-field">[DATE LIMITE]</span>.
+
+Pour tout renseignement complémentaire, n'hésitez pas à nous contacter :
+Email : <strong>sdbql2026@univ-tlemcen.dz</strong> — ☎ +213 40 95 92 65
+
+Dans l'espoir de vous compter parmi nous, nous vous prions d'agréer, Madame/Monsieur, l'expression de nos salutations distinguées.
+
+<strong>Prof. Nassima Amal Soulimane</strong>
+Présidente du Congrès SDBQL 2026
+Université Abou Bekr Belkaid, Tlemcen
+
+<strong>Prof. Dr. Benameur NEHAR</strong>
+Coordinateur Général
+</div>
+    </div>
+    <div id="letter-en" class="letter-content">
+      <div class="letter-body">Tlemcen, <span class="letter-field">[DATE]</span>
+
+Dear <span class="letter-field">[FULL NAME]</span>,
+<span class="letter-field">[Title, Institution, Country]</span>
+
+Subject: Invitation to participate in the 2nd International Congress SDBQL 2026
+
+Dear Colleague,
+
+It is with great honor that we invite you, on behalf of the Organizing Committee of the <strong>2nd International Congress on Sustainable Development for a Better Quality of Life (SDBQL 2026)</strong>, to be held on <strong>September 30, October 1 and 2, 2026</strong> at Abou Bekr Belkaid University, Tlemcen, Algeria.
+
+This congress, organized by the Faculty of Natural and Life Sciences in collaboration with the Faculty of Economic Sciences, will bring together over 300 researchers, experts, and practitioners from more than 20 countries.
+
+Your outstanding work on <span class="letter-field">[SPEAKER'S RESEARCH AREA]</span> aligns perfectly with the thematic track <span class="letter-field">[TRACK NAME]</span>. We therefore warmly invite you to participate as a <strong>Guest Speaker</strong> for a plenary presentation of <strong>45 minutes</strong>.
+
+The congress will be held in <strong>hybrid format</strong>. Your participation is envisaged <span class="letter-field">[in person / online via Zoom]</span>.
+
+By accepting this invitation, you will benefit from:
+  → International visibility among 300+ participants from 20+ countries
+  → Publication of your contribution in the Congress Proceedings (ISBN)
+  → An official Guest Speaker certificate signed by the Congress Direction
+  → <span class="letter-field">[Travel + accommodation covered / Registration fees waived]</span>
+
+We would be grateful to receive your response by <span class="letter-field">[DEADLINE DATE]</span>.
+
+For further information, please do not hesitate to contact us:
+Email: <strong>sdbql2026@univ-tlemcen.dz</strong> — ☎ +213 40 95 92 65
+
+We sincerely hope to welcome you among our distinguished speakers.
+
+Yours faithfully,
+
+<strong>Prof. Nassima Amal Soulimane</strong>
+Congress President, SDBQL 2026
+Abou Bekr Belkaid University, Tlemcen
+
+<strong>Prof. Dr. Benameur NEHAR</strong>
+General Coordinator
+</div>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  SDBQL 2026 · Document interne équipe d'organisation · Université Abou Bekr Belkaid, Tlemcen · Confidentiel
+</footer>
+
+<script>
+  function toggle(el) {
+    el.classList.toggle('done');
+  }
+  function ck(el) {
+    el.classList.toggle('ck');
+  }
+  function showLetter(lang, btn) {
+    document.querySelectorAll('.letter-content').forEach(c => c.classList.remove('active'));
+    document.querySelectorAll('.letter-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('letter-' + lang).classList.add('active');
+    btn.classList.add('active');
+  }
+</script>
+</body>
+</html>
