@@ -1622,7 +1622,7 @@
     <script src="sdg-widget.js"></script>
     <script src="enhancements.js"></script>
     <script src="topbar-enhancements.js"></script>
-    <script src="forms-handler.js"></script>
+    <!-- forms-handler.js REMOVED — replaced by Supabase below -->
 
     <!-- Collapsible Committee JavaScript -->
     <script>
@@ -1634,7 +1634,7 @@
         });
     </script>
 
-    <!-- ✅ SUPABASE INTEGRATION — Contact Form & Newsletter -->
+    <!-- ✅ SUPABASE INTEGRATION — Replaces forms-handler.js -->
     <script>
         const SUPABASE_URL = 'https://wkjwrwmnsovpafnrymyd.supabase.co';
         const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indrandyd21uc292cGFmbnJ5bXlkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE5NjY1OTQsImV4cCI6MjA4NzU0MjU5NH0.nrFPn9Wybyx74AcBOvHl1Er1ycNrK_NvmzdrEPT0KTo';
@@ -1656,7 +1656,9 @@
             }
         }
 
-        function showStatus(el, type, msg) {
+        function showStatus(elId, type, msg) {
+            const el = document.getElementById(elId);
+            if (!el) return;
             el.style.display = 'block';
             el.style.padding = '10px 14px';
             el.style.borderRadius = '6px';
@@ -1667,56 +1669,61 @@
             el.textContent = msg;
         }
 
-        // ── Contact Form → table: contact_messages ───────────────────
-        const contactForm   = document.getElementById('contactForm');
-        const contactStatus = document.getElementById('contactStatus');
+        // ── Helper: clone form to kill ALL existing event listeners ──
+        function resetForm(id) {
+            const el = document.getElementById(id);
+            if (!el) return null;
+            const clone = el.cloneNode(true);
+            el.parentNode.replaceChild(clone, el);
+            return clone;
+        }
 
-        if (contactForm) {
-            contactForm.addEventListener('submit', async (e) => {
+        // ── Contact Form → table: contact_messages ───────────────────
+        const cForm = resetForm('contactForm');
+        if (cForm) {
+            cForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
-                const btn = contactForm.querySelector('button[type="submit"]');
-                const originalText = btn.textContent;
+                e.stopImmediatePropagation();
+                const btn = cForm.querySelector('button[type="submit"]');
+                const orig = btn.textContent;
                 btn.disabled = true;
                 btn.textContent = 'Sending...';
-
                 try {
                     await supabaseInsert('contact_messages', {
-                        name:    contactForm.querySelector('[name="name"]').value.trim(),
-                        email:   contactForm.querySelector('[name="email"]').value.trim(),
-                        subject: contactForm.querySelector('[name="subject"]').value.trim(),
-                        message: contactForm.querySelector('[name="message"]').value.trim()
+                        name:    cForm.querySelector('[name="name"]').value.trim(),
+                        email:   cForm.querySelector('[name="email"]').value.trim(),
+                        subject: cForm.querySelector('[name="subject"]').value.trim(),
+                        message: cForm.querySelector('[name="message"]').value.trim()
                     });
-                    showStatus(contactStatus, 'success', '✅ Your message has been sent successfully! We will get back to you soon.');
-                    contactForm.reset();
+                    showStatus('contactStatus', 'success', '✅ Your message has been sent! We will get back to you soon.');
+                    cForm.reset();
                 } catch (err) {
-                    showStatus(contactStatus, 'error', '❌ Error: ' + err.message);
+                    showStatus('contactStatus', 'error', '❌ Error: ' + err.message);
                 } finally {
                     btn.disabled = false;
-                    btn.textContent = originalText;
+                    btn.textContent = orig;
                 }
             });
         }
 
         // ── Newsletter Form → table: newsletter_subscribers ──────────
-        const newsletterForm   = document.getElementById('newsletterForm');
-        const newsletterStatus = document.getElementById('newsletterStatus');
-
-        if (newsletterForm) {
-            newsletterForm.addEventListener('submit', async (e) => {
+        const nForm = resetForm('newsletterForm');
+        if (nForm) {
+            nForm.addEventListener('submit', async (e) => {
                 e.preventDefault();
-                const btn = newsletterForm.querySelector('button[type="submit"]');
+                e.stopImmediatePropagation();
+                const btn = nForm.querySelector('button[type="submit"]');
                 btn.disabled = true;
                 btn.textContent = '...';
-
                 try {
                     await supabaseInsert('newsletter_subscribers', {
-                        email: newsletterForm.querySelector('[name="email"]').value.trim()
+                        email: nForm.querySelector('[name="email"]').value.trim()
                     });
-                    showStatus(newsletterStatus, 'success', '✅ Subscribed successfully!');
-                    newsletterForm.reset();
+                    showStatus('newsletterStatus', 'success', '✅ Subscribed successfully!');
+                    nForm.reset();
                 } catch (err) {
                     const isDuplicate = err.message.toLowerCase().includes('unique') || err.message.includes('23505');
-                    showStatus(newsletterStatus,
+                    showStatus('newsletterStatus',
                         isDuplicate ? 'success' : 'error',
                         isDuplicate ? '⚠️ This email is already subscribed.' : '❌ Error: ' + err.message
                     );
