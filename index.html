@@ -233,7 +233,7 @@
             <div class="top-bar-content">
                 <div class="top-bar-left">
                     <a href="tel:+21340959265"><i class="icon">📞</i> +213 40 95 92 65</a>
-                    <a href="mailto:sdbql2026@gmail.com"><i class="icon">✉</i> sdbql2026@gmail.com</a>
+                    <a href="/cdn-cgi/l/email-protection#46352224372a7476747006212b272f2a6825292b"><i class="icon">✉</i> <span class="__cf_email__" data-cfemail="e7948385968bd5d7d5d1a7808a868e8bc984888a">[email&#160;protected]</span></a>
                 </div>
                 <div class="top-bar-right">
                     <!-- Language Selector -->
@@ -1493,7 +1493,7 @@
                             <span class="contact-icon">📧</span>
                             <div>
                                 <strong>Email</strong>
-                                <a href="mailto:sdbql2026@gmail.com">sdbql2026@gmail.com</a>
+                                <a href="/cdn-cgi/l/email-protection#c5b6a1a7b4a9f7f5f7f385a2a8a4aca9eba6aaa8"><span class="__cf_email__" data-cfemail="cebdaaacbfa2fcfefcf88ea9a3afa7a2e0ada1a3">[email&#160;protected]</span></a>
                             </div>
                         </div>
                         <div class="contact-item">
@@ -1618,20 +1618,122 @@
     </footer>
     
     <!-- JavaScript Scripts -->
-    <script src="script.js"></script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="script.js"></script>
     <script src="sdg-widget.js"></script>
     <script src="enhancements.js"></script>
     <script src="topbar-enhancements.js"></script>
-    <script src="forms-handler.js"></script>
+    <!-- forms-handler.js REMOVED — replaced by Supabase below -->
+
     <!-- Collapsible Committee JavaScript -->
     <script>
         document.querySelectorAll('.collapsible-header').forEach(header => {
             header.addEventListener('click', function() {
-                // Toggle all collapsible committees at once
                 document.querySelectorAll('.collapsible-header').forEach(h => h.classList.toggle('active'));
                 document.querySelectorAll('.collapsible-content').forEach(c => c.classList.toggle('show'));
             });
         });
     </script>
+
+    <!-- ✅ SUPABASE INTEGRATION — Replaces forms-handler.js -->
+    <script>
+        const SUPABASE_URL = 'https://wkjwrwmnsovpafnrymyd.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indrandyd21uc292cGFmbnJ5bXlkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE5NjY1OTQsImV4cCI6MjA4NzU0MjU5NH0.nrFPn9Wybyx74AcBOvHl1Er1ycNrK_NvmzdrEPT0KTo';
+
+        async function supabaseInsert(table, data) {
+            const res = await fetch(`${SUPABASE_URL}/rest/v1/${table}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'apikey': SUPABASE_ANON_KEY,
+                    'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                    'Prefer': 'return=minimal'
+                },
+                body: JSON.stringify(data)
+            });
+            if (!res.ok) {
+                const err = await res.json();
+                throw new Error(err.message || 'Sending error');
+            }
+        }
+
+        function showStatus(elId, type, msg) {
+            const el = document.getElementById(elId);
+            if (!el) return;
+            el.style.display = 'block';
+            el.style.padding = '10px 14px';
+            el.style.borderRadius = '6px';
+            el.style.fontWeight = '500';
+            el.style.background = type === 'success' ? '#d4edda' : '#f8d7da';
+            el.style.color     = type === 'success' ? '#155724' : '#721c24';
+            el.style.border    = `1px solid ${type === 'success' ? '#c3e6cb' : '#f5c6cb'}`;
+            el.textContent = msg;
+        }
+
+        // ── Helper: clone form to kill ALL existing event listeners ──
+        function resetForm(id) {
+            const el = document.getElementById(id);
+            if (!el) return null;
+            const clone = el.cloneNode(true);
+            el.parentNode.replaceChild(clone, el);
+            return clone;
+        }
+
+        // ── Contact Form → table: contact_messages ───────────────────
+        const cForm = resetForm('contactForm');
+        if (cForm) {
+            cForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                const btn = cForm.querySelector('button[type="submit"]');
+                const orig = btn.textContent;
+                btn.disabled = true;
+                btn.textContent = 'Sending...';
+                try {
+                    await supabaseInsert('contact_messages', {
+                        name:    cForm.querySelector('[name="name"]').value.trim(),
+                        email:   cForm.querySelector('[name="email"]').value.trim(),
+                        subject: cForm.querySelector('[name="subject"]').value.trim(),
+                        message: cForm.querySelector('[name="message"]').value.trim()
+                    });
+                    showStatus('contactStatus', 'success', '✅ Your message has been sent! We will get back to you soon.');
+                    cForm.reset();
+                } catch (err) {
+                    showStatus('contactStatus', 'error', '❌ Error: ' + err.message);
+                } finally {
+                    btn.disabled = false;
+                    btn.textContent = orig;
+                }
+            });
+        }
+
+        // ── Newsletter Form → table: newsletter_subscribers ──────────
+        const nForm = resetForm('newsletterForm');
+        if (nForm) {
+            nForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                const btn = nForm.querySelector('button[type="submit"]');
+                btn.disabled = true;
+                btn.textContent = '...';
+                try {
+                    await supabaseInsert('newsletter_subscribers', {
+                        email: nForm.querySelector('[name="email"]').value.trim()
+                    });
+                    showStatus('newsletterStatus', 'success', '✅ Subscribed successfully!');
+                    nForm.reset();
+                } catch (err) {
+                    const isDuplicate = err.message.toLowerCase().includes('unique') || err.message.includes('23505');
+                    showStatus('newsletterStatus',
+                        isDuplicate ? 'success' : 'error',
+                        isDuplicate ? '⚠️ This email is already subscribed.' : '❌ Error: ' + err.message
+                    );
+                } finally {
+                    btn.disabled = false;
+                    btn.textContent = '→';
+                }
+            });
+        }
+    </script>
+
 </body>
 </html>
