@@ -1621,6 +1621,107 @@
     <script src="sdg-widget.js"></script>
     <script src="enhancements.js"></script>
     <script src="topbar-enhancements.js"></script>
+
+    <!-- ✅ SUPABASE INTEGRATION (before forms-handler.js) -->
+    <script>
+        const SUPABASE_URL = 'https://wkjwrwmnsovpafnrymyd.supabase.co';
+        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indrandyd21uc292cGFmbnJ5bXlkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE5NjY1OTQsImV4cCI6MjA4NzU0MjU5NH0.nrFPn9Wybyx74AcBOvHl1Er1ycNrK_NvmzdrEPT0KTo';
+
+        async function supabaseInsert(table, data) {
+            const res = await fetch(`${SUPABASE_URL}/rest/v1/${table}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'apikey': SUPABASE_ANON_KEY,
+                    'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
+                    'Prefer': 'return=minimal'
+                },
+                body: JSON.stringify(data)
+            });
+            if (!res.ok) {
+                const err = await res.json();
+                throw new Error(err.message || 'Sending error');
+            }
+        }
+
+        function showStatus(elId, type, msg) {
+            const el = document.getElementById(elId);
+            if (!el) return;
+            el.style.display = 'block';
+            el.style.padding = '10px 14px';
+            el.style.borderRadius = '6px';
+            el.style.fontWeight = '500';
+            el.style.background = type === 'success' ? '#d4edda' : '#f8d7da';
+            el.style.color     = type === 'success' ? '#155724' : '#721c24';
+            el.style.border    = `1px solid ${type === 'success' ? '#c3e6cb' : '#f5c6cb'}`;
+            el.textContent = msg;
+        }
+
+        function resetForm(id) {
+            const el = document.getElementById(id);
+            if (!el) return null;
+            const clone = el.cloneNode(true);
+            el.parentNode.replaceChild(clone, el);
+            return clone;
+        }
+
+        // Contact Form
+        const cForm = resetForm('contactForm');
+        if (cForm) {
+            cForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                const btn = cForm.querySelector('button[type="submit"]');
+                const orig = btn.textContent;
+                btn.disabled = true;
+                btn.textContent = 'Envoi...';
+                try {
+                    await supabaseInsert('contact_messages', {
+                        name:    cForm.querySelector('[name="name"]').value.trim(),
+                        email:   cForm.querySelector('[name="email"]').value.trim(),
+                        subject: cForm.querySelector('[name="subject"]').value.trim(),
+                        message: cForm.querySelector('[name="message"]').value.trim()
+                    });
+                    showStatus('contactStatus', 'success', '✅ Votre message a été envoyé ! Nous vous répondrons bientôt.');
+                    cForm.reset();
+                } catch (err) {
+                    showStatus('contactStatus', 'error', '❌ Erreur: ' + err.message);
+                } finally {
+                    btn.disabled = false;
+                    btn.textContent = orig;
+                }
+            });
+        }
+
+        // Newsletter Form
+        const nForm = resetForm('newsletterForm');
+        if (nForm) {
+            nForm.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                const btn = nForm.querySelector('button[type="submit"]');
+                btn.disabled = true;
+                btn.textContent = '...';
+                try {
+                    await supabaseInsert('newsletter_subscribers', {
+                        email: nForm.querySelector('[name="email"]').value.trim()
+                    });
+                    showStatus('newsletterStatus', 'success', '✅ Abonnement réussi !');
+                    nForm.reset();
+                } catch (err) {
+                    const isDuplicate = err.message.toLowerCase().includes('unique') || err.message.includes('23505');
+                    showStatus('newsletterStatus',
+                        isDuplicate ? 'success' : 'error',
+                        isDuplicate ? '⚠️ Cet email est déjà abonné.' : '❌ Erreur: ' + err.message
+                    );
+                } finally {
+                    btn.disabled = false;
+                    btn.textContent = '→';
+                }
+            });
+        }
+    </script>
+
     <script src="forms-handler.js"></script>
     <!-- Collapsible Committee JavaScript -->
     <script>
@@ -1632,5 +1733,6 @@
             });
         });
     </script>
+
 </body>
 </html>
