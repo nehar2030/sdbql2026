@@ -1634,25 +1634,21 @@
         });
     </script>
 
-    <!-- ✅ SUPABASE INTEGRATION — Replaces forms-handler.js -->
+    <!-- ✅ SUPABASE SECURE INTEGRATION — via Edge Function (origin-protected) -->
     <script>
-        const SUPABASE_URL = 'https://wkjwrwmnsovpafnrymyd.supabase.co';
-        const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Indrandyd21uc292cGFmbnJ5bXlkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzE5NjY1OTQsImV4cCI6MjA4NzU0MjU5NH0.nrFPn9Wybyx74AcBOvHl1Er1ycNrK_NvmzdrEPT0KTo';
+        // 🔒 No API key exposed — all requests go through the secure Edge Function
+        // Only requests from https://nehar2030.github.io are accepted server-side
+        const EDGE_FUNCTION_URL = 'https://wkjwrwmnsovpafnrymyd.supabase.co/functions/v1/secure-forms';
 
         async function supabaseInsert(table, data) {
-            const res = await fetch(`${SUPABASE_URL}/rest/v1/${table}`, {
+            const res = await fetch(EDGE_FUNCTION_URL, {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'apikey': SUPABASE_ANON_KEY,
-                    'Authorization': `Bearer ${SUPABASE_ANON_KEY}`,
-                    'Prefer': 'return=minimal'
-                },
-                body: JSON.stringify(data)
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ table, data })
             });
             if (!res.ok) {
                 const err = await res.json();
-                throw new Error(err.message || 'Sending error');
+                throw new Error(err.error || 'Sending error');
             }
         }
 
