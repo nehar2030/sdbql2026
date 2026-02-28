@@ -1781,4 +1781,16 @@
                 } catch (err) {
                     const isDuplicate = err.message.toLowerCase().includes('unique') || err.message.includes('23505');
                     showStatus('newsletterStatus',
-                
+                        isDuplicate ? 'success' : 'error',
+                        isDuplicate ? '⚠️ Cet e-mail est déjà inscrit.' : '❌ Erreur : ' + err.message
+                    );
+                } finally {
+                    btn.disabled = false;
+                    btn.textContent = '→';
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
