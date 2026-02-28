@@ -144,8 +144,13 @@
 .partners-ticker-content {
     display: flex;
     gap: 40px;
-    animation: scroll-left 15s linear infinite;
+    animation: scroll-left 12s linear infinite;
     padding: 20px 0;
+    will-change: transform;
+}
+
+.partners-ticker-wrapper:hover .partners-ticker-content {
+    animation-play-state: paused;
 }
 
 .partner-ticker-item {
@@ -170,7 +175,6 @@
     text-align: center;
     padding: 10px;
     transition: all 0.3s ease;
-    animation: logoFloat 3s ease-in-out infinite;
 }
 
 .partner-logo-placeholder:hover {
@@ -189,31 +193,12 @@
     object-fit: contain;
     object-position: center;
     transition: all 0.3s ease;
-    animation: logoFloat 3s ease-in-out infinite;
     filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
 }
 
 .partner-ticker-item:hover .partner-logo-image {
     transform: translateY(-3px);
     filter: drop-shadow(0 4px 12px rgba(0,77,64,0.2));
-}
-    color: rgba(255,255,255,0.9);
-}
-
-/* Animations des logos */
-@keyframes logoFloat {
-    0% {
-        transform: translateY(0px);
-        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    }
-    50% {
-        transform: translateY(-8px);
-        box-shadow: 0 8px 20px rgba(0,77,64,0.12);
-    }
-    100% {
-        transform: translateY(0px);
-        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
-    }
 }
 
 /* Animation du défilement */
