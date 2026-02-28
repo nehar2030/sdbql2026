@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Inscription SDBQL 2026 - 2ème Congrès International sur le Développement Durable">
+    <title>Inscription - SDBQL 2026</title>
+    
+    <!-- Styles CSS -->
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="enhancements.css">
+    <link rel="stylesheet" href="finalization-status.css">
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700;800&family=Open+Sans:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        .inscription-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .inscription-header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px 30px;
+            background: linear-gradient(135deg, #009688 0%, #00bfa5 100%);
+            border-radius: 15px;
+            color: white;
+            box-shadow: 0 10px 40px rgba(0,150,136,0.3);
+        }
+        
+        .inscription-header h1 {
+            font-size: 2.2em;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+        
+        .inscription-header .subtitle {
+            font-size: 1.3em;
+            opacity: 0.95;
+            font-family: 'Times New Roman', Times, serif;
+        }
+        
+        .section-inscription {
+            background: white;
+            padding: 35px;
+            margin-bottom: 30px;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            border-left: 5px solid #009688;
+        }
+        
+        .section-inscription h2 {
+            color: #009688;
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .section-inscription h2::before {
+            content: '';
+            display: inline-block;
+            width: 8px;
+            height: 25px;
+            background: #009688;
+            border-radius: 4px;
+        }
+        
+        .section-inscription p {
+            line-height: 1.8;
+            color: #444;
+            margin-bottom: 15px;
+        }
+        
+        .conditions-list {
+            list-style: none;
+            padding: 0;
+        }
+        
+        .conditions-list li {
+            padding: 12px 0 12px 35px;
+            position: relative;
+            border-bottom: 1px solid #eee;
+            color: #444;
+            line-height: 1.6;
+        }
+        
+        .conditions-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .conditions-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #009688;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        
+        .cta-section {
+            text-align: center;
+            padding: 50px 30px;
+            background: linear-gradient(135deg, #f5f5f5 0%, #e0e0e0 100%);
+            border-radius: 15px;
+            margin-top: 40px;
+        }
+        
+        .cta-section h3 {
+            font-size: 1.8em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        .cta-section p {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 1.1em;
+        }
+        
+        .btn-inscription {
+            display: inline-block;
+            padding: 18px 50px;
+            background: linear-gradient(135deg, #009688 0%, #00bfa5 100%);
+            color: white;
+            font-size: 1.2em;
+            font-weight: 700;
+            border: none;
+            border-radius: 50px;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 25px rgba(0,150,136,0.4);
+        }
+        
+        .btn-inscription:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(0,150,136,0.5);
+        }
+        
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #009688;
+            text-decoration: none;
+            font-weight: 600;
+            margin-bottom: 30px;
+            transition: color 0.3s ease;
+        }
+        
+        .back-link:hover {
+            color: #00796b;
+        }
+        
+        .info-box {
+            background: #e8f5e9;
+            border-left: 4px solid #4caf50;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        
+        .info-box p {
+            margin: 0;
+            color: #2e7d32;
+        }
+        
+        @media (max-width: 768px) {
+            .inscription-header h1 {
+                font-size: 1.6em;
+            }
+            
+            .section-inscription {
+                padding: 25px;
+            }
+            
+            .btn-inscription {
+                padding: 15px 35px;
+                font-size: 1.1em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-brand">
+            <a href="index-fr.html">
+                <img src="images/logo-congres.jpg" alt="Logo" style="width: 40px; height: 40px; border-radius: 50%; vertical-align: middle; margin-right: 8px;">
+                <span class="logo-text">SDBQL 2026</span>
+            </a>
+        </div>
+        <div class="nav-links">
+            <a href="index-fr.html">← Retour à l'accueil</a>
+        </div>
+    </nav>
+
+    <div class="inscription-container">
+        <a href="index-fr.html" class="back-link">← Retour à la page d'accueil</a>
+        
+        <div class="inscription-header">
+            <img src="images/logo-congres.jpg" alt="Logo SDBQL 2026" style="width: 120px; height: auto; border-radius: 50%; margin-bottom: 20px; box-shadow: 0 5px 20px rgba(0,0,0,0.3);">
+            <h1>Inscription au Congrès</h1>
+            <p class="subtitle">2ème Congrès International sur le Développement Durable pour une Meilleure Qualité de Vie</p>
+        </div>
+
+        <!-- Présentation du Congrès -->
+        <div class="section-inscription">
+            <h2>Description du Congrès</h2>
+            <p>
+                Nous avons le plaisir de vous inviter à notre <strong>2ème Congrès International sur le Développement Durable pour une Meilleure Qualité de Vie (SDBQL 2026)</strong>, 
+                qui se déroulera autour de <strong>six axes clés</strong>. Cet événement réunira des experts, des chercheurs et des acteurs du terrain pour partager des connaissances, des expériences et des solutions innovantes.
+            </p>
+            <p>
+                Le congrès se tiendra du <strong>30 septembre au 2 octobre 2026</strong> à l'Université Abou Bekr Belkaid de Tlemcen, Algérie.
+            </p>
+            
+            <h3 style="color: #00796b; margin-top: 30px; margin-bottom: 20px;">Les Six Axes du Congrès</h3>
+            
+            <div style="margin-bottom: 25px;">
+                <h4 style="color: #009688; margin-bottom: 10px;">🌾 Axe 1 : Agriculture Durable et Sécurité Alimentaire</h4>
+                <p>Explorez les pratiques agricoles respectueuses de l'environnement et les stratégies pour garantir un accès équitable à une alimentation saine et durable.</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+                <h4 style="color: #009688; margin-bottom: 10px;">⚡ Axe 2 : Bioénergie et Énergies Renouvelables</h4>
+                <p>Découvrez les avancées dans les technologies de bioénergie et d'autres sources d'énergie renouvelable, essentielles pour réduire notre empreinte carbone.</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+                <h4 style="color: #009688; margin-bottom: 10px;">🌊 Axe 3 : Biodiversité, Gestion des Milieux Aquatiques et Terrestres</h4>
+                <p>Discutez de l'importance de la biodiversité et des moyens de gérer efficacement nos écosystèmes pour préserver la planète pour les générations futures.</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+                <h4 style="color: #009688; margin-bottom: 10px;">🌍 Axe 4 : Action pour le Climat et Changement Climatique</h4>
+                <p>Participez à des ateliers et des tables rondes sur les politiques et les actions nécessaires pour atténuer les effets du changement climatique à l'échelle locale et mondiale.</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+                <h4 style="color: #009688; margin-bottom: 10px;">❤️ Axe 5 : Santé et Bien-être</h4>
+                <p>Examinez le lien entre environnement et santé, en mettant l'accent sur les approches holistiques pour promouvoir le bien-être des individus et des communautés.</p>
+            </div>
+            
+            <div style="margin-bottom: 25px;">
+                <h4 style="color: #009688; margin-bottom: 10px;">🤝 Axe 6 : Partenariats Socio-économiques pour le Développement Durable</h4>
+                <p>Encouragez les collaborations entre secteurs public et privé pour créer des synergies et des initiatives durables au service du développement économique et social.</p>
+            </div>
+        </div>
+
+        <!-- Contexte et Enjeux -->
+        <div class="section-inscription">
+            <h2>Contexte et Enjeux des ODD</h2>
+            <p>
+                À seulement quatre ans de l'échéance de 2030, le bilan mondial des ODD fait état de constats alarmants : seulement 18% des objectifs sont sur la bonne voie, les températures ont déjà dépassé le seuil de +1,55°C, plus de 2,3 milliards de personnes font face à l'insécurité alimentaire, et la perte de biodiversité s'accélère au-delà des limites planétaires. L'Agenda 2030 est à un carrefour — et les ressources naturelles se trouvent au cœur même du défi.
+            </p>
+            <p>
+                L'eau, l'énergie, le sol, les forêts, la biodiversité et les minéraux ne sont pas de simples intrants pour le développement — ils constituent l'infrastructure fondamentale du bien-être humain. Pourtant, les cadres actuels des ODD restent largement cloisonnés, orientés vers la croissance, et insuffisants pour exiger des réductions absolues de l'utilisation des ressources. Combler cette lacune nécessite une nouvelle génération de science, de gouvernance et de pratique.
+            </p>
+            <p>
+                Le <strong>2ème Congrès International SDBQL 2026</strong> est convoqué à ce moment critique pour faire progresser exactement cet agenda. S'appuyant sur une approche intégrée et systémique, le congrès adopte le concept du nexus des ressources — les interconnexions entre l'eau, l'énergie, l'alimentation, la terre et les matériaux — comme un prisme puissant pour réduire les arbitrages entre les ODD et briser les silos politiques.
+            </p>
+            <p>
+                Il met en lumière l'innovation verte et la digitalisation — des capteurs intelligents à la télédétection et aux big data — comme leviers transformants pour une gestion plus efficace et équitable des ressources. Il met en avant la sécurité minérale, une dimension souvent négligée : les minéraux qui sous-tendent la transition énergétique, l'infrastructure sanitaire et l'économie numérique sont essentiels à la plupart des ODD, pourtant largement absents des objectifs actuels.
+            </p>
+            <p>
+                Le congrès aborde également les questions de justice sociale — qui bénéficie des redevances sur les ressources, qui supporte les coûts de l'extraction, et comment la gouvernance démocratique et la responsabilité des entreprises façonnent les résultats. Il interroge également les limites des indicateurs actuels des ODD, qui ne suivent pas adéquatement les états des écosystèmes, les tendances de la biodiversité et les empreintes matérielles — des lacunes qui menacent la crédibilité de l'ensemble de l'agenda 2030.
+            </p>
+            <p>
+                Les mécanismes de financement vert, la gouvernance territoriale et les cadres d'après-2030 seront au centre des discussions prospectives. SDBQL 2026 est un espace où les scientifiques, praticiens, décideurs politiques, société civile et secteur privé peuvent confronter les expériences de terrain à la recherche de pointe, débattre des voies et arbitrages, et co-construire une vision partagée pour la décennie à venir — et au-delà de 2030.
+            </p>
+            <p>
+                Nous invitons chaleureusement les chercheurs de toutes disciplines, les experts de terrain et les acteurs institutionnels à soumettre leurs contributions et à nous rejoindre à Tlemcen, Algérie, du 30 septembre au 2 octobre 2026, pour ce qui s'annonce comme un rassemblement transdisciplinaire pivot.
+            </p>
+        </div>
+
+        <!-- Objectifs du Congrès -->
+        <div class="section-inscription">
+            <h2>Objectifs du Congrès</h2>
+            <p>
+                Ce congrès poursuit plusieurs objectifs ambitieux :
+            </p>
+            <ul class="conditions-list">
+                <li>Promouvoir la recherche scientifique et l'innovation dans le domaine du développement durable</li>
+                <li>Faciliter l'échange de connaissances et d'expériences entre chercheurs et praticiens</li>
+                <li>Explorer les solutions innovantes pour une meilleure qualité de vie</li>
+                <li>Contribuer à la réalisation des Objectifs de Développement Durable (ODD) de l'ONU</li>
+                <li>Renforcer les partenariats nationaux et internationaux dans le domaine de la recherche</li>
+                <li>Valoriser les ressources naturelles et leur gestion durable</li>
+            </ul>
+        </div>
+
+        <!-- Thèmes du Congrès -->
+        <div class="section-inscription">
+            <h2>Thèmes Principaux</h2>
+            <ul class="conditions-list">
+                <li>Ressources naturelles et développement durable</li>
+                <li>Changement climatique et adaptation</li>
+                <li>Biodiversité et écosystèmes</li>
+                <li>Gestion de l'eau et des ressources hydriques</li>
+                <li>Énergies renouvelables et efficacité énergétique</li>
+                <li>Agriculture durable et sécurité alimentaire</li>
+                <li>Gestion des déchets et économie circulaire</li>
+                <li>Politiques publiques et gouvernance environnementale</li>
+            </ul>
+        </div>
+
+        <!-- Conditions de Participation -->
+        <div class="section-inscription">
+            <h2>Conditions de Participation</h2>
+            <p>
+                Pour participer au SDBQL 2026, veuillez prendre connaissance des conditions suivantes :
+            </p>
+            <ul class="conditions-list">
+                <li><strong>Communication orale :</strong> Soumission d'un résumé étendu (4-6 pages) avant la date limite</li>
+                <li><strong>Poster scientifique :</strong> Présentation visuelle des travaux de recherche</li>
+                <li><strong>Participation sans communication :</strong> Assistant aux sessions et ateliers</li>
+                <li>Les résumés doivent être rédigés en français, anglais ou arabe</li>
+                <li>Tous les articles sélectionnés feront l'objet d'une publication dans les actes du congrès</li>
+                <li>Les frais d'inscription couvrent : accès à toutes les sessions, documentation, pauses-café et déjeuners</li>
+            </ul>
+            
+            <div class="info-box">
+                <p><strong>📅 Dates importantes :</strong><br>
+                • Ouverture des inscriptions : 1er mars 2026<br>
+                • Date limite de soumission des résumés : 15 juillet 2026<br>
+                • Notification des acceptations : 15 août 2026<br>
+                • Date limite d'inscription : 15 septembre 2026</p>
+            </div>
+        </div>
+
+        <!-- Public Cible -->
+        <div class="section-inscription">
+            <h2>Public Cible</h2>
+            <p>
+                Ce congrès s'adresse à :
+            </p>
+            <ul class="conditions-list">
+                <li>Chercheurs et enseignants-chercheurs universitaires</li>
+                <li>Doctorants et étudiants en Master</li>
+                <li>Ingénieurs et techniciens spécialisés</li>
+                <li>Décideurs et responsables institutionnels</li>
+                <li>Représentants d'ONG et organisations internationales</li>
+                <li>Entreprises et acteurs du secteur privé</li>
+            </ul>
+        </div>
+
+        <!-- Bouton d'inscription -->
+        <div class="cta-section">
+            <h3>🎯 Prêt à rejoindre le SDBQL 2026 ?</h3>
+            <p>Complétez votre inscription en ligne en cliquant sur le bouton ci-dessous.<br>
+            Vous serez redirigé vers notre formulaire d'inscription sécurisé.</p>
+            <a href="https://docs.google.com/forms/d/e/1FAIpQLScnKBF7ApG3s6HqTpQArxrY5RMmayHWlM6b1AcbKfcsSAtQEA/viewform?usp=header" target="_blank" class="btn-inscription">
+                📝 S'inscrire maintenant
+            </a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer style="background: #333; color: white; text-align: center; padding: 30px; margin-top: 50px;">
+        <p>&copy; 2026 SDBQL - Tous droits réservés</p>
+        <p>Université Abou Bekr Belkaid - Tlemcen, Algérie</p>
+    </footer>
+</body>
+</html>
