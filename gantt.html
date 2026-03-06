@@ -63,7 +63,6 @@
       Ms5:  { name: "BENDIDJELLOUL S.M.B.",        role: "LECGEN" },
       Ms6:  { name: "BENGUEDDA R.W.",              role: "Labo 10" },
       Ms7:  { name: "BOUCHIKHI T.Z.",              role: "Labo 10" },
-      Ms8:  { name: "BOUANANI A.",                 role: "Hydraulique / Eau" },
       Ms9:  { name: "BOUHRAOUA R.T.",              role: "Foresterie" },
       Ms10: { name: "CHAOUCH M.T.",               role: "LAPRONA" },
       Ms11: { name: "CHERRAK S.A.",               role: "PPABIONUT" },
@@ -83,12 +82,15 @@
       Ms25: { name: "AL-DHABI N.A.",             role: "King Saud University" },
       Ms26: { name: "AMARA M.",                  role: "Ain Temouchent" },
       Ms27: { name: "BENARADJ A.",               role: "Naâma / Écologie" },
-      Ms28: { name: "GUETTAIA S.",               role: "Labo 25 / Eau" },
-      Ms29: { name: "BOUMEDIENE M.",             role: "Hydraulique" },
-      Ms30: { name: "MAHBOUBI S.",               role: "Énergie / STU" },
-      Ms31: { name: "TEFIANI C.",                role: "Agronomie" },
-      Ms32: { name: "MERGHACHE S.",              role: "Biomasse / Eau" },
-      Ms33: { name: "MERGHACHE D.",              role: "Biochimie / Microbio" },
+      Ms28: { name: "BOUDJEMA A.",               role: "Labo 25 / STU" },
+      Ms29: { name: "TABET AOUL LACHACHI W.",    role: "LARMHO / Tlemcen" },
+      Ms30: { name: "BENLEDGHEM F.",             role: "LARMHO / Tlemcen" },
+      Ms31: { name: "GHOMARI S.",                role: "LARMHO / Tlemcen" },
+      Ms32: { name: "FEROUANI B.",               role: "LARMHO / Tlemcen" },
+      Ms33: { name: "MERAD BOUDIA D.",           role: "LARMHO / Tlemcen" },
+      Ms34: { name: "TAFER Z.",                  role: "LARMHO / Tlemcen" },
+      Ms35: { name: "BERBAR W.",                 role: "LARMHO / Tlemcen" },
+      Ms36: { name: "YOUCEFI F.",                role: "AFTARO / Tlemcen" },
     };
 
     /* ============================================================
@@ -150,11 +152,11 @@
         label: "PHASE 2 — ÉVALUATION SCIENTIFIQUE",
         tasks: [
           { id:"P2T1", name:"Attribution des abstracts aux évaluateurs (par axe)",       start:111, end:122, assigned:["Ms0","Ms2"],              desc:"Trier et distribuer les soumissions selon les 6 axes thématiques. Chaque abstract → 2 évaluateurs." },
-          { id:"P2T2", name:"Évaluation Axe 1 — Agriculture & Sécurité Alimentaire",    start:111, end:139, assigned:["Ms16","Ms24","Ms31"],      desc:"Révision en double aveugle des soumissions Axe 1 : originalité, pertinence, méthodologie." },
-          { id:"P2T3", name:"Évaluation Axe 2 — Bioénergie & Énergies Renouvelables",   start:111, end:139, assigned:["Ms7","Ms15","Ms30","Ms32"], desc:"Révision en double aveugle des soumissions Axe 2." },
+          { id:"P2T2", name:"Évaluation Axe 1 — Agriculture & Sécurité Alimentaire",    start:111, end:139, assigned:["Ms16","Ms24"],      desc:"Révision en double aveugle des soumissions Axe 1 : originalité, pertinence, méthodologie." },
+          { id:"P2T3", name:"Évaluation Axe 2 — Bioénergie & Énergies Renouvelables",   start:111, end:139, assigned:["Ms7","Ms15"], desc:"Révision en double aveugle des soumissions Axe 2." },
           { id:"P2T4", name:"Évaluation Axe 3 — Biodiversité & Écosystèmes",            start:111, end:139, assigned:["Ms9","Ms13","Ms19","Ms27"], desc:"Révision en double aveugle des soumissions Axe 3." },
           { id:"P2T5", name:"Évaluation Axe 4 — Action pour le Climat",                 start:111, end:139, assigned:["Ms5","Ms18","Ms23"],       desc:"Révision en double aveugle des soumissions Axe 4." },
-          { id:"P2T6", name:"Évaluation Axe 5 — Santé & Bien-être",                     start:111, end:139, assigned:["Ms11","Ms17","Ms33"],      desc:"Révision en double aveugle des soumissions Axe 5." },
+          { id:"P2T6", name:"Évaluation Axe 5 — Santé & Bien-être",                     start:111, end:139, assigned:["Ms11","Ms17"],      desc:"Révision en double aveugle des soumissions Axe 5." },
           { id:"P2T7", name:"Évaluation Axe 6 — Partenariats Socio-économiques",        start:111, end:139, assigned:["Ms14","Ms21"],             desc:"Révision en double aveugle des soumissions Axe 6." },
           { id:"P2T8", name:"Rapport d'évaluation & notifications auteurs (18 Juil.)",  start:139, end:145, assigned:["Ms0","Ms1","Mo2"],         desc:"Compiler les résultats, générer les lettres d'acceptation/refus, envoyer les notifications." },
         ],
@@ -194,7 +196,7 @@
           { id:"P5T1", name:"Cérémonie d'ouverture officielle (30 Sept.)",               start:213, end:214, assigned:["Mo0","Ms0","Mo1"],         desc:"Ouverture par les autorités académiques, discours du Recteur, présentation des comités, remise des kits." },
           { id:"P5T2", name:"Sessions plénières — Conférenciers invités",                start:213, end:215, assigned:["Ms0","Ms1","Ms18","Ms22"],  desc:"Animation des 4-6 conférences plénières de haut niveau par les invités nationaux et internationaux." },
           { id:"P5T3", name:"Sessions parallèles — 6 Axes thématiques simultanés",      start:213, end:215, assigned:["Ms2","Ms5","Ms11","Ms14","Ms19","Ms23"], desc:"Modération et animation de toutes les sessions de communications orales (6 tracks en simultané)." },
-          { id:"P5T4", name:"Atelier doctoral & session posters",                         start:213, end:215, assigned:["Ms16","Ms28"],             desc:"Atelier dédié aux doctorants : présentations de thèses, session posters, échanges avec professeurs." },
+          { id:"P5T4", name:"Atelier doctoral & session posters",                         start:213, end:215, assigned:["Ms16"],             desc:"Atelier dédié aux doctorants : présentations de thèses, session posters, échanges avec professeurs." },
           { id:"P5T5", name:"Accueil, orientation & assistance participants",             start:213, end:215, assigned:["Mo9","Mo11","Mo15","Mo19"], desc:"Permanence à l'accueil pendant toute la durée du congrès, orientation salles, gestion imprévus." },
           { id:"P5T6", name:"Gestion technique en temps réel (IT, son, streaming)",      start:213, end:215, assigned:["Mo4","Mo17"],               desc:"Assistance technique permanente : projecteurs, micros, streaming, enregistrements, connexion." },
           { id:"P5T7", name:"Cérémonie de clôture & remise des prix (2 Oct.)",           start:214, end:215, assigned:["Mo0","Ms0","Mo1"],          desc:"Clôture officielle, remise Best Paper & Best Poster, annonce SDBQL 2028, photos officielles." },
@@ -396,6 +398,9 @@
                     🔬 COMITÉ SCIENTIFIQUE ({Object.keys(MS).length} membres)
                   </h2>
                   {Object.entries(MS).map(([code,data]) => <MemberBadge key={code} code={code} data={data} type="Ms" />)}
+                  <div style={{ marginTop:12, padding:"10px 14px", background:"#fffbea", border:"1px dashed #f59e0b", borderRadius:8, fontSize:12, color:"#92400e", fontStyle:"italic" }}>
+                    ⏳ D'autres membres seront ajoutés prochainement.
+                  </div>
                 </div>
               </div>
             </div>
