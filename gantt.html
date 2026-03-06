@@ -1,0 +1,643 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SDBQL 2026 — Diagramme de Gantt</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/7.23.2/babel.min.js"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Segoe UI', system-ui, sans-serif; background: #f8fafc; }
+    ::-webkit-scrollbar { height: 6px; width: 6px; }
+    ::-webkit-scrollbar-track { background: #f1f5f9; }
+    ::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 3px; }
+    #root { min-height: 100vh; }
+  </style>
+</head>
+<body>
+  <div id="root"></div>
+
+  <script type="text/babel">
+    const { useState, useRef } = React;
+
+    /* ============================================================
+       DATA — MEMBRES ORGANISATEURS (Mo)
+    ============================================================ */
+    const MO = {
+      Mo0:  { name: "SOULIMANE N.A.",    role: "Présidente Congrès" },
+      Mo1:  { name: "BELYAGOUBI L.",     role: "Président Organisation" },
+      Mo2:  { name: "AZZI R.",           role: "Coordinateur Adjoint" },
+      Mo3:  { name: "ABBOU F.",          role: "Communication Scientifique" },
+      Mo4:  { name: "AINAD TABET M.",    role: "IT / Logistique" },
+      Mo5:  { name: "BELLAHCENE N.",     role: "Logistique" },
+      Mo6:  { name: "BENARIBA H.",       role: "Transport" },
+      Mo7:  { name: "GHANEMI F.Z.",      role: "Communication" },
+      Mo8:  { name: "HADJ MERABET D.",   role: "Documentation" },
+      Mo9:  { name: "KADI S.",           role: "Inscriptions" },
+      Mo10: { name: "KHOLKHAL D.",       role: "Salles / Logistique" },
+      Mo11: { name: "LAHFA-HASSAINE I.", role: "Inscriptions" },
+      Mo12: { name: "MALTI N.",          role: "Programme" },
+      Mo13: { name: "MERZOUK Am.",       role: "Hébergement" },
+      Mo14: { name: "MIMOUN A.",         role: "Communication" },
+      Mo15: { name: "RABAH A.",          role: "Accueil" },
+      Mo16: { name: "TEIBI A.",          role: "Certificats / Kits" },
+      Mo17: { name: "ZETTAM A.",         role: "IT / Technique" },
+      Mo18: { name: "MEZOUAR D.",        role: "Formulaires / Web" },
+      Mo19: { name: "MELLAL A.",         role: "Coordination Générale" },
+      Mo20: { name: "BRAHIMI N.",        role: "Partenariats / Sponsors" },
+      Mo21: { name: "BETTIOUI R.A.",     role: "Logistique / Médias" },
+      Mo22: { name: "BOUCHERIF A.",      role: "Communication" },
+    };
+
+    /* ============================================================
+       DATA — MEMBRES SCIENTIFIQUES (Ms)
+    ============================================================ */
+    const MS = {
+      Ms0:  { name: "NEHAR B.",                    role: "Président Comité Sci." },
+      Ms1:  { name: "ABDELLAOUI K.",               role: "Écologie animale" },
+      Ms2:  { name: "AZZI R.",                     role: "LAPRONA" },
+      Ms3:  { name: "BELARBI M.",                  role: "LAPRONA" },
+      Ms4:  { name: "BELYAGOUBI-BENHAMMOU N.",     role: "Phytochimie" },
+      Ms5:  { name: "BENDIDJELLOUL S.M.B.",        role: "LECGEN" },
+      Ms6:  { name: "BENGUEDDA R.W.",              role: "Labo 10" },
+      Ms7:  { name: "BOUCHIKHI T.Z.",              role: "Labo 10" },
+      Ms8:  { name: "BOUANANI A.",                 role: "Hydraulique / Eau" },
+      Ms9:  { name: "BOUHRAOUA R.T.",              role: "Foresterie" },
+      Ms10: { name: "CHAOUCH M.T.",               role: "LAPRONA" },
+      Ms11: { name: "CHERRAK S.A.",               role: "PPABIONUT" },
+      Ms12: { name: "DAMERDJI A.",                role: "Labo 10" },
+      Ms13: { name: "HADDOUCHE D.",               role: "Foresterie / Géomatique" },
+      Ms14: { name: "HASSAINE H.",                role: "LAMAABE" },
+      Ms15: { name: "HASSANI F.",                 role: "Énergie / Labo 13" },
+      Ms16: { name: "KAZI TANI L.M.",             role: "AFTAGRO / Agriculture" },
+      Ms17: { name: "LOUKIDI B.",                 role: "PPABIONUT" },
+      Ms18: { name: "MERZOUK Ab.",                role: "LECGEN" },
+      Ms19: { name: "MOSTEFAI N.",               role: "Foresterie" },
+      Ms20: { name: "RAHMOUN N.",                role: "LapSab" },
+      Ms21: { name: "REBIAHI S.A.",              role: "LAMAABE" },
+      Ms22: { name: "GAOUAR S.B.S.",             role: "Génétique" },
+      Ms23: { name: "STAMBOULI-MEZIANE H.",      role: "LECGEN / Biodiversité" },
+      Ms24: { name: "ZENASNI M.A.",              role: "AFTAGRO" },
+      Ms25: { name: "AL-DHABI N.A.",             role: "King Saud University" },
+      Ms26: { name: "AMARA M.",                  role: "Ain Temouchent" },
+      Ms27: { name: "BENARADJ A.",               role: "Naâma / Écologie" },
+      Ms28: { name: "GUETTAIA S.",               role: "Labo 25 / Eau" },
+      Ms29: { name: "BOUMEDIENE M.",             role: "Hydraulique" },
+      Ms30: { name: "MAHBOUBI S.",               role: "Énergie / STU" },
+      Ms31: { name: "TEFIANI C.",                role: "Agronomie" },
+      Ms32: { name: "MERGHACHE S.",              role: "Biomasse / Eau" },
+      Ms33: { name: "MERGHACHE D.",              role: "Biochimie / Microbio" },
+    };
+
+    /* ============================================================
+       TIMELINE (jours depuis le 1er mars 2026)
+    ============================================================ */
+    const TOTAL_DAYS = 244;
+    const TODAY      = 5; // 6 mars 2026
+
+    const MONTHS = [
+      { label: "MARS 2026", start: 0,   days: 31 },
+      { label: "AVRIL",     start: 31,  days: 30 },
+      { label: "MAI",       start: 61,  days: 31 },
+      { label: "JUIN",      start: 92,  days: 30 },
+      { label: "JUILLET",   start: 122, days: 31 },
+      { label: "AOÛT",      start: 153, days: 31 },
+      { label: "SEPT",      start: 184, days: 30 },
+      { label: "OCT",       start: 214, days: 31 },
+    ];
+
+    const MILESTONES = [
+      { day: 5,   label: "Aujourd'hui",       icon: "📍", color: "#dc3545" },
+      { day: 111, label: "Clôture soumissions", icon: "📝", color: "#fd7e14" },
+      { day: 139, label: "Notif. acceptation",  icon: "✉️", color: "#ffc107" },
+      { day: 184, label: "Confirmation",        icon: "✅", color: "#198754" },
+      { day: 213, label: "Congrès SDBQL",       icon: "🎓", color: "#0d6efd" },
+    ];
+
+    /* ============================================================
+       PHASES & TÂCHES
+    ============================================================ */
+    const PHASES = [
+      {
+        id: "P0", icon: "🚨", urgency: "critique",
+        label: "PHASE 0 — LANCEMENT IMMÉDIAT",
+        tasks: [
+          { id:"P0T1", name:"Finalisation & confirmation liste comité complet",          start:0,  end:14,  assigned:["Mo0","Mo1","Mo2"],         desc:"Valider la liste définitive de tous les membres, communiquer officiellement les rôles et responsabilités." },
+          { id:"P0T2", name:"Site web opérationnel & formulaires actifs",                start:0,  end:7,   assigned:["Mo2","Mo17","Mo18"],        desc:"Vérifier le bon fonctionnement des 3 formulaires Google, du compteur visiteurs, du compte à rebours et du mode sombre." },
+          { id:"P0T3", name:"1ère Circulaire + Appel à communications (3 langues)",      start:0,  end:14,  assigned:["Mo0","Ms0"],               desc:"Rédiger la circulaire officielle FR/EN/AR et la diffuser à toutes les universités algériennes et aux réseaux internationaux." },
+          { id:"P0T4", name:"Réunion de lancement — Présentation des missions Mo/Ms",    start:0,  end:10,  assigned:["Mo0","Mo1","Mo2","Ms0"],    desc:"Réunion plénière pour présenter les rôles Mo/Ms, valider le plan de travail et les délais de chaque phase." },
+          { id:"P0T5", name:"Invitation conférenciers invités (Guest Speakers)",          start:0,  end:30,  assigned:["Ms0","Ms25","Ms18"],        desc:"Identifier et contacter les conférenciers invités nationaux et internationaux, confirmer plénières et titres." },
+          { id:"P0T6", name:"Lancement campagne réseaux sociaux & affiche officielle",   start:0,  end:30,  assigned:["Mo7","Mo14","Mo19"],        desc:"Créer l'affiche officielle SDBQL 2026, lancer les campagnes Facebook/LinkedIn/ResearchGate." },
+        ],
+      },
+      {
+        id: "P1", icon: "📢", urgency: "urgent",
+        label: "PHASE 1 — APPEL À CONTRIBUTIONS",
+        tasks: [
+          { id:"P1T1", name:"Plateforme soumission en ligne — Maintenance continue",    start:7,  end:111, assigned:["Mo2","Mo17"],             desc:"Assurer la disponibilité de la plateforme, gérer les bugs, répondre aux demandes techniques des auteurs." },
+          { id:"P1T2", name:"Diffusion appel — Universités algériennes (200+ inst.)",   start:5,  end:111, assigned:["Mo3","Mo7","Mo8"],         desc:"Envoyer l'appel à toutes les universités et centres de recherche algériens. Cible : 200+ institutions." },
+          { id:"P1T3", name:"Diffusion appel — Réseau académique international",        start:5,  end:111, assigned:["Ms0","Ms25","Ms27"],       desc:"Mobiliser les réseaux internationaux (ResearchGate, LinkedIn, listes de diffusion scientifiques)." },
+          { id:"P1T4", name:"Suivi inscriptions participants & base de données",         start:14, end:111, assigned:["Mo9","Mo11","Mo15"],       desc:"Tenir à jour la liste des inscrits, envoyer les accusés de réception, gérer les questions." },
+          { id:"P1T5", name:"Gestion sponsors, partenaires & conventions",               start:5,  end:111, assigned:["Mo1","Mo20"],              desc:"Démarcher les sponsors (ONA, entreprises privées), préparer les conventions de partenariat." },
+          { id:"P1T6", name:"Budget prévisionnel & suivi financier",                     start:14, end:184, assigned:["Mo0","Mo1"],               desc:"Établir et suivre le budget : frais d'organisation, matériels, restauration, hébergement conférenciers." },
+          { id:"P1T7", name:"Relances ciblées soumissions (J-30 et J-10)",              start:61, end:111, assigned:["Mo2","Mo4","Mo14"],        desc:"Envoyer des rappels personnalisés 30 jours et 10 jours avant la clôture du 20 juin 2026." },
+        ],
+      },
+      {
+        id: "P2", icon: "🔬", urgency: "important",
+        label: "PHASE 2 — ÉVALUATION SCIENTIFIQUE",
+        tasks: [
+          { id:"P2T1", name:"Attribution des abstracts aux évaluateurs (par axe)",       start:111, end:122, assigned:["Ms0","Ms2"],              desc:"Trier et distribuer les soumissions selon les 6 axes thématiques. Chaque abstract → 2 évaluateurs." },
+          { id:"P2T2", name:"Évaluation Axe 1 — Agriculture & Sécurité Alimentaire",    start:111, end:139, assigned:["Ms16","Ms24","Ms31"],      desc:"Révision en double aveugle des soumissions Axe 1 : originalité, pertinence, méthodologie." },
+          { id:"P2T3", name:"Évaluation Axe 2 — Bioénergie & Énergies Renouvelables",   start:111, end:139, assigned:["Ms7","Ms15","Ms30","Ms32"], desc:"Révision en double aveugle des soumissions Axe 2." },
+          { id:"P2T4", name:"Évaluation Axe 3 — Biodiversité & Écosystèmes",            start:111, end:139, assigned:["Ms9","Ms13","Ms19","Ms27"], desc:"Révision en double aveugle des soumissions Axe 3." },
+          { id:"P2T5", name:"Évaluation Axe 4 — Action pour le Climat",                 start:111, end:139, assigned:["Ms5","Ms18","Ms23"],       desc:"Révision en double aveugle des soumissions Axe 4." },
+          { id:"P2T6", name:"Évaluation Axe 5 — Santé & Bien-être",                     start:111, end:139, assigned:["Ms11","Ms17","Ms33"],      desc:"Révision en double aveugle des soumissions Axe 5." },
+          { id:"P2T7", name:"Évaluation Axe 6 — Partenariats Socio-économiques",        start:111, end:139, assigned:["Ms14","Ms21"],             desc:"Révision en double aveugle des soumissions Axe 6." },
+          { id:"P2T8", name:"Rapport d'évaluation & notifications auteurs (18 Juil.)",  start:139, end:145, assigned:["Ms0","Ms1","Mo2"],         desc:"Compiler les résultats, générer les lettres d'acceptation/refus, envoyer les notifications." },
+        ],
+      },
+      {
+        id: "P3", icon: "🏛️", urgency: "planifie",
+        label: "PHASE 3 — LOGISTIQUE & PROGRAMME",
+        tasks: [
+          { id:"P3T1", name:"Réservation salles, amphis & espaces campus SNV-STU",       start:139, end:184, assigned:["Mo1","Mo10"],             desc:"Réserver amphithéâtres et salles de conférence, organiser espaces d'exposition et restauration." },
+          { id:"P3T2", name:"Programme scientifique définitif (sessions, plénières)",    start:139, end:184, assigned:["Ms0","Ms3","Ms10"],       desc:"Établir le programme détaillé heure/heure : plénières, sessions parallèles, atelier doctoral, pauses." },
+          { id:"P3T3", name:"Coordination hébergement & transfert participants",          start:153, end:184, assigned:["Mo13","Mo14"],            desc:"Négocier des tarifs hôteliers groupés, gérer réservations, organiser navettes université ↔ hôtels." },
+          { id:"P3T4", name:"Logistique & accueil conférenciers invités internationaux",  start:153, end:184, assigned:["Mo5","Mo6"],              desc:"Organiser les vols, hébergement VIP et protocole d'accueil des conférenciers internationaux." },
+          { id:"P3T5", name:"Préparation kits participants, badges & tote bags",          start:153, end:184, assigned:["Mo16","Mo19"],            desc:"Concevoir et produire les badges, kits participants (programme, stylo, bloc, goodies SDBQL 2026)." },
+          { id:"P3T6", name:"Impression : affiches A0, roll-up 80x200, bannières",        start:153, end:184, assigned:["Mo3","Mo8"],              desc:"Commander l'impression de tous les supports visuels : affiches A0, roll-up, bannières d'entrée." },
+          { id:"P3T7", name:"Technique : son, vidéo, streaming hybride (IT)",             start:139, end:213, assigned:["Mo4","Mo17"],             desc:"Tester le matériel audiovisuel, préparer le streaming en ligne, renforcer la connexion internet." },
+          { id:"P3T8", name:"Relations presse & médias locaux / nationaux",               start:153, end:184, assigned:["Mo7","Mo21"],             desc:"Préparer le dossier de presse, contacter journalistes, organiser la couverture médiatique." },
+          { id:"P3T9", name:"2ème Circulaire & programme provisoire diffusés",            start:139, end:153, assigned:["Mo0","Mo2"],              desc:"Envoyer la 2ème circulaire avec programme provisoire, infos pratiques et modalités d'inscription." },
+        ],
+      },
+      {
+        id: "P4", icon: "✅", urgency: "finalisation",
+        label: "PHASE 4 — FINALISATION",
+        tasks: [
+          { id:"P4T1", name:"Confirmations finales & liste définitive participants",      start:184, end:213, assigned:["Mo9","Mo11"],             desc:"Collecter confirmations de présence (1er sept.), finaliser la liste des 300+ participants." },
+          { id:"P4T2", name:"Book of Abstracts — Compilation & mise en page",            start:184, end:213, assigned:["Ms0","Ms1","Ms18"],       desc:"Compiler tous les résumés acceptés, mettre en page le Recueil (format A5, ~250 pages)." },
+          { id:"P4T3", name:"Programme final imprimé & publié (papier + numérique)",     start:198, end:213, assigned:["Mo0","Mo2"],               desc:"Imprimer le programme définitif, le publier sur le site, l'envoyer aux participants confirmés." },
+          { id:"P4T4", name:"Accueil & installation conférenciers invités à Tlemcen",    start:184, end:213, assigned:["Mo1","Mo13"],              desc:"Accueillir les conférenciers à l'aéroport, les installer, organiser les dîners de bienvenue." },
+          { id:"P4T5", name:"Répétition générale — Logistique & technique",              start:206, end:213, assigned:["Mo0","Mo1","Mo2"],         desc:"Test complet : son, vidéo, connexion, salles, affiches. Simulation de l'ouverture officielle." },
+          { id:"P4T6", name:"Certificats, attestations & trophées (Best Paper)",         start:198, end:213, assigned:["Mo16","Mo19"],             desc:"Imprimer et signer certificats de participation, attestations de présentation, prix Best Paper." },
+          { id:"P4T7", name:"Bilan financier pré-congrès & validation dépenses",         start:198, end:213, assigned:["Mo0","Mo1"],               desc:"Clôturer paiements fournisseurs, valider dépenses exceptionnelles, préparer la caisse." },
+        ],
+      },
+      {
+        id: "P5", icon: "🎓", urgency: "congres",
+        label: "PHASE 5 — CONGRÈS SDBQL 2026  (30 Sept – 2 Oct)",
+        tasks: [
+          { id:"P5T1", name:"Cérémonie d'ouverture officielle (30 Sept.)",               start:213, end:214, assigned:["Mo0","Ms0","Mo1"],         desc:"Ouverture par les autorités académiques, discours du Recteur, présentation des comités, remise des kits." },
+          { id:"P5T2", name:"Sessions plénières — Conférenciers invités",                start:213, end:215, assigned:["Ms0","Ms1","Ms18","Ms22"],  desc:"Animation des 4-6 conférences plénières de haut niveau par les invités nationaux et internationaux." },
+          { id:"P5T3", name:"Sessions parallèles — 6 Axes thématiques simultanés",      start:213, end:215, assigned:["Ms2","Ms5","Ms11","Ms14","Ms19","Ms23"], desc:"Modération et animation de toutes les sessions de communications orales (6 tracks en simultané)." },
+          { id:"P5T4", name:"Atelier doctoral & session posters",                         start:213, end:215, assigned:["Ms16","Ms28"],             desc:"Atelier dédié aux doctorants : présentations de thèses, session posters, échanges avec professeurs." },
+          { id:"P5T5", name:"Accueil, orientation & assistance participants",             start:213, end:215, assigned:["Mo9","Mo11","Mo15","Mo19"], desc:"Permanence à l'accueil pendant toute la durée du congrès, orientation salles, gestion imprévus." },
+          { id:"P5T6", name:"Gestion technique en temps réel (IT, son, streaming)",      start:213, end:215, assigned:["Mo4","Mo17"],               desc:"Assistance technique permanente : projecteurs, micros, streaming, enregistrements, connexion." },
+          { id:"P5T7", name:"Cérémonie de clôture & remise des prix (2 Oct.)",           start:214, end:215, assigned:["Mo0","Ms0","Mo1"],          desc:"Clôture officielle, remise Best Paper & Best Poster, annonce SDBQL 2028, photos officielles." },
+        ],
+      },
+      {
+        id: "P6", icon: "📊", urgency: "post",
+        label: "PHASE 6 — POST-CONGRÈS",
+        tasks: [
+          { id:"P6T1", name:"Rapport général & bilan complet du congrès",                start:215, end:244, assigned:["Mo0","Ms0"],               desc:"Rédiger le rapport : statistiques (participants, pays, soumissions), points forts, recommandations." },
+          { id:"P6T2", name:"Publication Proceedings / Actes du congrès (ISBN)",         start:215, end:244, assigned:["Ms0","Ms1","Ms22"],         desc:"Préparer et soumettre les actes pour publication (revue indexée ou ISBN). Coordonner avec l'éditeur." },
+          { id:"P6T3", name:"Rapport financier final & reddition de comptes",             start:215, end:230, assigned:["Mo0","Mo1"],               desc:"Clôturer tous les paiements, rédiger le rapport financier, soumettre au Vice-Rectorat." },
+          { id:"P6T4", name:"Questionnaire satisfaction & bilan collectif comité",        start:215, end:244, assigned:["Mo0","Mo2","Ms0"],          desc:"Envoyer questionnaire de satisfaction, analyser résultats, partager le bilan avec le comité." },
+        ],
+      },
+    ];
+
+    /* ============================================================
+       URGENCY PALETTE
+    ============================================================ */
+    const URGENCY = {
+      critique:    { label:"🔴 CRITIQUE",  bg:"#dc3545", light:"#fff5f5", text:"#842029" },
+      urgent:      { label:"🟠 URGENT",    bg:"#fd7e14", light:"#fff8f3", text:"#7d3a08" },
+      important:   { label:"🟡 IMPORTANT", bg:"#d4a017", light:"#fffdf0", text:"#665005" },
+      planifie:    { label:"🟢 PLANIFIÉ",  bg:"#198754", light:"#f0fff6", text:"#0a3622" },
+      finalisation:{ label:"🔵 FINAL",     bg:"#0d6efd", light:"#f0f5ff", text:"#041a4f" },
+      congres:     { label:"⚫ CONGRÈS",   bg:"#212529", light:"#f8f9fa", text:"#000"    },
+      post:        { label:"🔷 POST",      bg:"#6c757d", light:"#f5f5f5", text:"#2c2c2c" },
+    };
+
+    const pct = d => (d / TOTAL_DAYS * 100);
+
+    /* ============================================================
+       COMPONENT — GanttBar
+    ============================================================ */
+    function GanttBar({ task, urgency, onSelect, selected }) {
+      const urg = URGENCY[urgency];
+      const left  = pct(task.start);
+      const width = Math.max(0.4, pct(task.end) - pct(task.start));
+      return (
+        <div
+          onClick={() => onSelect(task)}
+          title={task.name + "\n👥 " + task.assigned.join(", ")}
+          style={{
+            position:"absolute", left:`${left}%`, width:`${width}%`,
+            top:"6px", height:"28px",
+            background: urg.bg,
+            borderRadius:"5px", cursor:"pointer",
+            display:"flex", alignItems:"center", paddingLeft:"6px",
+            overflow:"hidden",
+            boxShadow: selected
+              ? `0 0 0 3px #fff, 0 0 0 5px ${urg.bg}, 0 2px 8px rgba(0,0,0,0.3)`
+              : "0 1px 4px rgba(0,0,0,0.25)",
+            transform: selected ? "scaleY(1.12)" : "none",
+            transition:"transform .15s, box-shadow .15s",
+            zIndex: selected ? 10 : 2,
+          }}
+        >
+          <span style={{ fontSize:"9px", color:"#fff", fontWeight:700, whiteSpace:"nowrap", overflow:"hidden", textOverflow:"ellipsis" }}>
+            {task.assigned.join(" · ")}
+          </span>
+        </div>
+      );
+    }
+
+    /* ============================================================
+       COMPONENT — MemberBadge
+    ============================================================ */
+    function MemberBadge({ code, data, type }) {
+      const bg = type === "Mo" ? "#0a3622" : "#084298";
+      const border = type === "Mo" ? "#198754" : "#0d6efd";
+      const light = type === "Mo" ? "#f0fff6" : "#f0f5ff";
+      return (
+        <div style={{
+          background:light, border:`1px solid ${border}`, borderRadius:8,
+          padding:"7px 12px", marginBottom:6, fontSize:12,
+        }}>
+          <span style={{ background:bg, color:"#fff", borderRadius:4, padding:"1px 7px", fontSize:10, fontWeight:900, marginRight:8 }}>{code}</span>
+          <strong>{data.name}</strong>
+          <div style={{ fontSize:10, color:"#475569", marginTop:2, paddingLeft:38 }}>{data.role}</div>
+        </div>
+      );
+    }
+
+    /* ============================================================
+       MAIN APP
+    ============================================================ */
+    function App() {
+      const [selectedTask,   setSelectedTask]   = useState(null);
+      const [filter,         setFilter]         = useState("");
+      const [expanded,       setExpanded]       = useState(() => Object.fromEntries(PHASES.map(p=>[p.id,true])));
+      const [view,           setView]           = useState("gantt"); // "gantt" | "members"
+      const LABEL_W = 330;
+      const ROW_H   = 40;
+
+      const toggle = id => setExpanded(prev => ({ ...prev, [id]: !prev[id] }));
+      const selectTask = t => setSelectedTask(prev => prev && prev.id === t.id ? null : t);
+
+      const allMembers = { ...MO, ...MS };
+
+      const filteredPhases = PHASES
+        .map(ph => ({
+          ...ph,
+          tasks: ph.tasks.filter(t =>
+            !filter || t.assigned.some(a => a.toLowerCase().includes(filter.toLowerCase())) ||
+            t.name.toLowerCase().includes(filter.toLowerCase())
+          )
+        }))
+        .filter(ph => ph.tasks.length > 0);
+
+      /* ---------- RENDER ---------- */
+      return (
+        <div style={{ fontFamily:"'Segoe UI',system-ui,sans-serif", background:"#f8fafc", minHeight:"100vh", color:"#1e293b" }}>
+
+          {/* ── HEADER ── */}
+          <div style={{ background:"linear-gradient(135deg,#0a3622 0%,#1a5f3f 55%,#0d6efd 100%)", padding:"28px 32px 18px", color:"#fff" }}>
+            <div style={{ display:"flex", alignItems:"flex-start", justifyContent:"space-between", flexWrap:"wrap", gap:12, marginBottom:14 }}>
+              <div>
+                <div style={{ fontSize:11, letterSpacing:3, fontWeight:700, opacity:.75, marginBottom:5 }}>
+                  UNIVERSITÉ ABOU BEKR BELKAID — TLEMCEN, ALGÉRIE
+                </div>
+                <h1 style={{ margin:0, fontSize:22, fontWeight:900, letterSpacing:-0.5 }}>
+                  🎓 SDBQL 2026 — DIAGRAMME DE GANTT STRATÉGIQUE
+                </h1>
+                <p style={{ margin:"5px 0 0", fontSize:12, opacity:.85 }}>
+                  2ème Congrès International · 30 Sept – 2 Oct 2026 · 7 Phases ·{" "}
+                  {PHASES.reduce((a,p)=>a+p.tasks.length,0)} Tâches ·{" "}
+                  {Object.keys(MO).length} Mo + {Object.keys(MS).length} Ms
+                </p>
+              </div>
+              <div style={{ display:"flex", flexDirection:"column", alignItems:"flex-end", gap:8 }}>
+                <div style={{ background:"rgba(255,255,255,.15)", borderRadius:8, padding:"7px 14px", fontSize:13 }}>
+                  📍 Aujourd'hui : <strong>6 Mars 2026</strong> — J–207 avant le Congrès
+                </div>
+                <div style={{ display:"flex", gap:8 }}>
+                  {["gantt","members"].map(m => (
+                    <button key={m} onClick={()=>setView(m)} style={{
+                      background: view===m ? "#fff" : "rgba(255,255,255,.2)",
+                      color: view===m ? "#0a3622" : "#fff",
+                      border:"none", borderRadius:6, padding:"7px 16px",
+                      cursor:"pointer", fontWeight:700, fontSize:13,
+                    }}>
+                      {m==="gantt" ? "📊 Gantt" : "👥 Membres"}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+            {/* legend */}
+            <div style={{ display:"flex", gap:8, flexWrap:"wrap" }}>
+              {Object.entries(URGENCY).map(([k,v]) => (
+                <span key={k} style={{
+                  background:v.bg, color:"#fff", borderRadius:20,
+                  padding:"3px 11px", fontSize:11, fontWeight:700,
+                }}>{v.label}</span>
+              ))}
+            </div>
+          </div>
+
+          {/* ── FILTER BAR ── */}
+          <div style={{ background:"#fff", borderBottom:"1px solid #e2e8f0", padding:"11px 32px", display:"flex", gap:14, alignItems:"center", flexWrap:"wrap" }}>
+            <span style={{ fontWeight:700, fontSize:13, color:"#475569" }}>🔍 Filtrer :</span>
+            <input
+              placeholder="Code membre (Mo1, Ms0…) ou mot-clé de tâche"
+              value={filter}
+              onChange={e=>setFilter(e.target.value)}
+              style={{
+                border:"1px solid #cbd5e1", borderRadius:6, padding:"6px 12px",
+                fontSize:13, width:280, outline:"none",
+              }}
+            />
+            {filter && (
+              <button onClick={()=>setFilter("")} style={{
+                background:"#dc3545", color:"#fff", border:"none",
+                borderRadius:6, padding:"6px 12px", cursor:"pointer", fontWeight:700, fontSize:13,
+              }}>✕ Effacer</button>
+            )}
+            <span style={{ marginLeft:"auto", fontSize:12, color:"#94a3b8" }}>
+              {filteredPhases.reduce((a,p)=>a+p.tasks.length,0)} tâches affichées
+            </span>
+          </div>
+
+          {/* ══════════════════════════════════
+              VUE — MEMBRES
+          ══════════════════════════════════ */}
+          {view === "members" && (
+            <div style={{ padding:32 }}>
+              <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:32 }}>
+                {/* MO */}
+                <div>
+                  <h2 style={{ color:"#0a3622", borderBottom:"3px solid #198754", paddingBottom:8, marginBottom:18, fontSize:17 }}>
+                    🏛️ COMITÉ D'ORGANISATION ({Object.keys(MO).length} membres)
+                  </h2>
+                  {Object.entries(MO).map(([code,data]) => <MemberBadge key={code} code={code} data={data} type="Mo" />)}
+                </div>
+                {/* MS */}
+                <div>
+                  <h2 style={{ color:"#084298", borderBottom:"3px solid #0d6efd", paddingBottom:8, marginBottom:18, fontSize:17 }}>
+                    🔬 COMITÉ SCIENTIFIQUE ({Object.keys(MS).length} membres)
+                  </h2>
+                  {Object.entries(MS).map(([code,data]) => <MemberBadge key={code} code={code} data={data} type="Ms" />)}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* ══════════════════════════════════
+              VUE — GANTT
+          ══════════════════════════════════ */}
+          {view === "gantt" && (
+            <div style={{ padding:"24px 0 32px" }}>
+              <div style={{ overflowX:"auto" }}>
+                <div style={{ minWidth:1100 }}>
+
+                  {/* ── HEADER MOIS ── */}
+                  <div style={{
+                    display:"flex", position:"sticky", top:0, zIndex:20,
+                    background:"#fff", borderBottom:"2px solid #e2e8f0",
+                  }}>
+                    <div style={{
+                      width:LABEL_W, minWidth:LABEL_W, flexShrink:0,
+                      padding:"8px 24px", fontWeight:700, fontSize:11, color:"#475569",
+                      borderRight:"2px solid #e2e8f0", display:"flex", alignItems:"center",
+                    }}>TÂCHE</div>
+                    <div style={{ flex:1, position:"relative", height:36 }}>
+                      {MONTHS.map(m => (
+                        <div key={m.label} style={{
+                          position:"absolute", left:`${pct(m.start)}%`, width:`${pct(m.days)}%`,
+                          top:0, bottom:0, borderRight:"1px solid #e2e8f0",
+                          display:"flex", alignItems:"center", paddingLeft:6,
+                        }}>
+                          <span style={{ fontSize:11, fontWeight:700, color:"#64748b", whiteSpace:"nowrap" }}>{m.label}</span>
+                        </div>
+                      ))}
+                      {/* Today vertical */}
+                      <div style={{
+                        position:"absolute", left:`${pct(TODAY)}%`,
+                        top:0, bottom:-9999, width:2,
+                        background:"rgba(220,53,69,0.6)", zIndex:15, pointerEvents:"none",
+                      }} />
+                    </div>
+                  </div>
+
+                  {/* ── ROW JALONS ── */}
+                  <div style={{ display:"flex", background:"#f8fafc", borderBottom:"1px solid #e2e8f0", height:32 }}>
+                    <div style={{
+                      width:LABEL_W, minWidth:LABEL_W, flexShrink:0,
+                      padding:"0 24px", fontSize:10, fontWeight:700, color:"#94a3b8",
+                      borderRight:"2px solid #e2e8f0", display:"flex", alignItems:"center",
+                    }}>JALONS CLÉS</div>
+                    <div style={{ flex:1, position:"relative" }}>
+                      {MILESTONES.map(ms => (
+                        <div key={ms.day} style={{
+                          position:"absolute", left:`${pct(ms.day)}%`,
+                          top:"50%", transform:"translate(-50%,-50%)",
+                          textAlign:"center", whiteSpace:"nowrap", zIndex:5,
+                        }}>
+                          <span style={{ fontSize:10 }}>{ms.icon}</span>
+                          <div style={{ fontSize:8, fontWeight:700, color:ms.color, marginTop:1 }}>{ms.label}</div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* ── PHASES ── */}
+                  {filteredPhases.map(phase => {
+                    const urg = URGENCY[phase.urgency];
+                    const open = expanded[phase.id];
+                    const s = Math.min(...phase.tasks.map(t=>t.start));
+                    const e = Math.max(...phase.tasks.map(t=>t.end));
+                    return (
+                      <div key={phase.id}>
+                        {/* Phase header */}
+                        <div
+                          onClick={() => toggle(phase.id)}
+                          style={{ display:"flex", background:urg.bg, cursor:"pointer", borderBottom:"1px solid rgba(0,0,0,.1)" }}
+                        >
+                          <div style={{
+                            width:LABEL_W, minWidth:LABEL_W, flexShrink:0,
+                            padding:"10px 24px", color:"#fff", fontWeight:800, fontSize:12,
+                            display:"flex", alignItems:"center", gap:8,
+                            borderRight:"2px solid rgba(255,255,255,.2)",
+                          }}>
+                            <span style={{ fontSize:16 }}>{phase.icon}</span>
+                            <span style={{ flex:1 }}>{phase.label}</span>
+                            <span style={{ opacity:.8, fontSize:11 }}>{phase.tasks.length} tâches {open?"▲":"▼"}</span>
+                          </div>
+                          <div style={{ flex:1, position:"relative" }}>
+                            <div style={{
+                              position:"absolute",
+                              left:`${pct(s)}%`,
+                              width:`${Math.max(0.5,pct(e)-pct(s))}%`,
+                              top:"50%", transform:"translateY(-50%)",
+                              height:8, background:"rgba(255,255,255,.35)", borderRadius:4,
+                            }} />
+                          </div>
+                        </div>
+
+                        {/* Task rows */}
+                        {open && phase.tasks.map((task, ti) => (
+                          <div key={task.id}
+                            style={{
+                              display:"flex",
+                              background: selectedTask && selectedTask.id===task.id ? urg.light : ti%2===0 ? "#fff" : "#fafafa",
+                              borderBottom:"1px solid #f1f5f9", height:ROW_H,
+                            }}
+                          >
+                            {/* Label col */}
+                            <div
+                              onClick={() => selectTask(task)}
+                              style={{
+                                width:LABEL_W, minWidth:LABEL_W, flexShrink:0,
+                                padding:"0 10px 0 26px",
+                                display:"flex", alignItems:"center", gap:8,
+                                borderRight:"2px solid #e2e8f0", cursor:"pointer",
+                              }}
+                            >
+                              <span style={{
+                                background:urg.bg, color:"#fff", borderRadius:4,
+                                padding:"2px 6px", fontSize:9, fontWeight:800, minWidth:34, textAlign:"center", flexShrink:0,
+                              }}>{task.id}</span>
+                              <span style={{ fontSize:11, fontWeight:500, color:"#334155", overflow:"hidden", textOverflow:"ellipsis", whiteSpace:"nowrap", flex:1 }}>
+                                {task.name}
+                              </span>
+                              <span style={{ fontSize:9, color:"#94a3b8", whiteSpace:"nowrap", flexShrink:0 }}>
+                                {task.end-task.start}j
+                              </span>
+                            </div>
+
+                            {/* Bar col */}
+                            <div style={{ flex:1, position:"relative" }}>
+                              {MONTHS.map(m => (
+                                <div key={m.label} style={{
+                                  position:"absolute", left:`${pct(m.start)}%`,
+                                  top:0, bottom:0, width:1,
+                                  background:"#f1f5f9", zIndex:1,
+                                }} />
+                              ))}
+                              <div style={{
+                                position:"absolute", left:`${pct(TODAY)}%`,
+                                top:0, bottom:0, width:2,
+                                background:"rgba(220,53,69,.15)", zIndex:3,
+                              }} />
+                              <GanttBar
+                                task={task}
+                                urgency={phase.urgency}
+                                onSelect={selectTask}
+                                selected={selectedTask && selectedTask.id===task.id}
+                              />
+                            </div>
+                          </div>
+                        ))}
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* ── DETAIL PANEL ── */}
+              {selectedTask && (() => {
+                const phase = PHASES.find(p => p.tasks.some(t => t.id===selectedTask.id));
+                const urg   = URGENCY[phase.urgency];
+                const moM   = selectedTask.assigned.filter(a=>a.startsWith("Mo")).map(a=>({ code:a, ...MO[a] })).filter(x=>x.name);
+                const msM   = selectedTask.assigned.filter(a=>a.startsWith("Ms")).map(a=>({ code:a, ...MS[a] })).filter(x=>x.name);
+                const d1    = new Date(2026,2,1+selectedTask.start).toLocaleDateString("fr-FR",{day:"numeric",month:"long"});
+                const d2    = new Date(2026,2,1+selectedTask.end  ).toLocaleDateString("fr-FR",{day:"numeric",month:"long"});
+                return (
+                  <div style={{
+                    margin:"16px 32px 0",
+                    background:"#fff", borderRadius:12,
+                    border:`2px solid ${urg.bg}`, padding:22,
+                    boxShadow:"0 4px 20px rgba(0,0,0,.08)",
+                  }}>
+                    <div style={{ display:"flex", alignItems:"flex-start", gap:16, flexWrap:"wrap" }}>
+                      {/* left */}
+                      <div style={{ flex:1, minWidth:280 }}>
+                        <div style={{ display:"flex", alignItems:"center", gap:8, marginBottom:10 }}>
+                          <span style={{ background:urg.bg, color:"#fff", borderRadius:6, padding:"4px 10px", fontSize:12, fontWeight:900 }}>{selectedTask.id}</span>
+                          <span style={{ background:urg.bg, color:"#fff", borderRadius:20, padding:"2px 10px", fontSize:11, fontWeight:700 }}>{urg.label}</span>
+                          <button onClick={()=>setSelectedTask(null)} style={{ marginLeft:"auto", background:"none", border:"none", fontSize:20, cursor:"pointer", color:"#94a3b8" }}>✕</button>
+                        </div>
+                        <h3 style={{ margin:"0 0 8px", fontSize:15, fontWeight:800, color:"#1e293b" }}>{selectedTask.name}</h3>
+                        <p style={{ margin:"0 0 12px", fontSize:13, color:"#475569", lineHeight:1.6 }}>{selectedTask.desc}</p>
+                        <div style={{ display:"flex", gap:20, fontSize:12, color:"#64748b", flexWrap:"wrap" }}>
+                          <span>📅 Début : <strong>{d1}</strong></span>
+                          <span>📅 Fin : <strong>{d2}</strong></span>
+                          <span>⏱ Durée : <strong>{selectedTask.end-selectedTask.start} jours</strong></span>
+                        </div>
+                      </div>
+                      {/* right */}
+                      <div style={{ display:"flex", gap:24, flexWrap:"wrap" }}>
+                        {moM.length > 0 && (
+                          <div style={{ minWidth:200 }}>
+                            <div style={{ fontWeight:700, fontSize:11, color:"#0a3622", marginBottom:8, textTransform:"uppercase", letterSpacing:1 }}>🏛️ Organisateurs</div>
+                            {moM.map(m => <MemberBadge key={m.code} code={m.code} data={m} type="Mo" />)}
+                          </div>
+                        )}
+                        {msM.length > 0 && (
+                          <div style={{ minWidth:200 }}>
+                            <div style={{ fontWeight:700, fontSize:11, color:"#084298", marginBottom:8, textTransform:"uppercase", letterSpacing:1 }}>🔬 Scientifiques</div>
+                            {msM.map(m => <MemberBadge key={m.code} code={m.code} data={m} type="Ms" />)}
+                          </div>
+                        )}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })()}
+
+              {/* ── STATS ── */}
+              <div style={{ display:"flex", gap:14, padding:"24px 32px 0", flexWrap:"wrap" }}>
+                {[
+                  { icon:"📋", label:"Total tâches",          val:PHASES.reduce((a,p)=>a+p.tasks.length,0), color:"#0a3622" },
+                  { icon:"🏛️", label:"Membres organisateurs", val:Object.keys(MO).length,                   color:"#198754" },
+                  { icon:"🔬", label:"Membres scientifiques", val:Object.keys(MS).length,                   color:"#084298" },
+                  { icon:"📅", label:"Jours au Congrès",      val:213-TODAY,                                color:"#dc3545" },
+                  { icon:"📝", label:"Axes thématiques",      val:6,                                        color:"#6c757d" },
+                  { icon:"🌍", label:"Pays représentés",      val:"20+",                                    color:"#0d6efd" },
+                ].map(s => (
+                  <div key={s.label} style={{
+                    background:"#fff", borderRadius:10, padding:"14px 18px",
+                    border:"1px solid #e2e8f0", flex:"1 1 140px",
+                    boxShadow:"0 1px 4px rgba(0,0,0,.05)",
+                  }}>
+                    <div style={{ fontSize:20, marginBottom:4 }}>{s.icon}</div>
+                    <div style={{ fontSize:24, fontWeight:900, color:s.color }}>{s.val}</div>
+                    <div style={{ fontSize:11, color:"#64748b", fontWeight:600 }}>{s.label}</div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          <div style={{ textAlign:"center", padding:"18px 0 26px", fontSize:11, color:"#94a3b8" }}>
+            SDBQL 2026 · Université Abou Bekr Belkaid · Tlemcen, Algérie · Développé avec 💚
+          </div>
+        </div>
+      );
+    }
+
+    /* ── MOUNT ── */
+    const root = ReactDOM.createRoot(document.getElementById("root"));
+    root.render(React.createElement(App));
+  </script>
+</body>
+</html>
