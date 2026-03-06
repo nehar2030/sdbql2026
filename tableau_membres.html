@@ -323,7 +323,7 @@
 
         .cta-buttons-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
+            grid-template-columns: 1fr 1fr;
             gap: 20px;
             max-width: 1000px;
             margin: 0 auto;
@@ -366,6 +366,15 @@
 
         .btn-primary.speakers:hover {
             background: linear-gradient(135deg, #153d5a 0%, #256d87 100%);
+        }
+
+        .btn-primary.gantt {
+            background: linear-gradient(135deg, #2d5a27 0%, #4a9e3f 100%);
+            color: white;
+        }
+
+        .btn-primary.gantt:hover {
+            background: linear-gradient(135deg, #244820 0%, #3d8534 100%);
         }
 
         .btn-icon {
@@ -688,13 +697,24 @@
                         <span class="btn-icon">→</span>
                     </a>
 
-                    <a href="https://sdbql.vercel.app/sdbql2026-guest-speakers.html" 
-                       class="btn-primary speakers" 
+                    <a href="https://sdbql.vercel.app/sdbql2026-guest-speakers.html"
+                       class="btn-primary speakers"
                        target="_blank"
                        rel="noopener noreferrer">
                         <span class="btn-label">
                             <span class="btn-label-main">🎤 Carte Guest Speakers</span>
                             <span class="btn-label-sub">Gestion des conférenciers invités</span>
+                        </span>
+                        <span class="btn-icon">→</span>
+                    </a>
+
+                    <a href="SDBQL2026_Gantt.jsx"
+                       class="btn-primary gantt"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        <span class="btn-label">
+                            <span class="btn-label-main">📅 Planning Gantt</span>
+                            <span class="btn-label-sub">Calendrier et suivi des tâches</span>
                         </span>
                         <span class="btn-icon">→</span>
                     </a>
