@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>SDBQL 2026 — Dépliant 3 volets recto/verso</title>
+<style>
+
+/* ══════════════════════════════════════════════
+   VARIABLES — Modifiez les couleurs ici
+══════════════════════════════════════════════ */
+:root {
+  --green-dark:  #0f3d1e;
+  --green:       #1a5c2e;
+  --green-mid:   #2d7a3a;
+  --green-light: #e8f4ec;
+  --gold:        #c9a84c;
+  --gold-light:  #f5e9c8;
+  --red:         #b22222;
+  --red-dark:    #8b0000;
+  --gray:        #555555;
+  --black:       #111111;
+  --white:       #ffffff;
+
+  --panel-w: 70mm;
+  --panel-h: 297mm;
+  --mx: 5mm;
+  --my: 7mm;
+
+  --font: Arial, Helvetica, sans-serif;
+}
+
+/* ══════════════════════════════════════════════
+   RESET
+══════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: var(--font);
+  background: #b0a898;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 30px;
+}
+
+/* ══════════════════════════════════════════════
+   BARRE OUTILS (non imprimée)
+══════════════════════════════════════════════ */
+.toolbar {
+  display: flex; gap: 10px; flex-wrap: wrap; justify-content: center;
+  background: #2a2a2a; padding: 12px 20px; border-radius: 8px;
+  width: 100%; max-width: 650px;
+}
+.toolbar button {
+  font-family: var(--font); font-size: 12px; font-weight: 700;
+  padding: 9px 20px; border: none; cursor: pointer; border-radius: 4px;
+}
+.btn-print { background: var(--green); color: white; }
+.btn-info  { background: var(--gold);  color: var(--green-dark); }
+.toolbar p { color: #aaa; font-size: 11px; width: 100%; text-align: center; margin-top: 4px; }
+
+.page-label {
+  font-family: var(--font); font-size: 13px; font-weight: 700;
+  color: white; letter-spacing: 0.1em; text-transform: uppercase;
+  background: #2a2a2a; padding: 6px 20px; border-radius: 4px;
+}
+
+/* ══════════════════════════════════════════════
+   PAGE & PANNEAUX
+══════════════════════════════════════════════ */
+.page {
+  display: flex; flex-direction: row;
+  width: 210mm; height: var(--panel-h);
+  background: white;
+  box-shadow: 0 6px 35px rgba(0,0,0,0.35);
+  border: 1px solid #999;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Traits de pli */
+.fold-line {
+  position: absolute; top: 0; bottom: 0; width: 0;
+  border-left: 1px dashed #bbb; z-index: 10; pointer-events: none;
+}
+.fold-line::before, .fold-line::after {
+  content: ''; position: absolute;
+  left: -3mm; right: -3mm; height: 1px; background: var(--gold);
+}
+.fold-line::before { top: 5mm; }
+.fold-line::after  { bottom: 5mm; }
+.fold-left  { left: var(--panel-w); }
+.fold-right { left: calc(var(--panel-w) * 2); }
+
+.panel {
+  width: var(--panel-w); min-width: var(--panel-w); max-width: var(--panel-w);
+  height: var(--panel-h); overflow: hidden;
+  position: relative; display: flex; flex-direction: column;
+  border-right: 1px solid #ccc; font-size: 7pt;
+}
+.panel:last-child { border-right: none; }
+.panel-white  { background: #ffffff; }
+.panel-tinted { background: #fafaf8; }
+.panel-dark   { background: var(--green-dark); }
+
+/* ══════════════════════════════════════════════
+   COMPOSANTS
+══════════════════════════════════════════════ */
+.gold-bar-top {
+  height: 4px;
+  background: linear-gradient(90deg, var(--gold), #f5dc70, var(--gold));
+  flex-shrink: 0;
+}
+.stripe-bar {
+  height: 4px;
+  background: repeating-linear-gradient(45deg, var(--gold) 0px, var(--gold) 6px, var(--green) 6px, var(--green) 12px);
+  flex-shrink: 0;
+}
+
+.sec-hd {
+  background: var(--green); color: white;
+  font-size: 6.5pt; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  padding: 3px var(--mx);
+  display: flex; align-items: center; gap: 4px;
+  border-bottom: 2px solid var(--green-dark); flex-shrink: 0;
+}
+.sec-hd::before { content: ''; width: 2.5px; height: 9px; background: var(--gold); border-radius: 1px; flex-shrink: 0; }
+.sec-hd.red  { background: var(--red);        border-bottom-color: var(--red-dark); }
+.sec-hd.dark { background: var(--green-dark); border-bottom-color: #000; }
+
+.role-lbl {
+  text-align: center; font-size: 6pt; font-weight: 700;
+  color: var(--green-dark); text-transform: uppercase; letter-spacing: 0.1em;
+  padding: 3px var(--mx) 1px;
+  display: flex; align-items: center; gap: 4px;
+}
+.role-lbl::before, .role-lbl::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, transparent, var(--green-mid)); }
+.role-lbl::after { background: linear-gradient(90deg, var(--green-mid), transparent); }
+
+.member { text-align: center; padding: 2px var(--mx) 4px; }
+.member strong { display: block; font-size: 7pt; font-weight: 700; color: var(--black); line-height: 1.3; }
+.member span   { display: block; font-size: 6pt;  color: var(--gray); line-height: 1.3; margin-top: 1px; }
+.sep { border: none; border-top: 1px solid #e4e4e0; margin: 2px 10px; }
+
+.m-list { padding: 2px var(--mx) 4px; }
+.m-row { display: flex; align-items: baseline; gap: 2px; padding: 1.5px 0; border-bottom: 1px dotted #e4e4e0; font-size: 6pt; line-height: 1.4; }
+.m-row:last-child { border-bottom: none; }
+.m-name { font-weight: 700; color: var(--black); flex-shrink: 0; }
+.m-aff  { color: var(--gray); font-style: italic; }
+
+.sci-list { padding: 2px var(--mx) 4px; }
+.sci-item { font-size: 6pt; line-height: 1.4; padding: 1.5px 0; border-bottom: 1px dotted #e8e8e8; }
+.sci-item:last-child { border-bottom: none; }
+.sci-item b { color: var(--green-dark); }
+.sci-item i { color: var(--gray); }
+
+.list-note {
+  font-size: 5.5pt; font-style: italic; color: var(--red);
+  margin: 2px var(--mx); padding: 2px 4px;
+  border-left: 2px solid var(--red); background: #fff5f5; display: block;
+}
+
+.axes-box { padding: 3px var(--mx) 5px; }
+.axis-row { display: flex; align-items: flex-start; gap: 5px; padding: 3px 0; border-bottom: 1px dotted #e4e4e0; font-size: 7pt; line-height: 1.3; }
+.axis-row:last-child { border-bottom: none; }
+.axis-num { background: var(--green-dark); color: var(--gold); font-size: 6pt; font-weight: 900; padding: 1.5px 4px; border-radius: 2px; flex-shrink: 0; margin-top: 1px; }
+.axis-title { font-weight: 700; color: var(--black); }
+.axis-sub   { font-size: 5.5pt; color: var(--gray); }
+
+.dates-box { padding: 4px var(--mx) 5px; }
+.date-item { display: flex; align-items: flex-start; gap: 6px; padding: 3px 0; position: relative; }
+.date-item:not(:last-child)::after { content: ''; position: absolute; left: 5px; top: 14px; bottom: -3px; width: 1px; background: #d0d0d0; }
+.date-dot-wrap { flex-shrink: 0; margin-top: 2px; }
+.date-dot { width: 10px; height: 10px; border-radius: 50%; background: var(--green); border: 2px solid var(--green-dark); }
+.date-dot.star { background: var(--red); border-color: var(--red-dark); border-radius: 2px; transform: rotate(45deg); width: 9px; height: 9px; }
+.date-body { flex: 1; }
+.date-d { font-size: 7.5pt; font-weight: 800; color: var(--green-dark); display: block; line-height: 1.2; }
+.date-d.hl { color: var(--red-dark); }
+.date-lbl { font-size: 6.5pt; color: var(--black); }
+.conf-date { background: #fff5f5; border: 1px solid #f5c0c0; border-radius: 3px; padding: 4px 6px 4px 8px; margin-top: 3px; }
+
+.fees-box { padding: 3px var(--mx) 5px; display: flex; flex-direction: column; gap: 3px; }
+.fee-card { display: flex; justify-content: space-between; align-items: center; padding: 4px 7px; border-radius: 3px; border: 1px solid #ddd; }
+.fee-card.doc { background: linear-gradient(135deg,#f0f8f2,#e4f2e8); border-color: #b8dcc0; }
+.fee-card.che { background: linear-gradient(135deg,#eef4ff,#deeaf8); border-color: #b4cde8; }
+.fee-cat { font-size: 7pt; font-weight: 700; color: var(--black); }
+.fee-cat small { display: block; font-size: 6pt; font-weight: 400; color: var(--gray); }
+.fee-amt { font-size: 10pt; font-weight: 900; color: var(--green-dark); }
+.fee-note { font-size: 5.5pt; color: #777; text-align: center; font-style: italic; padding: 1px; }
+
+.corresp-box { margin: 4px var(--mx) 0; border: 1px solid #c8d8c8; background: #f2f7f2; padding: 5px 8px; border-radius: 3px; border-left: 3px solid var(--green); }
+.corresp-box h3 { font-size: 7pt; font-weight: 700; color: var(--green-dark); margin-bottom: 4px; line-height: 1.3; }
+.corresp-line { font-size: 6.5pt; color: var(--black); line-height: 1.6; display: flex; align-items: baseline; gap: 3px; }
+.corresp-line .cl { font-weight: 700; color: var(--green-dark); flex-shrink: 0; min-width: 10mm; }
+
+.about-box { margin: 4px var(--mx) 0; border: 1px solid #c8d8c8; border-radius: 3px; overflow: hidden; }
+.about-body { padding: 5px 8px; background: #f9fcf9; }
+.about-body p { font-size: 6.5pt; line-height: 1.6; color: #222; text-align: justify; margin-bottom: 4px; }
+.about-body p:last-child { margin-bottom: 0; }
+.about-quote { padding: 4px 8px; background: var(--gold-light); border-left: 3px solid var(--gold); font-size: 6.5pt; font-style: italic; color: var(--green-dark); line-height: 1.5; }
+
+.dsr-box { margin: 4px var(--mx) 0; padding: 5px 7px; background: linear-gradient(135deg,#edf7ee,#f5f9f5); border: 1px solid #b8d8bc; border-left: 3px solid var(--green-mid); border-radius: 2px; }
+.dsr-title { font-size: 5.5pt; font-weight: 900; text-transform: uppercase; letter-spacing: 0.1em; color: var(--green-dark); display: block; margin-bottom: 2px; }
+.dsr-box p { font-size: 6pt; line-height: 1.55; color: #222; text-align: justify; }
+
+.footer-bar { margin-top: auto; flex-shrink: 0; background: var(--green-dark); color: white; padding: 4px 8px; font-size: 6pt; font-weight: 600; text-align: center; letter-spacing: 0.04em; border-top: 2px solid var(--gold); }
+.footer-bar a { color: #7ec8f4; text-decoration: none; }
+.footer-bar .hash { color: var(--gold); font-weight: 900; }
+.footer-bar .web  { color: #a8e6b8; }
+.footer-stripe { height: 3px; background: linear-gradient(90deg,var(--green),var(--gold),var(--red),var(--gold),var(--green)); flex-shrink: 0; }
+
+.sponsor-tier { display: flex; align-items: center; gap: 5px; padding: 4px 6px; border-radius: 3px; border: 1px solid; margin-bottom: 3px; }
+.sponsor-tier.gold   { background:#fffbee; border-color:#e8c94a; }
+.sponsor-tier.silver { background:#f5f5f5; border-color:#b0b8c1; }
+.sponsor-tier.bronze { background:#fff6f0; border-color:#d4855a; }
+.tier-emoji { font-size: 11pt; }
+.tier-info  { flex: 1; }
+.tier-name  { font-size: 6pt; font-weight: 900; display: block; }
+.tier-name.gold   { color:#b8860b; }
+.tier-name.silver { color:#708090; }
+.tier-name.bronze { color:#a0522d; }
+.tier-desc { font-size: 5.5pt; color: var(--gray); display: block; margin-top: 1px; }
+.tier-price { font-size: 8pt; font-weight: 900; text-align: right; }
+.tier-price.gold   { color:#b8860b; }
+.tier-price.silver { color:#708090; }
+.tier-price.bronze { color:#a0522d; }
+.tier-price small  { display: block; font-size: 5.5pt; color: var(--gray); font-weight:400; }
+
+.springer-block { display: flex; align-items: center; gap: 6px; background: linear-gradient(135deg,#fff5ef,#fff0e8); border: 1px solid #e8b090; border-left: 3px solid #d4590a; border-radius: 3px; padding: 5px 7px; margin: 4px var(--mx) 0; }
+.sp-title { font-size: 6.5pt; font-weight: 800; color: #c04800; display: block; line-height: 1.2; }
+.sp-sub   { font-size: 5.5pt; color: var(--gray); line-height: 1.4; display: block; }
+
+.qr-zone { display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 5px var(--mx); }
+.qr-box { width: 40mm; height: 40mm; border: 2px solid var(--green); border-radius: 3px; display: flex; align-items: center; justify-content: center; background: #f9faf8; padding: 2mm; }
+.qr-box img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.qr-label { font-size: 6pt; font-weight: 700; color: var(--green-dark); text-transform: uppercase; letter-spacing: 0.06em; text-align: center; }
+
+.sdg-band { background: linear-gradient(135deg,#1a5c2e,#2d7a3a,#1a5c2e); padding: 5px 4px; display: flex; flex-direction: column; align-items: center; gap: 3px; flex-shrink: 0; }
+.sdg-row  { display: flex; gap: 2px; }
+.sdg-box  { width: 16px; height: 16px; border-radius: 2px; display: flex; align-items: center; justify-content: center; font-size: 5.5pt; font-weight: 900; color: white; line-height: 1; }
+.sdg-label { color: rgba(255,255,255,0.85); font-size: 5pt; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+
+.call-banner { margin: 4px var(--mx) 0; padding: 4px 7px; border-radius: 3px; background: linear-gradient(90deg,#c00000,#e83030,#ff6b00); display: flex; align-items: center; gap: 5px; }
+.call-banner span { font-size: 7.5pt; font-weight: 900; color: white; letter-spacing: 0.07em; text-transform: uppercase; }
+
+.partner-section { margin: 4px var(--mx) 0; padding-top: 4px; border-top: 1px dashed #c8d8c8; }
+.partner-label { font-size: 5.5pt; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gray); display: block; margin-bottom: 3px; text-align: center; }
+.logos-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 3px; }
+.logo-tile { display: flex; flex-direction: column; align-items: center; justify-content: center; border: 1px solid #d8e8d8; border-radius: 2px; padding: 3px 2px; background: white; min-height: 32px; text-align: center; gap: 1px; }
+.logo-tile img { max-width: 100%; max-height: 20px; object-fit: contain; }
+.lt-name { font-size: 5.5pt; font-weight: 700; color: var(--green-dark); line-height: 1.2; }
+.lt-sub  { font-size: 5pt;   color: var(--gray); line-height: 1.2; }
+
+.org-section { margin: 4px var(--mx) 0; padding-top: 5px; border-top: 2px solid var(--green); }
+.org-label { font-size: 6pt; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gray); text-align: center; margin-bottom: 5px; }
+.org-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 3px; margin-bottom: 4px; }
+.org-logo-tile { display: flex; flex-direction: column; align-items: center; text-align: center; border: 1px solid #d8e8d8; border-radius: 3px; padding: 4px 3px; background: white; gap: 2px; }
+.org-logo-tile img { max-width: 100%; max-height: 22px; object-fit: contain; }
+.org-logo-tile .olt-name { font-size: 5.5pt; font-weight: 700; color: var(--green-dark); line-height: 1.2; }
+.org-univ { text-align: center; padding-top: 4px; border-top: 1px solid #e0e8e0; font-size: 6pt; color: var(--black); line-height: 1.5; }
+.org-univ strong { color: var(--green-dark); font-size: 6.5pt; }
+
+.lang-row { display: flex; gap: 3px; margin: 4px var(--mx) 0; }
+.lang-badge { flex: 1; text-align: center; padding: 3px 2px; background: var(--green-light); border: 1px solid var(--green); border-radius: 2px; font-size: 6.5pt; font-weight: 700; color: var(--green-dark); }
+
+/* ══════════ COUVERTURE ══════════ */
+.cover-header { background: var(--green-dark); flex-shrink: 0; position: relative; overflow: hidden; padding: 0; }
+.cover-header::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(-55deg, transparent 0px, transparent 22px, rgba(255,255,255,0.03) 22px, rgba(255,255,255,0.03) 23px); }
+.cover-title-box { background: rgba(26,90,46,0.85); border-left: 3px solid var(--gold); margin: 5mm var(--mx) 0; padding: 5mm; position: relative; z-index: 1; }
+.cover-edition { font-size: 6.5pt; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 0.16em; margin-bottom: 4px; display: flex; align-items: center; gap: 5px; }
+.cover-edition::before { content: ''; width: 18px; height: 2px; background: var(--gold); display: inline-block; }
+.cover-main { font-size: 16pt; font-weight: 900; color: white; line-height: 1.1; text-transform: uppercase; }
+.cover-main em { color: var(--gold); font-style: normal; }
+.cover-sub { font-size: 7.5pt; font-weight: 700; color: rgba(255,255,255,0.85); line-height: 1.35; margin-top: 5px; }
+.cover-acronym { display: inline-block; margin-top: 5px; background: var(--gold); color: var(--green-dark); font-size: 7pt; font-weight: 900; letter-spacing: 0.16em; padding: 2px 9px; border-radius: 2px; text-transform: uppercase; }
+
+.cover-info-zone { margin: 4mm var(--mx) 0; display: flex; flex-direction: column; gap: 3px; position: relative; z-index: 1; padding-bottom: 4mm; }
+.hinfo-card { background: rgba(255,255,255,0.07); border: 1px solid rgba(201,168,76,0.3); border-left: 3px solid var(--gold); padding: 4px 8px; border-radius: 2px; }
+.hinfo-label { font-size: 5.5pt; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 0.16em; display: block; margin-bottom: 1px; }
+.hinfo-value { font-size: 8pt; font-weight: 700; color: white; line-height: 1.3; }
+.hinfo-value small { font-size: 6pt; font-weight: 400; color: rgba(255,255,255,0.7); display: block; }
+
+.cover-photo { flex: 1; min-height: 30mm; background: #0d3318; display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden; }
+.cover-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.cover-photo .photo-placeholder { color: rgba(255,255,255,0.3); font-size: 6.5pt; text-align: center; line-height: 1.6; }
+.cover-photo-caption { position: absolute; bottom: 0; left: 0; right: 0; background: rgba(0,0,0,0.5); padding: 2px 6px; font-size: 5.5pt; color: rgba(255,255,255,0.7); text-align: center; }
+.cover-footer { background: var(--green-dark); padding: 4px 8px; text-align: center; font-size: 6pt; color: #88bb99; border-top: 2px solid var(--gold); flex-shrink: 0; }
+
+/* ══════════════════════════════════════════════
+   IMPRESSION
+══════════════════════════════════════════════ */
+@media print {
+  @page { size: A4 landscape; margin: 0; }
+  *, *::before, *::after { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  body { background: white; padding: 0; gap: 0; display: block; }
+  .toolbar, .page-label { display: none !important; }
+  .page { width: 297mm; height: 210mm; box-shadow: none; border: none; page-break-after: always; break-after: page; }
+  .page:last-of-type { page-break-after: auto; break-after: auto; }
+  .panel { width: calc(297mm / 3); min-width: calc(297mm / 3); max-width: calc(297mm / 3); height: 210mm; }
+}
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════ BARRE OUTILS ══════════════════════════════ -->
+<div class="toolbar">
+  <button class="btn-print" onclick="window.print()">🖨️ &nbsp;Imprimer / PDF</button>
+  <button class="btn-info" onclick="alert('Chrome/Edge → Fichier → Imprimer\nFormat : A4 Paysage\n✅ Graphiques en arrière-plan\nMarges : Aucune')">ℹ️ Conseils</button>
+  <p>Recto = Page 1 · Verso = Page 2 · A4 Paysage recommandé</p>
+</div>
+
+<div class="page-label">PAGE 1 — RECTO &nbsp;|&nbsp; [P3 DOS] [P2 RABAT] [P1 COUVERTURE]</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     PAGE 1 — RECTO
+     P3 (DOS / COUV.ARRIÈRE) | P2 (RABAT) | P1 (COUVERTURE AVANT)
+══════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="fold-line fold-left"></div>
+  <div class="fold-line fold-right"></div>
+
+  <!-- ┌─────────────────────────────────────┐
+       │  P3 — DOS / COUVERTURE ARRIÈRE      │
+       └─────────────────────────────────────┘ -->
+  <div class="panel panel-tinted">
+    <div class="gold-bar-top"></div>
+    <div style="height:3px;background:var(--green-light);flex-shrink:0;"></div>
+
+    <!-- Comité d'Honneur -->
+    <div class="sec-hd" style="margin-top:5px;">Comité d'Honneur</div>
+    <div class="role-lbl">Président d'Honneur</div>
+    <div class="member"><strong>Prof. Mourad MEGHACHOU</strong><span>Recteur, Université Abou Bekr Belkaid — Tlemcen</span></div>
+    <hr class="sep">
+    <div class="role-lbl">Vice-Recteurs</div>
+    <div class="member"><strong>Pr. HAMZA CHERIF Ali</strong><span>V.-Recteur Relations Extérieures</span></div>
+    <div class="member"><strong>Prof. Redouane BACHIR</strong><span>V.-Recteur Recherche Scientifique</span></div>
+    <div class="member"><strong>Dr. Bensaim BOUNOUAR</strong><span>V.-Recteur Enseignement Supérieur</span></div>
+    <hr class="sep">
+    <div class="role-lbl">Doyens</div>
+    <div class="member"><strong>Prof. Nassima MOUKHTARI</strong><span>Doyenne, Faculté SNV-STU — Univ. Tlemcen</span></div>
+    <div class="member"><strong>Prof. Fethi BENLADGHEM</strong><span>Doyen, Faculté des Sciences Économiques</span></div>
+    <hr class="sep">
+    <div class="role-lbl">Direction du Labo</div>
+    <div class="member"><strong>Prof. Tabet Aoul Lachachi Wassila</strong><span>Directrice Labo LARMHO — Univ. Tlemcen</span></div>
+
+    <!-- Direction du Congrès -->
+    <div class="sec-hd" style="margin-top:4px;">Direction du Congrès</div>
+    <div class="role-lbl">Présidente du Congrès</div>
+    <div class="member"><strong>Prof. Nassima Amal SOULIMANE</strong><span>Université Abou Bekr Belkaid — Tlemcen</span></div>
+    <hr class="sep">
+    <div class="role-lbl">Président Comité Scientifique</div>
+    <div class="member"><strong>Prof. Dr. Benameur NEHAR</strong><span>Université Abou Bekr Belkaid — Tlemcen</span></div>
+    <hr class="sep">
+    <div class="role-lbl">Président d'Organisation</div>
+    <div class="member"><strong>Prof. Belyagoubi LARBI</strong><span>Université Abou Bekr Belkaid — Tlemcen</span></div>
+    <hr class="sep">
+    <div class="role-lbl">Coordinateur Adjoint</div>
+    <div class="member"><strong>Prof. Azzi RACHID</strong><span>Université Abou Bekr Belkaid — Tlemcen</span></div>
+
+    <!-- Partenaires logos -->
+    <div class="partner-section" style="margin-top:4px;">
+      <span class="partner-label">Partenaires &amp; Laboratoires</span>
+      <div class="logos-grid">
+        <div class="logo-tile"><img src="images/logoUniv.png" alt="Univ. Tlemcen"><span class="lt-name">Univ. Tlemcen</span><span class="lt-sub">Abou Bekr Belkaid</span></div>
+        <div class="logo-tile"><img src="images/8.jpg" alt="ONA"><span class="lt-name">ONA</span><span class="lt-sub">Off. Nat. Assainissement</span></div>
+        <div class="logo-tile"><img src="images/9.jpg" alt="GENAPAGIE"><span class="lt-name">GENAPAGIE</span><span class="lt-sub">Génétique Appliquée</span></div>
+        <div class="logo-tile"><img src="images/10.png" alt="LARMHO"><span class="lt-name">Labo LARMHO</span><span class="lt-sub">Management Hommes</span></div>
+        <div class="logo-tile"><img src="images/11.jpg" alt="LAMAABE"><span class="lt-name">LAMAABE</span><span class="lt-sub">Microbiologie Appl.</span></div>
+        <div class="logo-tile"><img src="images/12.jpg" alt="Prod. Animale"><span class="lt-name">Prod. Animale</span><span class="lt-sub">&amp; Végétale</span></div>
+        <div class="logo-tile"><img src="images/13.png" alt="VAHPEASP"><span class="lt-name">VAHPEASP</span><span class="lt-sub">Labo n°10</span></div>
+        <div class="logo-tile"><img src="images/14.png" alt="LAPRONA"><span class="lt-name">LAPRONA</span><span class="lt-sub">Produits Naturels</span></div>
+        <div class="logo-tile"><img src="images/15.png" alt="LECGEN"><span class="lt-name">LECGEN</span><span class="lt-sub">Écologie &amp; Écosyst.</span></div>
+      </div>
+    </div>
+
+    <div class="call-banner" style="margin-top:5px;">
+      <span style="font-size:11pt;">📢</span>
+      <span>1<sup style="font-size:5pt;">er</sup> Appel à Communications — Lancé !</span>
+    </div>
+    <div class="sec-hd" style="margin-top:5px;">Dates Importantes</div>
+    <div class="dates-box">
+      <div class="date-item">
+        <div class="date-dot-wrap"><div class="date-dot"></div></div>
+        <div class="date-body">
+          <span class="date-d">Mars 2026</span>
+          <span class="date-lbl">Ouverture des soumissions</span>
+        </div>
+      </div>
+      <div class="date-item">
+        <div class="date-dot-wrap"><div class="date-dot"></div></div>
+        <div class="date-body">
+          <span class="date-d">20 Juin 2026</span>
+          <span class="date-lbl">Date limite — Soumission des résumés</span>
+        </div>
+      </div>
+      <div class="date-item">
+        <div class="date-dot-wrap"><div class="date-dot"></div></div>
+        <div class="date-body">
+          <span class="date-d">18 Juillet 2026</span>
+          <span class="date-lbl">Notification d'acceptation des résumés</span>
+        </div>
+      </div>
+      <div class="date-item">
+        <div class="date-dot-wrap"><div class="date-dot"></div></div>
+        <div class="date-body">
+          <span class="date-d">1<sup>er</sup> Septembre 2026</span>
+          <span class="date-lbl">Envoi des confirmations aux auteurs</span>
+        </div>
+      </div>
+      <div class="date-item conf-date">
+        <div class="date-dot-wrap"><div class="date-dot star"></div></div>
+        <div class="date-body">
+          <span class="date-d highlight">30 Sept. — 2 Oct. 2026</span>
+          <span class="date-lbl" style="font-weight:700;">Congrès SDBQL 2026 — Tlemcen</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Langues -->
+    <div class="sec-hd" style="margin-top:4px;">Langues Officielles</div>
+    <div class="lang-row">
+      <div class="lang-badge">Arabe</div>
+      <div class="lang-badge">Français</div>
+      <div class="lang-badge">Anglais</div>
+    </div>
+
+    <!-- Frais d'inscription -->
+    <div class="sec-hd" style="margin-top:5px;">Frais d'Inscription</div>
+    <div class="fees-box">
+      <div class="fee-card doc">
+        <div class="fee-cat">Doctorants<small>Étudiants en thèse</small></div>
+        <div class="fee-amt">4 000 DA</div>
+      </div>
+      <div class="fee-card che">
+        <div class="fee-cat">Enseignants / Chercheurs<small>Universitaires &amp; professionnels</small></div>
+        <div class="fee-amt">6 000 DA</div>
+      </div>
+      <div class="fee-note">Règlement sur place le jour de l'événement</div>
+    </div>
+
+    <div class="footer-bar" style="margin-top:auto;">
+      <a href="https://www.facebook.com/profile.php?id=61555922292059">facebook.com/SDBQL2026</a>
+    </div>
+    <div class="footer-stripe"></div>
+  </div><!-- /P3 -->
+
+
+  <!-- ┌─────────────────────────────────────┐
+       │  P2 — RABAT / À PROPOS             │
+       └─────────────────────────────────────┘ -->
+  <div class="panel panel-tinted">
+    <div class="gold-bar-top"></div>
+    <div style="height:3px;background:var(--gold-light);flex-shrink:0;"></div>
+
+    <div class="sec-hd">À propos du Congrès</div>
+    <div class="about-box" style="margin:4px var(--mx) 0;">
+      <div class="about-body">
+        <p>À quatre ans de l'<strong>échéance 2030</strong>, seulement 18 % des ODD sont sur la bonne voie, tandis que les températures dépassent <strong>+1,55 °C</strong> et que 2,3 milliards de personnes demeurent en insécurité alimentaire. Le <strong>2ème Congrès International SDBQL 2026</strong> se tient à ce moment charnière pour faire avancer cet agenda critique.</p>
+        <p>Ancré dans une <strong>approche systémique et transdisciplinaire</strong>, le congrès explore le <em>nexus des ressources</em> — eau, énergie, alimentation, terres et matériaux — comme cadre unificateur pour réduire les arbitrages entre ODD. Il met au premier plan l'innovation verte, la <strong>sécurité minérale</strong> et les impératifs de <strong>justice sociale et de gouvernance inclusive</strong>.</p>
+        <p>SDBQL 2026 est un <strong>espace de dialogue et de co-construction</strong> réunissant scientifiques, praticiens, décideurs et société civile pour bâtir collectivement une vision partagée au-delà de 2030, depuis <strong>Tlemcen, Algérie</strong>.</p>
+      </div>
+      <div class="about-quote">« Ressources Naturelles au Service des Objectifs de Développement Durable »</div>
+    </div>
+
+    <div class="sec-hd" style="margin-top:5px;">Design Systémique Régénératif</div>
+    <div class="dsr-box">
+      <span class="dsr-title">Paradigme DSR — Vision du Congrès</span>
+      <p>Le congrès s'inscrit dans le paradigme du <strong>Design Systémique Régénératif</strong> — une approche qui dépasse la simple durabilité pour viser la <em>restauration active</em> des écosystèmes. De l'agroécologie régénérative aux villes résilientes, chaque contribution est invitée à proposer des <strong>solutions systémiques co-créées</strong> avec les communautés locales.</p>
+    </div>
+
+    <div class="sec-hd" style="margin-top:5px;">Axes Thématiques</div>
+    <div class="axes-box">
+      <div class="axis-row"><span class="axis-num">01</span><div><div class="axis-title">Agriculture Durable &amp; Sécurité Alimentaire</div><div class="axis-sub">Pratiques respectueuses, accès équitable à l'alimentation</div></div></div>
+      <div class="axis-row"><span class="axis-num">02</span><div><div class="axis-title">Bioénergie &amp; Énergies Renouvelables</div><div class="axis-sub">Technologies de bioénergie, réduction empreinte carbone</div></div></div>
+      <div class="axis-row"><span class="axis-num">03</span><div><div class="axis-title">Biodiversité &amp; Gestion des Écosystèmes</div><div class="axis-sub">Gestion des écosystèmes aquatiques et terrestres</div></div></div>
+      <div class="axis-row"><span class="axis-num">04</span><div><div class="axis-title">Action Climatique</div><div class="axis-sub">Politiques d'atténuation du changement climatique</div></div></div>
+      <div class="axis-row"><span class="axis-num">05</span><div><div class="axis-title">Santé &amp; Bien-être</div><div class="axis-sub">Lien environnement-santé, approches holistiques</div></div></div>
+      <div class="axis-row"><span class="axis-num">06</span><div><div class="axis-title">Partenariats Socio-économiques</div><div class="axis-sub">Synergies public-privé pour des initiatives durables</div></div></div>
+    </div>
+
+    <div class="org-section" style="border-top:none;padding-top:4px;margin-top:4px;">
+      <div class="org-label">Organisé par</div>
+      <div class="qr-zone" style="padding:0 var(--mx) 4px;">
+        <div class="qr-box">
+          <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https%3A%2F%2Fsdbql.vercel.app&bgcolor=ffffff&color=0f3d1e&margin=2" alt="QR">
+        </div>
+        <span class="qr-label">sdbql.vercel.app</span>
+      </div>
+      <div class="org-grid">
+        <div class="org-logo-tile">
+          <img src="images/7.png" alt="Faculté SNV-STU" style="max-width:100%;max-height:26px;object-fit:contain;">
+          <span class="olt-name">Faculté SNV-STU</span>
+          <span style="font-size:5pt;color:var(--gray);line-height:1.2;">Nat. &amp; Vie — Terre &amp; Univers</span>
+        </div>
+        <div class="org-logo-tile">
+          <img src="images/10.png" alt="Labo LARMHO" style="max-width:100%;max-height:26px;object-fit:contain;">
+          <span class="olt-name">Labo LARMHO</span>
+          <span style="font-size:5pt;color:var(--gray);line-height:1.2;">Sc. Économiques</span>
+        </div>
+        <div class="org-logo-tile" style="grid-column: 1 / -1; width: calc(50% - 1.5px); margin: 0 auto;">
+          <img src="images/8.jpg" alt="Off. Nat. Assainissement" style="max-width:100%;max-height:26px;object-fit:contain;">
+          <span class="olt-name">Off. Nat. Assainissement</span>
+          <span style="font-size:5pt;color:var(--gray);line-height:1.2;">ONA — Algérie</span>
+        </div>
+      </div>
+      <div class="org-univ"><strong>Université Abou Bekr Belkaid</strong><br>Tlemcen — Algérie</div>
+    </div>
+
+    <div class="footer-bar" style="margin-top:auto;"><span class="hash">#SDBQL2026 · #ODD · #DéveloppementDurable</span></div>
+    <div class="footer-stripe"></div>
+  </div><!-- /P2 -->
+
+
+  <!-- ┌─────────────────────────────────────┐
+       │  P1 — COUVERTURE AVANT              │
+       └─────────────────────────────────────┘ -->
+  <div class="panel panel-dark">
+    <div class="gold-bar-top"></div>
+
+    <div class="cover-header">
+      <!-- Logos universitaires -->
+      <div style="display:flex;justify-content:center;align-items:center;gap:10px;padding:4mm var(--mx) 0;position:relative;z-index:1;">
+        <div style="width:44px;height:44px;border-radius:50%;overflow:hidden;border:2px solid var(--gold);background:white;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <img src="images/logoUniv.png" alt="Université Abou Bekr Belkaid" style="width:100%;height:100%;object-fit:cover;display:block;">
+        </div>
+        <div style="width:42px;height:42px;border-radius:3px;overflow:hidden;border:2px solid var(--gold);background:white;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+          <img src="images/logo-congres.jpg" alt="Logo SDBQL 2026" style="width:100%;height:100%;object-fit:contain;display:block;">
+        </div>
+      </div>
+      <div class="cover-title-box">
+        <div class="cover-edition">2<sup>ème</sup> Congrès International</div>
+        <div class="cover-main">Développement <em>Durable</em><br>pour une Meilleure<br><em>Qualité de Vie</em></div>
+        <div class="cover-sub">Ressources Naturelles au Service<br>des Objectifs de Développement Durable</div>
+        <span class="cover-acronym">SDBQL 2026</span>
+      </div>
+      <div class="cover-info-zone">
+        <div class="hinfo-card"><span class="hinfo-label">Date</span><span class="hinfo-value">30 Sept. — 2 Oct. 2026</span></div>
+        <div class="hinfo-card"><span class="hinfo-label">Lieu</span><span class="hinfo-value">Université Tlemcen<small>Fac. de Médecine, 12 Rue HAMRI Ahmed — BP 119</small></span></div>
+        <div class="hinfo-card"><span class="hinfo-label">Format</span><span class="hinfo-value">Mode Hybride<small>Présentiel &amp; En ligne</small></span></div>
+        <div class="hinfo-card"><span class="hinfo-label">Langue</span><span class="hinfo-value">Arabe · Français · Anglais</span></div>
+      </div>
+    </div>
+
+    <div class="sdg-band">
+      <div class="sdg-row">
+        <div class="sdg-box" style="background:#e5243b;">1</div><div class="sdg-box" style="background:#dda63a;">2</div>
+        <div class="sdg-box" style="background:#4c9f38;">3</div><div class="sdg-box" style="background:#c5192d;">4</div>
+        <div class="sdg-box" style="background:#ff3a21;">5</div><div class="sdg-box" style="background:#26bde2;">6</div>
+        <div class="sdg-box" style="background:#fcc30b;color:#333;">7</div><div class="sdg-box" style="background:#a21942;">8</div>
+        <div class="sdg-box" style="background:#fd6925;">9</div>
+      </div>
+      <div class="sdg-row">
+        <div class="sdg-box" style="background:#dd1367;">10</div><div class="sdg-box" style="background:#fd9d24;">11</div>
+        <div class="sdg-box" style="background:#bf8b2e;">12</div><div class="sdg-box" style="background:#3f7e44;">13</div>
+        <div class="sdg-box" style="background:#0a97d9;">14</div><div class="sdg-box" style="background:#56c02b;">15</div>
+        <div class="sdg-box" style="background:#00689d;">16</div><div class="sdg-box" style="background:#19486a;">17</div>
+      </div>
+      <div class="sdg-label">Objectifs de Développement Durable — ONU</div>
+    </div>
+
+    <div class="cover-photo" style="flex:1;">
+      <img src="images/mansora.jpg" alt="Minaret de Mansourah — Tlemcen">
+      <div class="cover-photo-caption">Minaret de Mansourah — Tlemcen, Algérie</div>
+    </div>
+
+    <div class="cover-footer">sdbql.vercel.app</div>
+    <div class="stripe-bar"></div>
+  </div><!-- /P1 -->
+
+</div><!-- /PAGE 1 -->
+
+
+<div class="page-label">PAGE 2 — VERSO &nbsp;|&nbsp; [P4 INT. GAUCHE] [P5 INT. CENTRE] [P6 INT. DROIT]</div>
+
+<!-- ══════════════════════════════════════════════════════════
+     PAGE 2 — VERSO
+     P4 (INTÉRIEUR GAUCHE) | P5 (INTÉRIEUR CENTRE) | P6 (INTÉRIEUR DROIT)
+══════════════════════════════════════════════════════════ -->
+<div class="page">
+  <div class="fold-line fold-left"></div>
+  <div class="fold-line fold-right"></div>
+
+
+  <!-- ┌─────────────────────────────────────┐
+       │  P4 — INTÉRIEUR GAUCHE : 1er APPEL │
+       └─────────────────────────────────────┘ -->
+  <div class="panel panel-tinted">
+    <div class="gold-bar-top"></div>
+    <div style="height:3px;background:var(--gold-light);flex-shrink:0;"></div>
+
+    <!-- Comité Scientifique -->
+    <div class="sec-hd" style="margin-top:5px;">Comité Scientifique International</div>
+    <div class="role-lbl">Membres Nationaux</div>
+    <div class="sci-list">
+      <div class="sci-item"><b>Prof. ABDELLAOUI Karima</b> <i>— Labo 10, Univ. Tlemcen</i></div>
+      <div class="sci-item"><b>Prof. Azzi Rachid</b> <i>— LAPRONA, Univ. Tlemcen</i></div>
+      <div class="sci-item"><b>Prof. Belarbi Meriem</b> <i>— LAPRONA, Univ. Tlemcen</i></div>
+      <div class="sci-item"><b>Prof. BELYAGOUBI-BENHAMMOU Nabila</b> <i>— LAPRONA, Univ. Tlemcen</i></div>
+      <div class="sci-item"><b>Prof. Bendidjelloul Sidi Mohamed Bahaeddine</b> <i>— LECGEN, Univ. Tlemcen</i></div>
+      <div class="sci-item"><b>Prof. Ghomari Souhila</b> <i>— Labo LARMHO, Univ. Tlemcen</i></div>
+      <div class="sci-item"><b>Prof. Ferouani Belkacem</b> <i>— Labo LARMHO, Univ. Tlemcen</i></div>
+      <div class="sci-item"><b>Prof. Merad Boudia Djamil</b> <i>— Labo LARMHO, Univ. Tlemcen</i></div>
+      <div class="sci-item"><b>Prof. Tafer Zoheir</b> <i>— Labo LARMHO, Univ. Tlemcen</i></div>
+      <div class="sci-item"><b>Prof. Wafa Berbar</b> <i>— Labo LARMHO, Univ. Tlemcen</i></div>
+      <div class="sci-item"><b>Prof. Youcefi Fatma</b> <i>— Labo AFTARO, Univ. Tlemcen</i></div>
+      <div class="sci-item"><b>Prof. Amel Bennadji</b> <i>— Université d'Oran</i></div>
+      <div class="sci-item"><b>Prof. Adel Benchabane</b> <i>— Université de Biskra</i></div>
+      <div class="sci-item"><b>Dr. Toufik Arif</b> <i>— Applied Research Unit, Énergies Renouvelables</i></div>
+      <div class="sci-item"><b>Prof. Boumediene Mohamed</b> <i>— Université de Tlemcen</i></div>
+    </div>
+    <span class="list-note">⋮ Liste en cours de constitution</span>
+
+    <div class="role-lbl" style="margin-top:4px;">Membres Internationaux</div>
+    <div class="sci-list">
+      <div class="sci-item"><b>Prof. Tounes Azzedine</b> <i>— INSEEC, France</i></div>
+      <div class="sci-item"><b>Prof. Al-Dhabi Naif Abdullah</b> <i>— King Saud University, Arabie Saoudite</i></div>
+      <div class="sci-item"><b>Dr. Joachim Henjes</b> <i>— Alfred Wegener Institute, Allemagne</i></div>
+      <div class="sci-item"><b>Dr. Tara Mathien</b> <i>— University of Florida, USA</i></div>
+      <div class="sci-item"><b>Prof. Luciana Cabrini Simões Calvo</b> <i>— State Univ. of Maringá, Brésil</i></div>
+      <div class="sci-item"><b>Prof. Lynn Hartle</b> <i>— Pennsylvania State University, USA</i></div>
+      <div class="sci-item"><b>Prof. Norbert F. Tchouaffe Tchiadje</b> <i>— University of Ebolowa, Cameroun</i></div>
+      <div class="sci-item"><b>Prof. Dominik Wróbel</b> <i>— State University of Krosno, Pologne</i></div>
+      <div class="sci-item"><b>Dr. Aliya Fazal</b> <i>— Fatima Jinnah Women University, Pakistan</i></div>
+    </div>
+    <span class="list-note">⋮ Liste en cours de constitution</span>
+
+    <div class="footer-bar" style="margin-top:auto;"><span class="web">sdbql.vercel.app</span></div>
+    <div class="footer-stripe"></div>
+  </div><!-- /P4 -->
+
+
+  <!-- ┌─────────────────────────────────────┐
+       │  P5 — INTÉRIEUR CENTRE              │
+       └─────────────────────────────────────┘ -->
+  <div class="panel panel-white">
+    <div class="gold-bar-top"></div>
+    <div style="height:3px;background:var(--gold-light);flex-shrink:0;"></div>
+
+    <!-- Comité d'Honneur -->
+    <div class="sec-hd" style="margin-top:5px;">Comité d'Honneur</div>
+    <div class="role-lbl">Président d'Honneur</div>
+    <div class="member"><strong>Prof. Mourad MEGHACHOU</strong><span>Recteur, Université Abou Bekr Belkaid — Tlemcen</span></div>
+    <hr class="sep">
+    <div class="role-lbl">Vice-Recteurs</div>
+    <div class="member"><strong>Pr. HAMZA CHERIF Ali</strong><span>V.-Recteur Relations Extérieures</span></div>
+    <div class="member"><strong>Prof. Redouane BACHIR</strong><span>V.-Recteur Recherche Scientifique</span></div>
+    <div class="member"><strong>Dr. Bensaim BOUNOUAR</strong><span>V.-Recteur Enseignement Supérieur</span></div>
+    <hr class="sep">
+    <div class="role-lbl">Doyens</div>
+    <div class="member"><strong>Prof. Nassima MOUKHTARI</strong><span>Doyenne, Faculté SNV-STU — Univ. Tlemcen</span></div>
+    <div class="member"><strong>Prof. Fethi BENLADGHEM</strong><span>Doyen, Faculté des Sciences Économiques</span></div>
+    <hr class="sep">
+    <div class="role-lbl">Direction du Labo</div>
+    <div class="member"><strong>Prof. Tabet Aoul Lachachi Wassila</strong><span>Directrice Labo LARMHO — Univ. Tlemcen</span></div>
+
+    <!-- Comité d'Organisation -->
+    <div class="sec-hd" style="margin-top:5px;">Comité d'Organisation</div>
+    <div class="m-list">
+      <div class="m-row"><span class="m-name">ABBOU Fayza</span><span class="m-aff">— Labo LapSab, MCB</span></div>
+      <div class="m-row"><span class="m-name">Ainad Tabet Mustapha</span><span class="m-aff">— Labo LECGEN, MCA</span></div>
+      <div class="m-row"><span class="m-name">BELLAHCENE ZEKRI Nadia</span><span class="m-aff">— Labo Foresterie, MCA</span></div>
+      <div class="m-row"><span class="m-name">Benariba Kaddour Hicham</span><span class="m-aff">— LAPRONA, MAB</span></div>
+      <div class="m-row"><span class="m-name">Ghanemi Fatima Zahra</span><span class="m-aff">— LAPRONA, MCA</span></div>
+      <div class="m-row"><span class="m-name">HADJ MERABET Djahida</span><span class="m-aff">— PPABIONUT, MCA</span></div>
+      <div class="m-row"><span class="m-name">KADI Sarra</span><span class="m-aff">— LAPRONA, Doctorante</span></div>
+      <div class="m-row"><span class="m-name">KHOLKHAL Djamel</span><span class="m-aff">— Labo Foresterie, MCB</span></div>
+      <div class="m-row"><span class="m-name">LAHFA-HASSAINE Imane</span><span class="m-aff">— Labo LapSab, MCB</span></div>
+      <div class="m-row"><span class="m-name">MALTI Nassima</span><span class="m-aff">— PPABIONUT, MCA</span></div>
+      <div class="m-row"><span class="m-name">MERZOUK Amel</span><span class="m-aff">— PPABIONUT, MCA</span></div>
+      <div class="m-row"><span class="m-name">MIMOUN Amira</span><span class="m-aff">— Labo LapSab, Doctorante</span></div>
+      <div class="m-row"><span class="m-name">RABAH Amina</span><span class="m-aff">— Labo Foresterie, MAA</span></div>
+      <div class="m-row"><span class="m-name">TEIBI AMINA</span><span class="m-aff">— LAPRONA, Doctorante</span></div>
+      <div class="m-row"><span class="m-name">Zettam AMINE</span><span class="m-aff">— Labo LECGEN, MCA</span></div>
+      <div class="m-row"><span class="m-name">Elaïdi-Kadaoui Elyasmine</span><span class="m-aff">— ESSA Tlemcen</span></div>
+    </div>
+    <span class="list-note">⋮ Liste en cours de constitution</span>
+
+    <div class="footer-bar" style="margin-top:auto;"><span class="hash">#SDBQL2026 · #DéveloppementDurable</span></div>
+    <div class="footer-stripe"></div>
+  </div><!-- /P5 -->
+
+
+  <!-- ┌─────────────────────────────────────┐
+       │  P6 — INTÉRIEUR DROIT : PARTENAIRES│
+       └─────────────────────────────────────┘ -->
+  <div class="panel panel-tinted">
+    <div class="gold-bar-top"></div>
+    <div style="height:3px;background:var(--gold-light);flex-shrink:0;"></div>
+
+    <!-- QR Inscription -->
+    <div class="sec-hd" style="margin-top:5px;">Inscription en Ligne</div>
+    <div class="qr-zone" style="padding:4px var(--mx);">
+      <div class="qr-box">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https%3A%2F%2Fsdbql.vercel.app%2Finscription.html&bgcolor=ffffff&color=0f3d1e&margin=2" alt="QR Inscription">
+      </div>
+      <span class="qr-label">📝 S'inscrire en ligne<br>sdbql.vercel.app/inscription</span>
+    </div>
+
+    <div class="springer-block">
+      <img src="images/springerLogo.png" style="height:26px;width:auto;flex-shrink:0;" alt="SpringerLink">
+      <div>
+        <span class="sp-title">Proceedings publiés via SpringerLink</span>
+        <span class="sp-sub">Publications indexées — diffusion internationale</span>
+      </div>
+    </div>
+
+    <div class="footer-bar" style="margin-top:auto;"><span class="hash">#SDBQL2026</span> &nbsp;·&nbsp; <span class="web">sdbql.vercel.app</span></div>
+    <div class="footer-stripe"></div>
+  </div><!-- /P6 -->
+
+</div><!-- /PAGE 2 -->
+
+</body>
+</html>
