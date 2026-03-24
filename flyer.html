@@ -268,13 +268,13 @@ body {
 /* ══════════ COUVERTURE ══════════ */
 .cover-header { background: var(--green-dark); flex-shrink: 0; position: relative; overflow: hidden; padding: 0; }
 .cover-header::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(-55deg, transparent 0px, transparent 22px, rgba(255,255,255,0.03) 22px, rgba(255,255,255,0.03) 23px); }
-.cover-title-box { background: rgba(26,90,46,0.85); border-left: 3px solid var(--gold); margin: 5mm var(--mx) 0; padding: 5mm; position: relative; z-index: 1; }
-.cover-edition { font-size: 6.5pt; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 0.16em; margin-bottom: 4px; display: flex; align-items: center; gap: 5px; }
-.cover-edition::before { content: ''; width: 18px; height: 2px; background: var(--gold); display: inline-block; }
-.cover-main { font-size: 16pt; font-weight: 900; color: white; line-height: 1.1; text-transform: uppercase; }
-.cover-main em { color: var(--gold); font-style: normal; }
-.cover-sub { font-size: 7.5pt; font-weight: 700; color: rgba(255,255,255,0.85); line-height: 1.35; margin-top: 5px; }
-.cover-acronym { display: inline-block; margin-top: 5px; background: var(--gold); color: var(--green-dark); font-size: 7pt; font-weight: 900; letter-spacing: 0.16em; padding: 2px 9px; border-radius: 2px; text-transform: uppercase; }
+.cover-title-box { background: linear-gradient(135deg, rgba(26,90,46,0.95) 0%, rgba(15,61,30,0.95) 100%); border-left: 4px solid var(--gold); margin: 5mm var(--mx) 0; padding: 6mm; position: relative; z-index: 1; border-radius: 0 4px 4px 0; box-shadow: 0 2px 8px rgba(0,0,0,0.3); }
+.cover-edition { font-size: 9pt; font-weight: 700; color: var(--gold); text-transform: uppercase; letter-spacing: 0.2em; margin-bottom: 6px; display: flex; align-items: center; gap: 8px; }
+.cover-edition::before { content: ''; width: 24px; height: 3px; background: var(--gold); display: inline-block; }
+.cover-main { font-size: 14pt; font-weight: 900; color: white; line-height: 1.15; text-transform: uppercase; text-shadow: 2px 2px 4px rgba(0,0,0,0.4); letter-spacing: 0.02em; }
+.cover-main em { color: var(--gold); font-style: normal; text-shadow: 1px 1px 3px rgba(0,0,0,0.3); }
+.cover-sub { font-size: 9pt; font-weight: 500; color: rgba(255,255,255,0.95); line-height: 1.4; margin-top: 8px; letter-spacing: 0.02em; }
+.cover-acronym { display: inline-block; margin-top: 8px; background: var(--gold); color: var(--green-dark); font-size: 9pt; font-weight: 900; letter-spacing: 0.2em; padding: 4px 14px; border-radius: 3px; text-transform: uppercase; box-shadow: 0 2px 4px rgba(0,0,0,0.2); }
 
 .cover-info-zone { margin: 4mm var(--mx) 0; display: flex; flex-direction: column; gap: 3px; position: relative; z-index: 1; padding-bottom: 4mm; }
 .hinfo-card { background: rgba(255,255,255,0.07); border: 1px solid rgba(201,168,76,0.3); border-left: 3px solid var(--gold); padding: 4px 8px; border-radius: 2px; }
@@ -522,10 +522,10 @@ body {
     <div class="cover-header">
       <!-- Logos universitaires -->
       <div style="display:flex;justify-content:center;align-items:center;gap:10px;padding:4mm var(--mx) 0;position:relative;z-index:1;">
-        <div style="width:44px;height:44px;border-radius:50%;overflow:hidden;border:2px solid var(--gold);background:white;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <div style="width:64px;height:64px;border-radius:50%;overflow:hidden;border:2px solid var(--gold);background:white;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
           <img src="images/logoUniv.png" alt="Université Abou Bekr Belkaid" style="width:100%;height:100%;object-fit:cover;display:block;">
         </div>
-        <div style="width:42px;height:42px;border-radius:3px;overflow:hidden;border:2px solid var(--gold);background:white;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <div style="width:62px;height:62px;border-radius:3px;overflow:hidden;border:2px solid var(--gold);background:white;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
           <img src="images/logo-congres.jpg" alt="Logo SDBQL 2026" style="width:100%;height:100%;object-fit:contain;display:block;">
         </div>
       </div>
@@ -539,7 +539,7 @@ body {
         <div class="hinfo-card"><span class="hinfo-label">Date</span><span class="hinfo-value">30 Sept. — 2 Oct. 2026</span></div>
         <div class="hinfo-card"><span class="hinfo-label">Lieu</span><span class="hinfo-value">Université Tlemcen<small>Fac. de Médecine, 12 Rue HAMRI Ahmed — BP 119</small></span></div>
         <div class="hinfo-card"><span class="hinfo-label">Format</span><span class="hinfo-value">Mode Hybride<small>Présentiel &amp; En ligne</small></span></div>
-        <div class="hinfo-card"><span class="hinfo-label">Langue</span><span class="hinfo-value">Arabe · Français · Anglais</span></div>
+        <div class="hinfo-card"><span class="hinfo-label">Langue</span><span class="hinfo-value">Arabe · Anglais · Français</span></div>
       </div>
     </div>
 
@@ -595,7 +595,7 @@ body {
 
     <!-- Comité Scientifique -->
     <div class="sec-hd" style="margin-top:5px;">Comité Scientifique International</div>
-    <div class="role-lbl">Membres Nationaux (67)</div>
+    <div class="role-lbl">Membres Nationaux (65)</div>
     <div class="sci-list" style="display:grid;grid-template-columns:1fr 1fr;gap:0 3px;">
       <div class="sci-item" style="font-size:4.5pt;"><b>Prof. Azzi Rachid</b> <i>— LAPSAB, Tlemcen</i></div>
       <div class="sci-item" style="font-size:4.5pt;"><b>Prof. Rahmoun Nadjib Mohammed</b> <i>— LAPSAB, Tlemcen</i></div>
@@ -666,7 +666,7 @@ body {
       <div class="sci-item" style="font-size:4.5pt;"><b>Prof. Samraoui Boudjèma</b> <i>— Univ. Annaba</i></div>
     </div>
 
-    <div class="role-lbl" style="margin-top:3px;">Membres Internationaux (20)</div>
+    <div class="role-lbl" style="margin-top:3px;">Membres Internationaux (22)</div>
     <div class="sci-list" style="display:grid;grid-template-columns:1fr 1fr;gap:0 3px;">
       <div class="sci-item" style="font-size:4.5pt;"><b>Prof. Tounès Azzedine</b> <i>— INSEEC, France</i></div>
       <div class="sci-item" style="font-size:4.5pt;"><b>Prof. Khan Naim</b> <i>— Univ. Bourgogne, France</i></div>
@@ -688,6 +688,8 @@ body {
       <div class="sci-item" style="font-size:4.5pt;"><b>Prof. Norbert F. Tchouaffe Tchiadje</b> <i>— Univ. Ebolowa, Cameroun</i></div>
       <div class="sci-item" style="font-size:4.5pt;"><b>Dr. Aliya Fazal</b> <i>— Univ. Fatima Jinnah, Pakistan</i></div>
       <div class="sci-item" style="font-size:4.5pt;"><b>Prof. Maartje Musschenga</b> <i>— HAS Academy, Pays-Bas</i></div>
+      <div class="sci-item" style="font-size:4.5pt;"><b>Prof. Gustave Gintzburger</b> <i>— Ex researcher Univ. Louis Pasteur - Strasbourg - France</i></div>
+      <div class="sci-item" style="font-size:4.5pt;"><b>Dr. Saidi Slim</b> <i>— Expert consultant CEPE, CIRAD, France</i></div>
     </div>
 
     <div class="footer-bar" style="margin-top:auto;"><span class="web">sdbql.vercel.app</span></div>
@@ -705,12 +707,78 @@ body {
     <!-- Comité d'Organisation -->
     <div class="sec-hd" style="margin-top:5px;">Comité d'Organisation</div>
     <div class="m-list">
-      <div class="m-row" style="flex-direction:column;border-left:2px solid #009688;padding-left:5px;background:#f0faf9;margin-bottom:2px;border-bottom:none;"><span class="m-name" style="font-size:5.5pt;">Thématique 1 — Agriculture Durable &amp; Séc. Alimentaire</span><span class="m-aff">Coord. : Prof. Yousfi-Khouani Fatma</span><span class="m-aff">Membres du labo : AFTAGRO, Univ. Tlemcen</span></div>
-      <div class="m-row" style="flex-direction:column;border-left:2px solid #009688;padding-left:5px;background:#f0faf9;margin-bottom:2px;border-bottom:none;"><span class="m-name" style="font-size:5.5pt;">Thématique 2 — Bioénergie &amp; Énergies Renouvelables</span><span class="m-aff">Coord. : Prof. Merzouk Abdessamad</span><span class="m-aff">Membres du labo : LECGEN, Univ. Tlemcen</span></div>
-      <div class="m-row" style="flex-direction:column;border-left:2px solid #009688;padding-left:5px;background:#f0faf9;margin-bottom:2px;border-bottom:none;"><span class="m-name" style="font-size:5.5pt;">Thématique 3 — Biodiversité &amp; Gestion des Écosystèmes</span><span class="m-aff">Coord. : Prof. Gaouar Semir Bechir Suheil</span><span class="m-aff">Membres du labo : GenApAgiE, Univ. Tlemcen</span></div>
-      <div class="m-row" style="flex-direction:column;border-left:2px solid #009688;padding-left:5px;background:#f0faf9;margin-bottom:2px;border-bottom:none;"><span class="m-name" style="font-size:5.5pt;">Thématique 4 — Action Climatique et Changement Climatique</span><span class="m-aff">Coord. : Prof. Haddouche Driss</span><span class="m-aff">Membres du labo : GCESFDDZMT, Univ. Tlemcen</span></div>
-      <div class="m-row" style="flex-direction:column;border-left:2px solid #009688;padding-left:5px;background:#f0faf9;margin-bottom:2px;border-bottom:none;"><span class="m-name" style="font-size:5.5pt;">Thématique 5 — Santé et Bien-être</span><span class="m-aff">Coord. : Prof. Rebiahi Sid Ahmed</span><span class="m-aff">Membres du labo : LAMAABE &amp; LAPSAB, Univ. Tlemcen</span></div>
-      <div class="m-row" style="flex-direction:column;border-left:2px solid #009688;padding-left:5px;background:#f0faf9;border-bottom:none;"><span class="m-name" style="font-size:5.5pt;">Thématique 6 — Partenariats Socio-Économiques</span><span class="m-aff">Coord. : Prof. Tabet Aoul Lachachi Wassila &amp; Dr. Nehar Benameur</span><span class="m-aff">Membres du labo : LARMHO, Univ. Tlemcen</span></div>
+      <div class="m-row" style="flex-direction:column;border-left:2px solid #009688;padding-left:5px;background:#f0faf9;margin-bottom:2px;border-bottom:none;"><span class="m-name" style="font-size:5.5pt;">Thématique 1 — Agriculture Durable &amp; Séc. Alimentaire</span><span class="m-aff">Coord. : Prof. Yousfi-Khouani Fatma</span><span class="m-aff">Membres : AFTAGRO, GenApAgiE, LAPRONA, LAMAABE &amp; GCESFDDZMT</span></div>
+      <div class="m-row" style="flex-direction:column;border-left:2px solid #009688;padding-left:5px;background:#f0faf9;margin-bottom:2px;border-bottom:none;"><span class="m-name" style="font-size:5.5pt;">Thématique 2 — Bioénergie &amp; Énergies Renouvelables</span><span class="m-aff">Coord. : Prof. Merzouk Abdessamad</span><span class="m-aff">Membres : LECGEN, Univ. Tlemcen</span></div>
+      <div class="m-row" style="flex-direction:column;border-left:2px solid #009688;padding-left:5px;background:#f0faf9;margin-bottom:2px;border-bottom:none;"><span class="m-name" style="font-size:5.5pt;">Thématique 3 — Biodiversité &amp; Gestion des Écosystèmes</span><span class="m-aff">Coord. : Prof. Gaouar Semir Bechir Suheil</span><span class="m-aff">Membres : GenApAgiE, GCESFDDZMT, LECGEN, VAHPEASP, AFTAGRO, PRHMP &amp; LAPRONA</span></div>
+      <div class="m-row" style="flex-direction:column;border-left:2px solid #009688;padding-left:5px;background:#f0faf9;margin-bottom:2px;border-bottom:none;"><span class="m-name" style="font-size:5.5pt;">Thématique 4 — Action Climatique et Changement Climatique</span><span class="m-aff">Coord. : Prof. Haddouche Driss</span><span class="m-aff">Membres : GCESFDDZMT, VAHPEASP, LECGEN, PRHMP &amp; AFTAGRO</span></div>
+      <div class="m-row" style="flex-direction:column;border-left:2px solid #009688;padding-left:5px;background:#f0faf9;margin-bottom:2px;border-bottom:none;"><span class="m-name" style="font-size:5.5pt;">Thématique 5 — Santé et Bien-être</span><span class="m-aff">Coord. : Prof. Rebiahi Sid Ahmed</span><span class="m-aff">Membres : LAMAABE, LAPSAB, LAPRONA, GenApAgiE, PPABIONUT &amp; VAHPEASP</span></div>
+      <div class="m-row" style="flex-direction:column;border-left:2px solid #009688;padding-left:5px;background:#f0faf9;border-bottom:none;"><span class="m-name" style="font-size:5.5pt;">Thématique 6 — Partenariats Socio-Économiques</span><span class="m-aff">Coord. : Prof. Tabet Aoul Lachachi Wassila &amp; Dr. Nehar Benameur</span><span class="m-aff">Membres : LARMHO, AFTAGRO, LAMAABE, LAPSAB, LAPRONA, GenApAgiE, PPABIONUT, VAHPEASP, PRHMP, GCESFDDZMT &amp; LECGEN</span></div>
+    </div>
+
+    <!-- Guest Speakers -->
+    <div class="sec-hd" style="margin-top:6px;">🎤 Guest Speakers</div>
+    <div style="display:flex;flex-direction:column;gap:4px;margin:0 var(--mx);">
+      
+      <!-- Guest Speaker 1 -->
+      <div style="display:flex;gap:5px;padding:4px;background:#fff8f0;border:1px solid #e8d8c8;border-left:3px solid #c9a84c;border-radius:2px;">
+        <div style="width:16mm;height:16mm;flex-shrink:0;background:#ddd;border-radius:2px;overflow:hidden;border:1px solid #bbb;">
+          <img src="images/carles.jpg" alt="Carles Agusti i Hernandez" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div style="flex:1;overflow:hidden;">
+          <span style="font-size:6pt;font-weight:700;color:#8b4513;display:block;">Carles Agusti i Hernandez</span>
+          <span style="font-size:5pt;color:#666;display:block;">Worsley Compagnie, Espagne</span>
+          <span style="font-size:4.5pt;color:#888;display:block;">Expert Consultant SDGs International</span>
+        </div>
+      </div>
+
+      <!-- Guest Speaker 2 -->
+      <div style="display:flex;gap:5px;padding:4px;background:#fff8f0;border:1px solid #e8d8c8;border-left:3px solid #c9a84c;border-radius:2px;">
+        <div style="width:16mm;height:16mm;flex-shrink:0;background:#ddd;border-radius:2px;overflow:hidden;border:1px solid #bbb;">
+          <img src="images/gentic.jpg" alt="Guest 2" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div style="flex:1;overflow:hidden;">
+          <span style="font-size:6pt;font-weight:700;color:#8b4513;display:block;">Prof. [Nom à confirmer]</span>
+          <span style="font-size:5pt;color:#666;display:block;">Université / Centre de Recherche</span>
+          <span style="font-size:4.5pt;color:#888;display:block;">Bioénergie &amp; Énergies Renouvelables</span>
+        </div>
+      </div>
+
+      <!-- Guest Speaker 3 -->
+      <div style="display:flex;gap:5px;padding:4px;background:#fff8f0;border:1px solid #e8d8c8;border-left:3px solid #c9a84c;border-radius:2px;">
+        <div style="width:16mm;height:16mm;flex-shrink:0;background:#ddd;border-radius:2px;overflow:hidden;border:1px solid #bbb;">
+          <img src="images/gentic.jpg" alt="Guest 3" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div style="flex:1;overflow:hidden;">
+          <span style="font-size:6pt;font-weight:700;color:#8b4513;display:block;">Prof. [Nom à confirmer]</span>
+          <span style="font-size:5pt;color:#666;display:block;">UICN / CNRPAH</span>
+          <span style="font-size:4.5pt;color:#888;display:block;">Biodiversité &amp; Gestion des Écosystèmes</span>
+        </div>
+      </div>
+
+      <!-- Guest Speaker 4 -->
+      <div style="display:flex;gap:5px;padding:4px;background:#fff8f0;border:1px solid #e8d8c8;border-left:3px solid #c9a84c;border-radius:2px;">
+        <div style="width:16mm;height:16mm;flex-shrink:0;background:#ddd;border-radius:2px;overflow:hidden;border:1px solid #bbb;">
+          <img src="images/gentic.jpg" alt="Guest 4" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div style="flex:1;overflow:hidden;">
+          <span style="font-size:6pt;font-weight:700;color:#8b4513;display:block;">Prof. [Nom à confirmer]</span>
+          <span style="font-size:5pt;color:#666;display:block;">GIEC / Ministère Tunisia</span>
+          <span style="font-size:4.5pt;color:#888;display:block;">Action Climatique &amp; Changement Climatique</span>
+        </div>
+      </div>
+
+      <!-- Guest Speaker 5 -->
+      <div style="display:flex;gap:5px;padding:4px;background:#fff8f0;border:1px solid #e8d8c8;border-left:3px solid #c9a84c;border-radius:2px;">
+        <div style="width:16mm;height:16mm;flex-shrink:0;background:#ddd;border-radius:2px;overflow:hidden;border:1px solid #bbb;">
+          <img src="images/Naif.png" alt="Prof. Dr. Naif Abdullah Al-Dhabi" style="width:100%;height:100%;object-fit:cover;">
+        </div>
+        <div style="flex:1;overflow:hidden;">
+          <span style="font-size:6pt;font-weight:700;color:#8b4513;display:block;">Prof. Dr. Naif Abdullah Al-Dhabi</span>
+          <span style="font-size:5pt;color:#666;display:block;">King Saud University</span>
+          <span style="font-size:4.5pt;color:#888;display:block;">Biotechnology &amp; Physiology of Cyanobacteria</span>
+        </div>
+      </div>
+
     </div>
 
     <!-- QR Comité d'Organisation -->
@@ -721,6 +789,28 @@ body {
       <div>
         <span style="font-size:5.5pt;font-weight:700;color:var(--green-dark);display:block;">Détail des membres par labo</span>
         <span style="font-size:5pt;color:var(--gray);display:block;">sdbql.vercel.app/comite-organisation</span>
+      </div>
+    </div>
+
+    <!-- Sessions par Axe -->
+    <div class="sec-hd" style="margin-top:5px;">📋 Sessions par Axe</div>
+    <div style="margin:2px var(--mx) 0;display:flex;flex-direction:column;gap:4px;font-size:6.5pt;">
+      <div style="display:flex;justify-content:space-between;padding:4px 6px;background:#e8f5e9;border-left:3px solid #2e7d32;border-radius:2px;"><span style="font-weight:700;color:#1b5e20;">Axe 1:</span><span style="color:#333;">Agriculture Durable</span><span style="color:#666;">4 sessions</span></div>
+      <div style="display:flex;justify-content:space-between;padding:4px 6px;background:#fff3e0;border-left:3px solid #e65100;border-radius:2px;"><span style="font-weight:700;color:#e65100;">Axe 2:</span><span style="color:#333;">Bioénergie</span><span style="color:#666;">4 sessions</span></div>
+      <div style="display:flex;justify-content:space-between;padding:4px 6px;background:#e3f2fd;border-left:3px solid #1565c0;border-radius:2px;"><span style="font-weight:700;color:#1565c0;">Axe 3:</span><span style="color:#333;">Biodiversité</span><span style="color:#666;">4 sessions</span></div>
+      <div style="display:flex;justify-content:space-between;padding:4px 6px;background:#fce4ec;border-left:3px solid #c2185b;border-radius:2px;"><span style="font-weight:700;color:#c2185b;">Axe 4:</span><span style="color:#333;">Action Climatique</span><span style="color:#666;">4 sessions</span></div>
+      <div style="display:flex;justify-content:space-between;padding:4px 6px;background:#f1f8e9;border-left:3px solid #558b2f;border-radius:2px;"><span style="font-weight:700;color:#558b2f;">Axe 5:</span><span style="color:#333;">Santé &amp; Bien-être</span><span style="color:#666;">4 sessions</span></div>
+      <div style="display:flex;justify-content:space-between;padding:4px 6px;background:#f3e5f5;border-left:3px solid #7b1fa2;border-radius:2px;"><span style="font-weight:700;color:#7b1fa2;">Axe 6:</span><span style="color:#333;">Partenariats</span><span style="color:#666;">4 sessions</span></div>
+    </div>
+
+    <!-- Rapport SDBQL 2024 -->
+    <div style="margin:4px var(--mx) 0;display:flex;align-items:center;gap:5px;padding:5px;background:#fff8e1;border:1px solid #ffb300;border-left:3px solid #ff8f00;border-radius:3px;">
+      <div style="width:12mm;height:12mm;flex-shrink:0;background:#fff;border-radius:2px;padding:1px;">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=https%3A%2F%2Fwww.univ-tlemcen.dz%2Fassets%2Fuploads%2FZZ%2FRapport%2520%2520congr%25C3%25A8s%2520SDBQL%2520Juin%25202024.pdf&bgcolor=ffffff&color=0f3d1e&margin=1" style="width:100%;height:100%;display:block;" alt="QR Rapport">
+      </div>
+      <div style="flex:1;">
+        <span style="font-size:6pt;font-weight:700;color:#e65100;display:block;">📄 Téléchargez le Rapport SDBQL 2024</span>
+        <span style="font-size:4.5pt;color:#666;display:block;">Rapport du congrès Juin 2024</span>
       </div>
     </div>
 
@@ -750,6 +840,24 @@ body {
       <div>
         <span class="sp-title">Proceedings publiés via SpringerLink</span>
         <span class="sp-sub">Publications indexées — diffusion internationale</span>
+      </div>
+    </div>
+
+    <!-- Journals partenaires pour publications -->
+    <div style="margin:3px var(--mx) 0;display:flex;flex-direction:column;gap:3px;">
+      <div style="display:flex;align-items:center;gap:5px;padding:4px 6px;background:#f8f4f0;border:1px solid #d4c4b8;border-radius:2px;">
+        <img src="images/JNPRA.png" style="height:24px;width:auto;flex-shrink:0;" alt="JNPRA">
+        <div style="flex:1;">
+          <span style="font-size:5.5pt;font-weight:700;color:#4a3728;display:block;">Revue des Génétiques et Biodiversité</span>
+          <span style="font-size:4.5pt;color:#666;">ISSN: 2602-5582</span>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:5px;padding:4px 6px;background:#f0f4f0;border:1px solid #b8d4c8;border-radius:2px;">
+        <img src="images/gentic.jpg" style="height:24px;width:auto;flex-shrink:0;" alt="GENTIC">
+        <div style="flex:1;">
+          <span style="font-size:5.5pt;font-weight:700;color:#2d4a3a;display:block;">Revue de la Recherche de Produit Naturel et les Applications</span>
+          <span style="font-size:4.5pt;color:#666;">ISSN: 2773-4188</span>
+        </div>
       </div>
     </div>
 
@@ -787,6 +895,53 @@ body {
         <div style="display:flex;justify-content:space-between;align-items:center;padding:2px 5px;background:#f2f7f2;border-left:2px solid var(--green);border-radius:2px;">
           <span style="font-size:5.5pt;font-weight:700;color:var(--black);">Ibis Tlemcen</span>
           <span style="font-size:5pt;color:var(--green-dark);font-weight:700;">+213 43 98 10 10</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Programme Social -->
+    <div class="sec-hd" style="margin-top:5px;">Programme Social</div>
+    <div class="dsr-box">
+      <span class="dsr-title">Excursions &amp; Visites Culturelles</span>
+      <p>Découvrez la richesse historique et naturelle de <strong>Tlemcen</strong> :</p>
+      <ul style="font-size:5pt;line-height:1.5;color:#222;margin:3px 0 0 0;padding-left:10px;">
+        <li><strong>Grande Mosquée</strong> — Architecture almoravide</li>
+        <li><strong>Mausolée Sidi Boumediene</strong> — Patrimoine spirituel</li>
+        <li><strong>Gorges du Lalla Setti</strong> — Panorama &amp; randonnée</li>
+        <li><strong>Royale de Tlemcen</strong> — Jardins andalous</li>
+        <li><strong>Circuit vignobles</strong> — Dégustation vins locaux</li>
+      </ul>
+    </div>
+    <div class="list-note" style="margin-top:2px;font-size:5pt;">✦ Inscription gratuite · Détails à l'enregistrement</div>
+    
+    <!-- Photo Grottes de Beni Add (Beniad) -->
+    <div style="margin:3px var(--mx) 0;">
+      <img src="images/grottes.jpg" alt="Grottes de Beni Add — Tlemcen" style="width:100%;height:28mm;object-fit:cover;border-radius:3px;border:1px solid #ccc;">
+      <div style="font-size:4.5pt;color:var(--gray);text-align:center;margin-top:2px;font-style:italic;">Grottes de Beni Add — Tlemcen</div>
+    </div>
+
+    <!-- Contact -->
+    <div class="sec-hd" style="margin-top:5px;">📞 Contact</div>
+    <div style="margin:3px var(--mx) 0;display:flex;flex-direction:column;gap:4px;">
+      <div style="display:flex;align-items:center;gap:5px;padding:4px 6px;background:#f5f5f5;border:1px solid #ddd;border-left:3px solid var(--green);border-radius:2px;">
+        <span style="font-size:8pt;">📧</span>
+        <div style="flex:1;">
+          <span style="font-size:6pt;font-weight:700;color:var(--green-dark);display:block;">Email</span>
+          <span style="font-size:5.5pt;color:#333;display:block;">sdbqltlemcen2026@gmail.com</span>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:5px;padding:4px 6px;background:#f5f5f5;border:1px solid #ddd;border-left:3px solid var(--green);border-radius:2px;">
+        <span style="font-size:8pt;">📱</span>
+        <div style="flex:1;">
+          <span style="font-size:6pt;font-weight:700;color:var(--green-dark);display:block;">Téléphone</span>
+          <span style="font-size:5.5pt;color:#333;display:block;">+213 40 95 92 65</span>
+        </div>
+      </div>
+      <div style="display:flex;align-items:center;gap:5px;padding:4px 6px;background:#f5f5f5;border:1px solid #ddd;border-left:3px solid var(--green);border-radius:2px;">
+        <span style="font-size:8pt;">🌐</span>
+        <div style="flex:1;">
+          <span style="font-size:6pt;font-weight:700;color:var(--green-dark);display:block;">Site Web</span>
+          <span style="font-size:5.5pt;color:#333;display:block;">sdbql.vercel.app</span>
         </div>
       </div>
     </div>
