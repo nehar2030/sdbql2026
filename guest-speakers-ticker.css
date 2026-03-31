@@ -1,0 +1,117 @@
+/* Guest Speakers Ticker Banner - SDBQL 2026 */
+.guest-speakers-ticker-banner {
+  position: relative;
+  background: linear-gradient(135deg, #1a5c2e 0%, #2d7a3a 50%, #0f3d1e 100%);
+  overflow: hidden;
+  padding: 8px 0;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  margin: 20px 0;
+}
+
+.guest-speakers-ticker-label {
+  position: absolute;
+  left: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(255,255,255,0.95);
+  color: #1a5c2e;
+  padding: 8px 16px;
+  font-weight: 700;
+  font-size: 14px;
+  border-radius: 25px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  z-index: 10;
+  white-space: nowrap;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.guest-speakers-ticker-wrapper {
+  overflow: hidden;
+  margin-left: 180px; /* Espace pour le label fixe */
+}
+
+.guest-speakers-ticker-content {
+  display: flex;
+  width: max-content; /* Important : permet au contenu de s'étendre */
+  gap: 30px;
+  padding: 5px 0;
+  animation: tickerLoop 90s linear infinite; /* Augmenté à 40s pour une lecture plus confortable */
+}
+
+/* LA CORRECTION EST ICI */
+@keyframes tickerLoop {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    /* On utilise -50% pour que l'animation s'adapte à n'importe quel nombre d'intervenants */
+    transform: translateX(-50%); 
+  }
+}
+
+.guest-speakers-ticker-item {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  background: rgba(255,255,255,0.9);
+  padding: 8px 20px;
+  border-radius: 50px;
+  min-width: 280px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease;
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+.guest-speakers-ticker-item:hover {
+  transform: translateY(-3px);
+  background: #ffffff;
+  box-shadow: 0 6px 15px rgba(0,0,0,0.15);
+}
+
+.guest-speaker-photo {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #2d7a3a;
+}
+
+.guest-speaker-info h4 {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1a5c2e;
+  margin: 0;
+  white-space: nowrap;
+}
+
+.guest-speaker-info p {
+  font-size: 12px;
+  color: #444;
+  margin: 2px 0;
+  white-space: nowrap;
+}
+
+.guest-speaker-country {
+  font-size: 11px;
+  color: #2d7a3a;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Pause au survol */
+.guest-speakers-ticker-banner:hover .guest-speakers-ticker-content {
+  animation-play-state: paused;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .guest-speakers-ticker-label {
+    display: none; /* On cache le label sur mobile pour gagner de la place */
+  }
+  .guest-speakers-ticker-wrapper {
+    margin-left: 0;
+  }
+}

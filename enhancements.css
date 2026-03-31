@@ -110,7 +110,7 @@
 }
 
 /* ========================================
-   BANDE FILANTE PARTENAIRES
+   BANDE FILANTE PARTENAIRES - CORRIGÉ
    ======================================== */
 
 .partners-ticker-banner {
@@ -136,77 +136,54 @@
 .partners-ticker-wrapper {
     position: relative;
     width: 100%;
-    overflow: hidden;
-    max-width: 1000px;
+    overflow: hidden; /* Important : cache le défilement */
+    /* Suppression du max-width pour laisser la bande utiliser toute la largeur écran */
     margin: 0 auto;
 }
 
 .partners-ticker-content {
     display: flex;
     gap: 40px;
-    animation: scroll-left 12s linear infinite;
+    /* Correction : width: max-content force tous les logos sur une seule ligne */
+    width: max-content; 
+    animation: scroll-left 40s linear infinite; /* Augmenté à 25s pour que ce soit lisible */
     padding: 20px 0;
     will-change: transform;
 }
 
-.partners-ticker-wrapper:hover .partners-ticker-content {
+/* Pause au survol */
+.partners-ticker-banner:hover .partners-ticker-content {
     animation-play-state: paused;
 }
 
 .partner-ticker-item {
-    flex-shrink: 0;
+    flex-shrink: 0; /* Empêche les logos de rétrécir */
     display: flex;
     align-items: center;
     justify-content: center;
-}
-
-.partner-logo-placeholder {
-    width: 150px;
-    height: 80px;
-    background: #f5f5f5;
-    border: 2px solid #d0d0d0;
-    border-radius: 8px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #666666;
-    font-weight: 600;
-    font-size: 13px;
-    text-align: center;
-    padding: 10px;
-    transition: all 0.3s ease;
-}
-
-.partner-logo-placeholder:hover {
-    background: #f0f0f0;
-    border-color: #004d40;
-    color: #004d40;
-    transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(0,77,64,0.15);
 }
 
 .partner-logo-image {
     max-width: 180px;
-    max-height: 100px;
+    max-height: 80px; /* Taille légèrement réduite pour l'harmonie */
     width: auto;
     height: auto;
     object-fit: contain;
-    object-position: center;
     transition: all 0.3s ease;
-    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
 }
 
 .partner-ticker-item:hover .partner-logo-image {
-    transform: translateY(-3px);
-    filter: drop-shadow(0 4px 12px rgba(0,77,64,0.2));
+    transform: translateY(-5px);
+    filter: drop-shadow(0 6px 12px rgba(0,77,64,0.2));
 }
 
-/* Animation du défilement */
+/* Animation du défilement - LA CLÉ DU SUCCÈS */
 @keyframes scroll-left {
     0% {
         transform: translateX(0);
     }
     100% {
+        /* On déplace de la moitié (le premier set de logos) */
         transform: translateX(-50%);
     }
 }
@@ -216,31 +193,10 @@ body.dark-mode .partners-ticker-banner {
     background: #1e1e1e;
     border-top-color: #333333;
     border-bottom-color: #333333;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
 }
 
 body.dark-mode .partners-ticker-label {
     color: #00bfa5;
-}
-
-body.dark-mode .partner-logo-placeholder {
-    background: #2a2a2a;
-    border-color: #404040;
-    color: #b0bec5;
-}
-
-body.dark-mode .partner-logo-placeholder:hover {
-    background: #333333;
-    border-color: #00bfa5;
-    color: #00bfa5;
-    box-shadow: 0 4px 12px rgba(0,191,165,0.2);
-}
-
-.countdown-widget-separator {
-    font-size: 16px;
-    font-weight: 800;
-    color: rgba(255,255,255,0.7);
-    margin: 0 2px;
 }
 
 /* ========================================
