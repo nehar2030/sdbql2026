@@ -40,15 +40,9 @@
   animation: tickerLoop 90s linear infinite; /* Augmenté à 40s pour une lecture plus confortable */
 }
 
-/* LA CORRECTION EST ICI */
 @keyframes tickerLoop {
-  0% {
-    transform: translateX(0);
-  }
-  100% {
-    /* On utilise -50% pour que l'animation s'adapte à n'importe quel nombre d'intervenants */
-    transform: translateX(-50%); 
-  }
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 .guest-speakers-ticker-item {
