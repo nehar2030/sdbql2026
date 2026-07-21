@@ -292,13 +292,20 @@ body {
    IMPRESSION
 ══════════════════════════════════════════════ */
 @media print {
-  @page { size: A4 landscape; margin: 0; }
+  @page { size: 210mm 297mm; margin: 0; }
   *, *::before, *::after { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-  body { background: white; padding: 0; gap: 0; display: block; }
+  html, body { background: white !important; padding: 0 !important; margin: 0 !important; gap: 0 !important; display: block !important; width: 210mm !important; }
   .toolbar, .page-label { display: none !important; }
-  .page { width: 297mm; height: 210mm; box-shadow: none; border: none; page-break-after: always; break-after: page; }
+  .page {
+    display: flex !important; flex-direction: row !important;
+    width: 210mm !important; height: 297mm !important;
+    box-shadow: none !important; border: none !important;
+    page-break-after: always; break-after: page;
+    overflow: hidden !important;
+  }
   .page:last-of-type { page-break-after: auto; break-after: auto; }
-  .panel { width: calc(297mm / 3); min-width: calc(297mm / 3); max-width: calc(297mm / 3); height: 210mm; }
+  .panel { width: 70mm !important; min-width: 70mm !important; max-width: 70mm !important; height: 297mm !important; overflow: hidden !important; }
+  .fold-line { display: none !important; }
 }
 </style>
 </head>
@@ -661,7 +668,7 @@ body {
       <div class="sci-item" style="font-size:4.5pt;"><b>Dr. Salah Zahra</b> <i>— GenApAgiE, Tlemcen</i></div>
       <div class="sci-item" style="font-size:4.5pt;"><b>Prof. Chehma Abdelmadjid</b> <i>— Univ. Ghardaïa</i></div>
       <div class="sci-item" style="font-size:4.5pt;"><b>Prof. Derrar Fawzi</b> <i>— Inst. Pasteur, Alger</i></div>
-      <div class="sci-item" style="font-size:4.5pt;"><b>Prof. Yousfi-Khouani Fatma</b> <i>— AFTAGRO, Tlemcen</i></div>
+
       <div class="sci-item" style="font-size:4.5pt;"><b>Prof. Zenasni Mohamed Amine</b> <i>— AFTAGRO, Tlemcen</i></div>
       <div class="sci-item" style="font-size:4.5pt;"><b>Dr. Azzi Noureddine</b> <i>— AFTAGRO, Tlemcen</i></div>
       <div class="sci-item" style="font-size:4.5pt;"><b>Prof. Amrani Noureddine</b> <i>— OAIC, Alger</i></div>
@@ -735,24 +742,13 @@ body {
     <div class="gold-bar-top"></div>
     <div style="height:3px;background:var(--gold-light);flex-shrink:0;"></div>
 
-    <!-- Comité d'Organisation -->
-    <div class="sec-hd" style="margin-top:5px;">Comité d'Organisation</div>
-    <div class="m-list">
-      <div class="m-row" style="flex-direction:column;border-left:2px solid #009688;padding-left:5px;background:#f0faf9;margin-bottom:2px;border-bottom:none;"><span class="m-name" style="font-size:5.5pt;">Thématique 1 — Agriculture Durable &amp; Séc. Alimentaire</span><span class="m-aff">Coord. : Prof. Yousfi-Khouani Fatma</span><span class="m-aff">Membres : AFTAGRO, GenApAgiE, LAPRONA, LAMAABE &amp; GCESFDDZMT</span></div>
-      <div class="m-row" style="flex-direction:column;border-left:2px solid #009688;padding-left:5px;background:#f0faf9;margin-bottom:2px;border-bottom:none;"><span class="m-name" style="font-size:5.5pt;">Thématique 2 — Bioénergie &amp; Énergies Renouvelables</span><span class="m-aff">Coord. : Prof. Merzouk Abdessamad</span><span class="m-aff">Membres : LECGEN, Univ. Tlemcen</span></div>
-      <div class="m-row" style="flex-direction:column;border-left:2px solid #009688;padding-left:5px;background:#f0faf9;margin-bottom:2px;border-bottom:none;"><span class="m-name" style="font-size:5.5pt;">Thématique 3 — Biodiversité &amp; Gestion des Écosystèmes</span><span class="m-aff">Coord. : Prof. Gaouar Semir Bechir Suheil</span><span class="m-aff">Membres : GenApAgiE, GCESFDDZMT, LECGEN, VAHPEASP, AFTAGRO, PRHMP &amp; LAPRONA</span></div>
-      <div class="m-row" style="flex-direction:column;border-left:2px solid #009688;padding-left:5px;background:#f0faf9;margin-bottom:2px;border-bottom:none;"><span class="m-name" style="font-size:5.5pt;">Thématique 4 — Action Climatique et Changement Climatique</span><span class="m-aff">Coord. : Prof. Haddouche Driss</span><span class="m-aff">Membres : GCESFDDZMT, VAHPEASP, LECGEN, PRHMP &amp; AFTAGRO</span></div>
-      <div class="m-row" style="flex-direction:column;border-left:2px solid #009688;padding-left:5px;background:#f0faf9;margin-bottom:2px;border-bottom:none;"><span class="m-name" style="font-size:5.5pt;">Thématique 5 — Santé et Bien-être</span><span class="m-aff">Coord. : Prof. Rebiahi Sid Ahmed</span><span class="m-aff">Membres : LAMAABE, LAPSAB, LAPRONA, GenApAgiE, PPABIONUT &amp; VAHPEASP</span></div>
-      <div class="m-row" style="flex-direction:column;border-left:2px solid #009688;padding-left:5px;background:#f0faf9;border-bottom:none;"><span class="m-name" style="font-size:5.5pt;">Thématique 6 — Partenariats Socio-Économiques</span><span class="m-aff">Coord. : Prof. Tabet Aoul Lachachi Wassila &amp; Dr. Nehar Benameur</span><span class="m-aff">Membres : Tous les labos</span></div>
-    </div>
-
     <!-- Guest Speakers -->
     <div class="sec-hd" style="margin-top:5px;">🎤 Guest Speakers &amp; Conférenciers</div>
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px;margin:3px var(--mx) 0;">
 
       <!-- 1 -->
-      <div style="display:flex;flex-direction:column;align-items:center;gap:2px;padding:3px;background:#fff8f0;border:1px solid #e8d8c8;border-top:2px solid #c9a84c;border-radius:2px;text-align:center;">
-        <div style="width:13mm;height:13mm;flex-shrink:0;background:#ddd;border-radius:50%;overflow:hidden;border:1px solid #c9a84c;">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 3px;background:#fff8f0;border:1px solid #e8d8c8;border-top:2px solid #c9a84c;border-radius:2px;text-align:center;">
+        <div style="width:16mm;height:16mm;flex-shrink:0;background:#ddd;border-radius:50%;overflow:hidden;border:1px solid #c9a84c;">
           <img src="images/carles.jpg" style="width:100%;height:100%;object-fit:cover;">
         </div>
         <span style="font-size:4.5pt;font-weight:700;color:#8b4513;line-height:1.2;">Carles Agusti i Hernandez</span>
@@ -760,8 +756,8 @@ body {
       </div>
 
       <!-- 2 -->
-      <div style="display:flex;flex-direction:column;align-items:center;gap:2px;padding:3px;background:#fff8f0;border:1px solid #e8d8c8;border-top:2px solid #c9a84c;border-radius:2px;text-align:center;">
-        <div style="width:13mm;height:13mm;flex-shrink:0;background:#ddd;border-radius:50%;overflow:hidden;border:1px solid #c9a84c;">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 3px;background:#fff8f0;border:1px solid #e8d8c8;border-top:2px solid #c9a84c;border-radius:2px;text-align:center;">
+        <div style="width:16mm;height:16mm;flex-shrink:0;background:#ddd;border-radius:50%;overflow:hidden;border:1px solid #c9a84c;">
           <img src="images/profwelmar.png" style="width:100%;height:100%;object-fit:cover;">
         </div>
         <span style="font-size:4.5pt;font-weight:700;color:#8b4513;line-height:1.2;">Prof. Waldemar Surosz</span>
@@ -769,8 +765,8 @@ body {
       </div>
 
       <!-- 3 -->
-      <div style="display:flex;flex-direction:column;align-items:center;gap:2px;padding:3px;background:#fff8f0;border:1px solid #e8d8c8;border-top:2px solid #c9a84c;border-radius:2px;text-align:center;">
-        <div style="width:13mm;height:13mm;flex-shrink:0;background:#ddd;border-radius:50%;overflow:hidden;border:1px solid #c9a84c;">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 3px;background:#fff8f0;border:1px solid #e8d8c8;border-top:2px solid #c9a84c;border-radius:2px;text-align:center;">
+        <div style="width:16mm;height:16mm;flex-shrink:0;background:#ddd;border-radius:50%;overflow:hidden;border:1px solid #c9a84c;">
           <img src="images/Prof Anna.png" style="width:100%;height:100%;object-fit:cover;">
         </div>
         <span style="font-size:4.5pt;font-weight:700;color:#8b4513;line-height:1.2;">Prof. H. J. Mazur-Marzec</span>
@@ -778,8 +774,8 @@ body {
       </div>
 
       <!-- 4 -->
-      <div style="display:flex;flex-direction:column;align-items:center;gap:2px;padding:3px;background:#fff8f0;border:1px solid #e8d8c8;border-top:2px solid #c9a84c;border-radius:2px;text-align:center;">
-        <div style="width:13mm;height:13mm;flex-shrink:0;background:#ddd;border-radius:50%;overflow:hidden;border:1px solid #c9a84c;">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 3px;background:#fff8f0;border:1px solid #e8d8c8;border-top:2px solid #c9a84c;border-radius:2px;text-align:center;">
+        <div style="width:16mm;height:16mm;flex-shrink:0;background:#ddd;border-radius:50%;overflow:hidden;border:1px solid #c9a84c;">
           <img src="images/prof Naim.png" style="width:100%;height:100%;object-fit:cover;">
         </div>
         <span style="font-size:4.5pt;font-weight:700;color:#8b4513;line-height:1.2;">Prof. Naim A. Khan</span>
@@ -787,8 +783,8 @@ body {
       </div>
 
       <!-- 5 -->
-      <div style="display:flex;flex-direction:column;align-items:center;gap:2px;padding:3px;background:#fff8f0;border:1px solid #e8d8c8;border-top:2px solid #c9a84c;border-radius:2px;text-align:center;">
-        <div style="width:13mm;height:13mm;flex-shrink:0;background:#ddd;border-radius:50%;overflow:hidden;border:1px solid #c9a84c;">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 3px;background:#fff8f0;border:1px solid #e8d8c8;border-top:2px solid #c9a84c;border-radius:2px;text-align:center;">
+        <div style="width:16mm;height:16mm;flex-shrink:0;background:#ddd;border-radius:50%;overflow:hidden;border:1px solid #c9a84c;">
           <img src="images/Naif.png" style="width:100%;height:100%;object-fit:cover;">
         </div>
         <span style="font-size:4.5pt;font-weight:700;color:#8b4513;line-height:1.2;">Prof. Naif A. Al-Dhabi</span>
@@ -796,8 +792,8 @@ body {
       </div>
 
       <!-- 6 -->
-      <div style="display:flex;flex-direction:column;align-items:center;gap:2px;padding:3px;background:#fff8f0;border:1px solid #e8d8c8;border-top:2px solid #c9a84c;border-radius:2px;text-align:center;">
-        <div style="width:13mm;height:13mm;flex-shrink:0;background:#ddd;border-radius:50%;overflow:hidden;border:1px solid #c9a84c;">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 3px;background:#fff8f0;border:1px solid #e8d8c8;border-top:2px solid #c9a84c;border-radius:2px;text-align:center;">
+        <div style="width:16mm;height:16mm;flex-shrink:0;background:#ddd;border-radius:50%;overflow:hidden;border:1px solid #c9a84c;">
           <img src="images/ProfBoudjem3A.png" style="width:100%;height:100%;object-fit:cover;">
         </div>
         <span style="font-size:4.5pt;font-weight:700;color:#8b4513;line-height:1.2;">Prof. Samraoui Boudjèma</span>
@@ -805,8 +801,8 @@ body {
       </div>
 
       <!-- 7 -->
-      <div style="display:flex;flex-direction:column;align-items:center;gap:2px;padding:3px;background:#fff8f0;border:1px solid #e8d8c8;border-top:2px solid #c9a84c;border-radius:2px;text-align:center;">
-        <div style="width:13mm;height:13mm;flex-shrink:0;background:#ddd;border-radius:50%;overflow:hidden;border:1px solid #c9a84c;">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 3px;background:#fff8f0;border:1px solid #e8d8c8;border-top:2px solid #c9a84c;border-radius:2px;text-align:center;">
+        <div style="width:16mm;height:16mm;flex-shrink:0;background:#ddd;border-radius:50%;overflow:hidden;border:1px solid #c9a84c;">
           <img src="images/Proflakhdar.png" style="width:100%;height:100%;object-fit:cover;">
         </div>
         <span style="font-size:4.5pt;font-weight:700;color:#8b4513;line-height:1.2;">Prof. Khelifi Lakhdar</span>
@@ -814,8 +810,8 @@ body {
       </div>
 
       <!-- 8 -->
-      <div style="display:flex;flex-direction:column;align-items:center;gap:2px;padding:3px;background:#fff8f0;border:1px solid #e8d8c8;border-top:2px solid #c9a84c;border-radius:2px;text-align:center;">
-        <div style="width:13mm;height:13mm;flex-shrink:0;background:#ddd;border-radius:50%;overflow:hidden;border:1px solid #c9a84c;">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 3px;background:#fff8f0;border:1px solid #e8d8c8;border-top:2px solid #c9a84c;border-radius:2px;text-align:center;">
+        <div style="width:16mm;height:16mm;flex-shrink:0;background:#ddd;border-radius:50%;overflow:hidden;border:1px solid #c9a84c;">
           <img src="images/profkhalifi.jpg" style="width:100%;height:100%;object-fit:cover;">
         </div>
         <span style="font-size:4.5pt;font-weight:700;color:#8b4513;line-height:1.2;">Prof. Iguer-Ouada Mokrane</span>
@@ -823,8 +819,8 @@ body {
       </div>
 
       <!-- 9 -->
-      <div style="display:flex;flex-direction:column;align-items:center;gap:2px;padding:3px;background:#fff8f0;border:1px solid #e8d8c8;border-top:2px solid #c9a84c;border-radius:2px;text-align:center;">
-        <div style="width:13mm;height:13mm;flex-shrink:0;background:#ddd;border-radius:50%;overflow:hidden;border:1px solid #c9a84c;">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 3px;background:#fff8f0;border:1px solid #e8d8c8;border-top:2px solid #c9a84c;border-radius:2px;text-align:center;">
+        <div style="width:16mm;height:16mm;flex-shrink:0;background:#ddd;border-radius:50%;overflow:hidden;border:1px solid #c9a84c;">
           <img src="images/ProfMahi.png" style="width:100%;height:100%;object-fit:cover;">
         </div>
         <span style="font-size:4.5pt;font-weight:700;color:#8b4513;line-height:1.2;">Prof. Mahi Tabet Aoul</span>
@@ -832,8 +828,8 @@ body {
       </div>
 
       <!-- 10 -->
-      <div style="display:flex;flex-direction:column;align-items:center;gap:2px;padding:3px;background:#fff8f0;border:1px solid #e8d8c8;border-top:2px solid #c9a84c;border-radius:2px;text-align:center;">
-        <div style="width:13mm;height:13mm;flex-shrink:0;background:#ddd;border-radius:50%;overflow:hidden;border:1px solid #c9a84c;">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 3px;background:#fff8f0;border:1px solid #e8d8c8;border-top:2px solid #c9a84c;border-radius:2px;text-align:center;">
+        <div style="width:16mm;height:16mm;flex-shrink:0;background:#ddd;border-radius:50%;overflow:hidden;border:1px solid #c9a84c;">
           <img src="images/Prof_Rodreg.jpg" style="width:100%;height:100%;object-fit:cover;">
         </div>
         <span style="font-size:4.5pt;font-weight:700;color:#8b4513;line-height:1.2;">Prof. Roderic Guigo</span>
@@ -841,16 +837,16 @@ body {
       </div>
 
       <!-- 11 -->
-      <div style="display:flex;flex-direction:column;align-items:center;gap:2px;padding:3px;background:#fff8f0;border:1px solid #e8d8c8;border-top:2px solid #c9a84c;border-radius:2px;text-align:center;">
-        <div style="width:13mm;height:13mm;flex-shrink:0;background:#ddd;border-radius:50%;overflow:hidden;border:1px solid #c9a84c;">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 3px;background:#fff8f0;border:1px solid #e8d8c8;border-top:2px solid #c9a84c;border-radius:2px;text-align:center;">
+        <div style="width:16mm;height:16mm;flex-shrink:0;background:#ddd;border-radius:50%;overflow:hidden;border:1px solid #c9a84c;">
           <img src="images/photoSlimani.png" style="width:100%;height:100%;object-fit:cover;">
         </div>
         <span style="font-size:4.5pt;font-weight:700;color:#8b4513;line-height:1.2;">Prof. Soulimane Tewfik</span>
         <span style="font-size:4pt;color:#666;line-height:1.2;">Univ. Limerick, Irlande</span>
       </div>
 
-      <div style="display:flex;flex-direction:column;align-items:center;gap:2px;padding:3px;background:#fff8f0;border:1px solid #e8d8c8;border-top:2px solid #c9a84c;border-radius:2px;text-align:center;">
-        <div style="width:13mm;height:13mm;flex-shrink:0;background:#ddd;border-radius:50%;overflow:hidden;border:1px solid #c9a84c;">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:2px;padding:4px 3px;background:#fff8f0;border:1px solid #e8d8c8;border-top:2px solid #c9a84c;border-radius:2px;text-align:center;">
+        <div style="width:16mm;height:16mm;flex-shrink:0;background:#ddd;border-radius:50%;overflow:hidden;border:1px solid #c9a84c;">
           <img src="images/Prof.-Norbert-Francois-Tchiadje-Tchouaffe.jpg" style="width:100%;height:100%;object-fit:cover;">
         </div>
         <span style="font-size:4.5pt;font-weight:700;color:#8b4513;line-height:1.2;">Prof. Norbert F. Tchouaffe Tchiadje</span>
@@ -864,8 +860,16 @@ body {
 
     </div>
 
-
-
+    <!-- Comité d'Organisation -->
+    <div class="sec-hd" style="margin-top:5px;">Comité d'Organisation</div>
+    <div class="m-list">
+      <div class="m-row" style="flex-direction:column;border-left:2px solid #009688;padding-left:5px;background:#f0faf9;margin-bottom:2px;border-bottom:none;"><span class="m-name" style="font-size:5.5pt;">Thématique 1 — Agriculture Durable &amp; Séc. Alimentaire</span><span class="m-aff">Membres : AFTAGRO, GenApAgiE, LAPRONA, LAMAABE &amp; GCESFDDZMT</span></div>
+      <div class="m-row" style="flex-direction:column;border-left:2px solid #009688;padding-left:5px;background:#f0faf9;margin-bottom:2px;border-bottom:none;"><span class="m-name" style="font-size:5.5pt;">Thématique 2 — Bioénergie &amp; Énergies Renouvelables</span><span class="m-aff">Coord. : Prof. Merzouk Abdessamad</span><span class="m-aff">Membres : LECGEN, Univ. Tlemcen</span></div>
+      <div class="m-row" style="flex-direction:column;border-left:2px solid #009688;padding-left:5px;background:#f0faf9;margin-bottom:2px;border-bottom:none;"><span class="m-name" style="font-size:5.5pt;">Thématique 3 — Biodiversité &amp; Gestion des Écosystèmes</span><span class="m-aff">Coord. : Prof. Gaouar Semir Bechir Suheil</span><span class="m-aff">Membres : GenApAgiE, GCESFDDZMT, LECGEN, VAHPEASP, AFTAGRO, PRHMP &amp; LAPRONA</span></div>
+      <div class="m-row" style="flex-direction:column;border-left:2px solid #009688;padding-left:5px;background:#f0faf9;margin-bottom:2px;border-bottom:none;"><span class="m-name" style="font-size:5.5pt;">Thématique 4 — Action Climatique et Changement Climatique</span><span class="m-aff">Coord. : Prof. Haddouche Driss</span><span class="m-aff">Membres : GCESFDDZMT, VAHPEASP, LECGEN, PRHMP &amp; AFTAGRO</span></div>
+      <div class="m-row" style="flex-direction:column;border-left:2px solid #009688;padding-left:5px;background:#f0faf9;margin-bottom:2px;border-bottom:none;"><span class="m-name" style="font-size:5.5pt;">Thématique 5 — Santé et Bien-être</span><span class="m-aff">Coord. : Prof. Rebiahi Sid Ahmed</span><span class="m-aff">Membres : LAMAABE, LAPSAB, LAPRONA, GenApAgiE, PPABIONUT &amp; VAHPEASP</span></div>
+      <div class="m-row" style="flex-direction:column;border-left:2px solid #009688;padding-left:5px;background:#f0faf9;border-bottom:none;"><span class="m-name" style="font-size:5.5pt;">Thématique 6 — Partenariats Socio-Économiques</span><span class="m-aff">Coord. : Prof. Tabet Aoul Lachachi Wassila &amp; Dr. Nehar Benameur</span><span class="m-aff">Membres : Tous les labos</span></div>
+    </div>
 
 
 <div class="footer-bar" style="margin-top:auto;"><span class="hash">#SDBQL2026 · #DéveloppementDurable</span></div>
@@ -920,7 +924,7 @@ body {
     <div style="margin:4px var(--mx) 0;">
       <div style="font-size:6pt;color:var(--green-dark);font-weight:700;margin-bottom:3px;">📍 Faculté de Médecine — Univ. Tlemcen<br><span style="font-weight:400;color:var(--gray);">12 Rue Hamri Ahmed, BP 119 — Tlemcen</span></div>
       <div style="border:1px solid #c8d8c8;border-radius:3px;overflow:hidden;border-left:3px solid var(--green);">
-        <img src="images/map-faculte.jpg" alt="Carte Faculté de Médecine — Tlemcen" style="width:100%;display:block;object-fit:cover;">
+        <img src="images/map-faculte.jpg" alt="Carte Faculté de Médecine — Tlemcen" style="width:100%;height:28mm;display:block;object-fit:cover;">
       </div>
       <div style="font-size:5.5pt;color:var(--gray);text-align:center;margin-top:2px;font-style:italic;">30 Sept. — 2 Oct. 2026 · Mode Hybride</div>
     </div>
@@ -969,7 +973,7 @@ body {
     
     <!-- Photo Grottes de Beni Add (Beniad) -->
     <div style="margin:3px var(--mx) 0;">
-      <img src="images/grottes.jpg" alt="Grottes de Beni Add — Tlemcen" style="width:100%;height:28mm;object-fit:cover;border-radius:3px;border:1px solid #ccc;">
+      <img src="images/grottes.jpg" alt="Grottes de Beni Add — Tlemcen" style="width:100%;height:33mm;object-fit:cover;border-radius:3px;border:1px solid #ccc;">
       <div style="font-size:4.5pt;color:var(--gray);text-align:center;margin-top:2px;font-style:italic;">Grottes de Beni Add — Tlemcen</div>
     </div>
 
