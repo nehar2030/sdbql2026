@@ -191,14 +191,151 @@ hr.sep { border:none; border-top:1px solid #eaeae4; margin:1px 8px; }
   <p>A4 Paysage · 3 volets × 2 faces · Plier en 3 après impression recto/verso</p>
 </div>
 
-<div class="page-label">PAGE 1 — EXTÉRIEUR &nbsp;|&nbsp; [P1 DOS] [P2 RABAT INTÉRIEUR] [P3 COUVERTURE →]</div>
+<div class="page-label">PAGE 1 — EXTÉRIEUR &nbsp;|&nbsp; [P3 COUVERTURE] [P6 ORG + LIEU + CONTACT] [P1 DOS →]</div>
 
 <div class="page">
   <div class="fold-line fold-left"></div>
   <div class="fold-line fold-right"></div>
 
   <!-- ══════════════════════════════
-       P1 — BACK COVER (outside left)
+       P3 — FRONT COVER (outside left)
+  ══════════════════════════════ -->
+  <div class="panel bg-dark">
+    <div class="bar-gold"></div>
+
+    <!-- Logos -->
+    <div style="display:flex;justify-content:center;align-items:center;gap:12px;padding:3mm var(--mx) 0;position:relative;z-index:1;">
+      <div style="width:68px;height:68px;border-radius:50%;overflow:hidden;border:3px solid var(--gold);background:white;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <img src="images/logoUniv.png" style="width:100%;height:100%;object-fit:cover;">
+      </div>
+      <div style="width:66px;height:66px;border-radius:4px;overflow:hidden;border:3px solid var(--gold);background:white;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+        <img src="images/logo-congres.jpg" style="width:100%;height:100%;object-fit:contain;">
+      </div>
+    </div>
+
+    <!-- Title block -->
+    <div style="position:relative;z-index:1;margin:4mm var(--mx) 0;padding:5mm 6mm;background:linear-gradient(135deg,rgba(26,90,46,0.95),rgba(15,61,30,0.95));border-left:5px solid var(--gold);border-radius:0 4px 4px 0;box-shadow:0 2px 8px rgba(0,0,0,0.3);">
+      <div style="font-size:8.5pt;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:0.2em;margin-bottom:5px;">2<sup>e</sup> Congrès International</div>
+      <div class="cv-title">Développement <em>Durable</em><br>pour une Meilleure<br><em>Qualité de Vie</em></div>
+      <div class="cv-sub">Les Ressources Naturelles au Service<br>des Objectifs de Développement Durable</div>
+      <span class="cv-tag">SDBQL 2026</span>
+    </div>
+
+    <!-- Info cards 2×2 -->
+    <div style="margin:3mm var(--mx) 0;display:grid;grid-template-columns:1fr 1fr;gap:2px;">
+      <div class="ic"><span class="ic-l">Date</span><span class="ic-v">30 Sept. — 2 Oct. 2026</span></div>
+      <div class="ic"><span class="ic-l">Lieu</span><span class="ic-v">Faculté de Médecine<small>Univ. Tlemcen, Algérie</small></span></div>
+      <div class="ic"><span class="ic-l">Format</span><span class="ic-v">Mode Hybride<small>Présentiel &amp; En ligne</small></span></div>
+      <div class="ic"><span class="ic-l">Langues</span><span class="ic-v">Arabe · Anglais · Français</span></div>
+    </div>
+
+    <!-- SDG band -->
+    <div style="background:linear-gradient(135deg,#1a5c2e,#2d7a3a,#1a5c2e);padding:4px 3px;display:flex;flex-direction:column;align-items:center;gap:2px;flex-shrink:0;margin-top:3px;">
+      <div style="display:flex;gap:2px;">
+        <div class="sdg-box" style="background:#e5243b;">1</div><div class="sdg-box" style="background:#dda63a;">2</div>
+        <div class="sdg-box" style="background:#4c9f38;">3</div><div class="sdg-box" style="background:#c5192d;">4</div>
+        <div class="sdg-box" style="background:#ff3a21;">5</div><div class="sdg-box" style="background:#26bde2;">6</div>
+        <div class="sdg-box" style="background:#fcc30b;color:#333;">7</div><div class="sdg-box" style="background:#a21942;">8</div>
+        <div class="sdg-box" style="background:#fd6925;">9</div>
+      </div>
+      <div style="display:flex;gap:2px;">
+        <div class="sdg-box" style="background:#dd1367;">10</div><div class="sdg-box" style="background:#fd9d24;">11</div>
+        <div class="sdg-box" style="background:#bf8b2e;">12</div><div class="sdg-box" style="background:#3f7e44;">13</div>
+        <div class="sdg-box" style="background:#0a97d9;">14</div><div class="sdg-box" style="background:#56c02b;">15</div>
+        <div class="sdg-box" style="background:#00689d;">16</div><div class="sdg-box" style="background:#19486a;">17</div>
+      </div>
+      <span style="color:rgba(255,255,255,0.85);font-size:4pt;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;">Objectifs de Développement Durable de l'ONU</span>
+    </div>
+
+    <!-- Photo mosaic -->
+    <div style="margin:3px var(--mx) 0;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:40mm 40mm;gap:2px;position:relative;overflow:hidden;border-radius:3px;">
+      <img src="images/moz1.jpg" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:2px 0 0 0;">
+      <img src="images/moz2.jpg" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:0 2px 0 0;">
+      <img src="images/moz3.jpg" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:0 0 0 2px;">
+      <img src="images/moz4.jpg" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:0 0 2px 0;">
+      <div style="position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,0.5);padding:2px 6px;font-size:5pt;color:rgba(255,255,255,0.9);text-align:center;font-style:italic;">Tlemcen, Algérie</div>
+    </div>
+
+    <div style="background:var(--green-dark);padding:2px 8px;text-align:center;font-size:5pt;color:#88bb99;border-top:1px solid rgba(201,168,76,0.5);flex-shrink:0;">sdbql.vercel.app</div>
+    <div class="bar-stripe"></div>
+  </div><!-- /P3 -->
+
+
+  <!-- ══════════════════════════════
+       P6 — ORG + LIEU + CONTACT (middle)
+  ══════════════════════════════ -->
+  <div class="panel bg-tint">
+    <div class="bar-gold"></div>
+
+    <!-- Organizing committee — 2 columns compact -->
+    <div class="sh" style="margin-top:3px;">Comité d'Organisation</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px;padding:3px var(--mx);">
+      <div class="th-box"><span class="th-t">Thème 1 — Agriculture</span><span class="th-s">AFTAGRO, GenApAgiE, LAPRONA, LAMAABE &amp; GCESFDDZMT</span></div>
+      <div class="th-box"><span class="th-t">Thème 2 — Bioénergie</span><span class="th-s">Coord. : Prof. Merzouk Abdessamad — LECGEN</span></div>
+      <div class="th-box"><span class="th-t">Thème 3 — Biodiversité</span><span class="th-s">Coord. : Prof. Gaouar S. B. S. — GenApAgiE &amp; plus</span></div>
+      <div class="th-box"><span class="th-t">Thème 4 — Climat</span><span class="th-s">Coord. : Prof. Haddouche Driss — GCESFDDZMT</span></div>
+      <div class="th-box"><span class="th-t">Thème 5 — Santé</span><span class="th-s">Coord. : Prof. Rebiahi Sid Ahmed — LAMAABE</span></div>
+      <div class="th-box"><span class="th-t">Thème 6 — Partenariats</span><span class="th-s">Coord. : Prof. Tabet Aoul W. &amp; Dr. Nehar B.</span></div>
+    </div>
+
+    <!-- QR Registration + Venue side by side -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;margin:4px var(--mx) 0;">
+      <div>
+        <div class="sh">Inscription en Ligne</div>
+        <div style="display:flex;align-items:center;gap:6px;padding:4px;background:#f5faf5;border:1px solid #c8d8c8;border-radius:2px;margin-top:3px;">
+          <div style="width:24mm;height:24mm;flex-shrink:0;border:2px solid var(--green);border-radius:3px;padding:2px;background:white;">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https%3A%2F%2Fsdbql.vercel.app%2Finscription.html&bgcolor=ffffff&color=0f3d1e&margin=1" style="width:100%;height:100%;display:block;" alt="QR">
+          </div>
+          <div><span style="font-size:8pt;font-weight:700;color:var(--green-dark);display:block;">📝 S'inscrire en ligne</span><span style="font-size:6.5pt;color:var(--gray);display:block;">sdbql.vercel.app/inscription</span></div>
+        </div>
+        <div class="sh" style="margin-top:4px;">Rapport 2024</div>
+        <div style="display:flex;align-items:center;gap:5px;padding:4px;background:#fff8e1;border:1px solid #ffb300;border-left:2px solid #ff8f00;border-radius:2px;margin-top:3px;">
+          <div style="width:18mm;height:18mm;flex-shrink:0;background:#fff;border-radius:2px;padding:1px;border:1px solid #ffb300;">
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=90x90&data=https%3A%2F%2Fwww.univ-tlemcen.dz%2Fassets%2Fuploads%2FZZ%2FRapport%2520%2520congr%25C3%25A8s%2520SDBQL%2520Juin%25202024.pdf&bgcolor=ffffff&color=0f3d1e&margin=1" style="width:100%;height:100%;display:block;" alt="QR 2024">
+          </div>
+          <div><span style="font-size:7.5pt;font-weight:700;color:#e65100;display:block;">📄 Rapport SDBQL 2024</span><span style="font-size:6.5pt;color:#666;">Congrès Juin 2024</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="sh">Lieu</div>
+        <div style="margin-top:3px;">
+          <div style="font-size:7pt;color:var(--green-dark);font-weight:700;margin-bottom:4px;line-height:1.5;">📍 Faculté de Médecine<br><span style="font-weight:400;color:var(--gray);font-size:6pt;">12 Rue Hamri Ahmed, BP 119 — Tlemcen</span></div>
+          <img src="images/map-faculte.jpg" style="width:100%;height:30mm;display:block;object-fit:cover;border-radius:2px;border:1px solid #c8d8c8;">
+        </div>
+      </div>
+    </div>
+
+    <!-- Hotels -->
+    <div class="sh" style="margin-top:4px;">🏨 Hôtels à Proximité</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px;padding:3px var(--mx);">
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:4px 7px;background:#f2f7f2;border-left:2px solid var(--green);border-radius:2px;"><span style="font-size:6.5pt;font-weight:700;">Les Zianides</span><span style="font-size:6pt;color:var(--green-dark);">+213 43 27 71 02</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:4px 7px;background:#f2f7f2;border-left:2px solid var(--green);border-radius:2px;"><span style="font-size:6.5pt;font-weight:700;">Stambouli</span><span style="font-size:6pt;color:var(--green-dark);">+213 40 96 14 76</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:4px 7px;background:#f2f7f2;border-left:2px solid var(--green);border-radius:2px;"><span style="font-size:6.5pt;font-weight:700;">Meriem</span><span style="font-size:6pt;color:var(--green-dark);">+213 43 27 10 29</span></div>
+      <div style="display:flex;justify-content:space-between;align-items:center;padding:4px 7px;background:#f2f7f2;border-left:2px solid var(--green);border-radius:2px;"><span style="font-size:6.5pt;font-weight:700;">Ibis Tlemcen</span><span style="font-size:6pt;color:var(--green-dark);">+213 43 98 10 10</span></div>
+    </div>
+
+    <!-- Excursions -->
+    <div class="sh" style="margin-top:4px;">🏛️ Excursions &amp; Visites Culturelles</div>
+    <div style="margin:3px var(--mx) 0;">
+      <img src="images/grottes.jpg" style="width:100%;height:38mm;object-fit:cover;border-radius:2px;border:1px solid #ccc;display:block;">
+      <div style="font-size:6.5pt;color:var(--gray);text-align:center;margin-top:2px;font-style:italic;">Grottes de Béni Baâd — Tlemcen &nbsp;·&nbsp; Découvrez la richesse historique et naturelle de Tlemcen</div>
+    </div>
+
+    <!-- Contact — 3 columns -->
+    <div class="sh" style="margin-top:4px;">📞 Contact</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:3px;padding:3px var(--mx);">
+      <div style="padding:9px 3px;background:#f5f5f5;border:1px solid #ddd;border-left:2px solid var(--green);border-radius:2px;text-align:center;"><span style="font-size:17pt;">📧</span><span style="font-size:6.5pt;color:#333;display:block;margin-top:2px;font-weight:600;">sdbql26@gmail.com</span></div>
+      <div style="padding:9px 3px;background:#f5f5f5;border:1px solid #ddd;border-left:2px solid var(--green);border-radius:2px;text-align:center;"><span style="font-size:17pt;">📱</span><span style="font-size:6.5pt;color:#333;display:block;margin-top:2px;font-weight:600;">+213 40 95 92 65</span></div>
+      <div style="padding:9px 3px;background:#f5f5f5;border:1px solid #ddd;border-left:2px solid var(--green);border-radius:2px;text-align:center;"><span style="font-size:17pt;">🌐</span><span style="font-size:6.5pt;color:#333;display:block;margin-top:2px;font-weight:600;">sdbql.vercel.app</span></div>
+    </div>
+
+    <div class="fbar" style="margin-top:auto;"><span class="hash">#SDBQL2026</span> &nbsp;·&nbsp; <span class="web">sdbql.vercel.app</span></div>
+    <div class="bar-stripe"></div>
+  </div><!-- /P6 -->
+
+
+  <!-- ══════════════════════════════
+       P1 — BACK COVER (outside right)
   ══════════════════════════════ -->
   <div class="panel bg-tint">
     <div class="bar-gold"></div>
@@ -281,154 +418,10 @@ hr.sep { border:none; border-top:1px solid #eaeae4; margin:1px 8px; }
     <div class="bar-stripe"></div>
   </div><!-- /P1 -->
 
-
-  <!-- ══════════════════════════════
-       P2 — INSIDE FLAP (middle)
-  ══════════════════════════════ -->
-  <div class="panel bg-white">
-    <div class="bar-tri"></div>
-
-    <div class="sh" style="margin-top:3px;">À propos du Congrès</div>
-    <div style="padding:3px var(--mx) 2px;background:#f9fcf9;border-bottom:1px solid #e0ece0;">
-      <p style="font-size:6.5pt;line-height:1.6;color:#222;text-align:justify;margin-bottom:3px;">À quatre ans de l'<strong>échéance 2030</strong>, seulement 18 % des ODD sont en bonne voie, les températures dépassent <strong>+1,55 °C</strong> et 2,3 milliards de personnes souffrent d'insécurité alimentaire. Le <strong>2e Congrès International SDBQL 2026</strong> se tient à ce moment charnière pour faire avancer cet agenda crucial.</p>
-      <p style="font-size:6.5pt;line-height:1.6;color:#222;text-align:justify;">Ancré dans une <strong>approche systémique et transdisciplinaire</strong>, le congrès explore le <em>nexus des ressources</em> — eau, énergie, alimentation, terres — comme cadre fédérateur, mettant en avant l'innovation verte, la sécurité minérale et la gouvernance inclusive.</p>
-      <div style="margin-top:4px;padding:3px 8px;background:var(--gold-light);border-left:2px solid var(--gold);font-size:6pt;font-style:italic;color:var(--green-dark);">« Les Ressources Naturelles au Service des Objectifs de Développement Durable »</div>
-    </div>
-
-    <!-- Axes thématiques — 2 colonnes -->
-    <div class="sh" style="margin-top:2px;">Axes Thématiques</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px 6px;padding:3px var(--mx) 2px;">
-      <div class="ax"><img src="images/odd2.jpg" style="width:16px;height:16px;border-radius:1px;flex-shrink:0;"><div><div class="ax-t">Agriculture Durable</div><div class="ax-s">Sécurité alimentaire & éco-pratiques</div></div></div>
-      <div class="ax"><img src="images/odd7.jpg" style="width:16px;height:16px;border-radius:1px;flex-shrink:0;"><div><div class="ax-t">Bioénergie & Renouvelables</div><div class="ax-s">Réduction de l'empreinte carbone</div></div></div>
-      <div class="ax"><img src="images/odd15.jpg" style="width:16px;height:16px;border-radius:1px;flex-shrink:0;"><div><div class="ax-t">Biodiversité & Écosystèmes</div><div class="ax-s">Gestion aquatique & terrestre</div></div></div>
-      <div class="ax"><img src="images/odd13.jpg" style="width:16px;height:16px;border-radius:1px;flex-shrink:0;"><div><div class="ax-t">Action Climatique</div><div class="ax-s">Politiques d'atténuation</div></div></div>
-      <div class="ax"><img src="images/odd3.png" style="width:16px;height:16px;border-radius:1px;flex-shrink:0;"><div><div class="ax-t">Santé & Bien-être</div><div class="ax-s">Nexus environnement-santé</div></div></div>
-      <div class="ax" style="border-bottom:none;"><img src="images/odd17.jpg" style="width:16px;height:16px;border-radius:1px;flex-shrink:0;"><div><div class="ax-t">Partenariats Socio-économiques</div><div class="ax-s">Synergies public-privé</div></div></div>
-    </div>
-
-    <!-- Publications -->
-    <div class="sh" style="margin-top:2px;">Publications</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px;margin:3px var(--mx) 0;">
-      <div style="display:flex;align-items:center;gap:5px;padding:3px 5px;background:linear-gradient(135deg,#fff5ef,#fff0e8);border:1px solid #e8b090;border-left:2px solid #d4590a;border-radius:2px;">
-        <img src="images/springerLogo.png" style="height:30px;width:auto;flex-shrink:0;">
-        <div><span style="font-size:8pt;font-weight:800;color:#c04800;display:block;">SpringerLink</span><span style="font-size:6.5pt;color:var(--gray);">Actes indexés</span></div>
-      </div>
-      <div style="display:flex;flex-direction:column;gap:2px;">
-        <div style="display:flex;align-items:center;gap:3px;padding:2px 4px;background:#f8f4f0;border:1px solid #d4c4b8;border-radius:2px;">
-          <img src="images/gentic.jpg" style="height:24px;width:auto;flex-shrink:0;">
-          <div><span style="font-size:6pt;font-weight:700;color:#4a3728;display:block;">Génétiques & Biodiversité</span><span style="font-size:5.5pt;color:#666;">ISSN: 2602-5582</span></div>
-        </div>
-        <div style="display:flex;align-items:center;gap:3px;padding:3px 5px;background:#f0f4f0;border:1px solid #b8d4c8;border-radius:2px;">
-          <img src="images/JNPRA.png" style="height:24px;width:auto;flex-shrink:0;">
-          <div><span style="font-size:6pt;font-weight:700;color:#2d4a3a;display:block;">JNPRA Natural Products</span><span style="font-size:5.5pt;color:#666;">ISSN: 2773-4188</span></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- QR + University -->
-    <div style="display:flex;align-items:center;gap:8px;margin:3px var(--mx) 0;padding:4px 6px;border:1px solid #c8d8c8;border-radius:3px;background:#f5faf5;">
-      <div style="width:26mm;height:26mm;flex-shrink:0;border:2px solid var(--green);border-radius:3px;padding:2px;background:white;">
-        <img src="https://api.qrserver.com/v1/create-qr-code/?size=130x130&data=https%3A%2F%2Fsdbql.vercel.app&bgcolor=ffffff&color=0f3d1e&margin=2" style="width:100%;height:100%;display:block;" alt="QR">
-      </div>
-      <div>
-        <span style="font-size:8.5pt;font-weight:700;color:var(--green-dark);display:block;">sdbql.vercel.app</span>
-        <span style="font-size:6.5pt;color:var(--gray);display:block;">Programme complet &amp; inscription</span>
-        <span style="font-size:7pt;font-weight:700;color:var(--green-dark);display:block;margin-top:6px;">Université Abou Bekr Belkaïd</span>
-        <span style="font-size:6pt;color:var(--gray);display:block;">Tlemcen — Algérie</span>
-      </div>
-    </div>
-
-    <!-- Partner logos — 3 columns -->
-    <div style="margin:4px var(--mx) 0;">
-      <div style="font-size:6pt;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--gray);text-align:center;margin-bottom:4px;">Partenaires &amp; Laboratoires</div>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;">
-        <div class="ltile"><img src="images/logoUniv.png" alt="Univ." style="max-height:22px;"><span class="lt-n">Univ. Tlemcen</span></div>
-        <div class="ltile"><img src="images/8.jpg" alt="ONA" style="max-height:22px;"><span class="lt-n">ONA</span></div>
-        <div class="ltile"><img src="images/9.jpg" alt="GENAPAGIE" style="max-height:22px;"><span class="lt-n">GENAPAGIE</span></div>
-        <div class="ltile"><img src="images/10.png" alt="LARMHO" style="max-height:22px;"><span class="lt-n">LARMHO</span></div>
-        <div class="ltile"><img src="images/11.jpg" alt="LAMAABE" style="max-height:22px;"><span class="lt-n">LAMAABE</span></div>
-        <div class="ltile"><img src="images/12.jpg" alt="Prod." style="max-height:22px;"><span class="lt-n">Prod. Animale</span></div>
-        <div class="ltile"><img src="images/13.png" alt="VAHPEASP" style="max-height:22px;"><span class="lt-n">VAHPEASP</span></div>
-        <div class="ltile"><img src="images/14.png" alt="LAPRONA" style="max-height:22px;"><span class="lt-n">LAPRONA</span></div>
-        <div class="ltile"><img src="images/15.png" alt="LECGEN" style="max-height:22px;"><span class="lt-n">LECGEN</span></div>
-        <div class="ltile"><img src="images/logo_forest.png" alt="Forest." style="max-height:22px;"><span class="lt-n">Foresterie</span></div>
-        <div class="ltile"><img src="images/I2E.jfif" alt="I2E" style="max-height:22px;"><span class="lt-n">I2E</span></div>
-        <div class="ltile"><img src="images/16.jpg" alt="LAPSAB" style="max-height:22px;"><span class="lt-n">LAPSAB</span></div>
-      </div>
-    </div>
-
-    <div class="fbar" style="margin-top:auto;"><span class="hash">#SDBQL2026 · #SDGs · #SustainableDevelopment</span></div>
-    <div class="bar-stripe"></div>
-  </div><!-- /P2 -->
-
-
-  <!-- ══════════════════════════════
-       P3 — FRONT COVER (outside right)
-  ══════════════════════════════ -->
-  <div class="panel bg-dark">
-    <div class="bar-gold"></div>
-
-    <!-- Logos -->
-    <div style="display:flex;justify-content:center;align-items:center;gap:12px;padding:3mm var(--mx) 0;position:relative;z-index:1;">
-      <div style="width:68px;height:68px;border-radius:50%;overflow:hidden;border:3px solid var(--gold);background:white;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-        <img src="images/logoUniv.png" style="width:100%;height:100%;object-fit:cover;">
-      </div>
-      <div style="width:66px;height:66px;border-radius:4px;overflow:hidden;border:3px solid var(--gold);background:white;display:flex;align-items:center;justify-content:center;flex-shrink:0;">
-        <img src="images/logo-congres.jpg" style="width:100%;height:100%;object-fit:contain;">
-      </div>
-    </div>
-
-    <!-- Title block -->
-    <div style="position:relative;z-index:1;margin:4mm var(--mx) 0;padding:5mm 6mm;background:linear-gradient(135deg,rgba(26,90,46,0.95),rgba(15,61,30,0.95));border-left:5px solid var(--gold);border-radius:0 4px 4px 0;box-shadow:0 2px 8px rgba(0,0,0,0.3);">
-      <div style="font-size:8.5pt;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:0.2em;margin-bottom:5px;">2<sup>e</sup> Congrès International</div>
-      <div class="cv-title">Développement <em>Durable</em><br>pour une Meilleure<br><em>Qualité de Vie</em></div>
-      <div class="cv-sub">Les Ressources Naturelles au Service<br>des Objectifs de Développement Durable</div>
-      <span class="cv-tag">SDBQL 2026</span>
-    </div>
-
-    <!-- Info cards 2×2 -->
-    <div style="margin:3mm var(--mx) 0;display:grid;grid-template-columns:1fr 1fr;gap:2px;">
-      <div class="ic"><span class="ic-l">Date</span><span class="ic-v">30 Sept. — 2 Oct. 2026</span></div>
-      <div class="ic"><span class="ic-l">Lieu</span><span class="ic-v">Faculté de Médecine<small>Univ. Tlemcen, Algérie</small></span></div>
-      <div class="ic"><span class="ic-l">Format</span><span class="ic-v">Mode Hybride<small>Présentiel &amp; En ligne</small></span></div>
-      <div class="ic"><span class="ic-l">Langues</span><span class="ic-v">Arabe · Anglais · Français</span></div>
-    </div>
-
-    <!-- SDG band -->
-    <div style="background:linear-gradient(135deg,#1a5c2e,#2d7a3a,#1a5c2e);padding:4px 3px;display:flex;flex-direction:column;align-items:center;gap:2px;flex-shrink:0;margin-top:3px;">
-      <div style="display:flex;gap:2px;">
-        <div class="sdg-box" style="background:#e5243b;">1</div><div class="sdg-box" style="background:#dda63a;">2</div>
-        <div class="sdg-box" style="background:#4c9f38;">3</div><div class="sdg-box" style="background:#c5192d;">4</div>
-        <div class="sdg-box" style="background:#ff3a21;">5</div><div class="sdg-box" style="background:#26bde2;">6</div>
-        <div class="sdg-box" style="background:#fcc30b;color:#333;">7</div><div class="sdg-box" style="background:#a21942;">8</div>
-        <div class="sdg-box" style="background:#fd6925;">9</div>
-      </div>
-      <div style="display:flex;gap:2px;">
-        <div class="sdg-box" style="background:#dd1367;">10</div><div class="sdg-box" style="background:#fd9d24;">11</div>
-        <div class="sdg-box" style="background:#bf8b2e;">12</div><div class="sdg-box" style="background:#3f7e44;">13</div>
-        <div class="sdg-box" style="background:#0a97d9;">14</div><div class="sdg-box" style="background:#56c02b;">15</div>
-        <div class="sdg-box" style="background:#00689d;">16</div><div class="sdg-box" style="background:#19486a;">17</div>
-      </div>
-      <span style="color:rgba(255,255,255,0.85);font-size:4pt;font-weight:700;letter-spacing:0.1em;text-transform:uppercase;">Objectifs de Développement Durable de l'ONU</span>
-    </div>
-
-    <!-- Photo mosaic -->
-    <div style="margin:3px var(--mx) 0;display:grid;grid-template-columns:1fr 1fr;grid-template-rows:40mm 40mm;gap:2px;position:relative;overflow:hidden;border-radius:3px;">
-      <img src="images/moz1.jpg" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:2px 0 0 0;">
-      <img src="images/moz2.jpg" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:0 2px 0 0;">
-      <img src="images/moz3.jpg" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:0 0 0 2px;">
-      <img src="images/moz4.jpg" style="width:100%;height:100%;object-fit:cover;display:block;border-radius:0 0 2px 0;">
-      <div style="position:absolute;bottom:0;left:0;right:0;background:rgba(0,0,0,0.5);padding:2px 6px;font-size:5pt;color:rgba(255,255,255,0.9);text-align:center;font-style:italic;">Tlemcen, Algérie</div>
-    </div>
-
-    <div style="background:var(--green-dark);padding:2px 8px;text-align:center;font-size:5pt;color:#88bb99;border-top:1px solid rgba(201,168,76,0.5);flex-shrink:0;">sdbql.vercel.app</div>
-    <div class="bar-stripe"></div>
-  </div><!-- /P3 -->
-
 </div><!-- /PAGE 1 -->
 
 
-<div class="page-label">PAGE 2 — INTÉRIEUR &nbsp;|&nbsp; [P4 COMITÉ SCIENTIFIQUE] [P5 INTL + CONFÉRENCIERS] [P6 ORG + LIEU + CONTACT]</div>
+<div class="page-label">PAGE 2 — INTÉRIEUR &nbsp;|&nbsp; [P4 COMITÉ SCIENTIFIQUE] [P5 INTL + CONFÉRENCIERS] [P2 RABAT INTÉRIEUR]</div>
 
 <div class="page">
   <div class="fold-line fold-left"></div>
@@ -640,76 +633,83 @@ hr.sep { border:none; border-top:1px solid #eaeae4; margin:1px 8px; }
 
 
   <!-- ══════════════════════════════
-       P6 — INSIDE RIGHT: Org Committee + Venue + Contact
+       P2 — INSIDE FLAP (inside right)
   ══════════════════════════════ -->
-  <div class="panel bg-tint">
-    <div class="bar-gold"></div>
+  <div class="panel bg-white">
+    <div class="bar-tri"></div>
 
-    <!-- Organizing committee — 2 columns compact -->
-    <div class="sh" style="margin-top:3px;">Comité d'Organisation</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px;padding:3px var(--mx);">
-      <div class="th-box"><span class="th-t">Thème 1 — Agriculture</span><span class="th-s">AFTAGRO, GenApAgiE, LAPRONA, LAMAABE &amp; GCESFDDZMT</span></div>
-      <div class="th-box"><span class="th-t">Thème 2 — Bioénergie</span><span class="th-s">Coord. : Prof. Merzouk Abdessamad — LECGEN</span></div>
-      <div class="th-box"><span class="th-t">Thème 3 — Biodiversité</span><span class="th-s">Coord. : Prof. Gaouar S. B. S. — GenApAgiE &amp; plus</span></div>
-      <div class="th-box"><span class="th-t">Thème 4 — Climat</span><span class="th-s">Coord. : Prof. Haddouche Driss — GCESFDDZMT</span></div>
-      <div class="th-box"><span class="th-t">Thème 5 — Santé</span><span class="th-s">Coord. : Prof. Rebiahi Sid Ahmed — LAMAABE</span></div>
-      <div class="th-box"><span class="th-t">Thème 6 — Partenariats</span><span class="th-s">Coord. : Prof. Tabet Aoul W. &amp; Dr. Nehar B.</span></div>
+    <div class="sh" style="margin-top:3px;">À propos du Congrès</div>
+    <div style="padding:3px var(--mx) 2px;background:#f9fcf9;border-bottom:1px solid #e0ece0;">
+      <p style="font-size:6.5pt;line-height:1.6;color:#222;text-align:justify;margin-bottom:3px;">À quatre ans de l'<strong>échéance 2030</strong>, seulement 18 % des ODD sont en bonne voie, les températures dépassent <strong>+1,55 °C</strong> et 2,3 milliards de personnes souffrent d'insécurité alimentaire. Le <strong>2e Congrès International SDBQL 2026</strong> se tient à ce moment charnière pour faire avancer cet agenda crucial.</p>
+      <p style="font-size:6.5pt;line-height:1.6;color:#222;text-align:justify;">Ancré dans une <strong>approche systémique et transdisciplinaire</strong>, le congrès explore le <em>nexus des ressources</em> — eau, énergie, alimentation, terres — comme cadre fédérateur, mettant en avant l'innovation verte, la sécurité minérale et la gouvernance inclusive.</p>
+      <div style="margin-top:4px;padding:3px 8px;background:var(--gold-light);border-left:2px solid var(--gold);font-size:6pt;font-style:italic;color:var(--green-dark);">« Les Ressources Naturelles au Service des Objectifs de Développement Durable »</div>
     </div>
 
-    <!-- QR Registration + Venue side by side -->
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;margin:4px var(--mx) 0;">
-      <div>
-        <div class="sh">Inscription en Ligne</div>
-        <div style="display:flex;align-items:center;gap:6px;padding:4px;background:#f5faf5;border:1px solid #c8d8c8;border-radius:2px;margin-top:3px;">
-          <div style="width:24mm;height:24mm;flex-shrink:0;border:2px solid var(--green);border-radius:3px;padding:2px;background:white;">
-            <img src="https://api.qrserver.com/v1/create-qr-code/?size=120x120&data=https%3A%2F%2Fsdbql.vercel.app%2Finscription.html&bgcolor=ffffff&color=0f3d1e&margin=1" style="width:100%;height:100%;display:block;" alt="QR">
-          </div>
-          <div><span style="font-size:8pt;font-weight:700;color:var(--green-dark);display:block;">📝 S'inscrire en ligne</span><span style="font-size:6.5pt;color:var(--gray);display:block;">sdbql.vercel.app/inscription</span></div>
+    <!-- Axes thématiques — 2 colonnes -->
+    <div class="sh" style="margin-top:2px;">Axes Thématiques</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1px 6px;padding:3px var(--mx) 2px;">
+      <div class="ax"><img src="images/odd2.jpg" style="width:16px;height:16px;border-radius:1px;flex-shrink:0;"><div><div class="ax-t">Agriculture Durable</div><div class="ax-s">Sécurité alimentaire & éco-pratiques</div></div></div>
+      <div class="ax"><img src="images/odd7.jpg" style="width:16px;height:16px;border-radius:1px;flex-shrink:0;"><div><div class="ax-t">Bioénergie & Renouvelables</div><div class="ax-s">Réduction de l'empreinte carbone</div></div></div>
+      <div class="ax"><img src="images/odd15.jpg" style="width:16px;height:16px;border-radius:1px;flex-shrink:0;"><div><div class="ax-t">Biodiversité & Écosystèmes</div><div class="ax-s">Gestion aquatique & terrestre</div></div></div>
+      <div class="ax"><img src="images/odd13.jpg" style="width:16px;height:16px;border-radius:1px;flex-shrink:0;"><div><div class="ax-t">Action Climatique</div><div class="ax-s">Politiques d'atténuation</div></div></div>
+      <div class="ax"><img src="images/odd3.png" style="width:16px;height:16px;border-radius:1px;flex-shrink:0;"><div><div class="ax-t">Santé & Bien-être</div><div class="ax-s">Nexus environnement-santé</div></div></div>
+      <div class="ax" style="border-bottom:none;"><img src="images/odd17.jpg" style="width:16px;height:16px;border-radius:1px;flex-shrink:0;"><div><div class="ax-t">Partenariats Socio-économiques</div><div class="ax-s">Synergies public-privé</div></div></div>
+    </div>
+
+    <!-- Publications -->
+    <div class="sh" style="margin-top:2px;">Publications</div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px;margin:3px var(--mx) 0;">
+      <div style="display:flex;align-items:center;gap:5px;padding:3px 5px;background:linear-gradient(135deg,#fff5ef,#fff0e8);border:1px solid #e8b090;border-left:2px solid #d4590a;border-radius:2px;">
+        <img src="images/springerLogo.png" style="height:30px;width:auto;flex-shrink:0;">
+        <div><span style="font-size:8pt;font-weight:800;color:#c04800;display:block;">SpringerLink</span><span style="font-size:6.5pt;color:var(--gray);">Actes indexés</span></div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:2px;">
+        <div style="display:flex;align-items:center;gap:3px;padding:2px 4px;background:#f8f4f0;border:1px solid #d4c4b8;border-radius:2px;">
+          <img src="images/gentic.jpg" style="height:24px;width:auto;flex-shrink:0;">
+          <div><span style="font-size:6pt;font-weight:700;color:#4a3728;display:block;">Génétiques & Biodiversité</span><span style="font-size:5.5pt;color:#666;">ISSN: 2602-5582</span></div>
         </div>
-        <div class="sh" style="margin-top:4px;">Rapport 2024</div>
-        <div style="display:flex;align-items:center;gap:5px;padding:4px;background:#fff8e1;border:1px solid #ffb300;border-left:2px solid #ff8f00;border-radius:2px;margin-top:3px;">
-          <div style="width:18mm;height:18mm;flex-shrink:0;background:#fff;border-radius:2px;padding:1px;border:1px solid #ffb300;">
-            <img src="https://api.qrserver.com/v1/create-qr-code/?size=90x90&data=https%3A%2F%2Fwww.univ-tlemcen.dz%2Fassets%2Fuploads%2FZZ%2FRapport%2520%2520congr%25C3%25A8s%2520SDBQL%2520Juin%25202024.pdf&bgcolor=ffffff&color=0f3d1e&margin=1" style="width:100%;height:100%;display:block;" alt="QR 2024">
-          </div>
-          <div><span style="font-size:7.5pt;font-weight:700;color:#e65100;display:block;">📄 Rapport SDBQL 2024</span><span style="font-size:6.5pt;color:#666;">Congrès Juin 2024</span></div>
+        <div style="display:flex;align-items:center;gap:3px;padding:3px 5px;background:#f0f4f0;border:1px solid #b8d4c8;border-radius:2px;">
+          <img src="images/JNPRA.png" style="height:24px;width:auto;flex-shrink:0;">
+          <div><span style="font-size:6pt;font-weight:700;color:#2d4a3a;display:block;">JNPRA Natural Products</span><span style="font-size:5.5pt;color:#666;">ISSN: 2773-4188</span></div>
         </div>
       </div>
+    </div>
+
+    <!-- QR + University -->
+    <div style="display:flex;align-items:center;gap:8px;margin:3px var(--mx) 0;padding:4px 6px;border:1px solid #c8d8c8;border-radius:3px;background:#f5faf5;">
+      <div style="width:26mm;height:26mm;flex-shrink:0;border:2px solid var(--green);border-radius:3px;padding:2px;background:white;">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=130x130&data=https%3A%2F%2Fsdbql.vercel.app&bgcolor=ffffff&color=0f3d1e&margin=2" style="width:100%;height:100%;display:block;" alt="QR">
+      </div>
       <div>
-        <div class="sh">Lieu</div>
-        <div style="margin-top:3px;">
-          <div style="font-size:7pt;color:var(--green-dark);font-weight:700;margin-bottom:4px;line-height:1.5;">📍 Faculté de Médecine<br><span style="font-weight:400;color:var(--gray);font-size:6pt;">12 Rue Hamri Ahmed, BP 119 — Tlemcen</span></div>
-          <img src="images/map-faculte.jpg" style="width:100%;height:30mm;display:block;object-fit:cover;border-radius:2px;border:1px solid #c8d8c8;">
-        </div>
+        <span style="font-size:8.5pt;font-weight:700;color:var(--green-dark);display:block;">sdbql.vercel.app</span>
+        <span style="font-size:6.5pt;color:var(--gray);display:block;">Programme complet &amp; inscription</span>
+        <span style="font-size:7pt;font-weight:700;color:var(--green-dark);display:block;margin-top:6px;">Université Abou Bekr Belkaïd</span>
+        <span style="font-size:6pt;color:var(--gray);display:block;">Tlemcen — Algérie</span>
       </div>
     </div>
 
-    <!-- Hotels -->
-    <div class="sh" style="margin-top:4px;">🏨 Hôtels à Proximité</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:3px;padding:3px var(--mx);">
-      <div style="display:flex;justify-content:space-between;align-items:center;padding:4px 7px;background:#f2f7f2;border-left:2px solid var(--green);border-radius:2px;"><span style="font-size:6.5pt;font-weight:700;">Les Zianides</span><span style="font-size:6pt;color:var(--green-dark);">+213 43 27 71 02</span></div>
-      <div style="display:flex;justify-content:space-between;align-items:center;padding:4px 7px;background:#f2f7f2;border-left:2px solid var(--green);border-radius:2px;"><span style="font-size:6.5pt;font-weight:700;">Stambouli</span><span style="font-size:6pt;color:var(--green-dark);">+213 40 96 14 76</span></div>
-      <div style="display:flex;justify-content:space-between;align-items:center;padding:4px 7px;background:#f2f7f2;border-left:2px solid var(--green);border-radius:2px;"><span style="font-size:6.5pt;font-weight:700;">Meriem</span><span style="font-size:6pt;color:var(--green-dark);">+213 43 27 10 29</span></div>
-      <div style="display:flex;justify-content:space-between;align-items:center;padding:4px 7px;background:#f2f7f2;border-left:2px solid var(--green);border-radius:2px;"><span style="font-size:6.5pt;font-weight:700;">Ibis Tlemcen</span><span style="font-size:6pt;color:var(--green-dark);">+213 43 98 10 10</span></div>
+    <!-- Partner logos — 3 columns -->
+    <div style="margin:4px var(--mx) 0;">
+      <div style="font-size:6pt;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--gray);text-align:center;margin-bottom:4px;">Partenaires &amp; Laboratoires</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;">
+        <div class="ltile"><img src="images/logoUniv.png" alt="Univ." style="max-height:22px;"><span class="lt-n">Univ. Tlemcen</span></div>
+        <div class="ltile"><img src="images/8.jpg" alt="ONA" style="max-height:22px;"><span class="lt-n">ONA</span></div>
+        <div class="ltile"><img src="images/9.jpg" alt="GENAPAGIE" style="max-height:22px;"><span class="lt-n">GENAPAGIE</span></div>
+        <div class="ltile"><img src="images/10.png" alt="LARMHO" style="max-height:22px;"><span class="lt-n">LARMHO</span></div>
+        <div class="ltile"><img src="images/11.jpg" alt="LAMAABE" style="max-height:22px;"><span class="lt-n">LAMAABE</span></div>
+        <div class="ltile"><img src="images/12.jpg" alt="Prod." style="max-height:22px;"><span class="lt-n">Prod. Animale</span></div>
+        <div class="ltile"><img src="images/13.png" alt="VAHPEASP" style="max-height:22px;"><span class="lt-n">VAHPEASP</span></div>
+        <div class="ltile"><img src="images/14.png" alt="LAPRONA" style="max-height:22px;"><span class="lt-n">LAPRONA</span></div>
+        <div class="ltile"><img src="images/15.png" alt="LECGEN" style="max-height:22px;"><span class="lt-n">LECGEN</span></div>
+        <div class="ltile"><img src="images/logo_forest.png" alt="Forest." style="max-height:22px;"><span class="lt-n">Foresterie</span></div>
+        <div class="ltile"><img src="images/I2E.jfif" alt="I2E" style="max-height:22px;"><span class="lt-n">I2E</span></div>
+        <div class="ltile"><img src="images/16.jpg" alt="LAPSAB" style="max-height:22px;"><span class="lt-n">LAPSAB</span></div>
+      </div>
     </div>
 
-    <!-- Excursions -->
-    <div class="sh" style="margin-top:4px;">🏛️ Excursions &amp; Visites Culturelles</div>
-    <div style="margin:3px var(--mx) 0;">
-      <img src="images/grottes.jpg" style="width:100%;height:38mm;object-fit:cover;border-radius:2px;border:1px solid #ccc;display:block;">
-      <div style="font-size:6.5pt;color:var(--gray);text-align:center;margin-top:2px;font-style:italic;">Grottes de Béni Baâd — Tlemcen &nbsp;·&nbsp; Découvrez la richesse historique et naturelle de Tlemcen</div>
-    </div>
-
-    <!-- Contact — 3 columns -->
-    <div class="sh" style="margin-top:4px;">📞 Contact</div>
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:3px;padding:3px var(--mx);">
-      <div style="padding:9px 3px;background:#f5f5f5;border:1px solid #ddd;border-left:2px solid var(--green);border-radius:2px;text-align:center;"><span style="font-size:17pt;">📧</span><span style="font-size:6.5pt;color:#333;display:block;margin-top:2px;font-weight:600;">sdbql26@gmail.com</span></div>
-      <div style="padding:9px 3px;background:#f5f5f5;border:1px solid #ddd;border-left:2px solid var(--green);border-radius:2px;text-align:center;"><span style="font-size:17pt;">📱</span><span style="font-size:6.5pt;color:#333;display:block;margin-top:2px;font-weight:600;">+213 40 95 92 65</span></div>
-      <div style="padding:9px 3px;background:#f5f5f5;border:1px solid #ddd;border-left:2px solid var(--green);border-radius:2px;text-align:center;"><span style="font-size:17pt;">🌐</span><span style="font-size:6.5pt;color:#333;display:block;margin-top:2px;font-weight:600;">sdbql.vercel.app</span></div>
-    </div>
-
-    <div class="fbar" style="margin-top:auto;"><span class="hash">#SDBQL2026</span> &nbsp;·&nbsp; <span class="web">sdbql.vercel.app</span></div>
+    <div class="fbar" style="margin-top:auto;"><span class="hash">#SDBQL2026 · #SDGs · #SustainableDevelopment</span></div>
     <div class="bar-stripe"></div>
-  </div><!-- /P6 -->
+  </div><!-- /P2 -->
 
 </div><!-- /PAGE 2 -->
 
