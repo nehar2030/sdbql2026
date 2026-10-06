@@ -7,6 +7,11 @@
   .logos{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:14px}
   .logos img{height:72px;width:auto;max-width:45%;object-fit:contain}
   .avis-provisoire{color:#C0001F;font-weight:700;font-size:13px;text-align:center;margin:0 0 14px;line-height:1.5}
+  .cachet{display:none}
+  @media print{
+    @page{margin:12mm 12mm 22mm}
+    .cachet{display:block;position:fixed;right:12mm;bottom:8mm;width:40mm;height:auto;opacity:.92}
+  }
   h1{font-size:22px;text-align:center;margin:0 0 4px;color:#1F3A6B}
   .sub{text-align:center;font-size:13px;color:#555;margin-bottom:18px}
   .direction{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;margin:0 0 22px;font-size:12.5px;text-align:center}
@@ -333,7 +338,7 @@
     <div class="num">SDBQL-0141</div>
     <div class="body">
       <div class="titre">ذكاء الأعمال كأداة لدعم اتخاذ القرار الزراعي المستدام: دراسة تحليلية لقطاع الزراعة في الهند باستخدام Power Bi في ضوء أهداف التنمية المستدامة</div>
-      <div class="auth">Dhaouia Mokhtari Et Hamdi Abouelkacem</div>
+      <div class="auth">ط.د مختاري الضاوية وأ.د حمدي أبو القاسم</div>
       <div class="aff">AMMAR THELIDJI UNIVERCITY LAGHOUAT</div>
       <div class="meta">Communication en ligne · Bloc A1-B1 · Mercredi 30 septembre 2026, 14:30–17:50 · Code de contrôle : <b>F8AF5223</b></div>
     </div>
@@ -5638,4 +5643,5 @@
       <div><b>Téléphone</b> : +213 40 95 92 65</div>
     </div>
   </div>
+  <img class="cachet" src="images/cachet-programme.png" alt="Cachet officiel du comité scientifique">
 </body></html>
