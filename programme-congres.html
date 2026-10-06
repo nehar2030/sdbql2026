@@ -7,11 +7,7 @@
   .logos{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:14px}
   .logos img{height:72px;width:auto;max-width:45%;object-fit:contain}
   .avis-provisoire{color:#C0001F;font-weight:700;font-size:13px;text-align:center;margin:0 0 14px;line-height:1.5}
-  .cachet{display:none}
-  @media print{
-    @page{margin:12mm 12mm 22mm}
-    .cachet{display:block;position:fixed;right:12mm;bottom:8mm;width:40mm;height:auto;opacity:.92}
-  }
+  @page{margin:40mm 12mm 14mm;@top-left{content:url(images/cachet-programme-petit.png);width:32mm;height:22mm;vertical-align:top;text-align:left}}
   h1{font-size:22px;text-align:center;margin:0 0 4px;color:#1F3A6B}
   .sub{text-align:center;font-size:13px;color:#555;margin-bottom:18px}
   .direction{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;margin:0 0 22px;font-size:12.5px;text-align:center}
@@ -5643,5 +5639,4 @@
       <div><b>Téléphone</b> : +213 40 95 92 65</div>
     </div>
   </div>
-  <img class="cachet" src="images/cachet-programme.png" alt="Cachet officiel du comité scientifique">
 </body></html>
